@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Product implements Comparable<Product> {
     private String productId;
@@ -16,15 +17,15 @@ public class Product implements Comparable<Product> {
     private ArrayList<Rate> rates;
     private ArrayList<Customer> thisProductsBuyers;
 
-    public Product(String productId, String name, String brand, double price, Seller seller, int supply, String categoryName, String explanation) {
-        this.productId = productId;
-        this.name = name;
-        this.brand = brand;
-        this.price = price;
-        this.seller = seller;
-        this.supply = supply;
-        this.categoryName = categoryName;
-        this.explanation = explanation;
+    public Product(HashMap<String , String> information) {
+        this.productId = information.get("productId");
+        this.name = information.get("name");
+        this.brand = information.get("brand");
+        this.price = Double.parseDouble(information.get("price"))
+        //this.seller = information.get("seller");
+        this.supply = Integer.parseInt(information.get("supply"));
+        this.categoryName = information.get("categoryName");
+        this.explanation = information.get("explanation");
         this.averageRate = 0;
         this.comments = new ArrayList<>();
         this.rates = new ArrayList<>();
