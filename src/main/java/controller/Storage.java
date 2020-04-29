@@ -140,7 +140,7 @@ public class Storage {
 
     public Product getProductById(String productId) {
         for (Product product : allProducts) {
-            if (product.getProductId() == productId) {
+            if (product.getProductId() == Integer.parseInt(productId)) {
                 return product;
             }
         }
