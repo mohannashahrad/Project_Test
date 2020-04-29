@@ -1,13 +1,17 @@
 package model;
 
+import java.util.HashMap;
+
 public class Request {
     private int requestId = 0;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
+    private HashMap<String, String> information;
 
-    public Request(String typeOfRequest) {
+    public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = requestId + 1;
         this.typeOfRequest = requestTypeFinder(typeOfRequest);
+        this.information = information;
         this.stateOfRequest = StateType.PROCESSING;
     }
 
@@ -21,6 +25,10 @@ public class Request {
 
     public StateType getStateOfRequest() {
         return stateOfRequest;
+    }
+
+    public HashMap<String, String> getInformation() {
+        return information;
     }
 
     RequestType requestTypeFinder(String typeName) {
