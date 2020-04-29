@@ -1,20 +1,23 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Discount {
     private String discountCode;
-    private Date beginDate;
-    private Date endDate;
+    private LocalDateTime beginDate;
+    private LocalDateTime endDate;
     private double amountOfDiscount;
     private int usageCount;
+    private int percentage;
     private ArrayList<Customer> customersWithThisDiscount;
 
-    public Discount(String discountCode, Date beginDate, Date endDate, double amountOfDiscount) {
+    public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage, double amountOfDiscount) {
         this.discountCode = discountCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
+        this.percentage = percentage;
         this.amountOfDiscount = amountOfDiscount;
         this.usageCount = 1;
         this.customersWithThisDiscount = new ArrayList<>();
@@ -24,11 +27,11 @@ public class Discount {
         return discountCode;
     }
 
-    public Date getBeginDate() {
+    public LocalDateTime getBeginDate() {
         return beginDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
@@ -44,11 +47,11 @@ public class Discount {
         return customersWithThisDiscount;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDateTime beginDate) {
         this.beginDate = beginDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

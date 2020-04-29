@@ -2,6 +2,7 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import model.*;
 import java.util.Date;
@@ -15,29 +16,32 @@ public class AdminManager extends Manager {
         return storage.getAllUsers();
     }
 
-    public Person viewUser (String username){
+    public Person viewUser (String username) throws Exception {
+        if (storage.getUserByUsername(username) == null)
+            throw new Exception("There is not such user!!");
+        else
         return storage.getUserByUsername(username);
     }
 
     public void deleteUser (String username) throws Exception {
         if (storage.getUserByUsername(username) == null)
-            throw new Exception("There is not such user");
+            throw new Exception("There is not such user!!");
         else
         storage.deleteUser(storage.getUserByUsername(username));
     }
 
     public void createManager (HashMap<String,String> information) throws Exception {
         if (!checkValidity(information.get("username")))
-            throw new Exception("Username is not valid");
+            throw new Exception("Username is not valid!!");
         else if (!checkValidity(information.get("password")))
-            throw new Exception("Password is not valid");
+            throw new Exception("Password is not valid!!");
         else
             storage.addUser(new Person (information));
     }
 
     public void removeProduct (String productId) throws Exception {
         if(storage.getProductById(productId) == null)
-            throw new Exception("There is not such product");
+            throw new Exception("There is not such product!!");
         else
         storage.deleteProduct(storage.getProductById(productId));
     }
@@ -50,38 +54,45 @@ public class AdminManager extends Manager {
         return storage.getAllRequests();
     }
 
-    public Discount viewDiscountCode (String code){
+    public Discount viewDiscountCode (String code) throws Exception {
+        if (storage.getDiscountByCode(code) == null)
+            throw new Exception("There is not such discount code!!");
+        else
         return storage.getDiscountByCode(code);
     }
 
-    public void createDiscountCode (String code , Date startDate , Date endDate , double amount) throws Exception {
+    public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate, int percentage,
+                                    double amount) throws Exception {
         if (storage.getDiscountByCode(code) != null)
-            throw new Exception("Discount already exists");
+            throw new Exception("Discount already exists!!");
         else
-        storage.addDiscount(new Discount(code,startDate,endDate,amount));
+        storage.addDiscount(new Discount(code,startDate,endDate,percentage,amount));
     }
 
     public void removeDiscountCode (String code) throws Exception {
         if (storage.getDiscountByCode(code) == null)
-            throw new Exception("There is not such Discount Code");
+            throw new Exception("There is not such Discount Code!!");
         else
         storage.deleteDiscount(storage.getDiscountByCode(code));
     }
 
-    public Request viewRequest (String requestId){
+    public Request viewRequest (String requestId) throws Exception {
+        if (storage.getRequestById(Integer.parseInt(requestId)) == null)
+            throw new Exception("There is not such request!!");
+        else
         return storage.getRequestById(Integer.parseInt(requestId));
     }
 
     public void removeCategory (String name) throws Exception {
         if (storage.getCategoryByName(name) == null)
-            throw new Exception("There is not a category with this name");
+            throw new Exception("There is not a category with this name!!");
         else
         storage.deleteCategory(storage.getCategoryByName(name));
     }
 
     public void acceptRequest (String requestId) throws Exception {
         if(storage.getRequestById(Integer.parseInt(requestId)) == null)
-            throw new Exception("There is not a request with this Id");
+            throw new Exception("There is not a request with this Id!!");
         else {
             storage.getRequestById(Integer.parseInt(requestId)).acceptRequest();
             processAcceptedRequest(storage.getRequestById(Integer.parseInt(requestId)));
@@ -90,7 +101,7 @@ public class AdminManager extends Manager {
 
     public void declineRequest (String requestId) throws Exception {
         if(storage.getRequestById(Integer.parseInt(requestId)) == null)
-            throw new Exception("There is not a request with this Id");
+            throw new Exception("There is not a request with this Id!!");
         else
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
     }
