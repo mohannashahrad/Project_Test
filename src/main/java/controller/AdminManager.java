@@ -1,8 +1,8 @@
 package controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.*;
 import java.util.HashMap;
@@ -45,7 +45,8 @@ public class AdminManager extends Manager {
         storage.deleteProduct(storage.getProductById(productId));
     }
 
-    public void addCategory (String name, HashMap<String,String> properties,ArrayList<Product> productsInThisCategory) throws Exception {
+    public void addCategory (String name, HashMap<String,String> properties,ArrayList<Product> productsInThisCategory)
+            throws Exception {
         if(storage.getCategoryByName(name) != null)
             throw new Exception("Category with this name already exists!!");
         else
@@ -68,11 +69,11 @@ public class AdminManager extends Manager {
     }
 
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate, int percentage,
-                                    double amount) throws Exception {
+                                    int usagePerCustomer, HashMap<Customer, Integer> customersWithThisDiscount) throws Exception {
         if (storage.getDiscountByCode(code) != null)
             throw new Exception("Discount already exists!!");
         else
-        storage.addDiscount(new Discount(code,startDate,endDate,percentage,amount));
+        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount));
     }
 
     public void removeDiscountCode (String code) throws Exception {
@@ -117,7 +118,8 @@ public class AdminManager extends Manager {
             case REGISTER_SELLER:
                 storage.addUser(new Person (request.getInformation()));
             case ADD_PRODUCT:
-                storage.addProduct(new Product (request.getInformation()));
+                Seller seller = (Seller) storage.getUserByUsername(request.getInformation().get("seller"));
+                storage.addProduct(new Product (request.getInformation(),seller));
             case EDIT_PRODUCT:
                 String productField = request.getInformation().get("field");
                 String productUpdatedVersion = request.getInformation().get("updatedVersion");
@@ -149,12 +151,12 @@ public class AdminManager extends Manager {
     }
 
     private void editSale (String saleId, String field, String updatedVersion) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
-            storage.getSaleById(saleId).setBeginDate(formatter.parse(updatedVersion));
+            storage.getSaleById(saleId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("endDate"))
-            storage.getSaleById(saleId).setEndDate(formatter.parse(updatedVersion));
+            storage.getSaleById(saleId).setEndDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("amountOfSale"))
-            storage.getSaleById(saleId).setAmountOfSale(Double.parseDouble(updatedVersion));
+            storage.getSaleById(saleId).setAmountOfSale(Integer.parseInt(updatedVersion));
     }
 }
