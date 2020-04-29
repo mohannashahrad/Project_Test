@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import model.*;
-import java.util.Date;
 import java.util.HashMap;
 
 public class AdminManager extends Manager {
