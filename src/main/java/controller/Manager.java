@@ -130,7 +130,10 @@ public class Manager {
         return currentSorts;
     }
 
-    public Product viewProduct (String productId){
+    public Product viewProduct (String productId) throws Exception {
+        if (storage.getProductById(productId) == null)
+            throw new Exception("There is not such product");
+        else
         return storage.getProductById(productId);
     }
 

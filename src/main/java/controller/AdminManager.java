@@ -19,11 +19,11 @@ public class AdminManager extends Manager {
         return storage.getUserByUsername(username);
     }
 
-    public boolean deleteUser (String username){
+    public void deleteUser (String username) throws Exception {
         if (storage.getUserByUsername(username) == null)
-            return false;
+            throw new Exception("There is not such user");
+        else
         storage.deleteUser(storage.getUserByUsername(username));
-        return true;
     }
 
     public void createManager (HashMap<String,String> information) throws Exception {
@@ -35,11 +35,11 @@ public class AdminManager extends Manager {
             storage.addUser(new Person (information));
     }
 
-    public boolean removeProduct (String productId){
+    public void removeProduct (String productId) throws Exception {
         if(storage.getProductById(productId) == null)
-            return false;
+            throw new Exception("There is not such product");
+        else
         storage.deleteProduct(storage.getProductById(productId));
-        return true;
     }
 
     public ArrayList<Discount> viewAllDiscountCodes (){
@@ -54,44 +54,45 @@ public class AdminManager extends Manager {
         return storage.getDiscountByCode(code);
     }
 
-    public boolean createDiscountCode (String code , Date startDate , Date endDate , double amount){
-        if (storage.getDiscountByCode(code).equals(code))
-            return false;
+    public void createDiscountCode (String code , Date startDate , Date endDate , double amount) throws Exception {
+        if (storage.getDiscountByCode(code) != null)
+            throw new Exception("Discount already exists");
+        else
         storage.addDiscount(new Discount(code,startDate,endDate,amount));
-        return true;
     }
 
-    public boolean removeDiscountCode (String code){
+    public void removeDiscountCode (String code) throws Exception {
         if (storage.getDiscountByCode(code) == null)
-            return false;
+            throw new Exception("There is not such Discount Code");
+        else
         storage.deleteDiscount(storage.getDiscountByCode(code));
-        return true;
     }
 
     public Request viewRequest (String requestId){
         return storage.getRequestById(Integer.parseInt(requestId));
     }
 
-    public boolean removeCategory (String name){
+    public void removeCategory (String name) throws Exception {
         if (storage.getCategoryByName(name) == null)
-            return false;
+            throw new Exception("There is not a category with this name");
+        else
         storage.deleteCategory(storage.getCategoryByName(name));
-        return true;
     }
 
-    public boolean acceptRequest (String requestId){
+    public void acceptRequest (String requestId) throws Exception {
         if(storage.getRequestById(Integer.parseInt(requestId)) == null)
-            return false;
-        storage.getRequestById(Integer.parseInt(requestId)).acceptRequest();
-        processAcceptedRequest(storage.getRequestById(Integer.parseInt(requestId)));
-        return true;
+            throw new Exception("There is not a request with this Id");
+        else {
+            storage.getRequestById(Integer.parseInt(requestId)).acceptRequest();
+            processAcceptedRequest(storage.getRequestById(Integer.parseInt(requestId)));
+        }
     }
 
-    public boolean declineRequest (String requestId){
+    public void declineRequest (String requestId) throws Exception {
         if(storage.getRequestById(Integer.parseInt(requestId)) == null)
-            return false;
+            throw new Exception("There is not a request with this Id");
+        else
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
-        return true;
     }
 
     private void processAcceptedRequest (Request request){
