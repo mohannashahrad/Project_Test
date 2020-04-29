@@ -45,6 +45,13 @@ public class AdminManager extends Manager {
         storage.deleteProduct(storage.getProductById(productId));
     }
 
+    public void addCategory (String name, HashMap<String,String> properties,ArrayList<Product> productsInThisCategory) throws Exception {
+        if(storage.getCategoryByName(name) != null)
+            throw new Exception("Category with this name already exists!!");
+        else
+            storage.addCategory(new Category(name,productsInThisCategory,properties));
+    }
+
     public ArrayList<Discount> viewAllDiscountCodes (){
         return storage.getAllDiscounts();
     }
