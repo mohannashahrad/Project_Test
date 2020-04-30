@@ -24,7 +24,7 @@ public class Filter {
     public ArrayList<Product> filterByPrice(double price, ArrayList<Product> allProducts){
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if(product.getPrice() == price){
+            if(product.getPrice() <= price){
                 filteredProducts.add(product);
             }
         }

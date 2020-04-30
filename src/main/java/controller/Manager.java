@@ -11,8 +11,8 @@ public class Manager {
     protected Person person;
     protected Cart cart;
     protected SellerManager sellerManager;
-    private ArrayList<Filter> currentFilters;
-    private ArrayList <Sort> currentSorts;
+    protected ArrayList<Filter> currentFilters;
+    protected ArrayList <Sort> currentSorts;
 
     public Manager() {
     }
@@ -122,14 +122,6 @@ public class Manager {
 
     public ArrayList<Sale> viewAllOffs (){
         return storage.getAllSales();
-    }
-
-    public ArrayList<Filter> getCurrentFilters() {
-        return currentFilters;
-    }
-
-    public ArrayList<Sort> getCurrentSorts() {
-        return currentSorts;
     }
 
     public Product viewProduct (String productId) throws Exception {
