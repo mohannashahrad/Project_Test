@@ -113,6 +113,18 @@ public class AdminManager extends Manager {
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
     }
 
+    public void createAvailableFilters (ArrayList<String> filterTags){
+        for (String tag : filterTags) {
+            storage.addFilter(new Filter (tag));
+        }
+    }
+
+    public void createAvailableSorts (ArrayList<String> sortTags){
+        for (String tag : sortTags) {
+            storage.addSort(new Sort(tag));
+        }
+    }
+
     private void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
