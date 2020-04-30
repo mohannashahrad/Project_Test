@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 public class Manager {
     protected Storage storage;
     protected Person person;
-    protected Seller seller;
-    protected Customer customer;
     protected Cart cart;
     protected SellerManager sellerManager;
     private ArrayList<Filter> currentFilters;
@@ -42,6 +40,10 @@ public class Manager {
             throw new Exception("Password is not valid");
         else {
             this.person = storage.getUserByUsername(username);
+            if(this.person.getRole().equals("CUSTOMER")){
+                this.cart = new Cart((Customer) this.person);
+                storage.addCart(this.cart);
+            }
             return storage.getUserByUsername(username);
         }
     }

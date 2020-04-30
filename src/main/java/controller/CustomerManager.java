@@ -77,7 +77,7 @@ public class CustomerManager extends Manager {
     public ArrayList<BuyLog> getCustomerBuyLogs(){
         return ((Customer)super.person).getBuyHistory();
     }
-    
+
     public void checkDiscountValidity(String discountCode) throws Exception {
         if (storage.getDiscountByCode(discountCode).getEndDate().isBefore(LocalDateTime.now()))
             throw new Exception("This discount is expired!");
