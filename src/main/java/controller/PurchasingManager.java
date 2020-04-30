@@ -1,4 +1,7 @@
 package controller;
 
-public class PurchasingManager {
+public class PurchasingManager extends Manager {
+
+    public PurchasingManager() {
+    }
 }
