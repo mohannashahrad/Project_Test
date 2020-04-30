@@ -73,4 +73,7 @@ public class Discount {
     public void updateUsageOfDiscount(Customer specificCustomer) {
         this.customersWithThisDiscount.replace(specificCustomer, this.customersWithThisDiscount.get(specificCustomer) + 1);
     }
+    public double calculateAmountOfDiscount(double totalPrice){
+        return totalPrice * ((double)percentage / 100);
+    }
 }
