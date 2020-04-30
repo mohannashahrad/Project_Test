@@ -69,5 +69,4 @@ public class SellerManager extends Manager {
         storage.addRequest(new Request("add sale" , information));
     }
 
-    
 }
