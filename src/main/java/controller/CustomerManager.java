@@ -1,6 +1,7 @@
 package controller;
 import model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,4 +56,41 @@ public class CustomerManager extends Manager {
             super.cart.addProductToCart(storage.getProductById(productId));
     }
 
+    public ArrayList<Discount> getCustomerDiscountCodes (){
+        return ((Customer)super.person).getAllDiscounts();
+    }
+
+    public BuyLog getOrderWithId(String orderId){
+        return storage.getBuyLogByCode(orderId);
+    }
+
+    public void rateProduct(String productId , double rate) throws Exception {
+        if(!storage.getProductById(productId).getThisProductsBuyers().contains(super.person))
+            throw new Exception("You can't rate a product which you didn't buy it!!");
+        else {
+            Rate rateOfThisProduct = new Rate (super.person.getUserName(), storage.getProductById(productId), rate);
+            storage.addRate(rateOfThisProduct);
+            storage.getProductById(productId).addRate(rateOfThisProduct);
+        }
+    }
+
+    public ArrayList<BuyLog> getCustomerBuyLogs(){
+        return ((Customer)super.person).getBuyHistory();
+    }
+    
+    public void checkDiscountValidity(String discountCode) throws Exception {
+        if (storage.getDiscountByCode(discountCode).getEndDate().isBefore(LocalDateTime.now()))
+            throw new Exception("This discount is expired!");
+        else if (storage.getDiscountByCode(discountCode).getBeginDate().isAfter(LocalDateTime.now()))
+            throw new Exception("You can't use a discount which is not available yet!");
+        else
+            throw new Exception("You can use this discount . Enjoy it :)");
+    }
+
+    public boolean doesCustomerHaveEnoughMoney(double price){
+        if (super.person.getBalance() < price)
+            return false;
+        else
+            return true;
+    }
 }

@@ -111,6 +111,15 @@ public class Storage {
         return null;
     }
 
+    public BuyLog getBuyLogByCode(String code){
+        for (Log buyLog : allBuyLogs) {
+            if (((BuyLog)buyLog).getBuyCode() == Integer.parseInt(code)){
+                return (BuyLog) buyLog;
+            }
+        }
+        return null;
+    }
+
     public Request getRequestById(int requestId) {
         for (Request request : allRequests) {
             if (request.getRequestId() == requestId) {
