@@ -3,24 +3,23 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Discount {
     private String discountCode;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
-    private double amountOfDiscount;
-    private int usageCount;
+    private int usagePerCustomer;
     private int percentage;
-    private ArrayList<Customer> customersWithThisDiscount;
+    private HashMap<Customer, Integer> customersWithThisDiscount;
 
-    public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage, double amountOfDiscount) {
+    public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage, int usagePerCustomer, HashMap<Customer, Integer> customersWithThisDiscount) {
         this.discountCode = discountCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.percentage = percentage;
-        this.amountOfDiscount = amountOfDiscount;
-        this.usageCount = 1;
-        this.customersWithThisDiscount = new ArrayList<>();
+        this.usagePerCustomer = usagePerCustomer;
+        this.customersWithThisDiscount = customersWithThisDiscount;
     }
 
     public String getDiscountCode() {
@@ -35,15 +34,15 @@ public class Discount {
         return endDate;
     }
 
-    public double getAmountOfDiscount() {
-        return amountOfDiscount;
+    public double getPercentage() {
+        return percentage;
     }
 
     public int getUsageCount() {
-        return usageCount;
+        return usagePerCustomer;
     }
 
-    public ArrayList<Customer> getCustomersWithThisDiscount() {
+    public HashMap<Customer, Integer> getCustomersWithThisDiscount() {
         return customersWithThisDiscount;
     }
 
@@ -55,17 +54,23 @@ public class Discount {
         this.endDate = endDate;
     }
 
-    public void setAmountOfDiscount(double amountOfDiscount) {
-        this.amountOfDiscount = amountOfDiscount;
+    public void setPercentage(int percentage) {
+        this.percentage = percentage;
     }
 
     public void setUsageCount(int usageCount) {
-        this.usageCount = usageCount;
+        this.usagePerCustomer = usageCount;
     }
-    public void addCustomer(Customer newCustomer){
-        customersWithThisDiscount.add(newCustomer);
+
+    public void addCustomer(Customer newCustomer) {
+        customersWithThisDiscount.put(newCustomer, 0);
     }
-    public void removeCustomer(Customer specificCustomer){
-        customersWithThisDiscount.removeIf(customer -> customer.equals(specificCustomer));
+
+    public void removeCustomer(Customer specificCustomer, int usage) {
+        customersWithThisDiscount.remove(specificCustomer, usage);
+    }
+
+    public void updateUsageOfDiscount(Customer specificCustomer) {
+        this.customersWithThisDiscount.replace(specificCustomer, this.customersWithThisDiscount.get(specificCustomer) + 1);
     }
 }

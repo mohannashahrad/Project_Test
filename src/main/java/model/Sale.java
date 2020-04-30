@@ -1,16 +1,17 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Sale {
     private String saleId;
-    private Date beginDate;
-    private Date endDate;
-    private double amountOfSale;
+    private LocalDateTime beginDate;
+    private LocalDateTime endDate;
+    private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
 
-    public Sale(String saleId, Date beginDate, Date endDate, double amountOfSale, ArrayList<Product> productsWithThisSale) {
+    public Sale(String saleId, LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
         this.saleId = saleId;
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -22,15 +23,15 @@ public class Sale {
         return saleId;
     }
 
-    public Date getBeginDate() {
+    public LocalDateTime getBeginDate() {
         return beginDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public double getAmountOfSale() {
+    public int getAmountOfSale() {
         return amountOfSale;
     }
 
@@ -38,20 +39,20 @@ public class Sale {
         return productsWithThisSale;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDateTime beginDate) {
         this.beginDate = beginDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
-    public void setAmountOfSale(double amountOfSale) {
+    public void setAmountOfSale(int amountOfSale) {
         this.amountOfSale = amountOfSale;
     }
 
     public double calculateAmountOfSale(double totalPrice) {
-        return totalPrice * (this.amountOfSale);
+        return totalPrice * (((double)(this.amountOfSale)) / 100);
     }
     public void addProductToThisSale(Product newProduct){
         productsWithThisSale.add(newProduct);

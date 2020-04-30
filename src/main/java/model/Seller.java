@@ -47,7 +47,7 @@ public class Seller extends Person {
 
     boolean hasProductWithId(String productId) {
         for (Product product : productsToSell) {
-            if (product.getProductId().equals(productId)) {
+            if (product.getProductId() == Integer.parseInt(productId)) {
                 return true;
             }
         }

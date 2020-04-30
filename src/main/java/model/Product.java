@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Product implements Comparable<Product> {
-    private String productId;
+    private int productId = 0;
     private String name;
     private String brand;
     private double price;
@@ -17,12 +17,12 @@ public class Product implements Comparable<Product> {
     private ArrayList<Rate> rates;
     private ArrayList<Customer> thisProductsBuyers;
 
-    public Product(HashMap<String , String> information) {
-        this.productId = information.get("productId");
+    public Product(HashMap<String, String> information, Seller seller) {
+        this.productId = productId + 1;
         this.name = information.get("name");
         this.brand = information.get("brand");
-        this.price = Double.parseDouble(information.get("price"))
-        //this.seller = information.get("seller");
+        this.price = Double.parseDouble(information.get("price"));
+        this.seller = seller;
         this.supply = Integer.parseInt(information.get("supply"));
         this.categoryName = information.get("categoryName");
         this.explanation = information.get("explanation");
@@ -32,7 +32,7 @@ public class Product implements Comparable<Product> {
         this.thisProductsBuyers = new ArrayList<>();
     }
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 

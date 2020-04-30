@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class BuyLog extends Log {
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
 
-    public BuyLog(Date date, double paidMoney, double discountAmount, Seller seller, HashMap<String, String> customerInfo) {
+    public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, Seller seller, HashMap<String, String> customerInfo) {
         super(date);
         this.paidMoney = paidMoney;
         this.discountAmount = discountAmount;

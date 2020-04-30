@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ public class SellLog extends Log {
     private Customer customer;
     private static ArrayList<Integer> allSellCodes = new ArrayList<>();
 
-    public SellLog(Date date, double receivedMoney, double saleAmount, Customer customer) {
+    public SellLog(LocalDateTime date, double receivedMoney, double saleAmount, Customer customer) {
         super(date);
         this.receivedMoney = receivedMoney;
         this.saleAmount = saleAmount;

@@ -1,18 +1,21 @@
 package model;
 
+
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Log {
-    private Date date;
+    private LocalDateTime date;
     private ArrayList<Product> products;
 
-    public Log(Date date) {
+    public Log(LocalDateTime date) {
         this.date = date;
         this.products = new ArrayList<>();
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
