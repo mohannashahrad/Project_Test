@@ -33,4 +33,17 @@ public class PurchasingManager extends Manager {
                 throw new Exception("Ops !! No match with available filter tags!");
         }
     }
+
+    public ArrayList<Product> performSort (String sortTag) throws Exception {
+        Sort sort = storage.getSortByName(sortTag);
+        switch(sortTag)
+        {
+            case "category":
+                 sort.sortByCategory(storage.getAllCategories());
+            case "price":
+                return sort.sortByPrice(storage.getAllProducts());
+            default:
+                throw new Exception("Ops !! No match with available sort tags!");
+        }
+    }
 }
