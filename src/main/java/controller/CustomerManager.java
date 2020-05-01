@@ -50,6 +50,10 @@ public class CustomerManager extends Manager {
     public void addProductToCart(String productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not a product with this Id!!");
+        if (super.cart == null) {
+            super.cart = new Cart(null);
+            storage.addCart(super.cart);
+        }
         else if(super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
             throw new Exception("You already have this product in you cart.Please use the increase[productId] command!");
         else

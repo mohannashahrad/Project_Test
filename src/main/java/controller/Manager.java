@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class Manager {
     protected Storage storage;
     protected Person person;
-    protected Cart cart;
+    protected Cart cart = null;
     protected SellerManager sellerManager;
     protected ArrayList<Filter> currentFilters;
     protected ArrayList <Sort> currentSorts;
@@ -40,7 +40,7 @@ public class Manager {
             throw new Exception("Password is not valid");
         else {
             this.person = storage.getUserByUsername(username);
-            if(this.person.getRole().equals("CUSTOMER")){
+            if(this.person.getRole().equals("CUSTOMER") && cart == null){
                 this.cart = new Cart((Customer) this.person);
                 storage.addCart(this.cart);
             }
