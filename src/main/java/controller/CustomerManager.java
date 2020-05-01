@@ -10,15 +10,15 @@ public class CustomerManager extends Manager {
     public CustomerManager() {
     }
 
-    public Cart viewCart (){
+    public Cart getCart (){
         return super.cart;
     }
 
-    public HashMap<Product , Integer> showProductsInCart(){
+    public HashMap<Product , Integer> getProductsInCart(){
         return super.cart.getProductsInCart();
     }
 
-    public Product viewProductInCart(String productId) throws Exception {
+    public Product getProductInCart(String productId) throws Exception {
         if(!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
             throw new Exception("You don't have such product in your cart!");
         else
@@ -72,7 +72,7 @@ public class CustomerManager extends Manager {
         if(!storage.getProductById(productId).getThisProductsBuyers().contains(super.person))
             throw new Exception("You can't rate a product which you didn't buy it!!");
         else {
-            Rate rateOfThisProduct = new Rate (super.person.getUserName(), storage.getProductById(productId), rate);
+            Rate rateOfThisProduct = new Rate (super.person.getUserName(),storage.getProductById(productId),rate);
             storage.addRate(rateOfThisProduct);
             storage.getProductById(productId).addRate(rateOfThisProduct);
         }
@@ -96,5 +96,11 @@ public class CustomerManager extends Manager {
             return false;
         else
             return true;
+    }
+
+    public double calculateTotalPriceWithDiscount (String discountCode){
+        double totalPriceWithoutDiscount = super.cart.getTotalPrice();
+        double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
+        return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
 }
