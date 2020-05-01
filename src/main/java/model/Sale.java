@@ -6,13 +6,15 @@ import java.util.Date;
 
 public class Sale {
     private int saleId = 0;
+    private int lastSaleId;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
 
     public Sale(LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
-        this.saleId = saleId + 1;
+        this.saleId = lastSaleId + 1;
+        lastSaleId++;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.amountOfSale = amountOfSale;
@@ -33,6 +35,10 @@ public class Sale {
 
     public int getAmountOfSale() {
         return amountOfSale;
+    }
+
+    public int getLastSaleId(){
+        return lastSaleId;
     }
 
     public ArrayList<Product> getProductsWithThisSale() {

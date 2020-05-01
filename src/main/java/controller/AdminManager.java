@@ -144,7 +144,7 @@ public class AdminManager extends Manager {
             case EDIT_SALE:
                 String saleField = request.getInformation().get("field");
                 String saleUpdatedVersion = request.getInformation().get("updatedVersion");
-                String saleId = request.getInformation().get("productId");
+                int saleId = Integer.parseInt(request.getInformation().get("saleId"));
                 try {
                     editSale(saleId,saleField,saleUpdatedVersion);
                 } catch (ParseException e) {
@@ -168,7 +168,7 @@ public class AdminManager extends Manager {
             storage.getProductById(productId).setExplanation(updatedVersion);
     }
 
-    public void editSale (String saleId, String field, String updatedVersion) throws ParseException {
+    public void editSale (int saleId, String field, String updatedVersion) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(saleId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
@@ -180,11 +180,11 @@ public class AdminManager extends Manager {
 
     public void addSaleRequest (Request request){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String offId = request.getInformation().get("offId");
         LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
         LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);
         int amountOfOff = Integer.parseInt(request.getInformation().get("amountOfSale"));
-        Sale sale = new Sale(offId,beginDate,endDate,amountOfOff,sellerManager.getSavedProductsInSale().get(offId));
+        int offId = Integer.parseInt(request.getInformation().get("offId"));
+        Sale sale = new Sale(beginDate,endDate,amountOfOff,sellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);
         ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
     }

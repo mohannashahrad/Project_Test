@@ -6,11 +6,11 @@ import model.*;
 
 public class SellerManager extends Manager {
 
-    private HashMap<String,ArrayList<Product>> savedProductsInSale = new HashMap<>();
+    private HashMap<Integer,ArrayList<Product>> savedProductsInSale = new HashMap<>();
     public SellerManager() {
     }
 
-    public HashMap<String, ArrayList<Product>> getSavedProductsInSale() {
+    public HashMap<Integer, ArrayList<Product>> getSavedProductsInSale() {
         return savedProductsInSale;
     }
 
@@ -75,9 +75,11 @@ public class SellerManager extends Manager {
     }
 
     public void addOff(HashMap<String,String> information , ArrayList<Product> productsInOff) throws Exception {
-        String offId = information.get("offId");
+        Sale sale = null;
+        int offId = sale.getLastSaleId() + 1;
         savedProductsInSale.put(offId,productsInOff);
         information.put("username",super.person.getUserName());
+        information.put("offId",Integer.toString(offId));
         storage.addRequest(new Request("add sale" , information));
     }
 

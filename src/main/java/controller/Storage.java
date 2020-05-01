@@ -138,7 +138,7 @@ public class Storage {
         return null;
     }
 
-    public Sale getSaleById (String saleId) {
+    public Sale getSaleById (int saleId) {
         for (Sale sale : allSales) {
             if (sale.getSaleId() == saleId) {
                 return sale;
