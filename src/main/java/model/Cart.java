@@ -32,9 +32,8 @@ public class Cart {
     }
 
     public double calculateTotalPrice() {
-        Iterator<Map.Entry<Product, Integer>> it = productsInCart.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<Product, Integer> pair =(Map.Entry<Product, Integer>)it.next();
+        for(Product product : productsInCart.keySet()){
+            totalPrice += product.getPrice() * productsInCart.get(product);
         }
         return totalPrice;
     }
