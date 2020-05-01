@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.*;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class AdminManager extends Manager {
     public AdminManager() {
@@ -126,6 +125,20 @@ public class AdminManager extends Manager {
         storage.deleteCategory(storage.getCategoryByName(name));
     }
 
+    public void editCategoryByName (String oldName , String newName) throws Exception {
+        if (storage.getCategoryByName(oldName) == null)
+            throw new Exception("There is not such category!");
+        else
+            storage.getCategoryByName(oldName).setCategoryName(newName);
+    }
+
+    public void editCategoryByProperties (Category category ,String property, String newValue){
+        if(!category.getProperties().containsKey(property))
+            category.addNewProperty(property,newValue);
+        else
+            category.setSingleValueInProperties(property,newValue);
+    }
+
     public void acceptRequest (String requestId) throws Exception {
         if(storage.getRequestById(Integer.parseInt(requestId)) == null)
             throw new Exception("There is not a request with this Id!!");
@@ -188,7 +201,7 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void editProduct (String productId, String field, String updatedVersion){
+    private void editProduct (String productId, String field, String updatedVersion){
         if (field.equalsIgnoreCase("name"))
             storage.getProductById(productId).setName(updatedVersion);
         else if (field.equalsIgnoreCase("brand"))
@@ -203,7 +216,7 @@ public class AdminManager extends Manager {
             storage.getProductById(productId).setExplanation(updatedVersion);
     }
 
-    public void editSale (int offId, String field, String updatedVersion) throws ParseException {
+    private void editSale (int offId, String field, String updatedVersion) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
@@ -213,7 +226,7 @@ public class AdminManager extends Manager {
             storage.getSaleById(offId).setAmountOfSale(Integer.parseInt(updatedVersion));
     }
 
-    public void addSaleRequest (Request request){
+    private void addSaleRequest (Request request){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
         LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);

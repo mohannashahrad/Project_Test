@@ -34,6 +34,14 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+    public void setSingleValueInProperties(String property , String newValue){
+        this.properties.replace(property,newValue);
+    }
+
+    public void addNewProperty (String property , String value){
+        this.properties.put(property,value);
+    }
+
     public void addToThisCategoryProducts(Product newProduct) {
         thisCategoryProducts.add(newProduct);
     }
