@@ -112,6 +112,13 @@ public class Manager {
         return storage.getAllCategories();
     }
 
+    public Category viewCategory (String name) throws Exception {
+        if(storage.getCategoryByName(name) == null)
+            throw new Exception("There is not such category");
+        else
+            return storage.getCategoryByName(name);
+    }
+
     public ArrayList<Filter> viewAllFilters (){
         return storage.getAllFilters();
     }

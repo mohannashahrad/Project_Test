@@ -66,6 +66,7 @@ public class SellerManager extends Manager {
         else {
             HashMap<String,String> information = new HashMap<>();
             information.put(field,updatedVersion);
+            information.put("productId",productId);
             storage.addRequest(new Request("edit product", information));
         }
     }
@@ -81,6 +82,19 @@ public class SellerManager extends Manager {
         information.put("username",super.person.getUserName());
         information.put("offId",Integer.toString(offId));
         storage.addRequest(new Request("add sale" , information));
+    }
+
+    public void editOff (int offId , String field , String updatedVersion) throws Exception {
+        if (storage.getSaleById(offId) == null)
+            throw new Exception("There is not such off!");
+        else if (!((Seller)super.person).getSaleList().contains(storage.getSaleById(offId)))
+            throw new Exception("You don't have such off!");
+        else {
+            HashMap<String,String> information = new HashMap<>();
+            information.put(field,updatedVersion);
+            information.put("offId",Integer.toString(offId));
+            storage.addRequest(new Request("edit off", information));
+        }
     }
 
 }

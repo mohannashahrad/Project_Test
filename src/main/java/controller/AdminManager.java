@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.*;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class AdminManager extends Manager {
     public AdminManager() {
@@ -95,12 +96,13 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate, int percentage,
-                                    int usagePerCustomer, HashMap<Customer, Integer> customersWithThisDiscount) throws Exception {
+    public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
+                                    int percentage, int usagePerCustomer, double maxAmount,
+                                    HashMap<Customer, Integer> customersWithThisDiscount) throws Exception {
         if (storage.getDiscountByCode(code) != null)
             throw new Exception("Discount already exists!!");
         else
-        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount));
+        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount,maxAmount));
     }
 
     public void removeDiscountCode (String code) throws Exception {
@@ -171,16 +173,18 @@ public class AdminManager extends Manager {
             case EDIT_SALE:
                 String saleField = request.getInformation().get("field");
                 String saleUpdatedVersion = request.getInformation().get("updatedVersion");
-                int saleId = Integer.parseInt(request.getInformation().get("saleId"));
+                int saleId = Integer.parseInt(request.getInformation().get("offId"));
                 try {
                     editSale(saleId,saleField,saleUpdatedVersion);
                 } catch (ParseException e) {
                     e.getMessage();
                 }
             case REMOVE_PRODUCT:
+                Sale sale = null;
                 Product removedProduct = storage.getProductById(request.getInformation().get("productId"));
                 storage.deleteProduct(removedProduct);
                 ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
+                sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
         }
     }
 
@@ -193,16 +197,20 @@ public class AdminManager extends Manager {
             storage.getProductById(productId).setPrice(Double.parseDouble(updatedVersion));
         else if (field.equalsIgnoreCase("explanation"))
             storage.getProductById(productId).setExplanation(updatedVersion);
+        else if (field.equalsIgnoreCase("supply"))
+            storage.getProductById(productId).setSupply(Integer.parseInt(updatedVersion));
+        else if (field.equalsIgnoreCase("categoryName"))
+            storage.getProductById(productId).setExplanation(updatedVersion);
     }
 
-    public void editSale (int saleId, String field, String updatedVersion) throws ParseException {
+    public void editSale (int offId, String field, String updatedVersion) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
-            storage.getSaleById(saleId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
+            storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("endDate"))
-            storage.getSaleById(saleId).setEndDate(LocalDateTime.parse(updatedVersion, formatter));
+            storage.getSaleById(offId).setEndDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("amountOfSale"))
-            storage.getSaleById(saleId).setAmountOfSale(Integer.parseInt(updatedVersion));
+            storage.getSaleById(offId).setAmountOfSale(Integer.parseInt(updatedVersion));
     }
 
     public void addSaleRequest (Request request){
@@ -215,4 +223,5 @@ public class AdminManager extends Manager {
         storage.addSale(sale);
         ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
     }
+
 }
