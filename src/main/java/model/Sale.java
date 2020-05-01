@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Sale {
-    private String saleId;
+    private int saleId = 0;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
 
-    public Sale(String saleId, LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
-        this.saleId = saleId;
+    public Sale(LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
+        this.saleId = saleId + 1;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.amountOfSale = amountOfSale;
         this.productsWithThisSale = productsWithThisSale;
     }
 
-    public String getSaleId() {
+    public int getSaleId() {
         return saleId;
     }
 

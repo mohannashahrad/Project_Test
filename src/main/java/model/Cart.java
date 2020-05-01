@@ -1,9 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class Cart {
     private HashMap<Product, Integer> productsInCart;
@@ -32,7 +30,7 @@ public class Cart {
     }
 
     public double calculateTotalPrice() {
-        for(Product product : productsInCart.keySet()){
+        for (Product product : productsInCart.keySet()) {
             totalPrice += product.getPrice() * productsInCart.get(product);
         }
         return totalPrice;
@@ -43,17 +41,17 @@ public class Cart {
         newProduct.setSupply(newProduct.getSupply() - 1);
     }
 
-    public void addNumberOfProductInTheCart(Product product){
+    public void addNumberOfProductInTheCart(Product product) {
         productsInCart.replace(product, productsInCart.get(product) + 1);
         product.setSupply(product.getSupply() - 1);
     }
 
     public void decreaseProduct(Product specificProduct) {
-        if(productsInCart.get(specificProduct) != 0) {
+        if (productsInCart.get(specificProduct) != 0) {
             productsInCart.replace(specificProduct, productsInCart.get(specificProduct) - 1);
             specificProduct.setSupply(specificProduct.getSupply() + 1);
         }
-        if(productsInCart.get(specificProduct) == 0){
+        if (productsInCart.get(specificProduct) == 0) {
             removeProduct(specificProduct);
         }
     }
