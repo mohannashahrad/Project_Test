@@ -11,6 +11,7 @@ public class Discount {
     private LocalDateTime endDate;
     private int usagePerCustomer;
     private int percentage;
+    private double maxAmount;
     private HashMap<Customer, Integer> customersWithThisDiscount;
 
     public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage,
@@ -53,6 +54,14 @@ public class Discount {
 
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
+    }
+
+    public double getMaxAmount() {
+        return maxAmount;
+    }
+
+    public void setMaxAmount(double maxAmount) {
+        this.maxAmount = maxAmount;
     }
 
     public void setPercentage(int percentage) {

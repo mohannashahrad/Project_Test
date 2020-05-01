@@ -57,7 +57,7 @@ public class AdminManager extends Manager {
         return storage.getAllDiscounts();
     }
 
-    public ArrayList<Request> vieAllRequests (){
+    public ArrayList<Request> viewAllRequests (){
         return storage.getAllRequests();
     }
 
@@ -66,6 +66,33 @@ public class AdminManager extends Manager {
             throw new Exception("There is not such discount code!!");
         else
         return storage.getDiscountByCode(code);
+    }
+
+    public void addCustomerToDiscount(String username , Discount discount) throws Exception {
+        if (storage.getUserByUsername(username) == null)
+            throw new Exception("There is not a user with this username!");
+        else if (discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
+            throw new Exception("This customer is already added to this discount!");
+        else
+            discount.addCustomer((Customer) storage.getUserByUsername(username));
+    }
+
+    public void editDiscountField (String field , String updatedVersion , Discount discount){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        switch (field){
+            case "percentage" :
+                discount.setPercentage(Integer.parseInt(updatedVersion));
+            case "usagePerCustomer":
+                discount.setUsageCount(Integer.parseInt(updatedVersion));
+            case "beginDate":
+                LocalDateTime beginDate = LocalDateTime.parse(updatedVersion,formatter);
+                discount.setBeginDate(beginDate);
+            case "endDate":
+                LocalDateTime endDate = LocalDateTime.parse(updatedVersion,formatter);
+                discount.setEndDate(endDate);
+            case "maxAmount":
+                discount.setMaxAmount(Double.parseDouble(updatedVersion));
+        }
     }
 
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate, int percentage,
