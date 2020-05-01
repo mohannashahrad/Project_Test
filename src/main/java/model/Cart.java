@@ -1,18 +1,21 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Cart {
-    private ArrayList<Product> productsInCart;
+    private HashMap<Product, Integer> productsInCart;
     private double totalPrice;
     private Customer customer;
 
     public Cart(Customer customer) {
-        this.productsInCart = new ArrayList<>();
+        this.productsInCart = new HashMap<>();
         this.customer = customer;
     }
 
-    public ArrayList<Product> getProductsInCart() {
+    public HashMap<Product, Integer> getProductsInCart() {
         return productsInCart;
     }
 
@@ -29,21 +32,34 @@ public class Cart {
     }
 
     public double calculateTotalPrice() {
-        for (Product product : productsInCart) {
-            totalPrice += product.getPrice();
+        Iterator<Map.Entry<Product, Integer>> it = productsInCart.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry<Product, Integer> pair =(Map.Entry<Product, Integer>)it.next();
         }
         return totalPrice;
     }
 
-    public void addProduct(Product newProduct) {
-        productsInCart.add(newProduct);
+    public void addProductToCart(Product newProduct) {
+        productsInCart.put(newProduct, 1);
         newProduct.setSupply(newProduct.getSupply() - 1);
     }
 
-    public void removeProduct(Product specificProduct) {
-        productsInCart.removeIf(product -> product.equals(specificProduct));
-        /*if (productsInCart.removeIf(product -> product.equals(specificProduct))) {
+    public void addNumberOfProductInTheCart(Product product){
+        productsInCart.replace(product, productsInCart.get(product) + 1);
+        product.setSupply(product.getSupply() - 1);
+    }
+
+    public void decreaseProduct(Product specificProduct) {
+        if(productsInCart.get(specificProduct) != 0) {
+            productsInCart.replace(specificProduct, productsInCart.get(specificProduct) - 1);
             specificProduct.setSupply(specificProduct.getSupply() + 1);
-        }*/
+        }
+        if(productsInCart.get(specificProduct) == 0){
+            removeProduct(specificProduct);
+        }
+    }
+
+    public void removeProduct(Product specificProduct) {
+        productsInCart.remove(specificProduct, 0);
     }
 }
