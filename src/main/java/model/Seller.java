@@ -37,11 +37,11 @@ public class Seller extends Person {
         this.company = company;
     }
 
-    void addProduct(Product newProduct) {
+    public void addProduct(Product newProduct) {
         productsToSell.add(newProduct);
     }
 
-    void removeProduct(Product specificProduct) {
+    public void removeProduct(Product specificProduct) {
         productsToSell.removeIf(product -> product.equals(specificProduct));
     }
 
@@ -54,11 +54,11 @@ public class Seller extends Person {
         return false;
     }
 
-    void addToSellLogs(SellLog newSellLog) {
+    public void addToSellLogs(SellLog newSellLog) {
         sellHistory.add(newSellLog);
     }
 
-    void addSale(Sale newSale) {
+    public void addSale(Sale newSale) {
         saleList.add(newSale);
     }
 }

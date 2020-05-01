@@ -5,7 +5,13 @@ import java.util.HashMap;
 import model.*;
 
 public class SellerManager extends Manager {
+
+    private HashMap<String,ArrayList<Product>> savedProductsInSale = new HashMap<>();
     public SellerManager() {
+    }
+
+    public HashMap<String, ArrayList<Product>> getSavedProductsInSale() {
+        return savedProductsInSale;
     }
 
     public void registerSeller(HashMap<String,String> information){
@@ -24,8 +30,10 @@ public class SellerManager extends Manager {
     public void addProduct (HashMap<String,String> information) throws Exception {
         if (storage.getProductById(information.get("productId")) != null)
             throw new Exception("A product exists with same productId. Please select another Id.");
-        else
-            storage.addRequest(new Request("add product" , information));
+        else {
+            information.put("seller",super.person.getUserName());
+            storage.addRequest(new Request("add product", information));
+        }
     }
 
     public void removeProduct (String productId) throws Exception {
@@ -36,6 +44,7 @@ public class SellerManager extends Manager {
         else {
             HashMap<String,String> information = new HashMap<>();
             information.put("productId",productId);
+            information.put("username",super.person.getUserName());
             storage.addRequest(new Request("remove product",information));
         }
     }
@@ -65,7 +74,10 @@ public class SellerManager extends Manager {
         return ((Seller)super.person).getSaleList();
     }
 
-    public void addOff(HashMap<String,String> information) throws Exception {
+    public void addOff(HashMap<String,String> information , ArrayList<Product> productsInOff) throws Exception {
+        String offId = information.get("offId");
+        savedProductsInSale.put(offId,productsInOff);
+        information.put("username",super.person.getUserName());
         storage.addRequest(new Request("add sale" , information));
     }
 

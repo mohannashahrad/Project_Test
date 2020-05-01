@@ -128,10 +128,14 @@ public class AdminManager extends Manager {
     private void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
-                storage.addUser(new Person (request.getInformation()));
+                storage.addUser(new Person(request.getInformation()));
             case ADD_PRODUCT:
                 Seller seller = (Seller) storage.getUserByUsername(request.getInformation().get("seller"));
-                storage.addProduct(new Product (request.getInformation(),seller));
+                Product product = new Product(request.getInformation(),seller);
+                storage.addProduct(product);
+                seller.addProduct(product);
+            case ADD_SALE:
+                addSaleRequest(request);
             case EDIT_PRODUCT:
                 String productField = request.getInformation().get("field");
                 String productUpdatedVersion = request.getInformation().get("updatedVersion");
@@ -147,7 +151,9 @@ public class AdminManager extends Manager {
                     e.getMessage();
                 }
             case REMOVE_PRODUCT:
-                storage.deleteProduct(storage.getProductById(request.getInformation().get("productId")));
+                Product removedProduct = storage.getProductById(request.getInformation().get("productId"));
+                storage.deleteProduct(removedProduct);
+                ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
         }
     }
 
@@ -162,7 +168,7 @@ public class AdminManager extends Manager {
             storage.getProductById(productId).setExplanation(updatedVersion);
     }
 
-    private void editSale (String saleId, String field, String updatedVersion) throws ParseException {
+    public void editSale (String saleId, String field, String updatedVersion) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(saleId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
@@ -170,5 +176,16 @@ public class AdminManager extends Manager {
             storage.getSaleById(saleId).setEndDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("amountOfSale"))
             storage.getSaleById(saleId).setAmountOfSale(Integer.parseInt(updatedVersion));
+    }
+
+    public void addSaleRequest (Request request){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String offId = request.getInformation().get("offId");
+        LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
+        LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);
+        int amountOfOff = Integer.parseInt(request.getInformation().get("amountOfSale"));
+        Sale sale = new Sale(offId,beginDate,endDate,amountOfOff,sellerManager.getSavedProductsInSale().get(offId));
+        storage.addSale(sale);
+        ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
     }
 }
