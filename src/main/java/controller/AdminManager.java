@@ -108,9 +108,8 @@ public class AdminManager extends Manager {
     }
 
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
-                                    int percentage, int usagePerCustomer, double maxAmount,
-                                    HashMap<Customer, Integer> customersWithThisDiscount){
-        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount,maxAmount));
+                                    int percentage, int usagePerCustomer, double maxAmount){
+        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,maxAmount));
     }
 
     public void removeDiscountCode (String code) throws Exception {
