@@ -6,7 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class BuyLog extends Log {
-    private int buyCode = 0;
+    private int buyCode;
+    private int lastBuyCode = 0;
     private double paidMoney;
     private double discountAmount;
     private Seller seller;
@@ -19,12 +20,17 @@ public class BuyLog extends Log {
         this.discountAmount = discountAmount;
         this.seller = seller;
         this.customerInfo = customerInfo;
-        this.buyCode = buyCode + 1;
+        this.buyCode = lastBuyCode + 1;
+        lastBuyCode++;
         allBuyCodes.add(buyCode);
     }
 
     public int getBuyCode() {
         return buyCode;
+    }
+
+    public int getLastBuyCode() {
+        return lastBuyCode;
     }
 
     public double getPaidMoney() {

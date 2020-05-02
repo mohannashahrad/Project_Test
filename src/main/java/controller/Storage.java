@@ -95,7 +95,7 @@ public class Storage {
 
     public Person getUserByUsername(String username) {
         for (Person user : allUsers) {
-            if (user.getUserName() == username) {
+            if (user.getUserName().equals(username)) {
                 return user;
             }
         }
@@ -104,7 +104,7 @@ public class Storage {
 
     public Discount getDiscountByCode(String code) {
         for (Discount discount : allDiscounts) {
-            if (discount.getDiscountCode() == code) {
+            if (discount.getDiscountCode().equals(code)) {
                 return discount;
             }
         }
@@ -131,7 +131,7 @@ public class Storage {
 
     public Category getCategoryByName(String name) {
         for (Category category : allCategories) {
-            if (category.getCategoryName() == name) {
+            if (category.getCategoryName().equals(name)) {
                 return category;
             }
         }
@@ -158,7 +158,7 @@ public class Storage {
 
     public Filter getFilterByName(String name) {
         for (Filter filter : allFilters) {
-            if (filter.getFilterName() == name) {
+            if (filter.getFilterName().equals(name)) {
                 return filter;
             }
         }
@@ -167,7 +167,7 @@ public class Storage {
 
     public Sort getSortByName (String name){
         for (Sort sort : allSorts) {
-            if (sort.getSortName() == name){
+            if (sort.getSortName().equals(name)){
                 return sort;
             }
         }

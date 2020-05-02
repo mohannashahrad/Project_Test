@@ -2,11 +2,10 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Sale {
-    private int saleId = 0;
-    private int lastSaleId;
+    private int saleId;
+    private int lastSaleId = 0;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int amountOfSale;
@@ -37,7 +36,7 @@ public class Sale {
         return amountOfSale;
     }
 
-    public int getLastSaleId(){
+    public int getLastSaleId() {
         return lastSaleId;
     }
 
@@ -58,12 +57,14 @@ public class Sale {
     }
 
     public double calculateAmountOfSale(double totalPrice) {
-        return totalPrice * (((double)(this.amountOfSale)) / 100);
+        return totalPrice * (((double) (this.amountOfSale)) / 100);
     }
-    public void addProductToThisSale(Product newProduct){
+
+    public void addProductToThisSale(Product newProduct) {
         productsWithThisSale.add(newProduct);
     }
-    public void removeProductFromThisSale(Product specificProduct){
+
+    public void removeProductFromThisSale(Product specificProduct) {
         productsWithThisSale.removeIf(product -> product.equals(specificProduct));
     }
 }

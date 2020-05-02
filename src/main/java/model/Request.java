@@ -3,13 +3,15 @@ package model;
 import java.util.HashMap;
 
 public class Request {
-    private int requestId = 0;
+    private int requestId;
+    private int lastRequestCode = 0;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
     private HashMap<String, String> information;
 
     public Request(String typeOfRequest, HashMap<String, String> information) {
-        this.requestId = requestId + 1;
+        this.requestId = lastRequestCode + 1;
+        lastRequestCode++;
         this.typeOfRequest = requestTypeFinder(typeOfRequest);
         this.information = information;
         this.stateOfRequest = StateType.PROCESSING;
@@ -18,6 +20,11 @@ public class Request {
     public int getRequestId() {
         return requestId;
     }
+
+    public int getLastRequestCode() {
+        return lastRequestCode;
+    }
+
 
     public RequestType getTypeOfRequest() {
         return typeOfRequest;

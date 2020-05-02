@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Product implements Comparable<Product> {
-    private int productId = 0;
+    private int productId;
+    private int lastProductId = 0;
     private String name;
     private String brand;
     private double price;
@@ -18,7 +19,8 @@ public class Product implements Comparable<Product> {
     private ArrayList<Customer> thisProductsBuyers;
 
     public Product(HashMap<String, String> information, Seller seller) {
-        this.productId = productId + 1;
+        this.productId = lastProductId + 1;
+        lastProductId++;
         this.name = information.get("name");
         this.brand = information.get("brand");
         this.price = Double.parseDouble(information.get("price"));
@@ -34,6 +36,10 @@ public class Product implements Comparable<Product> {
 
     public int getProductId() {
         return productId;
+    }
+
+    public int getLastProductId() {
+        return lastProductId;
     }
 
     public String getName() {

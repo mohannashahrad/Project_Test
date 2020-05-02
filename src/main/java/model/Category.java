@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Category {
     private String categoryName;
     private ArrayList<Product> thisCategoryProducts;
-    private HashMap<String,String> properties;
+    private HashMap<String, String> properties;
 
     public void setProperties(HashMap<String, String> properties) {
         this.properties = properties;
@@ -41,12 +41,15 @@ public class Category {
     public void removeFromThisCategoryProducts(Product specificProduct) {
         thisCategoryProducts.removeIf(categoryProduct -> categoryProduct.equals(specificProduct));
     }
-    public void addToProperties(String key, String value){
+
+    public void addToProperties(String key, String value) {
         this.properties.put(key, value);
     }
-    public void removeProperty(String key, String value){
+
+    public void removeProperty(String key, String value) {
         this.properties.remove(key, value);
     }
+
     @Override
     public String toString() {
         return "CategoryName='" + categoryName + '\'' + "\n" +
