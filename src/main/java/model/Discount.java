@@ -15,13 +15,14 @@ public class Discount {
     private HashMap<Customer, Integer> customersWithThisDiscount;
 
     public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage,
-                    int usagePerCustomer, HashMap<Customer, Integer> customersWithThisDiscount) {
+                    int usagePerCustomer, HashMap<Customer, Integer> customersWithThisDiscount, double maxAmount) {
         this.discountCode = discountCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.percentage = percentage;
         this.usagePerCustomer = usagePerCustomer;
         this.customersWithThisDiscount = customersWithThisDiscount;
+        this.maxAmount = maxAmount;
     }
 
     public String getDiscountCode() {
@@ -83,7 +84,8 @@ public class Discount {
     public void updateUsageOfDiscount(Customer specificCustomer) {
         this.customersWithThisDiscount.replace(specificCustomer, this.customersWithThisDiscount.get(specificCustomer) + 1);
     }
-    public double calculateAmountOfDiscount(double totalPrice){
-        return totalPrice * ((double)percentage / 100);
+
+    public double calculateAmountOfDiscount(double totalPrice) {
+        return totalPrice * ((double) percentage / 100);
     }
 }

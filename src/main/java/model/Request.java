@@ -25,7 +25,6 @@ public class Request {
         return lastRequestCode;
     }
 
-
     public RequestType getTypeOfRequest() {
         return typeOfRequest;
     }

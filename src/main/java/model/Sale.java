@@ -67,4 +67,13 @@ public class Sale {
     public void removeProductFromThisSale(Product specificProduct) {
         productsWithThisSale.removeIf(product -> product.equals(specificProduct));
     }
+
+    public void removeProductFromItSale(ArrayList<Sale> allSales, Product specificProduct) { //problem detected:deleting from ArrayList in a loop
+        for (Sale sale : allSales) {
+            if(sale.getProductsWithThisSale().contains(specificProduct)){
+                removeProductFromThisSale(specificProduct);
+                break;
+            }
+        }
+    }
 }

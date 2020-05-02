@@ -10,15 +10,15 @@ public class BuyLog extends Log {
     private int lastBuyCode = 0;
     private double paidMoney;
     private double discountAmount;
-    private Seller seller;
+    private ArrayList<Seller> seller;
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
 
-    public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, Seller seller, HashMap<String, String> customerInfo) {
+    public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers, HashMap<String, String> customerInfo) {
         super(date);
         this.paidMoney = paidMoney;
         this.discountAmount = discountAmount;
-        this.seller = seller;
+        this.seller = sellers;
         this.customerInfo = customerInfo;
         this.buyCode = lastBuyCode + 1;
         lastBuyCode++;
@@ -41,7 +41,7 @@ public class BuyLog extends Log {
         return discountAmount;
     }
 
-    public Seller getSeller() {
+    public ArrayList<Seller> getSeller() {
         return seller;
     }
 
