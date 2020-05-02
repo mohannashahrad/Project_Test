@@ -95,12 +95,15 @@ public class AdminManager extends Manager {
         }
     }
 
+    public boolean doesDiscountCodeExist (String code){
+        if (storage.getDiscountByCode(code) == null)
+            return false;
+        else return true;
+    }
+
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
                                     int percentage, int usagePerCustomer, double maxAmount,
-                                    HashMap<Customer, Integer> customersWithThisDiscount) throws Exception {
-        if (storage.getDiscountByCode(code) != null)
-            throw new Exception("Discount already exists!!");
-        else
+                                    HashMap<Customer, Integer> customersWithThisDiscount){
         storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount,maxAmount));
     }
 
@@ -125,11 +128,14 @@ public class AdminManager extends Manager {
         storage.deleteCategory(storage.getCategoryByName(name));
     }
 
-    public void editCategoryByName (String oldName , String newName) throws Exception {
-        if (storage.getCategoryByName(oldName) == null)
-            throw new Exception("There is not such category!");
-        else
+    public void editCategoryByName (String oldName , String newName){
             storage.getCategoryByName(oldName).setCategoryName(newName);
+    }
+
+    public boolean doesCategoryExist (String name){
+        if (storage.getCategoryByName(name) == null)
+            return false;
+        else return true;
     }
 
     public void editCategoryByProperties (Category category ,String property, String newValue){
