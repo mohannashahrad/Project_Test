@@ -77,6 +77,15 @@ public class AdminManager extends Manager {
             discount.addCustomer((Customer) storage.getUserByUsername(username));
     }
 
+    public void removeCustomerFromDiscount (Discount discount , String username) throws Exception {
+        if (storage.getUserByUsername(username) == null)
+            throw new Exception("There is not a user with this username!");
+        else if (!discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
+            throw new Exception("This customer does not have this discount!!");
+        else
+            discount.removeCustomer((Customer) storage.getUserByUsername(username),discount.getUsageCount());
+    }
+
     public void editDiscountField (String field , String updatedVersion , Discount discount){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         switch (field){
