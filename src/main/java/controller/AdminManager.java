@@ -61,10 +61,7 @@ public class AdminManager extends Manager {
         return storage.getAllRequests();
     }
 
-    public Discount viewDiscountCode (String code) throws Exception {
-        if (storage.getDiscountByCode(code) == null)
-            throw new Exception("There is not such discount code!!");
-        else
+    public Discount viewDiscountCode (String code) {
         return storage.getDiscountByCode(code);
     }
 
@@ -77,7 +74,7 @@ public class AdminManager extends Manager {
             discount.addCustomer((Customer) storage.getUserByUsername(username));
     }
 
-    public void editDiscountField (String field , String updatedVersion , Discount discount){
+    public void editDiscountField (Discount discount,String field , String updatedVersion){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         switch (field){
             case "percentage" :
