@@ -26,11 +26,12 @@ public class Manager {
             throw new Exception("Email is not valid");
         else if (!checkPhoneNumberValidity(information.get("number")))
             throw new Exception("Phone Number is not valid");
-        else if (!information.get("role").equalsIgnoreCase("seller"))
-            storage.addUser(new Person (information));
-        else
+        else if (information.get("role").equalsIgnoreCase("seller"))
             sellerManager.registerSeller(information);
-
+        else if (information.get("role").equalsIgnoreCase("customer"))
+            storage.addUser(new Customer(information));
+        else if (information.get("role").equalsIgnoreCase("admin"))
+            storage.addUser(new Admin(information));
     }
 
     public Person login (String username , String password) throws Exception {
