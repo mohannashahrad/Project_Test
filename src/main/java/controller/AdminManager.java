@@ -45,11 +45,7 @@ public class AdminManager extends Manager {
         storage.deleteProduct(storage.getProductById(productId));
     }
 
-    public void addCategory (String name, HashMap<String,String> properties,ArrayList<Product> productsInThisCategory)
-            throws Exception {
-        if(storage.getCategoryByName(name) != null)
-            throw new Exception("Category with this name already exists!!");
-        else
+    public void addCategory (String name, HashMap<String,String> properties,ArrayList<Product> productsInThisCategory){
             storage.addCategory(new Category(name,productsInThisCategory,properties));
     }
 
@@ -164,18 +160,6 @@ public class AdminManager extends Manager {
             throw new Exception("There is not a request with this Id!!");
         else
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
-    }
-
-    public void createAvailableFilters (ArrayList<String> filterTags){
-        for (String tag : filterTags) {
-            storage.addFilter(new Filter (tag));
-        }
-    }
-
-    public void createAvailableSorts (ArrayList<String> sortTags){
-        for (String tag : sortTags) {
-            storage.addSort(new Sort(tag));
-        }
     }
 
     private void processAcceptedRequest (Request request){
