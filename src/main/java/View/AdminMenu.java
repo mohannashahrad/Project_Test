@@ -396,15 +396,20 @@ public class AdminMenu extends AccountMenu{
         System.out.println("phone number :");
         data.put("number", scanner.nextLine());
 
-        adminManager.createManager(data);
-        System.out.println("Admin created!");
+        try {
+            adminManager.createManager(data);
+            System.out.println("Admin created!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void deleteUser() {
         System.out.println("username :");
         String username = scanner.nextLine();
         try {
-            adminManager.deleteUser();
+            adminManager.deleteUser(username);
             System.out.println("user successfully deleted!");
         } catch (Exception e) {
             System.out.println(e.getMessage());

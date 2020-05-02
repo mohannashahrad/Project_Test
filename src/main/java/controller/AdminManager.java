@@ -74,7 +74,16 @@ public class AdminManager extends Manager {
             discount.addCustomer((Customer) storage.getUserByUsername(username));
     }
 
-    public void editDiscountField (Discount discount,String field , String updatedVersion){
+    public void removeCustomerFromDiscount (Discount discount , String username) throws Exception {
+        if (storage.getUserByUsername(username) == null)
+            throw new Exception("There is not a user with this username!");
+        else if (!discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
+            throw new Exception("This customer does not have this discount!!");
+        else
+            discount.removeCustomer((Customer) storage.getUserByUsername(username),discount.getUsageCount());
+    }
+
+    public void editDiscountField ( Discount discount,String field , String updatedVersion ){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         switch (field){
             case "percentage" :
@@ -92,12 +101,15 @@ public class AdminManager extends Manager {
         }
     }
 
+    public boolean doesDiscountCodeExist (String code){
+        if (storage.getDiscountByCode(code) == null)
+            return false;
+        else return true;
+    }
+
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
                                     int percentage, int usagePerCustomer, double maxAmount,
-                                    HashMap<Customer, Integer> customersWithThisDiscount) throws Exception {
-        if (storage.getDiscountByCode(code) != null)
-            throw new Exception("Discount already exists!!");
-        else
+                                    HashMap<Customer, Integer> customersWithThisDiscount){
         storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,customersWithThisDiscount,maxAmount));
     }
 
@@ -122,11 +134,14 @@ public class AdminManager extends Manager {
         storage.deleteCategory(storage.getCategoryByName(name));
     }
 
-    public void editCategoryByName (String oldName , String newName) throws Exception {
-        if (storage.getCategoryByName(oldName) == null)
-            throw new Exception("There is not such category!");
-        else
+    public void editCategoryByName (String oldName , String newName){
             storage.getCategoryByName(oldName).setCategoryName(newName);
+    }
+
+    public boolean doesCategoryExist (String name){
+        if (storage.getCategoryByName(name) == null)
+            return false;
+        else return true;
     }
 
     public void editCategoryByProperties (Category category ,String property, String newValue){
