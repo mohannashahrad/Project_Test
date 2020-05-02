@@ -170,7 +170,7 @@ public class AdminManager extends Manager {
     private void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
-                storage.addUser(new Person(request.getInformation()));
+                storage.addUser(new Seller(request.getInformation()));
             case ADD_PRODUCT:
                 Seller seller = (Seller) storage.getUserByUsername(request.getInformation().get("seller"));
                 Product product = new Product(request.getInformation(),seller);
