@@ -26,8 +26,8 @@ public class Customer extends Person {
         return allDiscounts;
     }
 
-    public void addToAlDiscounts(Discount newDiscount) {
-        allDiscounts.add(newDiscount);
+    public void addToAllDiscounts(Discount newDiscount) {
+        this.allDiscounts.add(newDiscount);
     }
 
     public void removeFromAllDiscounts(Discount specificDiscount) {

@@ -18,14 +18,14 @@ public class CustomerManager extends Manager {
         return super.cart.getProductsInCart();
     }
 
-    public Product getProductInCart(String productId) throws Exception {
+    public Product getProductInCart(int productId) throws Exception {
         if(!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
             throw new Exception("You don't have such product in your cart!");
         else
             return storage.getProductById(productId);
     }
 
-    public void increaseProduct(String productId) throws Exception {
+    public void increaseProduct(int productId) throws Exception {
         if(storage.getProductById(productId) == null)
             throw new Exception("There is not such product!");
         else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
@@ -34,7 +34,7 @@ public class CustomerManager extends Manager {
             super.cart.addNumberOfProductInTheCart(storage.getProductById(productId));
     }
 
-    public void decreaseProduct(String productId) throws Exception {
+    public void decreaseProduct(int productId) throws Exception {
         if(storage.getProductById(productId) == null)
             throw new Exception("There is not such product!");
         else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
@@ -47,7 +47,7 @@ public class CustomerManager extends Manager {
         return super.cart.getTotalPrice();
     }
 
-    public void addProductToCart(String productId) throws Exception {
+    public void addProductToCart(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not a product with this Id!!");
         if (super.cart == null) {
@@ -68,7 +68,7 @@ public class CustomerManager extends Manager {
         return storage.getBuyLogByCode(orderId);
     }
 
-    public void rateProduct(String productId , double rate) throws Exception {
+    public void rateProduct(int productId , double rate) throws Exception {
         if(!storage.getProductById(productId).getThisProductsBuyers().contains(super.person))
             throw new Exception("You can't rate a product which you didn't buy it!!");
         else {
@@ -100,7 +100,7 @@ public class CustomerManager extends Manager {
 
     public double calculateTotalPriceWithDiscount (String discountCode){
         double totalPriceWithoutDiscount = super.cart.getTotalPrice();
-        double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
+        double discountPercentage = storage.getDiscountByCode(Integer.parseInt(discountCode)).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
 }
