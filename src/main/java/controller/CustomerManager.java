@@ -103,4 +103,5 @@ public class CustomerManager extends Manager {
         double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
+
 }
