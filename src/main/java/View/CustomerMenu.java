@@ -1,6 +1,9 @@
 package View;
 
+import controller.CustomerManager;
+
 public class CustomerMenu extends AccountMenu {
+    private CustomerManager customerManager;
     public CustomerMenu(Menu previousMenu) {
         super("CustomerMenu", previousMenu);
     }
