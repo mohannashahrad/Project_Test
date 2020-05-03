@@ -6,5 +6,7 @@ public enum RequestType {
     ADD_PRODUCT,
     REMOVE_PRODUCT,
     ADD_SALE,
-    EDIT_SALE
+    EDIT_SALE,
+    ADD_PRODUCT_TO_SALE,
+    REMOVE_PRODUCT_FROM_SALE
 }
