@@ -8,6 +8,6 @@ public class PurchaseMenu extends Menu {
 
     @Override
     public void show() {
-
+        System.out.print("Purchase Menu -> ");
     }
 }
