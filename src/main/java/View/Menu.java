@@ -10,6 +10,7 @@ public abstract class Menu {
     public static Scanner scanner;
     protected static Manager manager;
 
+
     public static Person getPerson() {
         return person;
     }
