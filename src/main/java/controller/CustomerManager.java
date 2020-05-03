@@ -100,7 +100,7 @@ public class CustomerManager extends Manager {
 
     public double calculateTotalPriceWithDiscount (String discountCode){
         double totalPriceWithoutDiscount = super.cart.getTotalPrice();
-        double discountPercentage = storage.getDiscountByCode(Integer.parseInt(discountCode)).getPercentage();
+        double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
 }
