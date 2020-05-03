@@ -1,6 +1,9 @@
 package View;
 
 import controller.CustomerManager;
+import controller.Manager;
+import model.BuyLog;
+import model.Product;
 
 public class CustomerMenu extends AccountMenu {
     private CustomerManager customerManager;
@@ -19,7 +22,7 @@ public class CustomerMenu extends AccountMenu {
             else if (command.equals("3"))
                 purchase();
             else if (command.equals("4"))
-                viewOrders(); //mohanna
+                viewOrders();
             else if (command.equals("5"))
                 viewBalance();
             else if (command.equals("6"))
@@ -43,6 +46,65 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void viewOrders() {
+        showAllOrders();
+        while (true){
+            System.out.println("Enter\n1.show order\n2.rate\n3.back");
+            int command = scanner.nextInt();
+            if (command == 1)
+                showSingleOrder();
+            else if (command == 2)
+                rateProduct();
+            else if (command == 3)
+                break;
+            else
+                System.out.println("Invalid choice");
+        }
+    }
+
+    private void showAllOrders (){
+        for (BuyLog buyLog : customerManager.getCustomerBuyLogs()) {
+            System.out.println("Your Buy Order :" + buyLog.getBuyCode());
+            System.out.println("Date : " + buyLog.getDate());
+            System.out.println("Paid money : " + buyLog.getPaidMoney());
+            System.out.println("Discount Amount : " + buyLog.getDiscountAmount());
+            System.out.println("Products in this log : ");
+            for (Product product : buyLog.getProducts()) {
+                System.out.println("Name " +product.getName() + "--- productId :" + product.getProductId() +
+                        "--- price : " + product.getPrice());
+            }
+        }
+    }
+
+    private void showSingleOrder (){
+        System.out.println("Enter your orderId :");
+        String orderId = scanner.nextLine();
+        BuyLog buyLog = customerManager.getOrderWithId(orderId);
+        System.out.println("Your Buy Order :" + buyLog.getBuyCode());
+        System.out.println("Date : " + buyLog.getDate());
+        System.out.println("Paid money : " + buyLog.getPaidMoney());
+        System.out.println("Discount Amount : " + buyLog.getDiscountAmount());
+        System.out.println("Products in this log : ");
+        for (Product product : buyLog.getProducts()) {
+            System.out.println("Name " +product.getName() + "--- productId :" + product.getProductId() +
+                    "--- price : " + product.getPrice());
+        }
+    }
+
+    private void rateProduct(){
+        System.out.println("Enter the productId :");
+        int productId = scanner.nextInt();
+        if (!customerManager.doesProductExist(productId)){
+            System.out.println("There is not such product");
+            return;
+        }
+        System.out.println("Enter your rate for the product : [the number should be between 1 and 5]");
+        double rate = scanner.nextDouble();
+        try {
+            customerManager.rateProduct(productId,rate);
+            System.out.println("Thanks for your feedback !");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void purchase() {

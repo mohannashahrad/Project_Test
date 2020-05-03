@@ -25,22 +25,28 @@ public class CustomerManager extends Manager {
             return storage.getProductById(productId);
     }
 
-    public void increaseProduct(int productId) throws Exception {
-        if(storage.getProductById(productId) == null)
-            throw new Exception("There is not such product!");
-        else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
-            throw new Exception("You don't have a product with this Id in your cart!");
-        else
-            super.cart.addNumberOfProductInTheCart(storage.getProductById(productId));
+    public boolean doesProductExist (int productId){
+        if (storage.getProductById(productId) == null)
+            return false;
+        else return true;
     }
 
-    public void decreaseProduct(int productId) throws Exception {
-        if(storage.getProductById(productId) == null)
+    public void increaseProduct(String productId) throws Exception {
+        if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!");
-        else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
+        else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
             throw new Exception("You don't have a product with this Id in your cart!");
         else
-            super.cart.decreaseProduct(storage.getProductById(productId));
+            super.cart.addNumberOfProductInTheCart(storage.getProductById(Integer.parseInt(productId)));
+    }
+
+    public void decreaseProduct(String productId) throws Exception {
+        if(storage.getProductById(Integer.parseInt(productId)) == null)
+            throw new Exception("There is not such product!");
+        else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
+            throw new Exception("You don't have a product with this Id in your cart!");
+        else
+            super.cart.decreaseProduct(storage.getProductById(Integer.parseInt(productId)));
     }
 
     public double getCartTotalPrice(){

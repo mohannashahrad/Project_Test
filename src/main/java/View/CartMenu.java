@@ -14,7 +14,7 @@ public class CartMenu extends Menu{
         while (true) {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
-                showProducts(); //mohanna
+                showProducts();
             else if (command.equals("2"))
                 viewSingleProduct();
             else if (command.equals("3"))
@@ -79,7 +79,11 @@ public class CartMenu extends Menu{
     }
 
     private void showProducts() {
-
+        for (Product product : customerManager.getProductsInCart().keySet()) {
+            System.out.println(product.getName() + "---" + product.getProductId() + "---" + product.getPrice());
+            System.out.println("Numbers of this product in your cart : " + customerManager.getProductsInCart().get(product));
+            System.out.println("---------------");
+        }
     }
 
     @Override
