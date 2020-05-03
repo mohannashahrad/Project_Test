@@ -139,10 +139,6 @@ public class Manager {
         return storage.getProductById(productId);
     }
 
-    public ArrayList<Comment> showComments (int productId){
-        return storage.getProductById(productId).getComments();
-    }
-
     public boolean doesPersonBoughtProduct (Person person , int productId){
         for (Person buyer : storage.getProductById(productId).getThisProductsBuyers()){
             if (buyer.equals(person))
