@@ -47,7 +47,7 @@ public class CartMenu extends Menu{
 
     private void decreaseProduct() {
         System.out.println("Enter product id :");
-        int id = scanner.nextInt();
+        String id = scanner.nextLine();
         try {
             customerManager.decreaseProduct(id);
         }catch (Exception e){
@@ -57,7 +57,7 @@ public class CartMenu extends Menu{
 
     private void increaseProduct() {
         System.out.println("Enter product id :");
-        int id = scanner.nextInt();
+        String id = scanner.nextLine();
         try {
             customerManager.increaseProduct(id);
         }catch (Exception e){
@@ -67,9 +67,10 @@ public class CartMenu extends Menu{
 
     private void viewSingleProduct() {
         System.out.println("Enter product id :");
-        int id = scanner.nextInt();
+        String id = scanner.nextLine();
         try {
-            Product product = customerManager.getProductInCart(id);
+            int productId = Integer.parseInt(id);
+            Product product = customerManager.getProductInCart(productId);
             ProductMenu productMenu = new ProductMenu(product,this);
             productMenu.run();
         }catch (Exception e){
