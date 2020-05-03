@@ -18,7 +18,7 @@ public class SellerManager extends Manager {
         storage.addRequest(new Request("register seller" , information));
     }
 
-    public Product viewSellerProduct (String productId) throws Exception {
+    public Product viewSellerProduct (int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("A product with this Id does noe exist!!");
         else if (storage.getProductById(productId).getSeller() != super.person)
@@ -28,7 +28,7 @@ public class SellerManager extends Manager {
     }
 
     public void addProduct (HashMap<String,String> information) throws Exception {
-        if (storage.getProductById(information.get("productId")) != null)
+        if (storage.getProductById(Integer.parseInt(information.get("productId"))) != null)
             throw new Exception("A product exists with same productId. Please select another Id.");
         else {
             information.put("seller",super.person.getUserName());
@@ -36,20 +36,20 @@ public class SellerManager extends Manager {
         }
     }
 
-    public void removeProduct (String productId) throws Exception {
+    public void removeProduct (int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not such product!");
         else if (storage.getProductById(productId).getSeller() != super.person)
             throw new Exception("You don't have such product!");
         else {
             HashMap<String,String> information = new HashMap<>();
-            information.put("productId",productId);
+            information.put("productId",Integer.toString(productId));
             information.put("username",super.person.getUserName());
             storage.addRequest(new Request("remove product",information));
         }
     }
 
-    public ArrayList<Customer> viewProductBuyers(String productId) throws Exception {
+    public ArrayList<Customer> viewProductBuyers(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not such product!");
         else if (storage.getProductById(productId).getSeller() != super.person)
@@ -58,7 +58,7 @@ public class SellerManager extends Manager {
             return storage.getProductById(productId).getThisProductsBuyers();
     }
 
-    public void editProduct(String productId , String field , String updatedVersion) throws Exception{
+    public void editProduct(int productId , String field , String updatedVersion) throws Exception{
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not such product!");
         else if (storage.getProductById(productId).getSeller() != super.person)
@@ -66,7 +66,7 @@ public class SellerManager extends Manager {
         else {
             HashMap<String,String> information = new HashMap<>();
             information.put(field,updatedVersion);
-            information.put("productId",productId);
+            information.put("productId",Integer.toString(productId));
             storage.addRequest(new Request("edit product", information));
         }
     }
@@ -97,4 +97,68 @@ public class SellerManager extends Manager {
         }
     }
 
+    public boolean doesSellerHaveProduct (int productId){
+        if (storage.getProductById(productId).getSeller().equals(super.person)) return true;
+        else return false;
+    }
+
+    public boolean doesProductExist (int productId){
+        if (storage.getProductById(productId) == null)
+            return false;
+        else return true;
+    }
+
+    public Product getSellerProductById (int productId){
+        return storage.getProductById(productId);
+    }
+
+    public boolean doesSellerHaveThisOff (int offId){
+        if (((Seller)super.person).getSaleList().contains(storage.getSaleById(offId)))
+            return true;
+        else return false;
+    }
+
+    public void addProductToOff(int offId , int productId) throws Exception {
+        if (storage.getProductById(productId) == null)
+            throw new Exception("There is no product with this Id!");
+        else if (storage.getSaleById(offId) == null)
+            throw new Exception("There is no off with this Id");
+        else if (!((Seller)super.person).getSaleList().contains(storage.getSaleById(offId)))
+            throw new Exception("You don't have this odd");
+        else if (storage.getSaleById(offId).getProductsWithThisSale().contains(storage.getProductById(productId)))
+            throw new Exception ("This product is already added in this sale!");
+        else {
+            HashMap<String,String> information = new HashMap<>();
+            information.put("offId",Integer.toString(offId));
+            information.put("productId",Integer.toString(productId));
+            storage.addRequest(new Request("add product to sale",information));
+        }
+    }
+
+    public void removeProductFromOff(int offId , int productId) throws Exception {
+        if (storage.getProductById(productId) == null)
+            throw new Exception("There is no product with this Id!");
+        else if (storage.getSaleById(offId) == null)
+            throw new Exception("There is no off with this Id");
+        else if (!((Seller)super.person).getSaleList().contains(storage.getSaleById(offId)))
+            throw new Exception("You don't have this odd");
+        else if (!storage.getSaleById(offId).getProductsWithThisSale().contains(storage.getProductById(productId)))
+            throw new Exception ("This product is not assigned to this sale!");
+        else {
+            HashMap<String,String> information = new HashMap<>();
+            information.put("offId",Integer.toString(offId));
+            information.put("productId",Integer.toString(productId));
+            storage.addRequest(new Request("remove product from sale",information));
+        }
+    }
+
+    public Sale viewSingleOff (int offId) throws Exception {
+        if (storage.getSaleById(offId) == null)
+            throw new Exception("There is not such off!");
+        else if (!((Seller)super.person).getSaleList().contains(storage.getSaleById(offId)))
+            throw new Exception("You don't have this off!");
+        else
+            return storage.getSaleById(offId);
+    }
 }
+

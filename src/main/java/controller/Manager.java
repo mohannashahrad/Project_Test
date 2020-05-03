@@ -132,18 +132,18 @@ public class Manager {
         return storage.getAllSales();
     }
 
-    public Product viewProduct (String productId) throws Exception {
+    public Product viewProduct (int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("There is not such product");
         else
         return storage.getProductById(productId);
     }
 
-    public ArrayList<Comment> showComments (String productId){
+    public ArrayList<Comment> showComments (int productId){
         return storage.getProductById(productId).getComments();
     }
 
-    public boolean doesPersonBoughtProduct (Person person , String productId){
+    public boolean doesPersonBoughtProduct (Person person , int productId){
         for (Person buyer : storage.getProductById(productId).getThisProductsBuyers()){
             if (buyer.equals(person))
                 return true;

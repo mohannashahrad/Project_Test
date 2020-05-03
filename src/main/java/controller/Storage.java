@@ -147,9 +147,9 @@ public class Storage {
         return null;
     }
 
-    public Product getProductById(String productId) {
+    public Product getProductById(int productId) {
         for (Product product : allProducts) {
-            if (product.getProductId() == Integer.parseInt(productId)) {
+            if (product.getProductId() == productId) {
                 return product;
             }
         }

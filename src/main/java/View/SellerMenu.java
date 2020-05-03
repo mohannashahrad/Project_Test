@@ -1,7 +1,11 @@
 package View;
 
 import controller.SellerManager;
-import model.Seller;
+import model.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SellerMenu extends AccountMenu {
     SellerManager sellerManager;
@@ -43,17 +47,155 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void viewOffsMenu() {
-        viewSellerOffs();
+        ArrayList<Sale> allOffs = sellerManager.viewSellerOffs();
+        if (allOffs.isEmpty()){
+            System.out.println("no offs yet.");
+            return;
+        }
+        for (Sale off : allOffs){
+            System.out.println(off.getSaleId());
+        }
         while (true){
             System.out.println("Enter\n1.view off\n2.edit off\n3.add off\n4.back");
             int command = scanner.nextInt();
-            //to be continued
+            if (command == 1)
+                viewSingleOff();
+            else if (command == 2)
+                editOff();
+            else if (command == 3)
+                addOff();
+            else if (command == 4)
+                break;
+            else
+                System.out.println("Invalid choice");
 
         }
     }
 
-    private void showCategories() {
+    private void viewSingleOff (){
+        System.out.println("Enter offId :");
+        int offId = scanner.nextInt();
+        try {
+            Sale sale = sellerManager.viewSingleOff(offId);
+            System.out.println(sale.getSaleId());
+            System.out.println("Amount of sale : " + sale.getAmountOfSale());
+            System.out.println("Begin Date : " + sale.getBeginDate());
+            System.out.println("End Date : " + sale.getEndDate());
+            System.out.println("List of products in this off : ");
+            for (Product product : sale.getProductsWithThisSale()) {
+                System.out.println(product.getProductId() + "------" + product.getName());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    private void addOff(){
+        HashMap<String,String> information = new HashMap<>();
+        ArrayList<Product> productsInThisSale = new ArrayList<>();
+        int productId = 0;
+        System.out.println("start date and time (yyyy,MM,dd,HH,mm) :");
+        String startDate = scanner.nextLine().trim();
+        information.put ("beginDate",startDate);
+
+        System.out.println("end date and time (yyyy,MM,dd,HH,mm) :");
+        String endDate = scanner.nextLine().trim();
+        information.put("endDate",endDate);
+        try {
+            System.out.println("Enter amount of sale :");
+            int amountOfSale = scanner.nextInt();
+            information.put("amountOfSale",Integer.toString(amountOfSale));
+            System.out.println("Enter number of products in this off:");
+            int numberOfProducts = scanner.nextInt();
+            for (int i = 0; i < numberOfProducts; i++){
+                System.out.println("Enter the username of " + i + "th product");
+                productId = scanner.nextInt();
+                if (!sellerManager.doesProductExist(productId)){
+                    System.out.println("There is not a product with this Id! Try again :)");
+                    i--;
+                }
+                else if (!sellerManager.doesSellerHaveProduct(productId)){
+                    System.out.println("You don't have this product in your available products! Try again :)");
+                    i--;
+                }
+                else {
+                    productsInThisSale.add(sellerManager.getSellerProductById(productId));
+                }
+            }
+            sellerManager.addOff(information,productsInThisSale);
+            System.out.println("created successfully!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("unsuccessful creation!");
+        }
+    }
+
+    private void editOff(){
+        System.out.println("Enter Off Id :");
+        int offId = scanner.nextInt();
+        if (!sellerManager.doesSellerHaveThisOff(offId)) {
+            System.out.println("Invalid offId.");
+            return;
+        }
+        while (true){
+            System.out.println("Enter field to edit :\n1.start date and time\n2.end date and time\n3.amount of sale\n4." +
+                    "add product to off" + "\n5.remove product from off\n6.back");
+            int command = scanner.nextInt();
+            if (!(0 < command && command < 7)) {
+                System.out.println("Invalid command");
+                continue;
+            } else if (command == 6)
+                break;
+            System.out.println("Enter new value :");
+            String newValue = scanner.nextLine();
+            if (command == 1) {
+                try {
+                    sellerManager.editOff(offId, "beginDate", newValue);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (command == 2) {
+                try {
+                    sellerManager.editOff(offId, "endDate", newValue);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (command == 3) {
+                try {
+                    sellerManager.editOff(offId, "amountOfSale", newValue);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (command == 4) {
+                System.out.println("Enter productId : ");
+                int productId = scanner.nextInt();
+                try {
+                    sellerManager.addProductToOff(offId,productId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (command == 5) {
+                System.out.println("Enter productId : ");
+                int productId = scanner.nextInt();
+                try {
+                    sellerManager.removeProductFromOff(offId,productId);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+    }
+
+    private void showCategories() {
+        if (sellerManager.viewAllCategories().isEmpty()){
+            System.out.println("no categories yet.");
+            return;
+        }
+        for (Category category: sellerManager.viewAllCategories()) {
+            System.out.println(category.getCategoryName());
+            System.out.println(category.getProperties());
+            System.out.println("-------");
+        }
     }
 
     private void removeProduct() {
@@ -95,6 +237,15 @@ public class SellerMenu extends AccountMenu {
             return;
         else
             System.out.println("Invalid choice");
+    }
+
+    private LocalDateTime dateMaker(String date) throws Exception {
+        String[] stringDateArray = date.split(",");
+        int[] intDateArray = new int[stringDateArray.length];
+        for (int i = 0; i < stringDateArray.length; i++) intDateArray[i] = Integer.parseInt(stringDateArray[i]);
+        LocalDateTime localDateTime = LocalDateTime.of(intDateArray[0], intDateArray[1], intDateArray[2], intDateArray[3], intDateArray[4]);
+        return localDateTime;
+
     }
 
     @Override
