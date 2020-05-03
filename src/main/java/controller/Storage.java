@@ -207,7 +207,7 @@ public class Storage {
     }
 
     public void addDiscount (Discount discount){
-        allDiscounts.add (discount);
+         allDiscounts.add(discount);
     }
 
     public void addRate (Rate rate){
