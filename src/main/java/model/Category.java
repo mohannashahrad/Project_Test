@@ -16,10 +16,10 @@ public class Category {
         return properties;
     }
 
-    public Category(String categoryName, ArrayList<Product> thisCategoryProducts, HashMap<String, String> properties) {
+    public Category(String categoryName) {
         this.categoryName = categoryName;
-        this.thisCategoryProducts = thisCategoryProducts;
-        this.properties = properties;
+        this.thisCategoryProducts = new ArrayList<>();
+        this.properties = new HashMap<>();
     }
 
     public String getCategoryName() {
