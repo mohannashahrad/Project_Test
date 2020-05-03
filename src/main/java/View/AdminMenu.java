@@ -28,6 +28,10 @@ public class AdminMenu extends AccountMenu{
                 manageRequestsMenu();
             else if (command.equals("7"))
                 manageCategoriesMenu();
+            else if (command.equals("8"))
+                break;
+            else
+                System.out.println("Invalid choice");
 
         }
     }
@@ -51,11 +55,29 @@ public class AdminMenu extends AccountMenu{
     }
 
     private void removeCategory() {
-        //to do
+        System.out.println("Enter category's name :");
+        String name = scanner.nextLine();
+        try {
+            adminManager.removeCategory(name);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void addCategory() {
-        //to do
+        System.out.println("Enter category's name :");
+        String name = scanner.nextLine();
+        if (adminManager.doesCategoryExist(name)){
+            System.out.println("category with this name already exists.");
+            return;
+        }
+        try {
+            adminManager.addCategory(name);
+            System.out.println("category created!");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void editCategory() {
