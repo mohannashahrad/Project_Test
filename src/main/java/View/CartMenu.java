@@ -1,6 +1,10 @@
 package View;
 
+import controller.CustomerManager;
+import model.Product;
+
 public class CartMenu extends Menu{
+    private CustomerManager customerManager;
     public CartMenu(Menu previousMenu) {
         super("CartMenu", previousMenu);
     }
@@ -10,7 +14,7 @@ public class CartMenu extends Menu{
         while (true) {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
-                showProducts();
+                showProducts(); //mohanna
             else if (command.equals("2"))
                 viewSingleProduct();
             else if (command.equals("3"))
@@ -33,21 +37,48 @@ public class CartMenu extends Menu{
     }
 
     private void purchase() {
+        PurchaseMenu purchaseMenu = new PurchaseMenu(this);
+        purchaseMenu.run();
     }
 
     private void showTotalPrice() {
+        System.out.println(customerManager.getCartTotalPrice());
     }
 
     private void decreaseProduct() {
+        System.out.println("Enter product id :");
+        String id = scanner.nextLine();
+        try {
+            customerManager.decreaseProduct(id);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void increaseProduct() {
+        System.out.println("Enter product id :");
+        String id = scanner.nextLine();
+        try {
+            customerManager.increaseProduct(id);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void viewSingleProduct() {
+        System.out.println("Enter product id :");
+        String id = scanner.nextLine();
+        try {
+            Product product = customerManager.getProductById(id);
+            ProductMenu productMenu = new ProductMenu(product,this);
+            productMenu.run();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void showProducts() {
+
     }
 
     @Override
