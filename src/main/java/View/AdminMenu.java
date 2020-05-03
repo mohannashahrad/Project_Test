@@ -30,6 +30,8 @@ public class AdminMenu extends AccountMenu{
                 manageCategoriesMenu();
             else if (command.equals("8"))
                 break;
+            else if (command.equalsIgnoreCase("help"))
+                show();
             else
                 System.out.println("Invalid choice");
 
