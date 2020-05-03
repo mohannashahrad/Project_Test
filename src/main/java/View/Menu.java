@@ -28,6 +28,12 @@ public abstract class Menu {
         scanner = new Scanner(System.in);
         allRootMenus = new HashMap<String, Menu>();
     }
+    protected static Menu getMenuByName(String name){
+        if (!allRootMenus.containsKey(name)){
+            return null;
+        }
+        return allRootMenus.get(name);
+    }
 
     public void setName(String name) {
         this.name = name;
