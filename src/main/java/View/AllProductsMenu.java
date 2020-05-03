@@ -1,5 +1,7 @@
 package View;
 
+import model.Product;
+
 public class AllProductsMenu extends Menu {
     public AllProductsMenu(Menu previousMenu) {
         super("AllProductsMenu", previousMenu);
@@ -10,13 +12,13 @@ public class AllProductsMenu extends Menu {
         while (true) {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
-                viewCategories();
+                viewCategories();//mohanna
             else if (command.equals("2"))
-                filterMenu();
+                filterMenu(); //mohanna
             else if (command.equals("3"))
-                sortMenu();
+                sortMenu(); //bahar
             else if (command.equals("4"))
-                showProducts();
+                showProducts();//bahar
             else if (command.equals("5"))
                 showSingleProduct();
             else if (command.equals("6"))
@@ -30,6 +32,16 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showSingleProduct() {
+        System.out.println("Enter product id :");
+        String id = scanner.nextLine();
+        try {
+            int productId = Integer.parseInt(id);
+            Product product = manager.getProductById(productId);
+            ProductMenu productMenu = new ProductMenu(product,this);
+            productMenu.run();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void showProducts() {

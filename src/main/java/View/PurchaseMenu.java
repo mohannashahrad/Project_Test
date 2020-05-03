@@ -18,7 +18,6 @@ public class PurchaseMenu extends Menu {
             public void show() {
                 System.out.println("Recieve Information Menu :");
 
-
             }
         }.run();
         new Menu("DiscountCodeMenu",PurchaseMenu.this){

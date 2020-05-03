@@ -151,4 +151,10 @@ public class Manager {
         return false;
     }
 
+    public Product getProductById(int productId) throws Exception {
+        if(!cart.getProductsInCart().containsKey(storage.getProductById(productId)))
+            throw new Exception("You don't have such product in your cart!");
+        else
+            return storage.getProductById(productId);
+    }
 }

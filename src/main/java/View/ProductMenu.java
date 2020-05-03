@@ -14,13 +14,13 @@ public class ProductMenu extends Menu{
         while (true) {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
-                digest();
+                digest(); //bahar
             else if (command.equals("2"))
-                attributes();
+                attributes(); //bahar
             else if (command.equals("3"))
-                compare();
+                compare(); //mohanna
             else if (command.equals("4"))
-                comments();
+                comments(); //mohanna
             else if (command.equals("5"))
                 break;
             else if (command.equalsIgnoreCase("help"))
