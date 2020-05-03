@@ -21,7 +21,7 @@ public class ProductMenu extends Menu{
             else if (command.equals("2"))
                 attributes(); //bahar
             else if (command.equals("3"))
-                compare(); //mohanna
+                compare();
             else if (command.equals("4"))
                 comments();
             else if (command.equals("5"))
@@ -68,6 +68,14 @@ public class ProductMenu extends Menu{
     }
 
     private void compare() {
+        System.out.println("Enter the second product's Id :");
+        int secondProductId = scanner.nextInt();
+        try {
+            productManager.compareTwoProducts(product.getProductId(),secondProductId);
+            System.out.println("Comparing finished Successfully!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void attributes() {
