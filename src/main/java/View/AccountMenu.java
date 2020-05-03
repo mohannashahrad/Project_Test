@@ -3,6 +3,12 @@ package View;
 import model.Person;
 
 public abstract class AccountMenu extends Menu {
+
+
+    public AccountMenu(String name, Menu previousMenu) {
+        super(name, previousMenu);
+    }
+
     protected void viewInfo() {
         viewPersonalInfo(person);
         while (true){

@@ -4,6 +4,10 @@ import java.util.HashMap;
 
 public class LoginRegisterMenu extends Menu {
 
+    public LoginRegisterMenu(Menu previousMenu) {
+        super("LoginRegisterMenu", previousMenu);
+    }
+
     @Override
     public void commandProcess() {
         while(true){

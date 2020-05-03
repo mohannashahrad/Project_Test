@@ -35,6 +35,11 @@ public abstract class Menu {
         return allRootMenus.get(name);
     }
 
+    public Menu(String name, Menu previousMenu) {
+        this.name = name;
+        this.previousMenu = previousMenu;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

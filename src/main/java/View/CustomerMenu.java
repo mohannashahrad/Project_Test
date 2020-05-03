@@ -1,6 +1,10 @@
 package View;
 
 public class CustomerMenu extends AccountMenu {
+    public CustomerMenu(Menu previousMenu) {
+        super("CustomerMenu", previousMenu);
+    }
+
     @Override
     public void commandProcess() {
         while (true) {
@@ -12,11 +16,11 @@ public class CustomerMenu extends AccountMenu {
             else if (command.equals("3"))
                 purchase();
             else if (command.equals("4"))
-                viewOrders();
+                viewOrders(); //mohanna
             else if (command.equals("5"))
                 viewBalance();
             else if (command.equals("6"))
-                viewDiscountCodes();
+                viewDiscountCodes(); //bahar
             else if (command.equals("7"))
                 break;
             else if (command.equalsIgnoreCase("help"))
@@ -32,15 +36,20 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void viewBalance() {
+        System.out.println("Your balance is : "+person.getBalance());
     }
 
     private void viewOrders() {
     }
 
     private void purchase() {
+        PurchaseMenu purchaseMenu = new PurchaseMenu(this);
+        purchaseMenu.run();
     }
 
     private void viewCart() {
+        CartMenu cartMenu = new CartMenu(this);
+        cartMenu.run();
     }
 
     @Override

@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class AdminMenu extends AccountMenu{
     AdminManager adminManager;
+
+    public AdminMenu(Menu previousMenu) {
+        super("AdminMenu", previousMenu);
+    }
+
     @Override
     public void commandProcess() {
         while (true) {

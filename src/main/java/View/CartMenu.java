@@ -1,6 +1,10 @@
 package View;
 
 public class CartMenu extends Menu{
+    public CartMenu(Menu previousMenu) {
+        super("CartMenu", previousMenu);
+    }
+
     @Override
     public void commandProcess() {
         while (true) {

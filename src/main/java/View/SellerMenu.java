@@ -9,6 +9,11 @@ import java.util.HashMap;
 
 public class SellerMenu extends AccountMenu {
     SellerManager sellerManager;
+
+    public SellerMenu(Menu previousMenu) {
+        super("SellerMenu", previousMenu);
+    }
+
     @Override
     public void commandProcess() {
         while (true) {
@@ -26,9 +31,9 @@ public class SellerMenu extends AccountMenu {
             else if (command.equals("6"))
                 removeProduct();
             else if (command.equals("7"))
-                showCategories(); //mohanna
+                showCategories();
             else if (command.equals("8"))
-                viewOffsMenu(); //mohanna
+                viewOffsMenu();
             else if (command.equals("9"))
                 viewBalance();
             else if (command.equals("10"))
@@ -202,7 +207,7 @@ public class SellerMenu extends AccountMenu {
         System.out.println("Enter product Id");
         String id = scanner.nextLine();
         try {
-            sellerManager.removeProduct(id);
+            sellerManager.removeProduct(Integer.parseInt(id));
             System.out.println("product removed successfully!");
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -220,6 +225,9 @@ public class SellerMenu extends AccountMenu {
             //to be continued
         }
 
+    }
+
+    private void showSellerProducts() {
     }
 
     private void viewSalesHistory() {
