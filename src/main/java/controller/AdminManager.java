@@ -233,6 +233,9 @@ public class AdminManager extends Manager {
         Sale sale = new Sale(beginDate,endDate,amountOfOff,sellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);
         ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
+        for (Product product : sellerManager.getSavedProductsInSale().get(offId)) {
+            product.setSale(sale);
+        }
     }
 
 }
