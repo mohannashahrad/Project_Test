@@ -51,6 +51,10 @@ public class Request {
                 return RequestType.ADD_SALE;
             case "edit sale":
                 return RequestType.EDIT_SALE;
+            case "add product to sale":
+                return RequestType.ADD_PRODUCT_TO_SALE;
+            case "remove product from sale":
+                return RequestType.REMOVE_PRODUCT_FROM_SALE;
         }
         return null;
     }
