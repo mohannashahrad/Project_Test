@@ -39,10 +39,10 @@ public class AdminManager extends Manager {
     }
 
     public void removeProduct (String productId) throws Exception {
-        if(storage.getProductById(productId) == null)
+        if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!!");
         else
-        storage.deleteProduct(storage.getProductById(productId));
+        storage.deleteProduct(storage.getProductById(Integer.parseInt(productId)));
     }
 
     public void addCategory (String name) throws Exception {
@@ -201,17 +201,17 @@ public class AdminManager extends Manager {
 
     private void editProduct (String productId, String field, String updatedVersion){
         if (field.equalsIgnoreCase("name"))
-            storage.getProductById(productId).setName(updatedVersion);
+            storage.getProductById(Integer.parseInt(productId)).setName(updatedVersion);
         else if (field.equalsIgnoreCase("brand"))
-            storage.getProductById(updatedVersion).setBrand(updatedVersion);
+            storage.getProductById(Integer.parseInt(productId)).setBrand(updatedVersion);
         else if (field.equalsIgnoreCase("price"))
-            storage.getProductById(productId).setPrice(Double.parseDouble(updatedVersion));
+            storage.getProductById(Integer.parseInt(productId)).setPrice(Double.parseDouble(updatedVersion));
         else if (field.equalsIgnoreCase("explanation"))
-            storage.getProductById(productId).setExplanation(updatedVersion);
+            storage.getProductById(Integer.parseInt(productId)).setExplanation(updatedVersion);
         else if (field.equalsIgnoreCase("supply"))
-            storage.getProductById(productId).setSupply(Integer.parseInt(updatedVersion));
+            storage.getProductById(Integer.parseInt(productId)).setSupply(Integer.parseInt(updatedVersion));
         else if (field.equalsIgnoreCase("categoryName"))
-            storage.getProductById(productId).setExplanation(updatedVersion);
+            storage.getProductById(Integer.parseInt(productId)).setExplanation(updatedVersion);
     }
 
     private void editSale (int offId, String field, String updatedVersion) throws ParseException {
