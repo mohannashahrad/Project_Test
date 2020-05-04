@@ -4,6 +4,7 @@ import model.Comment;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductManager extends Manager{
 
@@ -45,5 +46,11 @@ public class ProductManager extends Manager{
             System.out.println("First Product Number Of Available Samples : " + first.getSupply() +
                     " --- Second Product Number Of Available Samples : " + second.getSupply());
         }
+    }
+    public ArrayList<Product> viewAllProducts(){
+        return storage.getAllProducts();
+    }
+    public HashMap<String, String> viewAttributes(String categoryName){
+        return storage.getCategoryByName(categoryName).getProperties();
     }
 }

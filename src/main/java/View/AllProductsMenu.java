@@ -27,7 +27,7 @@ public class AllProductsMenu extends Menu {
             else if (command.equals("3"))
                 sortMenu(); //bahar
             else if (command.equals("4"))
-                showProducts();//bahar
+                showProducts();
             else if (command.equals("5"))
                 showSingleProduct();
             else if (command.equals("6"))
@@ -54,6 +54,10 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showProducts() {
+        System.out.println("All products:\n");
+        for (Product product : productManager.viewAllProducts()) {
+            System.out.println(product.getProductId() + product.getName() + "\n");
+        }
     }
 
     private void sortMenu() {

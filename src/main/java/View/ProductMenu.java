@@ -4,6 +4,9 @@ import controller.ProductManager;
 import model.Comment;
 import model.Product;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProductMenu extends Menu{
     Product product;
     ProductManager productManager = new ProductManager();
@@ -17,9 +20,9 @@ public class ProductMenu extends Menu{
         while (true) {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
-                digest(); //bahar
+                digest();
             else if (command.equals("2"))
-                attributes(); //bahar
+                attributes();
             else if (command.equals("3"))
                 compare();
             else if (command.equals("4"))
@@ -79,9 +82,16 @@ public class ProductMenu extends Menu{
     }
 
     private void attributes() {
+        System.out.println("This product's attributes :\n");
+        HashMap<String, String> attributes = productManager.viewAttributes(product.getCategoryName());
+        for(String key : attributes.keySet()){
+            System.out.println(key + " " + attributes.get(key) + "\n");
+        }
+
     }
 
     private void digest() {
+        System.out.println(product.toString());
     }
 
     @Override

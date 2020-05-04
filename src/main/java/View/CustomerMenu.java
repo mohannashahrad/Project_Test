@@ -3,6 +3,7 @@ package View;
 import controller.CustomerManager;
 import controller.Manager;
 import model.BuyLog;
+import model.Customer;
 import model.Product;
 
 public class CustomerMenu extends AccountMenu {
@@ -26,7 +27,7 @@ public class CustomerMenu extends AccountMenu {
             else if (command.equals("5"))
                 viewBalance();
             else if (command.equals("6"))
-                viewDiscountCodes(); //bahar
+                viewDiscountCodes();
             else if (command.equals("7"))
                 break;
             else if (command.equalsIgnoreCase("help"))
@@ -39,6 +40,7 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void viewDiscountCodes() {
+        System.out.println("Your discounts are as followed :\n" + ((Customer)person).getAllDiscounts());
     }
 
     private void viewBalance() {

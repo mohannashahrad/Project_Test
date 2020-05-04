@@ -338,7 +338,14 @@ public class SellerMenu extends AccountMenu {
         int productId = scanner.nextInt();
         try {
             Product product = sellerManager.viewSellerProduct(productId);
-            System.out.println(product.toString());
+            System.out.println("productId :" + product.getProductId() +
+                    "Product's name :" + product.getName() +
+                    "Product's brand :" + product.getBrand() +
+                    "Product's price :" + product.getPrice() +
+                    "Product's supply :" + product.getSupply()+
+                    "Product's category :" + product.getCategoryName() +
+                    "Product's explanation :" + product.getExplanation() +
+                    "Product's average rate :" + product.getAverageRate());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
