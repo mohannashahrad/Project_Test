@@ -192,7 +192,7 @@ public class AdminManager extends Manager {
                 }
             case REMOVE_PRODUCT:
                 Sale sale = null;
-                Product removedProduct = storage.getProductById(request.getInformation().get("productId"));
+                Product removedProduct = storage.getProductById(Integer.parseInt(request.getInformation().get("productId")));
                 storage.deleteProduct(removedProduct);
                 ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
                 sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
