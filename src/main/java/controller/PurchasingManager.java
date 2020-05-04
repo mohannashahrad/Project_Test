@@ -75,9 +75,13 @@ public class PurchasingManager extends Manager{
     }
 
     public double calculateTotalPriceWithDiscount (String discountCode){
-        double totalPriceWithoutDiscount = super.cart.getTotalPrice();
+        double totalPriceWithoutDiscount = getTotalPriceWithoutDiscount();
         double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
+    }
+
+    public double getDiscountPercentage (String discountCode){
+        return storage.getDiscountByCode(discountCode).getPercentage();
     }
 
     public ArrayList<Product> getProductsInCart (){

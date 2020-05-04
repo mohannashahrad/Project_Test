@@ -9,10 +9,12 @@ public class PurchaseMenu extends Menu {
     PurchasingManager purchasingManager;
     private HashMap<String,String> receivedInfo;
     private boolean menuSuccess;
+    private String discount;
     public PurchaseMenu(Menu previousMenu) {
         super("PurchaseMenu", previousMenu);
         receivedInfo = new HashMap<>();
         menuSuccess = false;
+        discount = "";
     }
 
     @Override
@@ -75,6 +77,7 @@ public class PurchaseMenu extends Menu {
                     try {
                         purchasingManager.checkDiscountValidity(discountCode);
                         System.out.println("Your discount code is valid and you can use it :)");
+                        discount = discountCode;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -109,6 +112,14 @@ public class PurchaseMenu extends Menu {
                         System.out.println("---------");
                     }
                     System.out.println("Total Price without discount : " + purchasingManager.getTotalPriceWithoutDiscount());
+                    if (discount.equalsIgnoreCase("")){
+                        System.out.println("Amount of discount = 0\nFinal Total Price = " +
+                                purchasingManager.getTotalPriceWithoutDiscount());
+                    }
+                    else{
+                        System.out.println("Amount of discount = " + purchasingManager.getDiscountPercentage(discount)
+                                + "\nFinal Total Price = " + purchasingManager.calculateTotalPriceWithDiscount(discount));
+                    }
                 }
             }
 
