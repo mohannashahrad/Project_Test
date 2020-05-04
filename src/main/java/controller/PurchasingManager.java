@@ -10,15 +10,17 @@ import java.util.HashMap;
 
 public class PurchasingManager extends Manager{
 
+    private int buyLogCode = 0;
+
     public PurchasingManager() {
     }
 
-    public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double saleAmount){
+    public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double discountPercentage){
         super.person.setBalance(super.person.getBalance() - totalPrice);
-        createBuyLog(receiverInformation,totalPrice,saleAmount);
+        createBuyLog(receiverInformation,totalPrice,discountPercentage);
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
-            createSellLog(seller,receiverInformation,totalPricePerSeller,saleAmount);
+            createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
         }
     }
 
@@ -35,6 +37,11 @@ public class PurchasingManager extends Manager{
         BuyLog buyLog = new BuyLog(LocalDateTime.now(),totalPrice,saleAmount,findDistinctSellers(super.cart),receiverInformation);
         storage.addBuyLog(buyLog);
         ((Customer)super.person).addToBuyLogs(buyLog);
+        this.buyLogCode = buyLog.getBuyCode();
+    }
+
+    public int getBuyLogCode() {
+        return buyLogCode;
     }
 
     public void createSellLog (Seller seller, HashMap<String,String> receiverInformation , double totalPrice , double saleAmount){
@@ -75,8 +82,33 @@ public class PurchasingManager extends Manager{
     }
 
     public double calculateTotalPriceWithDiscount (String discountCode){
-        double totalPriceWithoutDiscount = super.cart.getTotalPrice();
+        double totalPriceWithoutDiscount = getTotalPriceWithoutDiscount();
         double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
+
+    public double getDiscountPercentage (String discountCode){
+        return storage.getDiscountByCode(discountCode).getPercentage();
+    }
+
+    public ArrayList<Product> getProductsInCart (){
+        ArrayList<Product> productsInCart = new ArrayList<>();
+        productsInCart.addAll(super.cart.getProductsInCart().keySet());
+        return productsInCart;
+    }
+
+    public String displayDetailsOfProduct (Product product) {
+        String details = product.getName() + " -- " + product.getPrice() + " -- " + product.getAmountOfSale()
+                + " -- " + product.getPriceWithSale() + " -- " + cart.getProductsInCart().get(product);
+        return details;
+    }
+
+    public double getTotalPriceWithoutDiscount(){
+        double totalPrice = 0;
+        for (Product product : super.cart.getProductsInCart().keySet()) {
+            totalPrice += (super.cart.getProductsInCart().get(product) * product.getPriceWithSale());
+        }
+        return totalPrice;
+    }
 }
+
