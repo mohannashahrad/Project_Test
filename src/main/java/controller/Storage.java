@@ -7,7 +7,7 @@ public class Storage {
     private ArrayList<Person> allUsers;
     private ArrayList<Person> allCustomers;
     private ArrayList<Person> allSellers;
-    private ArrayList<Person> allAdmins;
+    private ArrayList<Person> allAdmins ;
     private ArrayList<Product> allProducts;
     private ArrayList<Log> allLogs;
     private ArrayList<Log> allSellLogs;
@@ -23,6 +23,27 @@ public class Storage {
     private ArrayList<Cart> allCarts;
 
     public Storage() {
+        newArrayLists();
+    }
+
+    private void newArrayLists(){
+        allUsers = new ArrayList<>();
+        allCustomers = new ArrayList<>();
+        allSellers = new ArrayList<>();
+        allAdmins = new ArrayList<>();
+        allProducts = new ArrayList<>();
+        allLogs = new ArrayList<>();
+        allSellLogs = new ArrayList<>();
+        allBuyLogs = new ArrayList<>();
+        allCategories = new ArrayList<>();
+        allDiscounts = new ArrayList<>();
+        allRates = new ArrayList<>();
+        allComments = new ArrayList<>();
+        allSales = new ArrayList<>();
+        allRequests = new ArrayList<>();
+        allFilters = new ArrayList<>();
+        allSorts = new ArrayList<>();
+        allCarts = new ArrayList<>();
     }
 
     public ArrayList<Person> getAllUsers() {
