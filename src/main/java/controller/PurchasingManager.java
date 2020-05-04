@@ -79,4 +79,25 @@ public class PurchasingManager extends Manager{
         double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
         return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
+
+    public ArrayList<Product> getProductsInCart (){
+        ArrayList<Product> productsInCart = new ArrayList<>();
+        productsInCart.addAll(super.cart.getProductsInCart().keySet());
+        return productsInCart;
+    }
+
+    public String displayDetailsOfProduct (Product product) {
+        String details = product.getName() + " -- " + product.getPrice() + " -- " + product.getAmountOfSale()
+                + " -- " + product.getPriceWithSale() + " -- " + cart.getProductsInCart().get(product);
+        return details;
+    }
+
+    public double getTotalPriceWithoutDiscount(){
+        double totalPrice = 0;
+        for (Product product : super.cart.getProductsInCart().keySet()) {
+            totalPrice += (super.cart.getProductsInCart().get(product) * product.getPriceWithSale());
+        }
+        return totalPrice;
+    }
 }
+

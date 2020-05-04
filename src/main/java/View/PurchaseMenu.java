@@ -1,6 +1,7 @@
 package View;
 
 import controller.PurchasingManager;
+import model.Product;
 
 import java.util.HashMap;
 
@@ -96,6 +97,19 @@ public class PurchaseMenu extends Menu {
             @Override
             public void commandProcess() {
                 System.out.println("This is your final receipt!");
+                System.out.println("In the following part the details of your cart will be displayed as below patter!");
+                System.out.println("Product's Name -- Product's Price -- Product's Amount Of Sale -- Product's Price With Sale" +
+                        " -- Number Of Product In Cart");
+                if (purchasingManager.getProductsInCart().isEmpty()){
+                    System.out.println("There is no product in your cart!");
+                }
+                else {
+                    for (Product product : purchasingManager.getProductsInCart()) {
+                        System.out.println(purchasingManager.displayDetailsOfProduct(product));
+                        System.out.println("---------");
+                    }
+                    System.out.println("Total Price without discount : " + purchasingManager.getTotalPriceWithoutDiscount());
+                }
             }
 
             @Override
