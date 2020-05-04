@@ -10,11 +10,13 @@ public class PurchaseMenu extends Menu {
     private HashMap<String,String> receivedInfo;
     private boolean menuSuccess;
     private String discount;
+    private double finalTotalPrice;
     public PurchaseMenu(Menu previousMenu) {
         super("PurchaseMenu", previousMenu);
         receivedInfo = new HashMap<>();
         menuSuccess = false;
         discount = "";
+        finalTotalPrice = 0;
     }
 
     @Override
@@ -83,6 +85,8 @@ public class PurchaseMenu extends Menu {
                     }
                     menuSuccess = true;
                     System.out.println("Discount code validation finished successfully!");
+                } else{
+                    System.out.println("Invalid choice!");
                 }
 
             }
@@ -115,11 +119,33 @@ public class PurchaseMenu extends Menu {
                     if (discount.equalsIgnoreCase("")){
                         System.out.println("Amount of discount = 0\nFinal Total Price = " +
                                 purchasingManager.getTotalPriceWithoutDiscount());
+                        finalTotalPrice = purchasingManager.getTotalPriceWithoutDiscount();
                     }
                     else{
                         System.out.println("Amount of discount = " + purchasingManager.getDiscountPercentage(discount)
                                 + "\nFinal Total Price = " + purchasingManager.calculateTotalPriceWithDiscount(discount));
+                        finalTotalPrice = purchasingManager.calculateTotalPriceWithDiscount(discount);
                     }
+                }
+                System.out.println("Do you want to perform payment ?\n1.yes\n2.no\n3.cancel");
+                int choice = scanner.nextInt();
+                if (choice == 3)
+                    return;
+                else if (choice == 2)
+                    menuSuccess = true;
+                else if (choice == 1){
+                    if (!purchasingManager.doesCustomerHaveEnoughMoney(finalTotalPrice)){
+                        System.out.println("You don't have enough money in your account!");
+                        menuSuccess = true;
+                        return;
+                    } else {
+                        purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        System.out.println("Payment finished successfully!");
+                        System.out.println("This is your buyLog code : " + purchasingManager.getBuyLogCode());
+                        System.out.println("Thank you for buying from us :)");
+                    }
+                } else{
+                    System.out.println("Invalid choice!");
                 }
             }
 
