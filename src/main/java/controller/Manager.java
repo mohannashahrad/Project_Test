@@ -11,8 +11,9 @@ public class Manager {
     protected Person person;
     protected Cart cart = null;
     protected SellerManager sellerManager;
-    protected ArrayList<Filter> currentFilters;
-    protected ArrayList <Sort> currentSorts;
+    protected ArrayList<Filter> currentFilters = new ArrayList<>();
+    protected ArrayList <Sort> currentSorts = new ArrayList<>();
+    protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
     public Manager() {
     }
@@ -118,10 +119,6 @@ public class Manager {
             throw new Exception("There is not such category");
         else
             return storage.getCategoryByName(name);
-    }
-
-    public ArrayList<Filter> viewAllFilters (){
-        return storage.getAllFilters();
     }
 
     public ArrayList<Sort> viewAllSorts (){

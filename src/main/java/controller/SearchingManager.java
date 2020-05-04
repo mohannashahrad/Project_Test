@@ -11,6 +11,10 @@ public class SearchingManager extends Manager {
     public SearchingManager() {
     }
 
+    public ArrayList<Filter> viewAllFilters (){
+        return storage.getAllFilters();
+    }
+
     public ArrayList<Filter> getCurrentFilters() {
         return super.currentFilters;
     }
@@ -20,9 +24,6 @@ public class SearchingManager extends Manager {
     }
 
     public ArrayList<Product> performFilter(String filterTag , String info) throws Exception {
-        if (storage.getFilterByName(filterTag) == null){
-            throw new Exception("This filter is not available!");
-        }
         Filter filter = storage.getFilterByName(filterTag);
         if (currentFilters.contains(filter)){
             throw new Exception("This filter is already selected!");
@@ -31,13 +32,16 @@ public class SearchingManager extends Manager {
         {
             case "category":
                 currentFilters.add(filter);
-                return filter.filterByCategory(storage.getCategoryByName(info),storage.getAllProducts());
+                filteredProducts.addAll(filter.filterByCategory(storage.getCategoryByName(info), storage.getAllProducts()));
+                return filteredProducts;
             case "name":
                 currentFilters.add(filter);
-                return filter.filterByName(info,storage.getAllProducts());
+                filteredProducts.addAll(filter.filterByName(info,storage.getAllProducts()));
+                return filteredProducts;
             case "price":
                 currentFilters.add(filter);
-                return filter.filterByPrice(Double.parseDouble(info),storage.getAllProducts());
+                filteredProducts.addAll(filter.filterByPrice(Double.parseDouble(info),storage.getAllProducts()));
+                return filteredProducts;
             default:
                 throw new Exception("Ops !! No match with available filter tags!");
         }
@@ -65,13 +69,12 @@ public class SearchingManager extends Manager {
     }
 
     public ArrayList<Product> disableFilter (String filterTag , String info) throws Exception {
-        if(storage.getFilterByName(filterTag) == null)
-            throw new Exception("This filter is not available");
-        else if (!currentFilters.contains(storage.getFilterByName(filterTag)))
+         if (!currentFilters.contains(storage.getFilterByName(filterTag)))
             throw new Exception("You did not select this filter");
         else{
             currentFilters.remove(storage.getFilterByName(filterTag));
-            return performFilter(filterTag,info);
+            filteredProducts.removeAll(performFilter(filterTag,info));
+            return filteredProducts;
         }
     }
 
