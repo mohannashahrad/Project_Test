@@ -1,37 +1,76 @@
 package View;
 
+import controller.PurchasingManager;
+
+import java.util.HashMap;
+
 public class PurchaseMenu extends Menu {
+    PurchasingManager purchasingManager;
+    private HashMap<String,String> receivedInfo;
+    private boolean menuSuccess;
     public PurchaseMenu(Menu previousMenu) {
         super("PurchaseMenu", previousMenu);
+        receivedInfo = new HashMap<>();
+        menuSuccess = false;
     }
 
     @Override
     public void commandProcess() {
-        new Menu("RecieveInfoMenu",PurchaseMenu.this){
+        new Menu("ReceiveInfoMenu",PurchaseMenu.this){
 
             @Override
             public void commandProcess() {
+                System.out.println("Address :");
+                String info = scanner.nextLine();
+                if (info.trim().equalsIgnoreCase("cancel"))
+                    return;
+                else
+                    receivedInfo.put("address",info);
+
+                System.out.println("Phone number :");
+                info = scanner.nextLine();
+                if (info.trim().equalsIgnoreCase("cancel"))
+                    return;
+                else
+                    receivedInfo.put("phoneNumber",info);
+
+                System.out.println("Receiver's name :");
+                info = scanner.nextLine();
+                if (info.trim().equalsIgnoreCase("cancel"))
+                    return;
+                else
+                    receivedInfo.put("receiverName",info);
+
+                menuSuccess = true;
+                System.out.println("your information was received successfully!");
 
             }
 
             @Override
             public void show() {
-                System.out.println("Recieve Information Menu :");
-
+                System.out.println("Receive Information Menu :");
+                System.out.println("Enter required information in each step.");
+                System.out.println("Enter 'cancel' at each step to cancel purchase.");
             }
         }.run();
+        if (menuSuccess == false)
+            return;
         new Menu("DiscountCodeMenu",PurchaseMenu.this){
 
             @Override
             public void commandProcess() {
+                System.out.println("Enter");
 
             }
 
             @Override
             public void show() {
-
+                System.out.println("Discount code validation Menu :");
+                System.out.println("Enter 'cancel' at each step to cancel purchase.");
             }
         }.run();
+        if (menuSuccess == false)
+            return;
         new Menu("PaymentMenu",PurchaseMenu.this){
 
             @Override
@@ -41,6 +80,7 @@ public class PurchaseMenu extends Menu {
 
             @Override
             public void show() {
+                System.out.println("Payment Menu :");
 
             }
         }.run();
