@@ -59,4 +59,26 @@ public class PurchasingManager extends Manager{
         }
         return totalMoney;
     }
+
+    public void checkDiscountValidity(String discountCode) throws Exception {
+        if (storage.getDiscountByCode(discountCode).getEndDate().isBefore(LocalDateTime.now()))
+            throw new Exception("This discount is expired!");
+        else if (storage.getDiscountByCode(discountCode).getBeginDate().isAfter(LocalDateTime.now()))
+            throw new Exception("You can't use a discount which is not available yet!");
+        else
+            throw new Exception("You can use this discount . Enjoy it :)");
+    }
+
+    public boolean doesCustomerHaveEnoughMoney(double price){
+        if (super.person.getBalance() < price)
+            return false;
+        else
+            return true;
+    }
+
+    public double calculateTotalPriceWithDiscount (String discountCode){
+        double totalPriceWithoutDiscount = super.cart.getTotalPrice();
+        double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
+        return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
+    }
 }
