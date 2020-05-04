@@ -88,13 +88,13 @@ public class Manager {
     }
 
     public boolean checkEmailValidity (String input){
-        Pattern pattern = Pattern.compile("^[0-9]+$");
+        Pattern pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
 
     public boolean checkPhoneNumberValidity (String input){
-        Pattern pattern = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
+        Pattern pattern = Pattern.compile("^[0-9]+$");
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
