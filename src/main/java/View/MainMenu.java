@@ -14,7 +14,7 @@ public class MainMenu extends Menu {
                 loginRegisterMenu.run();
             }
             else if (command.equals("2")){
-                AccountMenu accountMenu = new AccountMenu(this);
+                AccountMenu accountMenu = new AccountMenu("AccountMenu",this);
                 accountMenu.run();
             }
             else if (command.equals("3")){

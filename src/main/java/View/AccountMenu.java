@@ -7,8 +7,8 @@ import model.Seller;
 public  class AccountMenu extends Menu {
 
 
-    public AccountMenu(Menu previousMenu) {
-        super("AccountMenu", previousMenu);
+    public AccountMenu(String name,Menu previousMenu) {
+        super(name, previousMenu);
     }
 
     @Override
