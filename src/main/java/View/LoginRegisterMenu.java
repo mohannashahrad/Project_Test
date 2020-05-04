@@ -19,7 +19,10 @@ public class LoginRegisterMenu extends Menu {
             else if(command.equals("2")){
                 register();
             }
-            else if(command.equals("3"))
+            else if (command.equals("3")){
+                logout();
+            }
+            else if(command.equals("4"))
                 break;
             else if(command.equalsIgnoreCase("help"))
                 this.show();
@@ -27,6 +30,14 @@ public class LoginRegisterMenu extends Menu {
                 System.out.println("Invalid choice");
         }
         this.getPreviousMenu().run();
+    }
+
+    private void logout() {
+        if (person == null){
+            System.out.println("Login first!");
+            return;
+        }
+        manager.logout();
     }
 
 
@@ -105,6 +116,6 @@ public class LoginRegisterMenu extends Menu {
     @Override
     public void show() {
         System.out.println("LoginRegisterMenu :");
-        System.out.println("Enter your chioce :\n1.Login\n2.Register\n3.Back");
+        System.out.println("Enter your chioce :\n1.Login\n2.Register\n3.Logout\n4.Back");
     }
 }

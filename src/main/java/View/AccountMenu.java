@@ -1,13 +1,38 @@
 package View;
 
+import model.Admin;
 import model.Person;
+import model.Seller;
 
-public abstract class AccountMenu extends Menu {
+public  class AccountMenu extends Menu {
 
 
-    public AccountMenu(String name, Menu previousMenu) {
-        super(name, previousMenu);
+    public AccountMenu(Menu previousMenu) {
+        super("AccountMenu", previousMenu);
     }
+
+    @Override
+    public void commandProcess() {
+        if (person == null){
+            LoginRegisterMenu loginRegisterMenu = new  LoginRegisterMenu(this.getPreviousMenu());
+            loginRegisterMenu.run();
+        }
+        else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this.getPreviousMenu());
+            adminMenu.run();
+        }else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this.getPreviousMenu());
+        }else {
+            CustomerMenu customerMenu = new CustomerMenu(this.getPreviousMenu());
+        }
+    }
+
+    @Override
+    public void show() {
+        System.out.println("Account Menu :");
+
+    }
+
 
     protected void viewInfo() {
         viewPersonalInfo(person);

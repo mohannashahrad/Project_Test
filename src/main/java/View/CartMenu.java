@@ -1,6 +1,7 @@
 package View;
 
 import controller.CustomerManager;
+import model.Customer;
 import model.Product;
 
 public class CartMenu extends Menu{
@@ -37,8 +38,15 @@ public class CartMenu extends Menu{
     }
 
     private void purchase() {
-        PurchaseMenu purchaseMenu = new PurchaseMenu(this);
-        purchaseMenu.run();
+        if (person instanceof Customer){
+            PurchaseMenu purchaseMenu = new PurchaseMenu(this);
+            purchaseMenu.run();
+        }else{
+            System.out.println("First login as customer then purchase.");
+            LoginRegisterMenu loginRegisterMenu = new  LoginRegisterMenu(this);
+            loginRegisterMenu.run();
+        }
+
     }
 
     private void showTotalPrice() {
