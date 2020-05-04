@@ -13,6 +13,7 @@ public class AdminMenu extends AccountMenu{
 
     public AdminMenu(Menu previousMenu) {
         super("AdminMenu", previousMenu);
+        adminManager = new AdminManager();
     }
 
     @Override

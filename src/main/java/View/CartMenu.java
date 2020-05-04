@@ -8,6 +8,7 @@ public class CartMenu extends Menu{
     private CustomerManager customerManager;
     public CartMenu(Menu previousMenu) {
         super("CartMenu", previousMenu);
+        customerManager = new CustomerManager();
     }
 
     @Override

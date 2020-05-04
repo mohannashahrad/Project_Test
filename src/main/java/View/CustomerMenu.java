@@ -10,6 +10,7 @@ public class CustomerMenu extends AccountMenu {
     private CustomerManager customerManager;
     public CustomerMenu(Menu previousMenu) {
         super("CustomerMenu", previousMenu);
+        customerManager = new CustomerManager();
     }
 
     @Override

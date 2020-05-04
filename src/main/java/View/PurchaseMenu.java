@@ -17,6 +17,7 @@ public class PurchaseMenu extends Menu {
         menuSuccess = false;
         discount = "";
         finalTotalPrice = 0;
+        purchasingManager = new PurchasingManager();
     }
 
     @Override

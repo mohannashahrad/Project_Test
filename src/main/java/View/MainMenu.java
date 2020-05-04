@@ -1,8 +1,12 @@
 package View;
 
+import controller.Manager;
+
 public class MainMenu extends Menu {
     public MainMenu(Menu previousMenu) {
         super("MainMenu", previousMenu);
+        Manager manager = new Manager();
+        Menu.setManager(manager);
     }
 
     @Override

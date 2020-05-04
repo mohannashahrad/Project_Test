@@ -8,12 +8,18 @@ import java.util.Scanner;
 
 public abstract class Menu {
     public static Scanner scanner;
+
+    public static void setManager(Manager manager) {
+        Menu.manager = manager;
+    }
+
     protected static Manager manager;
 
 
     public static Person getPerson() {
         return person;
     }
+
 
     public static void setPerson(Person person) {
         Menu.person = person;

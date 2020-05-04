@@ -12,6 +12,7 @@ public class SellerMenu extends AccountMenu {
 
     public SellerMenu(Menu previousMenu) {
         super("SellerMenu", previousMenu);
+        sellerManager = new SellerManager();
     }
 
     @Override
