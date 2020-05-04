@@ -75,7 +75,7 @@ public class LoginRegisterMenu extends Menu {
         }
         System.out.println("password :");
         String password = scanner.nextLine();
-        data.put("type",type);
+        data.put("role",type);
         data.put("username",username);
         data.put("password",password);
 
