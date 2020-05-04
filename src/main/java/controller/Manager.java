@@ -16,6 +16,7 @@ public class Manager {
     protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
     public Manager() {
+        storage = new Storage();
     }
 
     public void register (HashMap<String,String> information) throws Exception {
