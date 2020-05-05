@@ -11,6 +11,7 @@ public class LoginRegisterMenu extends Menu {
     @Override
     public void commandProcess() {
         do {
+            show();
             String command = scanner.nextLine().trim();
             if(command.equals("1")){
                 if (login())

@@ -16,6 +16,7 @@ public class CustomerMenu extends AccountMenu {
     @Override
     public void commandProcess() {
         do {
+            show();
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 viewInfo();

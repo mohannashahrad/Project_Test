@@ -9,6 +9,7 @@ public class OffsMenu extends Menu{
     @Override
     public void commandProcess() {
         do {
+            show();
             AllOffShow();
             System.out.println("Enter product id to show or 'back' to return.");
             String command = scanner.nextLine();
