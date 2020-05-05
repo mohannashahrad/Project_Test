@@ -149,8 +149,8 @@ public class Manager {
     }
 
     public Product getProductById(int productId) throws Exception {
-        if(!cart.getProductsInCart().containsKey(storage.getProductById(productId)))
-            throw new Exception("You don't have such product in your cart!");
+        if(storage.getProductById(productId) == null)
+            throw new Exception("Product doesnt exist!");
         else
             return storage.getProductById(productId);
     }

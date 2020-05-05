@@ -23,7 +23,9 @@ public class OffsMenu extends Menu{
                 break;
             else {
                 try {
-                    manager.getProductById(Integer.parseInt(command));
+                    Product product = manager.getProductById(Integer.parseInt(command));
+                    ProductMenu productMenu = new ProductMenu(product,this);
+                    productMenu.run();
                 }catch (Exception e){
                     System.out.println(e.getMessage());
                 }
