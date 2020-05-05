@@ -207,7 +207,7 @@ public class AdminMenu extends AccountMenu{
             return;
         }
         for (Request request: allRequests) {
-            System.out.println(request.getRequestId());
+            System.out.println("request id : "+request.getRequestId());
             System.out.println("-------");
         }
 
