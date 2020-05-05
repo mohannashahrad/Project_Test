@@ -14,11 +14,8 @@ public class Sort {
         return sortName;
     }
 
-    public void sortByCategory(ArrayList<Category> allCategories) {
-        ArrayList<Product> sortedProducts = new ArrayList<>();
-        for (Category category : allCategories) {
-            /**/
-        }
+    public ArrayList<Product> sortByCategory(Category category) {
+        return category.getThisCategoryProducts();
     }
 
     public ArrayList<Product> sortByPrice(ArrayList<Product> allProducts) {
