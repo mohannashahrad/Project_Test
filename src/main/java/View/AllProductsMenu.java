@@ -80,6 +80,10 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showAvailableSorts() {
+        if (searchingManager.viewAllSorts().isEmpty()){
+            System.out.println("no available sort!");
+            return;
+        }
         for (Sort sort : searchingManager.viewAllSorts()) {
             System.out.println("Sort By : " + sort.getSortName());
             System.out.println("----");
@@ -159,6 +163,10 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showAvailableFilters() {
+        if (searchingManager.viewAllFilters().isEmpty()){
+            System.out.println("no available filter!");
+            return;
+        }
         for (Filter filter : searchingManager.viewAllFilters()) {
             System.out.println("Filter By : " + filter.getFilterName());
             System.out.println("----");
