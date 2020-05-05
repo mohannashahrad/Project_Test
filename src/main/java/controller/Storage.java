@@ -206,10 +206,13 @@ public class Storage {
         switch (user.getRole()) {
             case CUSTOMER:
                 allCustomers.add (user);
+                return;
             case SELLER:
                 allSellers.add (user);
+                return;
             case ADMIN:
                 allAdmins.add (user);
+                return;
         }
     }
 
@@ -270,10 +273,13 @@ public class Storage {
         switch (user.getRole()) {
             case CUSTOMER:
                 allCustomers.remove (user);
+                return;
             case SELLER:
                 allSellers.remove (user);
+                return;
             case ADMIN:
                 allAdmins.remove (user);
+                return;
         }
     }
 

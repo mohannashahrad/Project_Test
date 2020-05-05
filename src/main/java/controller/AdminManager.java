@@ -169,18 +169,22 @@ public class AdminManager extends Manager {
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
                 storage.addUser(new Seller(request.getInformation()));
+                return;
             case ADD_PRODUCT:
                 Seller seller = (Seller) storage.getUserByUsername(request.getInformation().get("seller"));
                 Product product = new Product(request.getInformation(),seller);
                 storage.addProduct(product);
                 seller.addProduct(product);
+                return;
             case ADD_SALE:
                 addSaleRequest(request);
+                return;
             case EDIT_PRODUCT:
                 String productField = request.getInformation().get("field");
                 String productUpdatedVersion = request.getInformation().get("updatedVersion");
                 String productId = request.getInformation().get("productId");
                 editProduct(productId,productField,productUpdatedVersion);
+                return;
             case EDIT_SALE:
                 String saleField = request.getInformation().get("field");
                 String saleUpdatedVersion = request.getInformation().get("updatedVersion");
@@ -190,12 +194,14 @@ public class AdminManager extends Manager {
                 } catch (ParseException e) {
                     e.getMessage();
                 }
+                return;
             case REMOVE_PRODUCT:
                 Sale sale = null;
                 Product removedProduct = storage.getProductById(Integer.parseInt(request.getInformation().get("productId")));
                 storage.deleteProduct(removedProduct);
                 ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
                 sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
+                return;
         }
     }
 
