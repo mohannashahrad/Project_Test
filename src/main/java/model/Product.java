@@ -56,6 +56,10 @@ public class Product implements Comparable<Product> {
         return price;
     }
 
+    public Sale getSale() {
+        return sale;
+    }
+
     public Seller getSeller() {
         return seller;
     }

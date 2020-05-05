@@ -3,6 +3,7 @@ package controller;
 import model.Comment;
 import model.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -52,5 +53,15 @@ public class ProductManager extends Manager{
     }
     public HashMap<String, String> viewAttributes(String categoryName){
         return storage.getCategoryByName(categoryName).getProperties();
+    }
+
+    public ArrayList<Product> viewAllProductsWithSale(){
+        ArrayList<Product> finalProducts = new ArrayList<>();
+        for (Product product : storage.getAllProducts()) {
+            if (product.getSale() != null){
+                finalProducts.add(product);
+            }
+        }
+        return finalProducts;
     }
 }
