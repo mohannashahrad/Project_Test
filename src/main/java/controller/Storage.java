@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import model.*;
 
 public class Storage {
+    private static Storage storage;
     private ArrayList<Person> allUsers;
     private ArrayList<Person> allCustomers;
     private ArrayList<Person> allSellers;
@@ -22,8 +23,13 @@ public class Storage {
     private ArrayList<Sort> allSorts;
     private ArrayList<Cart> allCarts;
 
-    public Storage() {
+    private Storage() {
         newArrayLists();
+    }
+    public static Storage getStorage(){
+        if (storage == null)
+            storage = new Storage();
+        return storage;
     }
 
     private void newArrayLists(){
