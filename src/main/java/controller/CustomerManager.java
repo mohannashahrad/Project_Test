@@ -30,6 +30,10 @@ public class CustomerManager extends Manager {
         else return true;
     }
 
+    public void addBalance (double money){
+        super.person.setBalance(super.person.getBalance() + money);
+    }
+
     public void increaseProduct(String productId) throws Exception {
         if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!");
