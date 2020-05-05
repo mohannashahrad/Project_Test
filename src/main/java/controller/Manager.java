@@ -19,6 +19,8 @@ public class Manager {
 
     public Manager() {
         storage = Storage.getStorage();
+        cart = new Cart(null);
+        storage.addCart(cart);
     }
 
     public void register (HashMap<String,String> information) throws Exception {
