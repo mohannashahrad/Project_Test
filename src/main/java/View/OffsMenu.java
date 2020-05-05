@@ -1,9 +1,15 @@
 package View;
 
-public class OffsMenu extends Menu{
+import controller.ProductManager;
+import model.Product;
 
+import java.util.ArrayList;
+
+public class OffsMenu extends Menu{
+    ProductManager productManager;
     public OffsMenu(Menu previousMenu) {
         super("OffsMenu", previousMenu);
+        ProductManager productManager = new ProductManager();
     }
 
     @Override
@@ -29,7 +35,12 @@ public class OffsMenu extends Menu{
     }
 
     private void AllOffShow() {
-
+        ArrayList<Product> offProducts = productManager.viewAllProductsWithSale();
+        for (Product product : offProducts){
+            System.out.println("name : "+product.getName());
+            System.out.println("previous price : "+product.getPrice()+"$  ****  "+"current price : "+product.getPriceWithSale()+"$");
+            System.out.println("amount of sale : "+product.getAmountOfSale()+"$");
+        }
     }
 
 
