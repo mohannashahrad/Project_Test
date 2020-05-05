@@ -29,7 +29,7 @@ public class Manager {
         else if (!checkPhoneNumberValidity(information.get("number")))
             throw new Exception("Phone Number is not valid");
         else if (information.get("role").equalsIgnoreCase("seller"))
-            sellerManager.registerSeller(information);
+            storage.addRequest(new Request("register seller", information));
         else if (information.get("role").equalsIgnoreCase("customer"))
             storage.addUser(new Customer(information));
         else if (information.get("role").equalsIgnoreCase("admin"))

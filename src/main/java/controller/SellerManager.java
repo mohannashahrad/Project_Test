@@ -16,10 +16,6 @@ public class SellerManager extends Manager {
         return savedProductsInSale;
     }
 
-    public void registerSeller(HashMap<String, String> information) {
-        storage.addRequest(new Request("register seller", information));
-    }
-
     public Product viewSellerProduct(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("A product with this Id does noe exist!!");
