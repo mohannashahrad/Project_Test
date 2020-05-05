@@ -39,6 +39,7 @@ public class LoginRegisterMenu extends Menu {
             return;
         }
         manager.logout();
+        System.out.println("logout successful!");
     }
 
 
