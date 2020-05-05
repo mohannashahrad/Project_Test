@@ -8,19 +8,33 @@ public class OffsMenu extends Menu{
 
     @Override
     public void commandProcess() {
-        while (true){
+        do {
             AllOffShow();
-        }
+            System.out.println("Enter product id to show or 'back' to return.");
+            String command = scanner.nextLine();
+            if (command.trim().equalsIgnoreCase("back"))
+                break;
+            else {
+                try {
+                    manager.getProductById(Integer.parseInt(command));
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+
+            }
+
+        }while (true);
         
     }
 
     private void AllOffShow() {
+
     }
+
 
     @Override
     public void show() {
         System.out.println("Offs Menu");
-        System.out.println("Enter product id to show or 'back' to return.");
 
     }
 }

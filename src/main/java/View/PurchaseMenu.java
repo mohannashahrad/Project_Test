@@ -22,10 +22,12 @@ public class PurchaseMenu extends Menu {
 
     @Override
     public void commandProcess() {
+        show();
         new Menu("ReceiveInfoMenu",PurchaseMenu.this){
 
             @Override
             public void commandProcess() {
+                show();
                 System.out.println("Address :");
                 String info = scanner.nextLine();
                 if (info.trim().equalsIgnoreCase("cancel"))
@@ -65,6 +67,7 @@ public class PurchaseMenu extends Menu {
 
             @Override
             public void commandProcess() {
+                show();
                 System.out.println("Do you want to use a discount code ?\n1.yes\n2.no\n3.cancel");
                 int choice = scanner.nextInt();
                 if (choice == 3){
@@ -104,6 +107,7 @@ public class PurchaseMenu extends Menu {
 
             @Override
             public void commandProcess() {
+                show();
                 System.out.println("This is your final receipt!");
                 System.out.println("In the following part the details of your cart will be displayed as below patter!");
                 System.out.println("Product's Name -- Product's Price -- Product's Amount Of Sale -- Product's Price With Sale" +
@@ -163,4 +167,5 @@ public class PurchaseMenu extends Menu {
     public void show() {
         System.out.print("Purchase Menu :");
     }
+
 }

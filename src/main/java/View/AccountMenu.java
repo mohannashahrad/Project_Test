@@ -14,6 +14,7 @@ public  class AccountMenu extends Menu {
     @Override
     public void commandProcess() {
         if (person == null){
+            System.out.println("You need to login to access account menu.");
             LoginRegisterMenu loginRegisterMenu = new  LoginRegisterMenu(this.getPreviousMenu());
             loginRegisterMenu.run();
         }

@@ -18,7 +18,8 @@ public class AdminMenu extends AccountMenu{
 
     @Override
     public void commandProcess() {
-        while (true) {
+        do {
+            show();
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 viewInfo();
@@ -41,7 +42,10 @@ public class AdminMenu extends AccountMenu{
             else
                 System.out.println("Invalid choice");
 
+
         }
+        while (true);
+
     }
 
     private void manageCategoriesMenu() {

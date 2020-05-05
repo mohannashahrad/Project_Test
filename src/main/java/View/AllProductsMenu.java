@@ -16,7 +16,8 @@ public class AllProductsMenu extends Menu {
 
     @Override
     public void commandProcess() {
-        while (true) {
+        do {
+            show();
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 viewCategories();
@@ -35,7 +36,7 @@ public class AllProductsMenu extends Menu {
             else
                 System.out.println("Invalid choice");
 
-        }
+        }while (true);
     }
 
     private void showSingleProduct() {

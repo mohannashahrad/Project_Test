@@ -66,7 +66,6 @@ public abstract class Menu {
     public abstract void commandProcess ();
     public abstract void show ();
     public  void run (){
-        this.show();
         this.commandProcess();
     }
 }

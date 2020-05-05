@@ -10,7 +10,7 @@ public class LoginRegisterMenu extends Menu {
 
     @Override
     public void commandProcess() {
-        while(true){
+        do {
             String command = scanner.nextLine().trim();
             if(command.equals("1")){
                 if (login())
@@ -28,7 +28,7 @@ public class LoginRegisterMenu extends Menu {
                 this.show();
             else
                 System.out.println("Invalid choice");
-        }
+        }while (true);
         this.getPreviousMenu().run();
     }
 

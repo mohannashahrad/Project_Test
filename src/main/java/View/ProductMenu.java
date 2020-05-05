@@ -17,7 +17,7 @@ public class ProductMenu extends Menu{
 
     @Override
     public void commandProcess() {
-        while (true) {
+        do {
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 digest();
@@ -34,7 +34,7 @@ public class ProductMenu extends Menu{
             else
                 System.out.println("Invalid choice");
 
-        }
+        }while (true);
         
     }
 
