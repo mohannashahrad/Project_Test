@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+
+import View.Menu;
 import model.*;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -52,6 +54,7 @@ public class Manager {
     }
 
     public void logout (){
+        Menu.setPerson(null);
         this.person = null;
         this.cart = null;
     }
