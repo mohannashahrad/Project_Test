@@ -12,6 +12,7 @@ public class MainMenu extends Menu {
     @Override
     public void commandProcess() {
         do {
+            show();
             String command = scanner.nextLine().trim();
             if (command.equals("1")){
                 LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
