@@ -46,6 +46,17 @@ public class CustomerMenu extends AccountMenu {
 
     private void viewBalance() {
         System.out.println("Your balance is : "+person.getBalance());
+        System.out.println("Enter\n1.add balance\n2.back");
+        int command = scanner.nextInt();
+        if (command == 1){
+            System.out.println("Enter Amount to add :");
+            double amount = scanner.nextDouble();
+            customerManager.addBalance(amount);
+            System.out.println("added successfully.\nYour current balance is : "+person.getBalance());
+        }else if (command == 2)
+            return;
+        else
+            System.out.println("Invalid choice");
     }
 
     private void viewOrders() {
