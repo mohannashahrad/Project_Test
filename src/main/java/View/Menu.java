@@ -45,6 +45,10 @@ public abstract class Menu {
     public Menu(String name, Menu previousMenu) {
         this.name = name;
         this.previousMenu = previousMenu;
+        if (manager == null){
+            Manager manager = new Manager();
+            Menu.setManager(manager);
+        }
     }
 
     public void setName(String name) {
