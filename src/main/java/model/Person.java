@@ -19,7 +19,7 @@ public class Person {
         this.familyName = information.get("familyName");
         this.email = information.get("email");
         this.number = information.get("number");
-        this.balance = Integer.parseInt(information.get("balance"));
+        this.balance = 0;
         this.role = roleFinder(information.get("role"));
     }
 
