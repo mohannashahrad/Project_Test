@@ -32,8 +32,11 @@ public class MainMenu extends Menu {
                 CartMenu cartMenu = new CartMenu(this);
                 cartMenu.run();
             }
-            else if (command.equals("6"))
+            else if (command.equals("6")){
+                manager.terminate();
                 break;
+            }
+
             else if (command.equalsIgnoreCase("help"))
                 show();
             else

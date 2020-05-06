@@ -154,4 +154,9 @@ public class Manager {
         else
             return storage.getProductById(productId);
     }
+
+    public void terminate() {
+        FileSaver fileSaver = new FileSaver();
+        fileSaver.dataSaver();
+    }
 }

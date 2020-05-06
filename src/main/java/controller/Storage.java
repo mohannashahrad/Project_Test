@@ -25,6 +25,8 @@ public class Storage {
 
     private Storage() {
         newArrayLists();
+        FileSaver fileSaver = new FileSaver();
+        fileSaver.dataReader();
     }
     public static Storage getStorage(){
         if (storage == null)
@@ -50,6 +52,74 @@ public class Storage {
         allFilters = new ArrayList<>();
         allSorts = new ArrayList<>();
         allCarts = new ArrayList<>();
+    }
+
+    public void setAllUsers(ArrayList<Person> allUsers) {
+        this.allUsers = allUsers;
+    }
+
+    public void setAllCustomers(ArrayList<Person> allCustomers) {
+        this.allCustomers = allCustomers;
+    }
+
+    public void setAllSellers(ArrayList<Person> allSellers) {
+        this.allSellers = allSellers;
+    }
+
+    public void setAllAdmins(ArrayList<Person> allAdmins) {
+        this.allAdmins = allAdmins;
+    }
+
+    public void setAllProducts(ArrayList<Product> allProducts) {
+        this.allProducts = allProducts;
+    }
+
+    public void setAllLogs(ArrayList<Log> allLogs) {
+        this.allLogs = allLogs;
+    }
+
+    public void setAllSellLogs(ArrayList<Log> allSellLogs) {
+        this.allSellLogs = allSellLogs;
+    }
+
+    public void setAllBuyLogs(ArrayList<Log> allBuyLogs) {
+        this.allBuyLogs = allBuyLogs;
+    }
+
+    public void setAllCategories(ArrayList<Category> allCategories) {
+        this.allCategories = allCategories;
+    }
+
+    public void setAllDiscounts(ArrayList<Discount> allDiscounts) {
+        this.allDiscounts = allDiscounts;
+    }
+
+    public void setAllRates(ArrayList<Rate> allRates) {
+        this.allRates = allRates;
+    }
+
+    public void setAllComments(ArrayList<Comment> allComments) {
+        this.allComments = allComments;
+    }
+
+    public void setAllSales(ArrayList<Sale> allSales) {
+        this.allSales = allSales;
+    }
+
+    public void setAllRequests(ArrayList<Request> allRequests) {
+        this.allRequests = allRequests;
+    }
+
+    public void setAllFilters(ArrayList<Filter> allFilters) {
+        this.allFilters = allFilters;
+    }
+
+    public void setAllSorts(ArrayList<Sort> allSorts) {
+        this.allSorts = allSorts;
+    }
+
+    public void setAllCarts(ArrayList<Cart> allCarts) {
+        this.allCarts = allCarts;
     }
 
     public ArrayList<Person> getAllUsers() {
