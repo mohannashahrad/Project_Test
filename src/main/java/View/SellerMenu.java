@@ -341,13 +341,13 @@ public class SellerMenu extends AccountMenu {
         try {
             Product product = sellerManager.viewSellerProduct(productId);
             System.out.println("productId :" + product.getProductId() +
-                    "Product's name :" + product.getName() +
-                    "Product's brand :" + product.getBrand() +
-                    "Product's price :" + product.getPrice() +
-                    "Product's supply :" + product.getSupply()+
-                    "Product's category :" + product.getCategoryName() +
-                    "Product's explanation :" + product.getExplanation() +
-                    "Product's average rate :" + product.getAverageRate());
+                    "Product's name : " + product.getName() +
+                    "\nProduct's brand : " + product.getBrand() +
+                    "\nProduct's price : " + product.getPrice() +
+                    "\nProduct's supply : " + product.getSupply()+
+                    "\nProduct's category : " + product.getCategoryName() +
+                    "\nProduct's explanation : " + product.getExplanation() +
+                    "\nProduct's average rate : " + product.getAverageRate());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
