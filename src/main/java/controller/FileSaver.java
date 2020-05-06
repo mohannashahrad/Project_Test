@@ -88,5 +88,102 @@ public class FileSaver {
             System.out.println(e.getMessage());
         }
     }
+    private void readSale(){
+        try(FileReader fileReader = new FileReader("allSales.json")) {
+            Sale[] fromFile = gson.fromJson(fileReader,Sale[].class);
+            storage.setAllSales(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readCategory(){
+        try(FileReader fileReader = new FileReader("allCategories.json")) {
+            Category[] fromFile = gson.fromJson(fileReader,Category[].class);
+            storage.setAllCategories(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readDiscount(){
+        try(FileReader fileReader = new FileReader("allDiscounts.json")) {
+            Discount[] fromFile = gson.fromJson(fileReader,Discount[].class);
+            storage.setAllDiscounts(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readRate(){
+        try(FileReader fileReader = new FileReader("allRates.json")) {
+            Rate[] fromFile = gson.fromJson(fileReader,Rate[].class);
+            storage.setAllRates(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readComment(){
+        try(FileReader fileReader = new FileReader("allComments.json")) {
+            Comment[] fromFile = gson.fromJson(fileReader,Comment[].class);
+            storage.setAllComments(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readRequest(){
+        try(FileReader fileReader = new FileReader("allRequests.json")) {
+            Request[] fromFile = gson.fromJson(fileReader,Request[].class);
+            storage.setAllRequests(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readFilter(){
+        try(FileReader fileReader = new FileReader("allFilters.json")) {
+            Filter[] fromFile = gson.fromJson(fileReader,Filter[].class);
+            storage.setAllFilters(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readSort(){
+        try(FileReader fileReader = new FileReader("allSorts.json")) {
+            Sort[] fromFile = gson.fromJson(fileReader,Sort[].class);
+            storage.setAllSorts(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readLog(){
+        try(FileReader fileReader = new FileReader("allLogs.json")) {
+            Log[] fromFile = gson.fromJson(fileReader,Log[].class);
+            storage.setAllLogs(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readBuyLog(){
+        try(FileReader fileReader = new FileReader("allBuyLogs.json")) {
+            BuyLog[] fromFile = gson.fromJson(fileReader,BuyLog[].class);
+            storage.setAllBuyLogs(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readSellLog(){
+        try(FileReader fileReader = new FileReader("allSellLogs.json")) {
+            SellLog[] fromFile = gson.fromJson(fileReader,SellLog[].class);
+            storage.setAllSellLogs(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void readCart(){
+        try(FileReader fileReader = new FileReader("allCarts.json")) {
+            Cart[] fromFile = gson.fromJson(fileReader,Cart[].class);
+            storage.setAllCarts(new ArrayList<>(Arrays.asList(fromFile)));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     //and other reads...
 }
