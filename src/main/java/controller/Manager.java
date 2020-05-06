@@ -45,14 +45,10 @@ public class Manager {
             throw new Exception("Username is not valid");
         else if (!checkValidity(password))
             throw new Exception("Password is not valid");
-        else {
-            this.person = storage.getUserByUsername(username);
-            if(this.person.getRole().equals("CUSTOMER") && cart == null){
-                this.cart = new Cart((Customer) this.person);
-                storage.addCart(this.cart);
-            }
+        else if (!storage.getUserByUsername(username).getPassword().equals(password))
+            throw new Exception("Your password is wrong");
+        else
             return storage.getUserByUsername(username);
-        }
     }
 
     public void logout (){
