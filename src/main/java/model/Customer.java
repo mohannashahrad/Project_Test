@@ -38,7 +38,7 @@ public class Customer extends Person {
         buyHistory.add(newBuyLog);
     }
     public Cart newCartForThisCustomer(){
-        this.shoppingCart = new Cart(this);
+        this.shoppingCart = Cart.getCart();
         return this.shoppingCart;
     }
 }
