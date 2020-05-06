@@ -116,7 +116,7 @@ public class Storage {
 
     public Person getUserByUsername(String username) {
         for (Person user : allUsers) {
-            if (user.getUserName().equals(username)) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }

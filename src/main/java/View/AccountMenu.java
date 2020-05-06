@@ -48,7 +48,7 @@ public  class AccountMenu extends Menu {
     }
     protected void viewPersonalInfo(Person p){
         System.out.println("role : "+p.getRole());
-        System.out.println("username : "+p.getUserName());
+        System.out.println("username : "+p.getUsername());
         System.out.println("password : "+p.getPassword());
         System.out.println("name : "+p.getName());
         System.out.println("family name : "+p.getFamilyName());

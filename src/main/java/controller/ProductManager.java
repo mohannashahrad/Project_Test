@@ -17,7 +17,7 @@ public class ProductManager extends Manager{
 
     public void addComment (int productId ,String title ,String content){
         Product product = storage.getProductById(productId);
-        String username = super.person.getUserName();
+        String username = super.person.getUsername();
         Comment comment = new Comment(username,product,title,content);
         storage.addComment(comment);
         product.addComment(comment);

@@ -33,7 +33,7 @@ public class SellerManager extends Manager {
         if (storage.getProductById(Integer.parseInt(information.get("productId"))) != null)
             throw new Exception("A product exists with same productId. Please select another Id.");//id ro dasti nmidim k?
         else {
-            information.put("seller", super.person.getUserName());
+            information.put("seller", super.person.getUsername());
             storage.addRequest(new Request("add product", information));
         }
     }
@@ -46,7 +46,7 @@ public class SellerManager extends Manager {
         else {
             HashMap<String, String> information = new HashMap<>();
             information.put("productId", Integer.toString(productId));
-            information.put("username", super.person.getUserName());
+            information.put("username", super.person.getUsername());
             storage.addRequest(new Request("remove product", information));
         }
     }
@@ -85,7 +85,7 @@ public class SellerManager extends Manager {
         Sale sale = null;
         int offId = sale.getLastSaleId() + 1;
         savedProductsInSale.put(offId, productsInOff);
-        information.put("username", super.person.getUserName());
+        information.put("username", super.person.getUsername());
         information.put("offId", Integer.toString(offId));
         storage.addRequest(new Request("add sale", information));
     }

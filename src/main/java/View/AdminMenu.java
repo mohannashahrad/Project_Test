@@ -334,7 +334,7 @@ public class AdminMenu extends AccountMenu{
             return;
         }
         for (Map.Entry<Customer, Integer> entry : customersWithThisDiscount.entrySet()) {
-            System.out.println(entry.getKey().getUserName() + " --- " + entry.getValue());
+            System.out.println(entry.getKey().getUsername() + " --- " + entry.getValue());
         }
     }
 

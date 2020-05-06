@@ -1,7 +1,6 @@
 package controller;
 import model.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -78,7 +77,7 @@ public class CustomerManager extends Manager {
         if(!storage.getProductById(productId).getThisProductsBuyers().contains(super.person))
             throw new Exception("You can't rate a product which you didn't buy it!!");
         else {
-            Rate rateOfThisProduct = new Rate (super.person.getUserName(),storage.getProductById(productId),rate);
+            Rate rateOfThisProduct = new Rate (super.person.getUsername(),storage.getProductById(productId),rate);
             storage.addRate(rateOfThisProduct);
             storage.getProductById(productId).addRate(rateOfThisProduct);
         }

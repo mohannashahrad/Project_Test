@@ -3,7 +3,7 @@ package model;
 import java.util.HashMap;
 
 public class Person {
-    private String userName;
+    private String username;
     private String password;
     private String name;
     private String familyName;
@@ -13,7 +13,7 @@ public class Person {
     private Role role;
 
     public Person(HashMap<String, String> information) {
-        this.userName = information.get("userName");
+        this.username = information.get("username");
         this.password = information.get("password");
         this.name = information.get("name");
         this.familyName = information.get("familyName");
@@ -47,8 +47,8 @@ public class Person {
         this.balance = balance;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
