@@ -16,7 +16,10 @@ public class OffsMenu extends Menu{
     public void commandProcess() {
         do {
             show();
-            AllOffShow();
+            boolean saleExist = AllOffShow();
+            if (!saleExist){
+                this.getPreviousMenu().run();
+            }
             System.out.println("Enter product id to show or 'back' to return.");
             String command = scanner.nextLine();
             if (command.trim().equalsIgnoreCase("back"))
@@ -36,13 +39,18 @@ public class OffsMenu extends Menu{
         
     }
 
-    private void AllOffShow() {
+    private boolean AllOffShow() {
         ArrayList<Product> offProducts = productManager.viewAllProductsWithSale();
+        if (offProducts.isEmpty()){
+            System.out.println("nothing in sale!");
+            return false;
+        }
         for (Product product : offProducts){
             System.out.println("name : "+product.getName());
             System.out.println("previous price : "+product.getPrice()+"$  ****  "+"current price : "+product.getPriceWithSale()+"$");
             System.out.println("amount of sale : "+product.getAmountOfSale()+"$");
         }
+        return true;
     }
 
 
