@@ -170,7 +170,7 @@ public class AdminMenu extends AccountMenu{
                     Request request = adminManager.viewRequest(command);
                     ShowSingleRequest(request);
                     System.out.println("Enter 1.accept\n2.decline\n3.take no action");
-                    int choice = scanner.nextInt();
+                    int choice =Integer.parseInt(scanner.nextLine());
                     if (choice == 1){
                         adminManager.acceptRequest(command);
                         System.out.println("accepted!");

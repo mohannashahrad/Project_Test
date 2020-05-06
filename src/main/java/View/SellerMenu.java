@@ -232,8 +232,8 @@ public class SellerMenu extends AccountMenu {
             information.put("categoryName", scanner.nextLine());
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
-           // information.put("seller", ((Seller)person).getUserName());//lazem nis inja ezafe konm?tuye sellerManager dastresi darim?
-                sellerManager.addProduct(information);
+            // information.put("seller", ((Seller)person).getUserName());//lazem nis inja ezafe konm?tuye sellerManager dastresi darim?
+            sellerManager.addProduct(information);
                 System.out.println("created successfully!");
         }catch (Exception e) {
             System.out.println(e.getMessage());
