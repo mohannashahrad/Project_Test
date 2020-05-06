@@ -19,7 +19,7 @@ public class Manager {
 
     public Manager() {
         storage = Storage.getStorage();
-        cart = new Cart(null);
+        cart = Cart.getCart();
         storage.addCart(cart);
     }
 

@@ -89,6 +89,10 @@ public class CartMenu extends Menu{
     }
 
     private void showProducts() {
+        if (customerManager.getProductsInCart().isEmpty()){
+            System.out.println("nothing in cart yet!");
+            return;
+        }
         for (Product product : customerManager.getProductsInCart().keySet()) {
             System.out.println(product.getName() + "---" + product.getProductId() + "---" + product.getPrice());
             System.out.println("Numbers of this product in your cart : " + customerManager.getProductsInCart().get(product));
