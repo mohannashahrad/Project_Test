@@ -23,8 +23,10 @@ public  class AccountMenu extends Menu {
             adminMenu.run();
         }else if (person instanceof Seller){
             SellerMenu sellerMenu = new SellerMenu(this.getPreviousMenu());
+            sellerMenu.run();
         }else {
             CustomerMenu customerMenu = new CustomerMenu(this.getPreviousMenu());
+            customerMenu.run();
         }
     }
 
