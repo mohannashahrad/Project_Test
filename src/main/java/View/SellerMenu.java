@@ -224,10 +224,10 @@ public class SellerMenu extends AccountMenu {
             String brandName = scanner.nextLine();
             information.put("brandName", brandName);
             System.out.println("Enter product price:");
-            double price = scanner.nextDouble();
-            information.put("price", Double.toString(price));
+            String price = scanner.nextLine();
+            information.put("price",price);
             System.out.println("Enter product supply:");
-            information.put("supply", Integer.toString(scanner.nextInt()));
+            information.put("supply", scanner.nextLine());
             System.out.println("Enter product category:");
             information.put("categoryName", scanner.nextLine());
             System.out.println("Enter product explanation:");
