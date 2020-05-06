@@ -429,6 +429,7 @@ public class AdminMenu extends AccountMenu{
         data.put("email", scanner.nextLine());
         System.out.println("phone number :");
         data.put("number", scanner.nextLine());
+        data.put("role","admin");
 
         try {
             adminManager.createManager(data);
