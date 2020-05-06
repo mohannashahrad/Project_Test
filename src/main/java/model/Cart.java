@@ -1,16 +1,25 @@
 package model;
 
 
+import controller.Storage;
+
 import java.util.HashMap;
 
 public class Cart {
+    private static Cart cart;
     private HashMap<Product, Integer> productsInCart;
     private double totalPrice;
     private Customer customer;
 
-    public Cart(Customer customer) {
+    private Cart(Customer customer) {
         this.productsInCart = new HashMap<>();
         this.customer = customer;
+    }
+
+    public static Cart getCart(){
+        if (cart == null)
+            cart = new Cart(null);
+        return cart;
     }
 
     public HashMap<Product, Integer> getProductsInCart() {
