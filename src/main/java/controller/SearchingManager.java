@@ -57,9 +57,9 @@ public class SearchingManager extends Manager {
         }
         switch(sortTag)
         {
-            case "category":
+            case "average rate":
                 currentSorts.add(sort);
-                sort.sortByCategory(storage.getAllCategories());
+                return sort.sortByAverageRate(storage.getAllProducts());
             case "price":
                 currentSorts.add(sort);
                 return sort.sortByPrice(storage.getAllProducts());

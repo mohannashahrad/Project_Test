@@ -2,16 +2,14 @@ package View;
 
 import controller.ProductManager;
 import controller.SearchingManager;
-import model.Category;
-import model.Filter;
-import model.Product;
-import model.Sale;
+import model.*;
 
 import java.util.ArrayList;
 
 public class AllProductsMenu extends Menu {
     ProductManager productManager = new ProductManager();
     SearchingManager searchingManager = new SearchingManager();
+
     public AllProductsMenu(Menu previousMenu) {
         super("AllProductsMenu", previousMenu);
     }
@@ -25,7 +23,7 @@ public class AllProductsMenu extends Menu {
             else if (command.equals("2"))
                 filterMenu();
             else if (command.equals("3"))
-                sortMenu(); //bahar
+                sortMenu();
             else if (command.equals("4"))
                 showProducts();
             else if (command.equals("5"))
@@ -46,9 +44,9 @@ public class AllProductsMenu extends Menu {
         try {
             int productId = Integer.parseInt(id);
             Product product = manager.getProductById(productId);
-            ProductMenu productMenu = new ProductMenu(product,this);
+            ProductMenu productMenu = new ProductMenu(product, this);
             productMenu.run();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -61,6 +59,82 @@ public class AllProductsMenu extends Menu {
     }
 
     private void sortMenu() {
+        while (true) {
+            System.out.println("Enter\n1.show available sorts\n2.sort\n3.show current sort\n4.disable sort\n5.back");
+            int command = scanner.nextInt();
+            if (command == 1)
+                showAvailableSorts();
+            else if (command == 2)
+                performSorting();
+            else if (command == 3)
+                showCurrentSorts();
+            else if (command == 4)
+                disableSort();
+            else if (command == 5)
+                break;
+            else
+                System.out.println("Invalid choice");
+
+        }
+    }
+
+    private void showAvailableSorts() {
+        for (Sort sort : searchingManager.viewAllSorts()) {
+            System.out.println("Sort By : " + sort.getSortName());
+            System.out.println("----");
+        }
+    }
+
+    private void performSorting() {
+
+        System.out.println("Enter\n1.Sort by average rate\n2.Filter by price");
+        int choice = scanner.nextInt();
+        if (choice == 1) {
+            try {
+                showFilteredProducts(searchingManager.performSort("average rate"));
+                System.out.println("Sorting finished Successfully!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (choice == 2) {
+            try {
+                showFilteredProducts(searchingManager.performSort("price"));
+                System.out.println("Sorting finished Successfully!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Invalid choice!");
+        }
+    }
+
+    private void showCurrentSorts() {
+        for (Sort currentSort : searchingManager.getCurrentSorts()) {
+            System.out.println("Sort By : " + currentSort.getSortName());
+            System.out.println("----");
+        }
+    }
+
+    private void disableSort() {
+        System.out.println("Enter\n1.Disable filter by average rate\n2.Disable filter by price");
+        int choice = scanner.nextInt();
+        if (choice == 1) {
+            try {
+                showFilteredProducts(searchingManager.disableSort("average rate"));
+                System.out.println("Disabling sort finished Successfully!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (choice == 2) {
+            try {
+                showFilteredProducts(searchingManager.disableSort("price"));
+                System.out.println("Disabling sort finished Successfully!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Invalid choice!");
+        }
     }
 
     private void filterMenu() {
@@ -83,61 +157,59 @@ public class AllProductsMenu extends Menu {
         }
     }
 
-    private void showAvailableFilters(){
+    private void showAvailableFilters() {
         for (Filter filter : searchingManager.viewAllFilters()) {
             System.out.println("Filter By : " + filter.getFilterName());
             System.out.println("----");
         }
     }
 
-    private void performFiltering(){
+    private void performFiltering() {
         System.out.println("Enter\n1.Filter by category\n2.Filter by price\n3.Filter by name");
         int choice = scanner.nextInt();
-        if (choice == 1){
+        if (choice == 1) {
             try {
                 System.out.println("Please enter the name of your desired category!");
                 String categoryName = scanner.nextLine();
-                showFilteredProducts(searchingManager.performFilter("category",categoryName));
+                showFilteredProducts(searchingManager.performFilter("category", categoryName));
                 System.out.println("Filtering finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else if (choice == 2){
+        } else if (choice == 2) {
             try {
                 System.out.println("Please enter the maximum amount of products' price!");
                 double maxPrice = scanner.nextDouble();
-                showFilteredProducts(searchingManager.performFilter("price",Double.toString(maxPrice)));
+                showFilteredProducts(searchingManager.performFilter("price", Double.toString(maxPrice)));
                 System.out.println("Filtering finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else if (choice == 3){
+        } else if (choice == 3) {
             try {
                 System.out.println("Please enter name of the product!");
                 String name = scanner.nextLine();
-                showFilteredProducts(searchingManager.performFilter("name",name));
+                showFilteredProducts(searchingManager.performFilter("name", name));
                 System.out.println("Filtering finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }
-        else {
+        } else {
             System.out.println("Invalid choice!");
         }
     }
 
-    private void showCurrentFilters(){
+    private void showCurrentFilters() {
         for (Filter currentFilter : searchingManager.getCurrentFilters()) {
             System.out.println("Filter By : " + currentFilter.getFilterName());
             System.out.println("----");
         }
     }
 
-    private void showFilteredProducts (ArrayList<Product> filteredProducts){
-        if (filteredProducts.isEmpty()){
+    private void showFilteredProducts(ArrayList<Product> filteredProducts) {
+        if (filteredProducts.isEmpty()) {
             System.out.println("No products found!!");
-        }
-        else {
+        } else {
             for (Product product : filteredProducts) {
                 System.out.println(product.toString());
                 System.out.println("------");
@@ -145,38 +217,37 @@ public class AllProductsMenu extends Menu {
         }
     }
 
-    private void disableFilter(){
+    private void disableFilter() {
         System.out.println("Enter\n1.Disable filter by category\n2.Disable filter by price\n3.Disable filter by name");
         int choice = scanner.nextInt();
-        if (choice == 1){
+        if (choice == 1) {
             try {
                 System.out.println("Please enter the name of your desired category!");
                 String categoryName = scanner.nextLine();
-                showFilteredProducts(searchingManager.disableFilter("category",categoryName));
+                showFilteredProducts(searchingManager.disableFilter("category", categoryName));
                 System.out.println("Disabling filter finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else if (choice == 2){
+        } else if (choice == 2) {
             try {
                 System.out.println("Please enter the maximum amount of products' price to be disabled!");
                 double maxPrice = scanner.nextDouble();
-                showFilteredProducts(searchingManager.disableFilter("price",Double.toString(maxPrice)));
-                System.out.println("Filtering finished Successfully!");
+                showFilteredProducts(searchingManager.disableFilter("price", Double.toString(maxPrice)));
+                System.out.println("Disabling filter finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else if (choice == 3){
+        } else if (choice == 3) {
             try {
                 System.out.println("Please enter name of the product to be disabled!");
                 String name = scanner.nextLine();
-                showFilteredProducts(searchingManager.performFilter("name",name));
-                System.out.println("Filtering finished Successfully!");
+                showFilteredProducts(searchingManager.disableFilter("name", name));
+                System.out.println("Disabling filter finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }
-        else {
+        } else {
             System.out.println("Invalid choice!");
         }
     }

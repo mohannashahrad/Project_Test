@@ -14,18 +14,27 @@ public class Sort {
         return sortName;
     }
 
-    public ArrayList<Product> sortByCategory(Category category) {
-        return category.getThisCategoryProducts();
-    }
-
-    public ArrayList<Product> sortByPrice(ArrayList<Product> allProducts) {
-        for (int i = 0; i < allProducts.size() - 1; i++) {
-            for (int j = 0; j < allProducts.size() - 1; j++) {
-                if (allProducts.get(j).compareTo(allProducts.get(j + 1)) > 0) {
-                    Collections.swap(allProducts, j, j + 1);
+    public ArrayList<Product> sortByAverageRate(ArrayList<Product> allProducts) {
+        ArrayList<Product> sortedProducts = allProducts;
+        for (int i = 0; i < sortedProducts.size() - 1 ; i++) {
+            for (int j = 0; j < sortedProducts.size() - 1; j++) {
+                if (sortedProducts.get(j).getAverageRate() > sortedProducts.get(j + 1).getAverageRate()) {
+                    Collections.swap(sortedProducts, j , j + 1);
                 }
             }
         }
-        return allProducts;
+        return sortedProducts;
+    }
+
+    public ArrayList<Product> sortByPrice(ArrayList<Product> allProducts) {
+        ArrayList<Product> sortedProducts = allProducts;
+        for (int i = 0; i < sortedProducts.size() - 1; i++) {
+            for (int j = 0; j < sortedProducts.size() - 1; j++) {
+                if (sortedProducts.get(j).compareTo(sortedProducts.get(j + 1)) > 0) {
+                    Collections.swap(sortedProducts, j, j + 1);
+                }
+            }
+        }
+        return sortedProducts;
     }
 }

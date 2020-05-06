@@ -159,6 +159,7 @@ public class Product implements Comparable<Product> {
         return Double.compare(this.getPrice(), productToBeComparedTo.getPrice());
     }
 
+
     @Override
     public String toString() {
         return "Product :" +
