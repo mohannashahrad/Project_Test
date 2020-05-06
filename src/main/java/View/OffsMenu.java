@@ -9,7 +9,7 @@ public class OffsMenu extends Menu{
     ProductManager productManager;
     public OffsMenu(Menu previousMenu) {
         super("OffsMenu", previousMenu);
-        ProductManager productManager = new ProductManager();
+        productManager = new ProductManager();
     }
 
     @Override
