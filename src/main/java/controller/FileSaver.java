@@ -38,6 +38,18 @@ public class FileSaver {
         readAdmin();
         readSeller();
         readProduct();
+        readLog();
+        readBuyLog();
+        readSellLog();
+        readCategory();
+        readDiscount();
+        readRate();
+        readComment();
+        readSale();
+        readRequest();
+        readFilter();
+        readSort();
+        //readCart();
     }
 
     private void writeArrayToFile(ArrayList arrayList,String filePath){
@@ -184,6 +196,4 @@ public class FileSaver {
             System.out.println(e.getMessage());
         }
     }
-
-    //and other reads...
 }
