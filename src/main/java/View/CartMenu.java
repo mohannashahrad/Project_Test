@@ -52,7 +52,7 @@ public class CartMenu extends Menu{
     }
 
     private void showTotalPrice() {
-        System.out.println(customerManager.getCartTotalPrice());
+        System.out.println(customerManager.getCartTotalPrice()+" $");
     }
 
     private void decreaseProduct() {

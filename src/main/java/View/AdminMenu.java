@@ -396,8 +396,8 @@ public class AdminMenu extends AccountMenu{
     }
 
     private void manageUsers() {
-        System.out.println("Enter\n1.view user\n2.delete user\n3.create manager profile\n4.back");
         while (true) {
+            System.out.println("Enter\n1.view user\n2.delete user\n3.create manager profile\n4.back");
             String choice = scanner.nextLine().trim();
             if (choice.equals("1"))
                 viewUser();
