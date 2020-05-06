@@ -405,6 +405,10 @@ public class AdminMenu extends AccountMenu{
                 deleteUser();
             else if (choice.equals("3"))
                 createManagerProfile();
+            else if (choice.equals("4"))
+                break;
+            else
+                System.out.println("Invalid choice!");
         }
     }
 
