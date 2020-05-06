@@ -87,16 +87,21 @@ public class AdminManager extends Manager {
         switch (field){
             case "percentage" :
                 discount.setPercentage(Integer.parseInt(updatedVersion));
+                return;
             case "usagePerCustomer":
                 discount.setUsageCount(Integer.parseInt(updatedVersion));
+                return;
             case "beginDate":
                 LocalDateTime beginDate = LocalDateTime.parse(updatedVersion,formatter);
                 discount.setBeginDate(beginDate);
+                return;
             case "endDate":
                 LocalDateTime endDate = LocalDateTime.parse(updatedVersion,formatter);
                 discount.setEndDate(endDate);
+                return;
             case "maxAmount":
                 discount.setMaxAmount(Double.parseDouble(updatedVersion));
+                return;
         }
     }
 
