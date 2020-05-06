@@ -25,13 +25,9 @@ public class SellerManager extends Manager {
             return storage.getProductById(productId);
     }
 
-    public void addProduct(HashMap<String, String> information) throws Exception {
-        if (storage.getProductById(Integer.parseInt(information.get("productId"))) != null)
-            throw new Exception("A product exists with same productId. Please select another Id.");//id ro dasti nmidim k?
-        else {
-            information.put("seller", super.person.getUsername());
-            storage.addRequest(new Request("add product", information));
-        }
+    public void addProduct(HashMap<String, String> information){
+        information.put("seller", super.person.getUsername());
+        storage.addRequest(new Request("add product", information));
     }
 
     public void removeProduct(int productId) throws Exception {
