@@ -34,7 +34,7 @@ public class MainMenu extends Menu {
             }
             else if (command.equals("6")){
                 manager.terminate();
-                break;
+                System.exit(0);
             }
 
             else if (command.equalsIgnoreCase("help"))

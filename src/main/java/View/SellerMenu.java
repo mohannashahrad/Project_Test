@@ -245,11 +245,10 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void manageProductsMenu() {
-        showSellerProducts(); //just names
+        showSellerProducts();
         while (true) {
-            System.out.println("Enter\n1.view a product\n2.view buyers of a product\n3.edit a product\n4.back :");
+            System.out.println("Enter\n1.view a product\n2.view buyers of a product\n3.edit a product\n4.back");
             int command = scanner.nextInt();
-            //to be continued
             if (!(0 < command && command < 5)) {
                 System.out.println("Invalid command");
                 continue;
@@ -357,15 +356,23 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void showSellerProducts() {
+        if (sellerManager.viewSellerProducts().isEmpty()){
+            System.out.println("you dont have any products yet.");
+            return;
+        }
         System.out.println(sellerManager.viewSellerProducts());
     }
 
     private void viewSalesHistory() {
+        if (sellerManager.viewSellerOffs().isEmpty()){
+            System.out.println("no sales yet.");
+            return;
+        }
         System.out.println(sellerManager.viewSellerOffs());
     }
 
     private void viewCompanyInfo() {
-        System.out.println(((Seller) person).getCompany());
+        System.out.println("company name : "+((Seller) person).getCompany());
         System.out.println("Enter\n1.edit\n2.back");
         int command = scanner.nextInt();
         if (command == 1) {

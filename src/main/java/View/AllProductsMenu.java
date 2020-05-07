@@ -53,9 +53,13 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showProducts() {
+        if (productManager.viewAllProducts().isEmpty()){
+            System.out.println("no products in store yet!");
+            return;
+        }
         System.out.println("All products:\n");
         for (Product product : productManager.viewAllProducts()) {
-            System.out.println(product.getProductId() + " : " + product.getName() + "\n");
+            System.out.println("product name : "+product.getName()+"\nprice : "+product.getPrice()+"$");
         }
     }
 
