@@ -22,8 +22,8 @@ public class Product implements Comparable<Product> {
     public Product(HashMap<String, String> information, Seller seller) {
         this.productId = lastProductId + 1;
         lastProductId++;
-        this.name = information.get("name");
-        this.brand = information.get("brand");
+        this.name = information.get("productName");
+        this.brand = information.get("brandName");
         this.price = Double.parseDouble(information.get("price"));
         this.seller = seller;
         this.supply = Integer.parseInt(information.get("supply"));
