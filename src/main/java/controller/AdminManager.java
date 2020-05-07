@@ -216,6 +216,14 @@ public class AdminManager extends Manager {
                 ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
                 sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
                 return;
+            case ADD_COMMENT:
+                addCommentRequest(request);
+                return;
+            case ADD_PRODUCT_TO_SALE:
+                addProductToSAleRequest(request);
+                return;
+            case REMOVE_PRODUCT_FROM_SALE:
+                removeProductFromRequest(request);
         }
     }
 
@@ -256,6 +264,32 @@ public class AdminManager extends Manager {
         for (Product product : sellerManager.getSavedProductsInSale().get(offId)) {
             product.setSale(sale);
         }
+    }
+
+    private void addProductToSAleRequest (Request request){
+        int addedProductToSAle = Integer.parseInt(request.getInformation().get("productId"));
+        int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("saleId"));
+        storage.getProductById(addedProductToSAle).setSale(storage.getSaleById(saleIdToBeAdded));
+        storage.getSaleById(saleIdToBeAdded).addProductToThisSale(storage.getProductById(addedProductToSAle));
+    }
+
+    private void removeProductFromRequest(Request request){
+        int removedProductFromSAle = Integer.parseInt(request.getInformation().get("productId"));
+        int saleIdToBeRemoved = Integer.parseInt(request.getInformation().get("saleId"));
+        if (storage.getProductById(removedProductFromSAle).getSale() == storage.getSaleById(saleIdToBeRemoved)){
+            storage.getProductById(removedProductFromSAle).setSale(null);
+        }
+        storage.getSaleById(removedProductFromSAle).removeProductFromThisSale(storage.getProductById(saleIdToBeRemoved));
+    }
+
+    private void addCommentRequest (Request request){
+        int productIdForComment = Integer.parseInt(request.getInformation().get("productId"));
+        String title = request.getInformation().get("title");
+        String content = request.getInformation().get("content");
+        String username = request.getInformation().get("username");
+        Comment comment = new Comment(username,storage.getProductById(productIdForComment),title,content);
+        storage.addComment(comment);
+        storage.getProductById(productIdForComment).addComment(comment);
     }
 
 }
