@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Customer extends Person {
-    private Cart shoppingCart; /*when to new this?!*/
+    private Cart shoppingCart;
     private ArrayList<BuyLog> buyHistory;
     private ArrayList<Discount> allDiscounts;
 

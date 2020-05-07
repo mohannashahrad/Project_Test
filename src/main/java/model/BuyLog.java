@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class BuyLog extends Log {
     private int buyCode;
-    private int lastBuyCode = 0;
+    static private int lastBuyCode = 0;
     private double paidMoney;
     private double discountAmount;
     private ArrayList<Seller> seller;

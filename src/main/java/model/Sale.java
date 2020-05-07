@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Sale {
     private int saleId;
-    private int lastSaleId = 0;
+    static private int lastSaleId = 0;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int amountOfSale;

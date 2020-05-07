@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Product implements Comparable<Product> {
     private int productId;
-    private int lastProductId = 0;
+    static private int lastProductId = 0;
     private String name;
     private String brand;
     private double price;

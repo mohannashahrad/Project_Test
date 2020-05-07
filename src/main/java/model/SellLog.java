@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class SellLog extends Log {
     private int sellCode;
-    private int lastSellCode = 0;
+    static private int lastSellCode = 0;
     private double receivedMoney;
     private double saleAmount;
     private Customer customer;
