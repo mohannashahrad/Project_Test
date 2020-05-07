@@ -45,8 +45,13 @@ public class AdminManager extends Manager {
     public void removeProduct (String productId) throws Exception {
         if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!!");
-        else
-        storage.deleteProduct(storage.getProductById(Integer.parseInt(productId)));
+        else {
+            Sale sale = null;
+            Product removedProduct = storage.getProductById(Integer.parseInt(productId));
+            storage.deleteProduct(removedProduct);
+            removedProduct.getSeller().removeProduct(removedProduct);
+            sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
+        }
     }
 
     public void addCategory (String name) throws Exception {
