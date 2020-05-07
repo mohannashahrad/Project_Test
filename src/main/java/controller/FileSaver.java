@@ -59,6 +59,7 @@ public class FileSaver {
     private void writeArrayToFile(ArrayList arrayList,String filePath){
         try(FileWriter fileWriter = new FileWriter(filePath)) {
             gson.toJson(arrayList,fileWriter);
+            fileWriter.flush();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
