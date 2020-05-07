@@ -30,6 +30,7 @@ public class Storage {
         if (storage == null){
             storage = new Storage();
             FileSaver fileSaver = new FileSaver(storage);
+            fileSaver.dataReader();
         }
 
         return storage;
