@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Request {
     private int requestId;
-    private int lastRequestCode = 0;
+    static private int lastRequestCode = 0;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
     private HashMap<String, String> information;

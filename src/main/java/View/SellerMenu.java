@@ -29,7 +29,7 @@ public class SellerMenu extends AccountMenu {
             else if (command.equals("4"))
                 manageProductsMenu();
             else if (command.equals("5"))
-                addProduct(); //ye ghesmati moshkel dasht
+                addProduct();
             else if (command.equals("6"))
                 removeProduct();
             else if (command.equals("7"))
@@ -219,10 +219,10 @@ public class SellerMenu extends AccountMenu {
         try {
             System.out.println("Enter product name:");
             String productName = scanner.nextLine();
-            information.put("productName", productName);
+            information.put("name", productName);
             System.out.println("Enter brand name:");
             String brandName = scanner.nextLine();
-            information.put("brandName", brandName);
+            information.put("brand", brandName);
             System.out.println("Enter product price:");
             String price = scanner.nextLine();
             information.put("price",price);
@@ -232,7 +232,7 @@ public class SellerMenu extends AccountMenu {
             information.put("categoryName", scanner.nextLine());
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
-             information.put("seller", person.getUsername());//lazem nis inja ezafe konm?tuye sellerManager dastresi darim?
+             //information.put("seller", person.getUsername());//lazem nis inja ezafe konm?tuye sellerManager dastresi darim?
             sellerManager.addProduct(information);
                 System.out.println("created successfully!");
         }catch (Exception e) {
