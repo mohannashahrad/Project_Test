@@ -12,6 +12,7 @@ public class ProductMenu extends Menu{
     ProductManager productManager = new ProductManager();
     public ProductMenu(Product product,Menu previousMenu) {
         super(product.getName(), previousMenu);
+        this.product = product;
     }
     
 
