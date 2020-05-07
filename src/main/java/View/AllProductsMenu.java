@@ -62,7 +62,7 @@ public class AllProductsMenu extends Menu {
     private void sortMenu() {
         while (true) {
             System.out.println("Enter\n1.show available sorts\n2.sort\n3.show current sort\n4.disable sort\n5.back");
-            int command = scanner.nextInt();
+            int command = Integer.parseInt(scanner.nextLine());
             if (command == 1)
                 showAvailableSorts();
             else if (command == 2)
@@ -93,7 +93,7 @@ public class AllProductsMenu extends Menu {
     private void performSorting() {
 
         System.out.println("Enter\n1.Sort by average rate\n2.Filter by price");
-        int choice = scanner.nextInt();
+        int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {
                 showFilteredProducts(searchingManager.performSort("average rate"));
@@ -122,7 +122,7 @@ public class AllProductsMenu extends Menu {
 
     private void disableSort() {
         System.out.println("Enter\n1.Disable filter by average rate\n2.Disable filter by price");
-        int choice = scanner.nextInt();
+        int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {
                 showFilteredProducts(searchingManager.disableSort("average rate"));
@@ -145,7 +145,7 @@ public class AllProductsMenu extends Menu {
     private void filterMenu() {
         while (true) {
             System.out.println("Enter\n1.show available filters\n2.filter\n3.show current filters\n4.disable filter\n5.back");
-            int command = scanner.nextInt();
+            int command = Integer.parseInt(scanner.nextLine());
             if (command == 1)
                 showAvailableFilters();
             else if (command == 2)
@@ -175,7 +175,7 @@ public class AllProductsMenu extends Menu {
 
     private void performFiltering() {
         System.out.println("Enter\n1.Filter by category\n2.Filter by price\n3.Filter by name");
-        int choice = scanner.nextInt();
+        int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {
                 System.out.println("Please enter the name of your desired category!");
@@ -188,8 +188,8 @@ public class AllProductsMenu extends Menu {
         } else if (choice == 2) {
             try {
                 System.out.println("Please enter the maximum amount of products' price!");
-                double maxPrice = scanner.nextDouble();
-                showFilteredProducts(searchingManager.performFilter("price", Double.toString(maxPrice)));
+                double maxPrice = Double.parseDouble(scanner.nextLine());
+                showFilteredProducts(searchingManager.performFilter("price", scanner.nextLine()));
                 System.out.println("Filtering finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -228,7 +228,7 @@ public class AllProductsMenu extends Menu {
 
     private void disableFilter() {
         System.out.println("Enter\n1.Disable filter by category\n2.Disable filter by price\n3.Disable filter by name");
-        int choice = scanner.nextInt();
+        int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {
                 System.out.println("Please enter the name of your desired category!");

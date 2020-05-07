@@ -4,27 +4,26 @@ import model.Admin;
 import model.Person;
 import model.Seller;
 
-public  class AccountMenu extends Menu {
+public class AccountMenu extends Menu {
 
 
-    public AccountMenu(String name,Menu previousMenu) {
+    public AccountMenu(String name, Menu previousMenu) {
         super(name, previousMenu);
     }
 
     @Override
     public void commandProcess() {
-        if (person == null){
+        if (person == null) {
             System.out.println("You need to login to access account menu.");
-            LoginRegisterMenu loginRegisterMenu = new  LoginRegisterMenu(this.getPreviousMenu());
+            LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this.getPreviousMenu());
             loginRegisterMenu.run();
-        }
-        else if (person instanceof Admin){
+        } else if (person instanceof Admin) {
             AdminMenu adminMenu = new AdminMenu(this.getPreviousMenu());
             adminMenu.run();
-        }else if (person instanceof Seller){
+        } else if (person instanceof Seller) {
             SellerMenu sellerMenu = new SellerMenu(this.getPreviousMenu());
             sellerMenu.run();
-        }else {
+        } else {
             CustomerMenu customerMenu = new CustomerMenu(this.getPreviousMenu());
             customerMenu.run();
         }
@@ -39,7 +38,7 @@ public  class AccountMenu extends Menu {
 
     protected void viewInfo() {
         viewPersonalInfo(person);
-        while (true){
+        while (true) {
             System.out.println("Enter\n1.editFields\n2.back");
             String choice = scanner.nextLine().trim();
             if (choice.equals("1"))
@@ -49,17 +48,19 @@ public  class AccountMenu extends Menu {
             else System.out.println("Invalid choice");
         }
     }
-    protected void viewPersonalInfo(Person p){
-        System.out.println("role : "+p.getRole());
-        System.out.println("username : "+p.getUsername());
-        System.out.println("password : "+p.getPassword());
-        System.out.println("name : "+p.getName());
-        System.out.println("family name : "+p.getFamilyName());
-        System.out.println("email : "+p.getEmail());
-        System.out.println("number : "+p.getNumber());
+
+    protected void viewPersonalInfo(Person p) {
+        System.out.println("role : " + p.getRole());
+        System.out.println("username : " + p.getUsername());
+        System.out.println("password : " + p.getPassword());
+        System.out.println("name : " + p.getName());
+        System.out.println("family name : " + p.getFamilyName());
+        System.out.println("email : " + p.getEmail());
+        System.out.println("number : " + p.getNumber());
     }
-    protected void editField (){
-        System.out.println("Enter field to change:\n1.password\n2.name\n3.family name\n4.email\n5.number");
+
+    protected void editField() {
+        System.out.println("Enter field to change:\n1.password\n2.name\n3.family name\n4.email\n5.number\n6.back");
         String choice = scanner.nextLine().trim();
         String field;
         if (choice.equals("1"))
@@ -72,16 +73,18 @@ public  class AccountMenu extends Menu {
             field = "email";
         else if (choice.equals("5"))
             field = "number";
-        else{
+        else if (choice.equals("6"))
+            return;
+        else {
             System.out.println("Invalid choice");
             return;
         }
         System.out.println("Enter new value :");
         String newValue = scanner.nextLine().trim();
         try {
-            manager.editField(field,newValue);
+            manager.editField(field, newValue);
             System.out.println("Field successfully changed!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
