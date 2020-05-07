@@ -25,8 +25,7 @@ public class SellerManager extends Manager {
             return storage.getProductById(productId);
     }
 
-    public void addProduct(HashMap<String, String> information) throws Exception {
-        System.out.println(this.person.getUsername());
+    public void addProduct(HashMap<String, String> information){
         information.put("seller", super.person.getUsername());
         storage.addRequest(new Request("add product", information));
     }

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Manager {
     protected Storage storage;
-    protected Person person;
+    protected static Person person;
     protected Cart cart = null;
     protected SellerManager sellerManager;
     protected ArrayList<Filter> currentFilters = new ArrayList<>();
