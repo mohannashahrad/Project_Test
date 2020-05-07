@@ -24,7 +24,7 @@ public class FileSaver {
         writeArrayToFile(storage.getAllProducts(),"./dataBase/allProducts.json");
         writeArrayToFile(storage.getAllLogs(),"./dataBase/allLogs.json");
         writeArrayToFile(storage.getAllSellLogs(),"./dataBase/allSellLogs.json");
-        writeArrayToFile(storage.getAllBuyLogs(),"./dataBase/buyLogs.json");
+        writeArrayToFile(storage.getAllBuyLogs(),"./dataBase/allBuyLogs.json");
         writeArrayToFile(storage.getAllCategories(),"./dataBase/allCategories.json");
         writeArrayToFile(storage.getAllDiscounts(),"./dataBase/allDiscounts.json");
         writeArrayToFile(storage.getAllRates(),"./dataBase/allRates.json");
