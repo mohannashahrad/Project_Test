@@ -25,12 +25,13 @@ public class Storage {
 
     private Storage() {
         newArrayLists();
-        FileSaver fileSaver = new FileSaver();
-        fileSaver.dataReader();
     }
     public static Storage getStorage(){
-        if (storage == null)
+        if (storage == null){
             storage = new Storage();
+            FileSaver fileSaver = new FileSaver(storage);
+        }
+
         return storage;
     }
 

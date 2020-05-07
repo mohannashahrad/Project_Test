@@ -156,7 +156,7 @@ public class Manager {
     }
 
     public void terminate() {
-        FileSaver fileSaver = new FileSaver();
+        FileSaver fileSaver = new FileSaver(storage);
         fileSaver.dataSaver();
     }
 }

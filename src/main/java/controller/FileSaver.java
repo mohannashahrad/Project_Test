@@ -12,6 +12,10 @@ public class FileSaver {
     private Gson gson = new Gson();
     private Storage storage;
 
+    public FileSaver(Storage storage) {
+        this.storage = storage;
+    }
+
     public void dataSaver(){
         writeArrayToFile(storage.getAllUsers(),"allUsers.json");
         writeArrayToFile(storage.getAllCustomers(),"allCustomers.json");
