@@ -149,7 +149,7 @@ public class Manager {
 
     public Product getProductById(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
-            throw new Exception("Product doesnt exist!");
+            throw new Exception("Product doesn't exist!");
         else
             return storage.getProductById(productId);
     }

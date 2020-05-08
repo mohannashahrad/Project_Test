@@ -150,12 +150,6 @@ public class AdminManager extends Manager {
             storage.getCategoryByName(oldName).setCategoryName(newName);
     }
 
-    public boolean doesCategoryExist (String name){
-        if (storage.getCategoryByName(name) == null)
-            return false;
-        else return true;
-    }
-
     public void editCategoryByProperties (Category category ,String property, String newValue){
         if(!category.getProperties().containsKey(property))
             category.addNewProperty(property,newValue);
