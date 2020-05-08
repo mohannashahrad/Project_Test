@@ -1,5 +1,6 @@
 package View;
 
+import controller.AdminManager;
 import controller.SellerManager;
 import model.*;
 
@@ -229,10 +230,12 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter product supply:");
             information.put("supply", scanner.nextLine());
             System.out.println("Enter product category:");
-            information.put("categoryName", scanner.nextLine());
+            String category = scanner.nextLine();
+            if(sellerManager.doesCategoryExist(category)) {
+                information.put("categoryName", category);
+            }
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
-             //information.put("seller", person.getUsername());//lazem nis inja ezafe konm?tuye sellerManager dastresi darim?
             sellerManager.addProduct(information);
                 System.out.println("created successfully!");
         }catch (Exception e) {
