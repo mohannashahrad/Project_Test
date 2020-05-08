@@ -189,7 +189,7 @@ public class AllProductsMenu extends Menu {
             try {
                 System.out.println("Please enter the maximum amount of products' price!");
                 double maxPrice = Double.parseDouble(scanner.nextLine());
-                showFilteredProducts(searchingManager.performFilter("price", Double.toString(maxPrice)));
+                showFilteredProducts(searchingManager.performFilter("price", scanner.nextLine()));
                 System.out.println("Filtering finished Successfully!");
             } catch (Exception e) {
                 System.out.println(e.getMessage());

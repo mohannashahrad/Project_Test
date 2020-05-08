@@ -18,15 +18,13 @@ public class Manager {
     protected ArrayList<Sort> currentSorts = new ArrayList<>();
     protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
+
+
     public Manager() {
         storage = Storage.getStorage();
         cart = Cart.getCart();
         storage.addCart(cart);
-        Filter filterName = new Filter("name");
-        Filter filterCategory = new Filter("category");
-        Filter filterPrice = new Filter("price");
-        Sort sortAverageRate = new Sort("averageRate");
-        Sort sortPrice = new Sort("price");
+
     }
 
     public void register(HashMap<String, String> information) throws Exception {
