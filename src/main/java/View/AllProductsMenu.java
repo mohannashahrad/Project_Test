@@ -60,6 +60,7 @@ public class AllProductsMenu extends Menu {
         System.out.println("All products:\n");
         for (Product product : productManager.viewAllProducts()) {
             System.out.println("product name : "+product.getName()+"\nprice : "+product.getPrice()+"$");
+            System.out.println("----");
         }
     }
 
@@ -125,7 +126,7 @@ public class AllProductsMenu extends Menu {
     }
 
     private void disableSort() {
-        System.out.println("Enter\n1.Disable filter by average rate\n2.Disable filter by price");
+        System.out.println("Enter\n1.Disable sort by average rate\n2.Disable sort by price");
         int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {
