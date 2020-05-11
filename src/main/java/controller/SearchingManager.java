@@ -7,11 +7,12 @@ import model.Sort;
 import java.util.ArrayList;
 
 public class SearchingManager extends Manager {
-    Filter filterName = new Filter("name");
-    Filter filterCategory = new Filter("category");;
-    Filter filterPrice = new Filter("price");
-    Sort sortAverageRate = new Sort("average rate");
-    Sort sortPrice = new Sort("price");
+    private Filter filterName = new Filter("name","temp");
+    private Filter filterCategory = new Filter("category","temp");;
+    private Filter filterPrice = new Filter("price","temp");
+    private Sort sortAverageRate = new Sort("average rate");
+    private Sort sortPrice = new Sort("price");
+    private ProductManager productManager = new ProductManager();
 
     public SearchingManager() {
         storage.getAllFilters().add(filterName);
@@ -23,80 +24,114 @@ public class SearchingManager extends Manager {
     }
 
     public ArrayList<Filter> viewAllFilters() {
-
-
         return storage.getAllFilters();
     }
 
     public ArrayList<Filter> getCurrentFilters() {
-        return super.currentFilters;
+        return currentFilters;
     }
 
     public ArrayList<Sort> getCurrentSorts() {
-        return super.currentSorts;
+        return currentSorts;
     }
 
+    public ArrayList<Product> viewAllProducts(){
+        return processOfViewProduct(storage.getAllProducts());
+    }
+
+    public ArrayList<Product> viewAllProductsInSale(){
+        return processOfViewProduct(productManager.viewAllProductsWithSale());
+    }
+
+    private ArrayList<Product> processOfViewProduct (ArrayList <Product> selectedProducts){
+        return sortProducts(filterProducts(selectedProducts));
+    }
+
+    private ArrayList<Product> filterProducts(ArrayList<Product> products){
+        if (currentFilters == null){
+            return products;
+        }
+        else {
+            ArrayList<Product> temp = new ArrayList<>();
+            for (Filter filter : currentFilters) {
+                if (filter.getFilterName().equals("category"))
+                    temp.addAll(filter.filterByCategory(storage.getCategoryByName(filter.getFilterInfo()),products));
+                if (filter.getFilterName().equals("name"))
+                    temp.addAll(filter.filterByName(filter.getFilterInfo(),products));
+                if (filter.getFilterName().equals("price"))
+                    temp.addAll(filter.filterByPrice(Double.parseDouble(filter.getFilterInfo()),products));
+            }
+            return temp;
+        }
+    }
+
+    private ArrayList<Product> sortProducts (ArrayList<Product> products){
+        if (currentSorts == null){
+            return products;
+        }
+        else{
+            ArrayList<Product> temp = new ArrayList<>();
+            for (Sort sort : currentSorts) {
+                if (sort.getSortName().equals("price"))
+                    temp.addAll(sort.sortByPrice(products));
+                if (sort.getSortName().equals("average rate"))
+                    temp.addAll(sort.sortByAverageRate(products));
+            }
+            return temp;
+        }
+    }
+
+
     public ArrayList<Product> performFilter(String filterTag, String info) throws Exception {
-        Filter filter = storage.getFilterByName(filterTag);
-        if (currentFilters.contains(filter)) {
-            throw new Exception("This filter is already selected!");
+        for (Filter filter : currentFilters) {
+            if (filter.getFilterName().equals(filterTag) && filter.getFilterInfo().equals(info))
+                throw new Exception("This filter is already selected!");
         }
-        switch (filterTag) {
-            case "category":
-                currentFilters.add(filter);
-                filteredProducts.addAll(filter.filterByCategory(storage.getCategoryByName(info), storage.getAllProducts()));
-                return filteredProducts;
-            case "name":
-                currentFilters.add(filter);
-                filteredProducts.addAll(filter.filterByName(info, storage.getAllProducts()));
-                return filteredProducts;
-            case "price":
-                currentFilters.add(filter);
-                filteredProducts.addAll(filter.filterByPrice(Double.parseDouble(info), storage.getAllProducts()));
-                return filteredProducts;
-            default:
-                throw new Exception("Ops !! No match with available filter tags!");
-        }
+            Filter filter = new Filter(filterTag,info);
+            storage.addFilter(filter);
+            currentFilters.add(filter);
+            return viewAllProducts();
     }
 
     public ArrayList<Product> performSort(String sortTag) throws Exception {
-        if (storage.getSortByName(sortTag) == null) {
-            throw new Exception("This sort is not available!");
+        for (Sort sort : currentSorts) {
+            if (sort.getSortName().equals(sortTag))
+                throw new Exception("This sort is already selected!");
         }
-        Sort sort = storage.getSortByName(sortTag);
-        if (currentSorts.contains(sort)) {
-            throw new Exception("This sort is already selected!");
-        }
-        switch (sortTag) {
-            case "average rate":
-                currentSorts.add(sort);
-                return sort.sortByAverageRate(storage.getAllProducts());
-            case "price":
-                currentSorts.add(sort);
-                return sort.sortByPrice(storage.getAllProducts());
-            default:
-                throw new Exception("Ops !! No match with available sort tags!");
-        }
+        Sort sort = new Sort(sortTag);
+        storage.addSort(sort);
+        currentSorts.add(sort);
+        return viewAllProducts();
     }
 
     public ArrayList<Product> disableFilter(String filterTag, String info) throws Exception {
-        if (!currentFilters.contains(storage.getFilterByName(filterTag)))
+        Filter removedFilter = null;
+        for (Filter filter : currentFilters) {
+            if (filter.getFilterName().equals(filterTag) && filter.getFilterInfo().equals(info)) {
+                removedFilter = filter;
+            }
+        }
+        if(removedFilter == null){
             throw new Exception("You did not select this filter");
+        }
         else {
-            currentFilters.remove(storage.getFilterByName(filterTag));
-            filteredProducts.removeAll(performFilter(filterTag, info));
-            return filteredProducts;
+            currentFilters.remove(removedFilter);
+            return viewAllProducts();
         }
     }
 
     public ArrayList<Product> disableSort(String sortTag) throws Exception {
-        if (storage.getSortByName(sortTag) == null)
-            throw new Exception("This sort is not available");
-        else if (!currentSorts.contains(storage.getSortByName(sortTag)))
+        Sort removedSort = null;
+        for (Sort sort : currentSorts) {
+            if(sort.getSortName().equals(sortTag))
+                removedSort = sort;
+        }
+        if (removedSort == null){
             throw new Exception("You did not select this sort");
+        }
         else {
-            currentSorts.remove(storage.getSortByName(sortTag));
-            return performSort(sortTag);
+            currentSorts.remove(removedSort);
+            return viewAllProducts();
         }
     }
 }

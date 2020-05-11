@@ -4,12 +4,22 @@ import java.util.ArrayList;
 
 public class Filter {
     private String filterName;
-    public Filter(String filterName) {
+    private String filterInfo;
+    public Filter(String filterName , String filterInfo) {
         this.filterName = filterName;
+        this.filterInfo = filterInfo;
     }
 
     public String getFilterName() {
         return filterName;
+    }
+
+    public String getFilterInfo() {
+        return filterInfo;
+    }
+
+    public void setFilterInfo(String filterInfo) {
+        this.filterInfo = filterInfo;
     }
 
     public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts){

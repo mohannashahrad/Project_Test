@@ -14,8 +14,8 @@ public class Manager {
     protected static Person person;
     protected Cart cart = null;
     protected SellerManager sellerManager;
-    protected ArrayList<Filter> currentFilters = new ArrayList<>();
-    protected ArrayList<Sort> currentSorts = new ArrayList<>();
+    protected static ArrayList<Filter> currentFilters = new ArrayList<>();
+    protected static ArrayList<Sort> currentSorts = new ArrayList<>();
     protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
 

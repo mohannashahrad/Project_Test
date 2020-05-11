@@ -53,7 +53,7 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showProducts() {
-        if (productManager.viewAllProducts().isEmpty()){
+        if (searchingManager.viewAllProducts().isEmpty()){
             System.out.println("no products in store yet!");
             return;
         }
