@@ -53,20 +53,11 @@ public class CustomerManager extends Manager {
     }
 
     public double getCartTotalPrice(){
-        return super.cart.getTotalPrice();
-    }
-
-    public void addProductToCart(int productId) throws Exception {
-        if (storage.getProductById(productId) == null)
-            throw new Exception("There is not a product with this Id!!");
-        else if(super.cart.getProductsInCart().containsKey(storage.getProductById(productId)))
-            throw new Exception("You already have this product in you cart.Please use the increase[productId] command!");
-        else
-            super.cart.addProductToCart(storage.getProductById(productId));
+        return cart.getTotalPrice();
     }
 
     public ArrayList<Discount> getCustomerDiscountCodes (){
-        return ((Customer)super.person).getAllDiscounts();
+        return ((Customer)person).getAllDiscounts();
     }
 
     public BuyLog getOrderWithId(String orderId){

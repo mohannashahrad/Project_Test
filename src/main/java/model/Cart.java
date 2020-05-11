@@ -48,17 +48,20 @@ public class Cart {
     public void addProductToCart(Product newProduct) {
         productsInCart.put(newProduct, 1);
         newProduct.setSupply(newProduct.getSupply() - 1);
+        totalPrice += newProduct.getPrice();
     }
 
     public void addNumberOfProductInTheCart(Product product) {
         productsInCart.replace(product, productsInCart.get(product) + 1);
         product.setSupply(product.getSupply() - 1);
+        totalPrice += product.getPrice();
     }
 
     public void decreaseProduct(Product specificProduct) {
         if (productsInCart.get(specificProduct) != 0) {
             productsInCart.replace(specificProduct, productsInCart.get(specificProduct) - 1);
             specificProduct.setSupply(specificProduct.getSupply() + 1);
+            totalPrice -= specificProduct.getPrice();
         }
         if (productsInCart.get(specificProduct) == 0) {
             removeProduct(specificProduct);

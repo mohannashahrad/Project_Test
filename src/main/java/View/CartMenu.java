@@ -64,6 +64,7 @@ public class CartMenu extends Menu{
         String id = scanner.nextLine();
         try {
             customerManager.decreaseProduct(id);
+            System.out.println("Product decreased successfully!");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -74,6 +75,7 @@ public class CartMenu extends Menu{
         String id = scanner.nextLine();
         try {
             customerManager.increaseProduct(id);
+            System.out.println("Product increased successfully!");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
