@@ -31,14 +31,14 @@ public class CustomerManager extends Manager {
     }
 
     public void addBalance (double money){
-        super.person.setBalance(super.person.getBalance() + money);
+        person.setBalance(person.getBalance() + money);
     }
 
     public void increaseProduct(String productId) throws Exception {
         if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!");
-        else if (!super.cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
-            throw new Exception("You don't have a product with this Id in your cart!");
+        else if (!cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
+            cart.addProductToCart(storage.getProductById(Integer.parseInt(productId)));
         else
             super.cart.addNumberOfProductInTheCart(storage.getProductById(Integer.parseInt(productId)));
     }
