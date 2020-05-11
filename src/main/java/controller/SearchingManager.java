@@ -48,7 +48,7 @@ public class SearchingManager extends Manager {
     }
 
     private ArrayList<Product> filterProducts(ArrayList<Product> products){
-        if (currentFilters == null){
+        if (currentFilters.isEmpty()){
             return products;
         }
         else {
@@ -66,7 +66,7 @@ public class SearchingManager extends Manager {
     }
 
     private ArrayList<Product> sortProducts (ArrayList<Product> products){
-        if (currentSorts == null){
+        if (currentSorts.isEmpty()){
             return products;
         }
         else{
