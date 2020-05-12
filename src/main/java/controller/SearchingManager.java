@@ -67,7 +67,8 @@ public class SearchingManager extends Manager {
 
     private ArrayList<Product> sortProducts (ArrayList<Product> products){
         if (currentSorts.isEmpty()){
-            return products;
+            Sort sort = null;
+            return sort.defaultSort(products);
         }
         else{
             ArrayList<Product> temp = new ArrayList<>();
@@ -80,7 +81,6 @@ public class SearchingManager extends Manager {
             return temp;
         }
     }
-
 
     public ArrayList<Product> performFilter(String filterTag, String info) throws Exception {
         for (Filter filter : currentFilters) {

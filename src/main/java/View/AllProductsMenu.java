@@ -46,6 +46,7 @@ public class AllProductsMenu extends Menu {
             int productId = Integer.parseInt(id);
             Product product = manager.getProductById(productId);
             ProductMenu productMenu = new ProductMenu(product, this);
+            productManager.addNumberOfSeen(productId);
             productMenu.run();
         } catch (Exception e) {
             System.out.println(e.getMessage());
