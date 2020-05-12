@@ -229,11 +229,8 @@ public class SellerMenu extends AccountMenu {
             information.put("price",price);
             System.out.println("Enter product supply:");
             information.put("supply", scanner.nextLine());
-            System.out.println("Enter product category:");
-            String category = scanner.nextLine();
-            if(sellerManager.doesCategoryExist(category)) {
-                information.put("categoryName", category);
-            }
+            String category = categoryShow();
+            information.put("categoryName", category);
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
             sellerManager.addProduct(information);
@@ -242,6 +239,22 @@ public class SellerMenu extends AccountMenu {
             System.out.println(e.getMessage());
             System.out.println("unsuccessful creation!");
         }
+    }
+
+    private String categoryShow() {
+        System.out.println("Enter product category:");
+        ArrayList<Category>allCategories = sellerManager.viewAllCategories();
+        int i=1;
+        for (Category category : allCategories){
+            System.out.println(i+")"+category.getCategoryName());
+            i++;
+        }
+        int command = Integer.parseInt(scanner.nextLine());
+        if (command>allCategories.size()){
+            System.out.println("invalid choice.added to no category.");
+            return "no category";
+        }
+        return allCategories.get(command-1).getCategoryName();
     }
 
     private void manageProductsMenu() {

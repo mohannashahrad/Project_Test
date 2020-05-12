@@ -32,7 +32,6 @@ public class Storage {
             FileSaver fileSaver = new FileSaver(storage);
             fileSaver.dataReader();
         }
-
         return storage;
     }
 
@@ -46,6 +45,10 @@ public class Storage {
         allSellLogs = new ArrayList<>();
         allBuyLogs = new ArrayList<>();
         allCategories = new ArrayList<>();
+        //
+        Category noCategory = new Category("no category");
+        allCategories.add(noCategory);
+        //
         allDiscounts = new ArrayList<>();
         allRates = new ArrayList<>();
         allComments = new ArrayList<>();
