@@ -74,7 +74,7 @@ public class SellerManager extends Manager {
     }
 
     public void addOff(HashMap<String, String> information, ArrayList<Product> productsInOff){
-        Sale sale = null;
+        Sale sale = new Sale(null,null,0,null);
         int offId = sale.getLastSaleId() + 1;
         savedProductsInSale.put(offId, productsInOff);
         information.put("username", person.getUsername());

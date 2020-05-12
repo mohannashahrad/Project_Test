@@ -58,10 +58,11 @@ public class SellerMenu extends AccountMenu {
         ArrayList<Sale> allOffs = sellerManager.viewSellerOffs();
         if (allOffs.isEmpty()) {
             System.out.println("no offs yet.");
-            return;
         }
-        for (Sale off : allOffs) {
-            System.out.println(off.getSaleId());
+        else {
+            for (Sale off : allOffs) {
+                System.out.println(off.getSaleId());
+            }
         }
         while (true) {
             System.out.println("Enter\n1.view off\n2.edit off\n3.add off\n4.back");
@@ -102,6 +103,7 @@ public class SellerMenu extends AccountMenu {
         HashMap<String, String> information = new HashMap<>();
         ArrayList<Product> productsInThisSale = new ArrayList<>();
         int productId = 0;
+        scanner.nextLine();
         System.out.println("start date and time (yyyy,MM,dd,HH,mm) :");
         String startDate = scanner.nextLine().trim();
         information.put("beginDate", startDate);
@@ -116,7 +118,7 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter number of products in this off:");
             int numberOfProducts = scanner.nextInt();
             for (int i = 0; i < numberOfProducts; i++) {
-                System.out.println("Enter the username of " + i + "th product");
+                System.out.println("Enter the username of " + i+1 + "th product");
                 productId = scanner.nextInt();
                 if (!sellerManager.doesProductExist(productId)) {
                     System.out.println("There is not a product with this Id! Try again :)");

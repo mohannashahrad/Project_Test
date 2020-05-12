@@ -42,7 +42,10 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void viewDiscountCodes() {
-        System.out.println("Your discounts are as followed :\n" + ((Customer)person).getAllDiscounts());
+        if(((Customer)person).getAllDiscounts().isEmpty())
+            System.out.println("You don't have any discount code!");
+        else
+            System.out.println("Your discounts are as followed :\n" + ((Customer)person).getAllDiscounts());
     }
 
     private void viewBalance() {
