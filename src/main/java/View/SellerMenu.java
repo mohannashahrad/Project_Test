@@ -282,6 +282,9 @@ public class SellerMenu extends AccountMenu {
         int productId = scanner.nextInt();
         try {
             ArrayList<Customer> thisProductBuyers = sellerManager.viewProductBuyers(productId);
+            if (thisProductBuyers.isEmpty()){
+                System.out.println("No one bought this product yet!");
+            }
             for (Customer buyer : thisProductBuyers) {
                 System.out.println(buyer.getName() + " " + buyer.getFamilyName());///inja name o familyName kafie???
             }
@@ -295,7 +298,7 @@ public class SellerMenu extends AccountMenu {
         System.out.println("Enter productId:");
         int productId = scanner.nextInt();
         if (!sellerManager.doesSellerHaveProduct(productId)) {
-            System.out.println("Invalid offId.");
+            System.out.println("Invalid productId.");
             return;
         }
         while (true) {
@@ -317,13 +320,13 @@ public class SellerMenu extends AccountMenu {
                 }
             } else if (command == 2) {
                 try {
-                    sellerManager.editOff(productId, "brand", newValue);
+                    sellerManager.editProduct(productId, "brand", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command == 3) {
                 try {
-                    sellerManager.editOff(productId, "price", newValue);
+                    sellerManager.editProduct(productId, "price", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
