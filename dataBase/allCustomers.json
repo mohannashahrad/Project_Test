@@ -1,1 +1,1 @@
-[]
+[{"@type":"model.Customer","@val":{"buyHistory":[],"allDiscounts":[],"username":"c1","password":"c1","name":"c1","familyName":"c1","email":"c@c.com","number":"11","balance":0.0,"role":"CUSTOMER"}},{"@type":"model.Customer","@val":{"buyHistory":[],"allDiscounts":[],"username":"c2","password":"c2","name":"c2","familyName":"c2","email":"c@c.com","number":"11","balance":0.0,"role":"CUSTOMER"}}]
