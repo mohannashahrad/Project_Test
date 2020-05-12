@@ -67,7 +67,7 @@ public class SearchingManager extends Manager {
 
     private ArrayList<Product> sortProducts (ArrayList<Product> products){
         if (currentSorts.isEmpty()){
-            Sort sort = null;
+            Sort sort = new Sort("");
             return sort.defaultSort(products);
         }
         else{
