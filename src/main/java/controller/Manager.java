@@ -19,7 +19,6 @@ public class Manager {
     protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
 
-
     public Manager() {
         storage = Storage.getStorage();
         cart = Cart.getCart();
@@ -125,10 +124,6 @@ public class Manager {
             throw new Exception("There is not such category");
         else
             return storage.getCategoryByName(name);
-    }
-
-    public ArrayList<Sort> viewAllSorts() {
-        return storage.getAllSorts();
     }
 
     public ArrayList<Sale> viewAllOffs() {

@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+
 import model.*;
 
 public class Storage {
@@ -8,7 +9,7 @@ public class Storage {
     private ArrayList<Person> allUsers;
     private ArrayList<Person> allCustomers;
     private ArrayList<Person> allSellers;
-    private ArrayList<Person> allAdmins ;
+    private ArrayList<Person> allAdmins;
     private ArrayList<Product> allProducts;
     private ArrayList<Log> allLogs;
     private ArrayList<Log> allSellLogs;
@@ -26,8 +27,9 @@ public class Storage {
     private Storage() {
         newArrayLists();
     }
-    public static Storage getStorage(){
-        if (storage == null){
+
+    public static Storage getStorage() {
+        if (storage == null) {
             storage = new Storage();
             FileSaver fileSaver = new FileSaver(storage);
             fileSaver.dataReader();
@@ -35,7 +37,7 @@ public class Storage {
         return storage;
     }
 
-    private void newArrayLists(){
+    private void newArrayLists() {
         allUsers = new ArrayList<>();
         allCustomers = new ArrayList<>();
         allSellers = new ArrayList<>();
@@ -183,13 +185,13 @@ public class Storage {
         return allRequests;
     }
 
-    public ArrayList<Filter> getAllFilters() {
+    /*public ArrayList<Filter> getAllFilters() {
         return allFilters;
-    }
+    }*/
 
-    public ArrayList<Sort> getAllSorts() {
+    /*public ArrayList<Sort> getAllSorts() {
         return allSorts;
-    }
+    }*/
 
     public ArrayList<Cart> getAllCarts() {
         return allCarts;
@@ -213,9 +215,9 @@ public class Storage {
         return null;
     }
 
-    public BuyLog getBuyLogByCode(String code){
+    public BuyLog getBuyLogByCode(String code) {
         for (Log buyLog : allBuyLogs) {
-            if (((BuyLog)buyLog).getBuyCode() == Integer.parseInt(code)){
+            if (((BuyLog) buyLog).getBuyCode() == Integer.parseInt(code)) {
                 return (BuyLog) buyLog;
             }
         }
@@ -240,7 +242,7 @@ public class Storage {
         return null;
     }
 
-    public Sale getSaleById (int saleId) {
+    public Sale getSaleById(int saleId) {
         for (Sale sale : allSales) {
             if (sale.getSaleId() == saleId) {
                 return sale;
@@ -267,106 +269,106 @@ public class Storage {
         return null;
     }
 
-    public Sort getSortByName (String name){
+    public Sort getSortByName(String name) {
         for (Sort sort : allSorts) {
-            if (sort.getSortName().equals(name)){
+            if (sort.getSortName().equals(name)) {
                 return sort;
             }
         }
         return null;
     }
 
-    public void addUser (Person user){
+    public void addUser(Person user) {
         allUsers.add(user);
         switch (user.getRole()) {
             case CUSTOMER:
-                allCustomers.add (user);
+                allCustomers.add(user);
                 return;
             case SELLER:
-                allSellers.add (user);
+                allSellers.add(user);
                 return;
             case ADMIN:
-                allAdmins.add (user);
+                allAdmins.add(user);
                 return;
         }
     }
 
-    public void addProduct (Product product){
-        allProducts.add (product);
+    public void addProduct(Product product) {
+        allProducts.add(product);
     }
 
-    public void addLog (Log log){
-        allLogs.add (log);
+    public void addLog(Log log) {
+        allLogs.add(log);
     }
 
-    public void addSellLog (SellLog log){
-        allSellLogs.add (log);
+    public void addSellLog(SellLog log) {
+        allSellLogs.add(log);
     }
 
-    public void addBuyLog (BuyLog log){
-        allBuyLogs.add (log);
+    public void addBuyLog(BuyLog log) {
+        allBuyLogs.add(log);
     }
 
-    public void addCategory (Category category){
-        allCategories.add (category);
+    public void addCategory(Category category) {
+        allCategories.add(category);
     }
 
-    public void addDiscount (Discount discount){
-         allDiscounts.add(discount);
+    public void addDiscount(Discount discount) {
+        allDiscounts.add(discount);
     }
 
-    public void addRate (Rate rate){
-        allRates.add (rate);
+    public void addRate(Rate rate) {
+        allRates.add(rate);
     }
 
-    public void addComment (Comment comment){
-        allComments.add (comment);
+    public void addComment(Comment comment) {
+        allComments.add(comment);
     }
 
-    public void addSale (Sale sale){
-        allSales.add (sale);
+    public void addSale(Sale sale) {
+        allSales.add(sale);
     }
 
-    public void addRequest (Request request){
-        allRequests.add (request);
+    public void addRequest(Request request) {
+        allRequests.add(request);
     }
 
-    public void addCart (Cart cart){
-        allCarts.add (cart);
+    public void addCart(Cart cart) {
+        allCarts.add(cart);
     }
 
-    public void addFilter (Filter filter){
-        allFilters.add (filter);
+    public void addFilter(Filter filter) {
+        allFilters.add(filter);
     }
 
-    public void addSort (Sort sort){
-        allSorts.add (sort);
+    public void addSort(Sort sort) {
+        allSorts.add(sort);
     }
 
-    public void deleteUser (Person user){
-        allUsers.remove (user);
+    public void deleteUser(Person user) {
+        allUsers.remove(user);
         switch (user.getRole()) {
             case CUSTOMER:
-                allCustomers.remove (user);
+                allCustomers.remove(user);
                 return;
             case SELLER:
-                allSellers.remove (user);
+                allSellers.remove(user);
                 return;
             case ADMIN:
-                allAdmins.remove (user);
+                allAdmins.remove(user);
                 return;
         }
     }
 
-    public void deleteProduct (Product product){
-        allProducts.remove (product);
+    public void deleteProduct(Product product) {
+        allProducts.remove(product);
     }
 
-    public void deleteDiscount (Discount discount){
-        allDiscounts.remove (discount);
+    public void deleteDiscount(Discount discount) {
+        allDiscounts.remove(discount);
     }
 
-    public void deleteCategory (Category category){
-        allCategories.remove (category);
+    public void deleteCategory(Category category) {
+        allCategories.remove(category);
     }
 }

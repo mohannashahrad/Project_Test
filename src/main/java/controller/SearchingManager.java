@@ -14,11 +14,6 @@ public class SearchingManager extends Manager {
 
     }
 
-    public ArrayList<Filter> viewAllFilters() {
-
-        return storage.getAllFilters();
-    }
-
     public ArrayList<Filter> getCurrentFilters() {
         return currentFilters;
     }

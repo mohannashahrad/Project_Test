@@ -5,9 +5,15 @@ import java.util.Collections;
 
 public class Sort {
     private String sortName;
+    private static ArrayList<Sort> allSorts = new ArrayList<>();
 
     public Sort(String sortName) {
         this.sortName = sortName;
+        allSorts.add(this);
+    }
+
+    public static ArrayList<Sort> getAllSorts() {
+        return allSorts;
     }
 
     public String getSortName() {
@@ -16,10 +22,10 @@ public class Sort {
 
     public ArrayList<Product> sortByAverageRate(ArrayList<Product> allProducts) {
         ArrayList<Product> sortedProducts = allProducts;
-        for (int i = 0; i < sortedProducts.size() - 1 ; i++) {
+        for (int i = 0; i < sortedProducts.size() - 1; i++) {
             for (int j = 0; j < sortedProducts.size() - 1; j++) {
                 if (sortedProducts.get(j).getAverageRate() > sortedProducts.get(j + 1).getAverageRate()) {
-                    Collections.swap(sortedProducts, j , j + 1);
+                    Collections.swap(sortedProducts, j, j + 1);
                 }
             }
         }
@@ -38,7 +44,7 @@ public class Sort {
         return sortedProducts;
     }
 
-    public ArrayList<Product> defaultSort(ArrayList<Product> allProducts){
+    public ArrayList<Product> defaultSort(ArrayList<Product> allProducts) {
         ArrayList<Product> sortedProducts = allProducts;
         for (int i = 0; i < sortedProducts.size() - 1; i++) {
             for (int j = 0; j < sortedProducts.size() - 1; j++) {
