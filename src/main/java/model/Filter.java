@@ -49,4 +49,9 @@ public class Filter {
         }
         return filteredProducts;
     }
+
+    @Override
+    public String toString() {
+        return "Filter by :" + filterName ;
+    }
 }

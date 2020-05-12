@@ -18,6 +18,7 @@ public class Product implements Comparable<Product> {
     private ArrayList<Rate> rates;
     private ArrayList<Customer> thisProductsBuyers;
     private Sale sale;
+    private int numberOfSeen;
 
     public Product(HashMap<String, String> information, Seller seller) {
         this.productId = lastProductId + 1;
@@ -34,6 +35,7 @@ public class Product implements Comparable<Product> {
         this.rates = new ArrayList<>();
         this.thisProductsBuyers = new ArrayList<>();
         this.sale = null;
+        this.numberOfSeen = 0;
     }
 
     public int getProductId() {
@@ -122,6 +124,14 @@ public class Product implements Comparable<Product> {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+
+    public int getNumberOfSeen() {
+        return numberOfSeen;
+    }
+
+    public void setNumberOfSeen(int numberOfSeen) {
+        this.numberOfSeen = numberOfSeen;
     }
 
     public double getPriceWithSale (){

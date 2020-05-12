@@ -1,48 +1,50 @@
 package View;
 
-import controller.Manager;
+import model.Filter;
+import model.Sort;
 
 public class MainMenu extends Menu {
+
+    protected Filter filterName = new Filter("name", "temp");
+    protected Filter filterCategory = new Filter("category", "temp");
+    protected Filter filterPrice = new Filter("price", "temp");
+    protected Sort sortAverageRate = new Sort("average rate");
+    protected Sort sortPrice = new Sort("price");
+
     public MainMenu(Menu previousMenu) {
         super("MainMenu", previousMenu);
     }
+
 
     @Override
     public void commandProcess() {
         do {
             show();
             String command = scanner.nextLine().trim();
-            if (command.equals("1")){
+            if (command.equals("1")) {
                 LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
                 loginRegisterMenu.run();
-            }
-            else if (command.equals("2")){
-                AccountMenu accountMenu = new AccountMenu("AccountMenu",this);
+            } else if (command.equals("2")) {
+                AccountMenu accountMenu = new AccountMenu("AccountMenu", this);
                 accountMenu.run();
-            }
-            else if (command.equals("3")){
+            } else if (command.equals("3")) {
                 AllProductsMenu allProductsMenu = new AllProductsMenu(this);
                 allProductsMenu.run();
-            }
-            else if (command.equals("4")){
+            } else if (command.equals("4")) {
                 OffsMenu offsMenu = new OffsMenu(this);
                 offsMenu.run();
-            }
-            else if (command.equals("5")){
+            } else if (command.equals("5")) {
                 CartMenu cartMenu = new CartMenu(this);
                 cartMenu.run();
-            }
-            else if (command.equals("6")){
+            } else if (command.equals("6")) {
                 manager.terminate();
                 System.exit(0);
-            }
-
-            else if (command.equalsIgnoreCase("help"))
+            } else if (command.equalsIgnoreCase("help"))
                 show();
             else
                 System.out.println("Invalid choice");
 
-        }while (true);
+        } while (true);
 
     }
 

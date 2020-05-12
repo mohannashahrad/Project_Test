@@ -46,6 +46,7 @@ public class AllProductsMenu extends Menu {
             int productId = Integer.parseInt(id);
             Product product = manager.getProductById(productId);
             ProductMenu productMenu = new ProductMenu(product, this);
+            productManager.addNumberOfSeen(productId);
             productMenu.run();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -97,7 +98,7 @@ public class AllProductsMenu extends Menu {
 
     private void performSorting() {
 
-        System.out.println("Enter\n1.Sort by average rate\n2.Filter by price");
+        System.out.println("Enter\n1.Sort by average rate\n2.Sort by price");
         int choice = Integer.parseInt(scanner.nextLine());
         if (choice == 1) {
             try {

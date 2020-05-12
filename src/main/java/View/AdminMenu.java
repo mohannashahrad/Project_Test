@@ -252,32 +252,44 @@ public class AdminMenu extends AccountMenu{
         while (true) {
             System.out.println("Enter field to edit :\n1.start date and time\n2.end date and time\n3.percentage\n4.maximum amount" +
                     "\n5.usage per customer\n6.add customer to this discount\n7.remove customer from this discount\n8.back");
-            int command = scanner.nextInt();
+            int command = Integer.parseInt(scanner.nextLine());
             if (!(0 < command && command < 9)) {
                 System.out.println("Invalid command");
                 continue;
             } else if (command == 8)
                 break;
-            System.out.println("Enter new value :");
-            String newValue = scanner.nextLine();
+
             if (command == 1) {
+                System.out.println("Enter new value :");
+                String newValue = scanner.nextLine();
                 try {
                     adminManager.editDiscountField(discount, "beginDate", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command == 2) {
+                System.out.println("Enter new value :");
+                String newValue = scanner.nextLine();
                 try {
                     adminManager.editDiscountField(discount, "endDate", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 3)
+            } else if (command == 3) {
+                System.out.println("Enter new value :");
+                String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "percentage", newValue);
-            else if (command == 4)
+            }
+            else if (command == 4) {
+                System.out.println("Enter new value :");
+                String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "maxAmount", newValue);
-            else if (command == 5)
+            }
+            else if (command == 5) {
+                System.out.println("Enter new value :");
+                String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "usagePerCustomer", newValue);
+            }
             else if (command == 6) {
                 System.out.println("Enter customer's username :");
                 String username = scanner.nextLine().trim();
@@ -356,10 +368,10 @@ public class AdminMenu extends AccountMenu{
             LocalDateTime end = dateMaker(endDate);
             System.out.println("Enter discount amount percentage :");
             int percentage = scanner.nextInt();
-            System.out.println("Enter maximum amout of discount :");
-            double maxAmount = scanner.nextDouble();
+            System.out.println("Enter maximum amount of discount :");
+            double maxAmount = Double.parseDouble(scanner.nextLine());
             System.out.println("Enter usage per customer :");
-            int usagePerCustomer = scanner.nextInt();
+            int usagePerCustomer = Integer.parseInt(scanner.nextLine());
             adminManager.createDiscountCode(code, start, end, percentage, usagePerCustomer,maxAmount);
             System.out.println("created successfully!");
         } catch (Exception e) {

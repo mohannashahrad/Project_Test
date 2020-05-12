@@ -69,7 +69,7 @@ public class PurchaseMenu extends Menu {
             public void commandProcess() {
                 show();
                 System.out.println("Do you want to use a discount code ?\n1.yes\n2.no\n3.cancel");
-                int choice = scanner.nextInt();
+                int choice = Integer.parseInt(scanner.nextLine());
                 if (choice == 3){
                     return;
                 } else if (choice == 2){
@@ -133,7 +133,7 @@ public class PurchaseMenu extends Menu {
                     }
                 }
                 System.out.println("Do you want to perform payment ?\n1.yes\n2.no\n3.cancel");
-                int choice = scanner.nextInt();
+                int choice = Integer.parseInt(scanner.nextLine());
                 if (choice == 3)
                     return;
                 else if (choice == 2)
