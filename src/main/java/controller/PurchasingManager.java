@@ -16,11 +16,19 @@ public class PurchasingManager extends Manager{
     }
 
     public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double discountPercentage){
-        super.person.setBalance(super.person.getBalance() - totalPrice);
+        double moneyToTransfer = totalPrice - totalPrice*(discountPercentage/100);
+        person.setBalance(person.getBalance() - moneyToTransfer);
         createBuyLog(receiverInformation,totalPrice,discountPercentage);
+        addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
             createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
+        }
+    }
+
+    private void addCustomerToProductsBuyers(){
+        for (Product product : cart.getProductsInCart().keySet()) {
+            product.addBuyer((Customer)person);
         }
     }
 
@@ -34,9 +42,11 @@ public class PurchasingManager extends Manager{
     }
 
     public void createBuyLog (HashMap<String,String> receiverInformation , double totalPrice , double saleAmount){
-        BuyLog buyLog = new BuyLog(LocalDateTime.now(),totalPrice,saleAmount,findDistinctSellers(super.cart),receiverInformation);
+        ArrayList<Product> productsInCart = new ArrayList<>(cart.getProductsInCart().keySet());
+        BuyLog buyLog = new BuyLog(LocalDateTime.now(),totalPrice,saleAmount,findDistinctSellers(super.cart),
+                receiverInformation,productsInCart);
         storage.addBuyLog(buyLog);
-        ((Customer)super.person).addToBuyLogs(buyLog);
+        ((Customer)person).addToBuyLogs(buyLog);
         this.buyLogCode = buyLog.getBuyCode();
     }
 
@@ -45,7 +55,7 @@ public class PurchasingManager extends Manager{
     }
 
     public void createSellLog (Seller seller, HashMap<String,String> receiverInformation , double totalPrice , double saleAmount){
-        SellLog sellLog = new SellLog(LocalDateTime.now(),totalPrice,saleAmount, (Customer) super.person);
+        SellLog sellLog = new SellLog(LocalDateTime.now(),totalPrice,saleAmount, (Customer) person);
         storage.addSellLog(sellLog);
         seller.addToSellLogs(sellLog);
     }
@@ -75,11 +85,8 @@ public class PurchasingManager extends Manager{
     }
 
     public boolean doesCustomerHaveEnoughMoney(double price){
-        if (super.person.getBalance() < price)
-            return false;
-        else
-            return true;
-    }
+        return !(person.getBalance() < price);
+}
 
     public double calculateTotalPriceWithDiscount (String discountCode){
         double totalPriceWithoutDiscount = getTotalPriceWithoutDiscount();
@@ -88,6 +95,9 @@ public class PurchasingManager extends Manager{
     }
 
     public double getDiscountPercentage (String discountCode){
+        if (discountCode.equals("")){
+            return 0.0;
+        }
         return storage.getDiscountByCode(discountCode).getPercentage();
     }
 

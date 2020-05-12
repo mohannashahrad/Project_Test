@@ -9,7 +9,7 @@ public class PurchaseMenu extends Menu {
     PurchasingManager purchasingManager;
     private HashMap<String,String> receivedInfo;
     private boolean menuSuccess;
-    private String discount;
+    private String discount = "";
     private double finalTotalPrice;
     public PurchaseMenu(Menu previousMenu) {
         super("PurchaseMenu", previousMenu);
@@ -61,7 +61,7 @@ public class PurchaseMenu extends Menu {
                 System.out.println("Enter 'cancel' at each step to cancel purchase.");
             }
         }.run();
-        if (menuSuccess == false)
+        if (!menuSuccess)
             return;
         new Menu("DiscountCodeMenu",PurchaseMenu.this){
 
@@ -101,7 +101,7 @@ public class PurchaseMenu extends Menu {
                 System.out.println("Enter 'cancel' at each step to cancel purchase.");
             }
         }.run();
-        if (menuSuccess == false)
+        if (!menuSuccess)
             return;
         new Menu("PaymentMenu",PurchaseMenu.this){
 

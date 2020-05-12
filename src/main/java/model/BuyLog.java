@@ -14,13 +14,15 @@ public class BuyLog extends Log {
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
 
-    public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers, HashMap<String, String> customerInfo) {
+    public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers,
+                  HashMap<String, String> customerInfo , ArrayList<Product> productsInThisBuyLog) {
         super(date);
         this.paidMoney = paidMoney;
         this.discountAmount = discountAmount;
         this.seller = sellers;
         this.customerInfo = customerInfo;
         this.buyCode = lastBuyCode + 1;
+        this.products = productsInThisBuyLog;
         lastBuyCode++;
         allBuyCodes.add(buyCode);
     }

@@ -65,17 +65,17 @@ public class CustomerManager extends Manager {
     }
 
     public void rateProduct(int productId , double rate) throws Exception {
-        if(!storage.getProductById(productId).getThisProductsBuyers().contains(super.person))
+        if(!storage.getProductById(productId).getThisProductsBuyers().contains(person))
             throw new Exception("You can't rate a product which you didn't buy it!!");
         else {
-            Rate rateOfThisProduct = new Rate (super.person.getUsername(),storage.getProductById(productId),rate);
+            Rate rateOfThisProduct = new Rate (person.getUsername(),storage.getProductById(productId),rate);
             storage.addRate(rateOfThisProduct);
             storage.getProductById(productId).addRate(rateOfThisProduct);
         }
     }
 
     public ArrayList<BuyLog> getCustomerBuyLogs(){
-        return ((Customer)super.person).getBuyHistory();
+        return ((Customer)person).getBuyHistory();
     }
 
 

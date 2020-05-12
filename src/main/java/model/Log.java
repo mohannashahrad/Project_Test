@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Log {
-    private LocalDateTime date;
-    private ArrayList<Product> products;
+    protected LocalDateTime date;
+    protected ArrayList<Product> products;
 
     public Log(LocalDateTime date) {
         this.date = date;
