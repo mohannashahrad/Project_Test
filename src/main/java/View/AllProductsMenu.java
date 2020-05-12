@@ -60,6 +60,7 @@ public class AllProductsMenu extends Menu {
         }
         System.out.println("All products:\n");
         for (Product product : productManager.viewAllProducts()) {
+            System.out.println("id : "+product.getProductId());
             System.out.println("product name : "+product.getName()+"\nprice : "+product.getPrice()+"$");
             System.out.println("----");
         }
