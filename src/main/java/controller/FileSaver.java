@@ -1,6 +1,6 @@
 package controller;
 
-import com.google.gson.Gson;
+import com.gilecode.yagson.YaGson;
 import model.*;
 
 import java.io.FileReader;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FileSaver {
-    private Gson gson = new Gson();
+    private YaGson gson = new YaGson();
     private Storage storage;
 
     public FileSaver(Storage storage) {
