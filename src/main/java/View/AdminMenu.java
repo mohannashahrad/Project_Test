@@ -27,9 +27,9 @@ public class AdminMenu extends AccountMenu{
                 manageUsers();
             else if (command.equals("3"))
                 manageAllProducts();
-            else if (command.equals("4"))
+            else if (command.equals("4")) {
                 createDiscountCode();
-            else if (command.equals("5"))
+            } else if (command.equals("5"))
                 viewDiscountCodes();
             else if (command.equals("6"))
                 manageRequestsMenu();

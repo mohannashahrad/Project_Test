@@ -39,7 +39,7 @@ public class AdminManager extends Manager {
         else if (!checkPhoneNumberValidity(information.get("number")))
             throw new Exception("Phone Number is not valid");
         else
-            storage.addUser(new Person (information));
+            storage.addUser(new Admin (information));
     }
 
     public void removeProduct (String productId) throws Exception {

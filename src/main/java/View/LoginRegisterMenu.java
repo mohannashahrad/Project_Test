@@ -51,7 +51,7 @@ public class LoginRegisterMenu extends Menu {
             System.out.println("Invalid type");
             return false;
         }
-        HashMap<String,String> data = new HashMap<>();
+        HashMap<String,String> data;
         data = personGetInfo(type);
         if (data == null)
             return false;
