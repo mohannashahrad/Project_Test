@@ -9,9 +9,6 @@ import java.util.HashMap;
 
 public class ProductManager extends Manager {
 
-    public ProductManager() {
-    }
-
     public ArrayList<Comment> showComments(int productId) {
         return storage.getProductById(productId).getComments();
     }
