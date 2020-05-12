@@ -86,6 +86,10 @@ public class ProductMenu extends Menu {
     private void attributes() {
         System.out.println("This product's attributes :\n");
         HashMap<String, String> attributes = productManager.viewAttributes(product.getCategoryName());
+        if (attributes.isEmpty()){
+            System.out.println("no attributes.");
+            return;
+        }
         for (String key : attributes.keySet()) {
             System.out.println(key + " : " + attributes.get(key) + "\n");
         }
@@ -98,7 +102,7 @@ public class ProductMenu extends Menu {
 
     @Override
     public void show() {
-        System.out.println(product.getName() + " Menu");
+        System.out.println(product.getName() + " Menu :");
         System.out.println("1.digest\n2.attributes\n3.compare\n4.comments\n5.back");
     }
 }

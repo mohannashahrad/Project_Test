@@ -8,10 +8,6 @@ public class Category {
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
 
-    public void setProperties(HashMap<String, String> properties) {
-        this.properties = properties;
-    }
-
     public HashMap<String, String> getProperties() {
         return properties;
     }
