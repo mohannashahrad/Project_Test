@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class Filter {
     private String filterName;
     private String filterInfo;
+    private static ArrayList<Filter> allFilters = new ArrayList<>();
+
+
+
     public Filter(String filterName , String filterInfo) {
         this.filterName = filterName;
         this.filterInfo = filterInfo;
+        allFilters.add(this);
     }
 
     public String getFilterName() {
@@ -18,6 +23,9 @@ public class Filter {
         return filterInfo;
     }
 
+    public static ArrayList<Filter> getAllFilters() {
+        return allFilters;
+    }
     public void setFilterInfo(String filterInfo) {
         this.filterInfo = filterInfo;
     }

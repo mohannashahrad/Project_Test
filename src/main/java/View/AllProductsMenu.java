@@ -86,11 +86,11 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showAvailableSorts() {
-        if (searchingManager.viewAllSorts().isEmpty()){
+        if (Sort.getAllSorts().isEmpty()){
             System.out.println("no available sort!");
             return;
         }
-        for (Sort sort : searchingManager.viewAllSorts()) {
+        for (Sort sort : Sort.getAllSorts()) {
             System.out.println("Sort By : " + sort.getSortName());
             System.out.println("----");
         }
@@ -169,11 +169,11 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showAvailableFilters() {
-        if (searchingManager.viewAllFilters().isEmpty()){
+        if (Filter.getAllFilters().isEmpty()){
             System.out.println("no available filter!");
             return;
         }
-        for (Filter filter : searchingManager.viewAllFilters()) {
+        for (Filter filter : Filter.getAllFilters()) {
             System.out.println("Filter By : " + filter.getFilterName());
             System.out.println("----");
         }
