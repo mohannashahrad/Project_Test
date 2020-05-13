@@ -241,4 +241,22 @@ public class AdminManagerTests {
             }
         }
     }
+
+    @Test
+    public void processAcceptRequestRegisterSeller(){
+        HashMap<String,String> information = new HashMap<>();
+        information.put("username", "sellerUser");
+        information.put("password", "5678");
+        information.put("name", "Jack");
+        information.put("family name", "Fallon");
+        information.put("email", "JackFallon@gmail.com");
+        information.put("number", "001987654");
+        information.put("balance", "100");
+        information.put("role", "seller");
+        information.put("company", "Best Products");
+        Request request = new Request("register seller",information);
+        adminManager.processAcceptedRequest(request);
+        Assert.assertNotNull(storage.getUserByUsername("sellerUser"));
+    }
+    
 }

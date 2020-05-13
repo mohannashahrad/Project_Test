@@ -175,7 +175,7 @@ public class AdminManager extends Manager {
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
     }
 
-    private void processAcceptedRequest (Request request){
+    public void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
                 storage.addUser(new Seller(request.getInformation()));
