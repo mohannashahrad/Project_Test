@@ -127,9 +127,9 @@ public class Manager {
             return storage.getCategoryByName(name);
     }
 
-    public ArrayList<Sort> viewAllSorts() {
+   /* public ArrayList<Sort> viewAllSorts() {
         return storage.getAllSorts();
-    }
+    }*/
 
     public ArrayList<Sale> viewAllOffs() {
         return storage.getAllSales();
