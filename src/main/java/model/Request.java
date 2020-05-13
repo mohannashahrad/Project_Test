@@ -8,14 +8,13 @@ public class Request {
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
     private HashMap<String, String> information;
-
     public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = lastRequestCode + 1;
         lastRequestCode++;
         this.typeOfRequest = requestTypeFinder(typeOfRequest);
         this.information = information;
         this.stateOfRequest = StateType.PROCESSING;
-    }
+   }
 
     public int getRequestId() {
         return requestId;

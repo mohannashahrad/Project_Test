@@ -46,7 +46,7 @@ public class SellerMenu extends AccountMenu {
             else
                 System.out.println("Invalid choice");
 
-        }while (true);
+        } while (true);
 
     }
 
@@ -226,7 +226,7 @@ public class SellerMenu extends AccountMenu {
             information.put("brand", brandName);
             System.out.println("Enter product price:");
             String price = scanner.nextLine();
-            information.put("price",price);
+            information.put("price", price);
             System.out.println("Enter product supply:");
             information.put("supply", scanner.nextLine());
             String category = categoryShow();
@@ -234,8 +234,8 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
             sellerManager.addProduct(information);
-                System.out.println("created successfully!");
-        }catch (Exception e) {
+            System.out.println("created successfully!");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("unsuccessful creation!");
         }
@@ -243,18 +243,18 @@ public class SellerMenu extends AccountMenu {
 
     private String categoryShow() {
         System.out.println("Enter product category:");
-        ArrayList<Category>allCategories = sellerManager.viewAllCategories();
-        int i=1;
-        for (Category category : allCategories){
-            System.out.println(i+")"+category.getCategoryName());
+        ArrayList<Category> allCategories = sellerManager.viewAllCategories();
+        int i = 1;
+        for (Category category : allCategories) {
+            System.out.println(i + ")" + category.getCategoryName());
             i++;
         }
         int command = Integer.parseInt(scanner.nextLine());
-        if (command>allCategories.size()){
+        if (command > allCategories.size()) {
             System.out.println("invalid choice.added to no category.");
             return "no category";
         }
-        return allCategories.get(command-1).getCategoryName();
+        return allCategories.get(command - 1).getCategoryName();
     }
 
     private void manageProductsMenu() {
@@ -339,7 +339,7 @@ public class SellerMenu extends AccountMenu {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if(command == 6){
+            } else if (command == 6) {
                 try {
                     sellerManager.editProduct(productId, "explanation", newValue);
                 } catch (Exception e) {
@@ -359,7 +359,7 @@ public class SellerMenu extends AccountMenu {
                     "Product's name : " + product.getName() +
                     "\nProduct's brand : " + product.getBrand() +
                     "\nProduct's price : " + product.getPrice() +
-                    "\nProduct's supply : " + product.getSupply()+
+                    "\nProduct's supply : " + product.getSupply() +
                     "\nProduct's category : " + product.getCategoryName() +
                     "\nProduct's explanation : " + product.getExplanation() +
                     "\nProduct's average rate : " + product.getAverageRate());
@@ -369,7 +369,7 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void showSellerProducts() {
-        if (sellerManager.viewSellerProducts().isEmpty()){
+        if (sellerManager.viewSellerProducts().isEmpty()) {
             System.out.println("you dont have any products yet.");
             return;
         }
@@ -377,7 +377,7 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void viewSalesHistory() {
-        if (sellerManager.viewSellerOffs().isEmpty()){
+        if (sellerManager.viewSellerOffs().isEmpty()) {
             System.out.println("no sales yet.");
             return;
         }
@@ -385,7 +385,7 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void viewCompanyInfo() {
-        System.out.println("company name : "+((Seller) person).getCompany());
+        System.out.println("company name : " + ((Seller) person).getCompany());
         System.out.println("Enter\n1.edit\n2.back");
         int command = scanner.nextInt();
         if (command == 1) {
