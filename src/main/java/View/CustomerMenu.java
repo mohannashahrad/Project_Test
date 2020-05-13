@@ -48,10 +48,10 @@ public class CustomerMenu extends AccountMenu {
     private void viewBalance() {
         System.out.println("Your balance is : "+person.getBalance());
         System.out.println("Enter\n1.add balance\n2.back");
-        int command = scanner.nextInt();
+        int command = Integer.parseInt(scanner.nextLine());
         if (command == 1){
             System.out.println("Enter Amount to add :");
-            double amount = scanner.nextDouble();
+            double amount = Double.parseDouble(scanner.nextLine());
             customerManager.addBalance(amount);
             System.out.println("added successfully.\nYour current balance is : "+person.getBalance());
         }else if (command == 2)
@@ -113,7 +113,7 @@ public class CustomerMenu extends AccountMenu {
             return;
         }
         System.out.println("Enter your rate for the product : [the number should be between 1 and 5]");
-        double rate = scanner.nextDouble();
+        double rate = Double.parseDouble(scanner.nextLine());
         try {
             customerManager.rateProduct(productId,rate);
             System.out.println("Thanks for your feedback !");

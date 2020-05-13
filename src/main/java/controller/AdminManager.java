@@ -78,8 +78,10 @@ public class AdminManager extends Manager {
             throw new Exception("There is not a user with this username!");
         else if (discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
             throw new Exception("This customer is already added to this discount!");
-        else
+        else {
             discount.addCustomer((Customer) storage.getUserByUsername(username));
+            //((Customer) storage.getUserByUsername(username)).addToAllDiscounts(discount);
+        }
     }
 
     public void removeCustomerFromDiscount (Discount discount , String username) throws Exception {
