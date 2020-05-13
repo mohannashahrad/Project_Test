@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Request {
@@ -8,6 +9,12 @@ public class Request {
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
     private HashMap<String, String> information;
+    private static ArrayList<Request>allRequests = new ArrayList<>();
+
+    public static ArrayList<Request> getAllRequests() {
+        return allRequests;
+    }
+
     public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = lastRequestCode + 1;
         lastRequestCode++;

@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Discount {
@@ -11,9 +12,14 @@ public class Discount {
     private int percentage;
     private double maxAmount;
     private HashMap<Customer, Integer> customersWithThisDiscount;
+    private static ArrayList<Discount>allDiscounts = new ArrayList<>();
+
+    public static ArrayList<Discount> getAllDiscounts() {
+        return allDiscounts;
+    }
 
     public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage,
-                    int usagePerCustomer,double maxAmount) {
+                    int usagePerCustomer, double maxAmount) {
         this.discountCode = discountCode;
         this.beginDate = beginDate;
         this.endDate = endDate;

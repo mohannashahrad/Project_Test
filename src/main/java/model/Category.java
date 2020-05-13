@@ -7,6 +7,11 @@ public class Category {
     private String categoryName;
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
+    private static ArrayList<Category>allCategories = new ArrayList<>();
+
+    public static ArrayList<Category> getAllCategories() {
+        return allCategories;
+    }
 
     public HashMap<String, String> getProperties() {
         return properties;

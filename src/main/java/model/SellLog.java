@@ -11,6 +11,11 @@ public class SellLog extends Log {
     private double saleAmount;
     private Customer customer;
     private static ArrayList<Integer> allSellCodes = new ArrayList<>();
+    private static ArrayList<Log>allSellLogs = new ArrayList<>();
+
+    public static ArrayList<Log> getAllSellLogs() {
+        return allSellLogs;
+    }
 
     public SellLog(LocalDateTime date, double receivedMoney, double saleAmount, Customer customer) {
         super(date);

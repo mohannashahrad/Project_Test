@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Person {
@@ -11,6 +12,11 @@ public class Person {
     private String number;
     private double balance;
     private Role role;
+    private static ArrayList<Person>allPeople = new ArrayList<>();
+
+    public static ArrayList<Person> getAllPeople() {
+        return allPeople;
+    }
 
     public Person(HashMap<String, String> information) {
         this.username = information.get("username");

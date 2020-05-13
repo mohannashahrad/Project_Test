@@ -10,6 +10,11 @@ public class Sale {
     private LocalDateTime endDate;
     private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
+    private static ArrayList<Sale>allSales = new ArrayList<>();
+
+    public static ArrayList<Sale> getAllSales() {
+        return allSales;
+    }
 
     public Sale(LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
         this.saleId = lastSaleId + 1;

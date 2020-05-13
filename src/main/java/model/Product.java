@@ -19,6 +19,11 @@ public class Product implements Comparable<Product> {
     private ArrayList<Customer> thisProductsBuyers;
     private Sale sale;
     private int numberOfSeen;
+    private static ArrayList<Product>allProducts = new ArrayList<>();
+
+    public static ArrayList<Product> getAllProducts() {
+        return allProducts;
+    }
 
     public Product(HashMap<String, String> information, Seller seller) {
         this.productId = lastProductId + 1;

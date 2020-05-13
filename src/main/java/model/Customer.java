@@ -7,6 +7,11 @@ public class Customer extends Person {
     private Cart shoppingCart;
     private ArrayList<BuyLog> buyHistory;
     private ArrayList<Discount> allDiscounts;
+    private static ArrayList<Person>allCustomers = new ArrayList<>();
+
+    public static ArrayList<Person> getAllCustomers() {
+        return allCustomers;
+    }
 
     public Customer(HashMap<String, String> information) {
         super(information);

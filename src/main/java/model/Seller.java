@@ -8,6 +8,11 @@ public class Seller extends Person {
     private ArrayList<SellLog> sellHistory;
     private ArrayList<Product> productsToSell;
     private ArrayList<Sale> saleList;
+    private static ArrayList<Person>allSellers = new ArrayList<>();
+
+    public static ArrayList<Person> getAllSellers() {
+        return allSellers;
+    }
 
     public Seller(HashMap<String, String> information) {
         super(information);

@@ -1,10 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Comment {
     private String user;
     private Product product;
     private String commentTitle;
     private String commentBody;
+    private static ArrayList<Comment>allComents = new ArrayList<>();
+
+    public static ArrayList<Comment> getAllComents() {
+        return allComents;
+    }
 
     public Comment(String user, Product product, String commentTitle, String commentBody) {
         this.user = user;
