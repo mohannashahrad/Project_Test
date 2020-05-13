@@ -68,4 +68,9 @@ public class ProductManager extends Manager {
         }
         return finalProducts;
     }
+
+    public void addNumberOfSeen(int productId){
+        Product seenProduct = storage.getProductById(productId);
+        seenProduct.setNumberOfSeen(seenProduct.getNumberOfSeen() + 1);
+    }
 }
