@@ -20,5 +20,5 @@ public class ManagerTests {
         Assert.assertTrue(manager.checkEmailValidity("mohanna@gmail.com"));
         Assert.assertFalse(manager.checkEmailValidity("mohanna.gmail.com"));
     }
-    
+
 }
