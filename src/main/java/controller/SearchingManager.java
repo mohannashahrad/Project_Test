@@ -7,23 +7,15 @@ import model.Sort;
 import java.util.ArrayList;
 
 public class SearchingManager extends Manager {
-    private Filter filterName = new Filter("name","temp");
-    private Filter filterCategory = new Filter("category","temp");;
-    private Filter filterPrice = new Filter("price","temp");
-    private Sort sortAverageRate = new Sort("average rate");
-    private Sort sortPrice = new Sort("price");
+
     private ProductManager productManager = new ProductManager();
 
     public SearchingManager() {
-        storage.getAllFilters().add(filterName);
-        System.out.println(storage.getAllFilters().size());
-        storage.getAllFilters().add(filterCategory);
-        storage.getAllFilters().add(filterPrice);
-        storage.getAllSorts().add(sortAverageRate);
-        storage.getAllSorts().add(sortPrice);
+
     }
 
     public ArrayList<Filter> viewAllFilters() {
+
         return storage.getAllFilters();
     }
 
@@ -67,7 +59,7 @@ public class SearchingManager extends Manager {
 
     private ArrayList<Product> sortProducts (ArrayList<Product> products){
         if (currentSorts.isEmpty()){
-            Sort sort = null;
+            Sort sort = new Sort("");
             return sort.defaultSort(products);
         }
         else{
@@ -133,5 +125,8 @@ public class SearchingManager extends Manager {
             currentSorts.remove(removedSort);
             return viewAllProducts();
         }
+    }
+    public void addFilter(Filter filter){
+        storage.addFilter(filter);
     }
 }

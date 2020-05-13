@@ -80,7 +80,7 @@ public class AdminManager extends Manager {
             throw new Exception("This customer is already added to this discount!");
         else {
             discount.addCustomer((Customer) storage.getUserByUsername(username));
-            //((Customer) storage.getUserByUsername(username)).addToAllDiscounts(discount);
+            ((Customer) storage.getUserByUsername(username)).addToAllDiscounts(discount);
         }
     }
 

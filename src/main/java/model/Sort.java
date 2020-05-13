@@ -49,4 +49,9 @@ public class Sort {
         }
         return sortedProducts;
     }
+
+    @Override
+    public String toString() {
+        return "Sort by : " + sortName;
+    }
 }

@@ -1,11 +1,20 @@
 package View;
 
 import controller.Manager;
+import controller.Storage;
+import model.Filter;
+import model.Sort;
 
 public class MainMenu extends Menu {
+
     public MainMenu(Menu previousMenu) {
         super("MainMenu", previousMenu);
     }
+    protected Filter filterName = new Filter("name","temp");
+    protected Filter filterCategory = new Filter("category","temp");;
+    protected Filter filterPrice = new Filter("price","temp");
+    protected Sort sortAverageRate = new Sort("average rate");
+    protected Sort sortPrice = new Sort("price");
 
     @Override
     public void commandProcess() {
