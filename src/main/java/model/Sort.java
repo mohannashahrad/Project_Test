@@ -24,7 +24,7 @@ public class Sort {
         ArrayList<Product> sortedProducts = allProducts;
         for (int i = 0; i < sortedProducts.size() - 1; i++) {
             for (int j = 0; j < sortedProducts.size() - 1; j++) {
-                if (sortedProducts.get(j).getAverageRate() > sortedProducts.get(j + 1).getAverageRate()) {
+                if (sortedProducts.get(j).getAverageRate() < sortedProducts.get(j + 1).getAverageRate()) {
                     Collections.swap(sortedProducts, j, j + 1);
                 }
             }

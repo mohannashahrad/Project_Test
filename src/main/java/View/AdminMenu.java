@@ -367,7 +367,7 @@ public class AdminMenu extends AccountMenu{
             LocalDateTime start = dateMaker(startDate);
             LocalDateTime end = dateMaker(endDate);
             System.out.println("Enter discount amount percentage :");
-            int percentage = scanner.nextInt();
+            int percentage = Integer.parseInt(scanner.nextLine());
             System.out.println("Enter maximum amount of discount :");
             double maxAmount = Double.parseDouble(scanner.nextLine());
             System.out.println("Enter usage per customer :");

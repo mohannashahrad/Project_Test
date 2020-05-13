@@ -67,7 +67,7 @@ public class CustomerMenu extends AccountMenu {
         showAllOrders();
         while (true){
             System.out.println("Enter\n1.show order\n2.rate\n3.back");
-            int command = scanner.nextInt();
+            int command = Integer.parseInt(scanner.nextLine());
             if (command == 1)
                 showSingleOrder();
             else if (command == 2)
@@ -110,7 +110,7 @@ public class CustomerMenu extends AccountMenu {
 
     private void rateProduct(){
         System.out.println("Enter the productId :");
-        int productId = scanner.nextInt();
+        int productId = Integer.parseInt(scanner.nextLine());
         if (!customerManager.doesProductExist(productId)){
             System.out.println("There is not such product");
             return;

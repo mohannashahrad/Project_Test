@@ -71,6 +71,7 @@ public class CustomerManager extends Manager {
             Rate rateOfThisProduct = new Rate (person.getUsername(),storage.getProductById(productId),rate);
             storage.addRate(rateOfThisProduct);
             storage.getProductById(productId).addRate(rateOfThisProduct);
+            storage.getProductById(productId).calculateAverageRate();
         }
     }
 

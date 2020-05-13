@@ -150,10 +150,10 @@ public class Product implements Comparable<Product> {
 
     public void calculateAverageRate() {
         this.averageRate = 0;
-        for (Rate rate : rates) {
-            averageRate += rate.getRate();
+        for (Rate rate : this.rates) {
+            this.averageRate += rate.getRate();
         }
-        averageRate = averageRate / rates.size();
+        this.averageRate = this.averageRate / this.rates.size();
     }
 
     public void addComment(Comment newComment) {
