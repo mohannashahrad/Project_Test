@@ -38,26 +38,22 @@ public class Storage {
     }
 
     private void newArrayLists() {
-        allUsers = new ArrayList<>();
-        allCustomers = new ArrayList<>();
-        allSellers = new ArrayList<>();
-        allAdmins = new ArrayList<>();
-        allProducts = new ArrayList<>();
-        allLogs = new ArrayList<>();
-        allSellLogs = new ArrayList<>();
-        allBuyLogs = new ArrayList<>();
-        allCategories = new ArrayList<>();
-        //
-        Category noCategory = new Category("no category");
-        allCategories.add(noCategory);
-        //
-        allDiscounts = new ArrayList<>();
-        allRates = new ArrayList<>();
-        allComments = new ArrayList<>();
-        allSales = new ArrayList<>();
-        allRequests = new ArrayList<>();
-        allFilters = new ArrayList<>();
-        allSorts = new ArrayList<>();
+        allUsers = Person.getAllPeople();
+        allCustomers = Customer.getAllCustomers();
+        allSellers = Seller.getAllSellers();
+        allAdmins = Admin.getAllAdmins();
+        allProducts = Product.getAllProducts();
+        allLogs = Log.getAllLogs();
+        allSellLogs = SellLog.getAllSellLogs();
+        allBuyLogs = BuyLog.getAllBuyLogs();
+        allCategories = Category.getAllCategories();
+        allDiscounts = Discount.getAllDiscounts();
+        allRates = Rate.getAllRates();
+        allComments = Comment.getAllComents();
+        allSales = Sale.getAllSales();
+        allRequests = Request.getAllRequests();
+        allFilters = Filter.getAllFilters();
+        allSorts = Sort.getAllSorts();
         allCarts = new ArrayList<>();
     }
 
