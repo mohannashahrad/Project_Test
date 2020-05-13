@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -170,5 +171,74 @@ public class AdminManagerTests {
         Assert.assertEquals(discount.getMaxAmount(),expectedMaxAmount,0.0);
 
 
+    }
+
+    @Test
+    public void editProductTest(){
+        HashMap<String,String> sellerInformation = new HashMap<>();
+        sellerInformation.put("username", "sellerUser");
+        sellerInformation.put("password", "5678");
+        sellerInformation.put("name", "Jack");
+        sellerInformation.put("family name", "Fallon");
+        sellerInformation.put("email", "JackFallon@gmail.com");
+        sellerInformation.put("number", "001987654");
+        sellerInformation.put("balance", "100");
+        sellerInformation.put("role", "seller");
+        sellerInformation.put("company", "Best Products");
+        Seller seller = new Seller(sellerInformation);
+        HashMap<String,String> productInformation = new HashMap<>();
+        productInformation.put("productId", "1");
+        productInformation.put("name", "sweater");
+        productInformation.put("brand", "GAP");
+        productInformation.put("price", "280");
+        productInformation.put("supply", "2" );
+        productInformation.put("categoryName", "clothing");
+        productInformation.put("explanation", "warm and cozy");
+        Product product = new Product(productInformation,seller);
+        storage.addProduct(product);
+        adminManager.editProduct("1","name","pants");
+        Assert.assertEquals(product.getName(),"pants");
+        adminManager.editProduct("1","brand","Adidas");
+        Assert.assertEquals(product.getBrand(),"Adidas");
+        adminManager.editProduct("1","price","300");
+        Assert.assertEquals(product.getPrice(),Double.parseDouble("300.0"),0.0);
+        adminManager.editProduct("1","supply","4");
+        Assert.assertEquals(product.getSupply(),Integer.parseInt("4"));
+        adminManager.editProduct("1","categoryName","Children");
+        Assert.assertEquals(product.getCategoryName(),"Children");
+        adminManager.editProduct("1","explanation","Good");
+        Assert.assertEquals(product.getExplanation(),"Good");;
+    }
+
+    @Test
+    public void editSaleTest(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        Sale sale = new Sale(LocalDateTime.now(),LocalDateTime.now(),20,null);
+        storage.addSale(sale);
+        adminManager.editSale(sale.getSaleId(),"beginDate","2020-05-28 12:20");
+        Assert.assertEquals(sale.getBeginDate(),LocalDateTime.parse("2020-05-28 12:20", formatter));
+        adminManager.editSale(sale.getSaleId(),"endDate","2020-08-28 12:20");
+        Assert.assertEquals(sale.getEndDate(),LocalDateTime.parse("2020-08-28 12:20", formatter));
+        adminManager.editSale(sale.getSaleId(),"amountOfSale","30");
+        Assert.assertEquals(sale.getAmountOfSale(),30);
+    }
+
+    @Test
+    public void addCommentRequest(){
+        fileSaver.dataReader();
+        HashMap<String,String> information = new HashMap<>();
+        information.put("productId","2");
+        information.put("title","Really bad");
+        information.put("content","Don't ever use it");
+        information.put("username","c1");
+        Request request = new Request("ADD_COMMENT",information);
+        adminManager.addCommentRequest(request);
+        Product product = storage.getProductById(2);
+        Comment comment = new Comment("c1",product,"Really bad","Don't ever use it");
+        for (Comment productComment : product.getComments()) {
+            if (productComment.equals(comment)){
+                Assert.assertTrue(productComment.equals(comment));
+            }
+        }
     }
 }
