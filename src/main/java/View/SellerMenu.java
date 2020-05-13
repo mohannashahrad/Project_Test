@@ -58,10 +58,11 @@ public class SellerMenu extends AccountMenu {
         ArrayList<Sale> allOffs = sellerManager.viewSellerOffs();
         if (allOffs.isEmpty()) {
             System.out.println("no offs yet.");
-            return;
         }
-        for (Sale off : allOffs) {
-            System.out.println(off.getSaleId());
+        else {
+            for (Sale off : allOffs) {
+                System.out.println(off.getSaleId());
+            }
         }
         while (true) {
             System.out.println("Enter\n1.view off\n2.edit off\n3.add off\n4.back");
@@ -102,6 +103,7 @@ public class SellerMenu extends AccountMenu {
         HashMap<String, String> information = new HashMap<>();
         ArrayList<Product> productsInThisSale = new ArrayList<>();
         int productId = 0;
+        scanner.nextLine();
         System.out.println("start date and time (yyyy,MM,dd,HH,mm) :");
         String startDate = scanner.nextLine().trim();
         information.put("beginDate", startDate);
@@ -116,7 +118,7 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter number of products in this off:");
             int numberOfProducts = scanner.nextInt();
             for (int i = 0; i < numberOfProducts; i++) {
-                System.out.println("Enter the username of " + i + "th product");
+                System.out.println("Enter the username of " + i+1 + "th product");
                 productId = scanner.nextInt();
                 if (!sellerManager.doesProductExist(productId)) {
                     System.out.println("There is not a product with this Id! Try again :)");
@@ -282,6 +284,9 @@ public class SellerMenu extends AccountMenu {
         int productId = scanner.nextInt();
         try {
             ArrayList<Customer> thisProductBuyers = sellerManager.viewProductBuyers(productId);
+            if (thisProductBuyers.isEmpty()){
+                System.out.println("No one bought this product yet!");
+            }
             for (Customer buyer : thisProductBuyers) {
                 System.out.println(buyer.getName() + " " + buyer.getFamilyName());///inja name o familyName kafie???
             }
@@ -295,7 +300,7 @@ public class SellerMenu extends AccountMenu {
         System.out.println("Enter productId:");
         int productId = scanner.nextInt();
         if (!sellerManager.doesSellerHaveProduct(productId)) {
-            System.out.println("Invalid offId.");
+            System.out.println("Invalid productId.");
             return;
         }
         while (true) {
@@ -317,13 +322,13 @@ public class SellerMenu extends AccountMenu {
                 }
             } else if (command == 2) {
                 try {
-                    sellerManager.editOff(productId, "brand", newValue);
+                    sellerManager.editProduct(productId, "brand", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command == 3) {
                 try {
-                    sellerManager.editOff(productId, "price", newValue);
+                    sellerManager.editProduct(productId, "price", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

@@ -51,7 +51,7 @@ public class Manager {
         else if (!storage.getUserByUsername(username).getPassword().equals(password))
             throw new Exception("Your password is wrong");
         else {
-            this.person = storage.getUserByUsername(username);
+            person = storage.getUserByUsername(username);
             return storage.getUserByUsername(username);
         }
     }

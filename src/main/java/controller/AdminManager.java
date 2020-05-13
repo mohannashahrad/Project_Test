@@ -199,11 +199,7 @@ public class AdminManager extends Manager {
                 String saleField = request.getInformation().get("field");
                 String saleUpdatedVersion = request.getInformation().get("updatedVersion");
                 int saleId = Integer.parseInt(request.getInformation().get("offId"));
-                try {
-                    editSale(saleId,saleField,saleUpdatedVersion);
-                } catch (ParseException e) {
-                    e.getMessage();
-                }
+                editSale(saleId,saleField,saleUpdatedVersion);
                 return;
             case REMOVE_PRODUCT:
                 Sale sale = null;
@@ -238,7 +234,7 @@ public class AdminManager extends Manager {
             storage.getProductById(Integer.parseInt(productId)).setExplanation(updatedVersion);
     }
 
-    private void editSale (int offId, String field, String updatedVersion) throws ParseException {
+    private void editSale (int offId, String field, String updatedVersion){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));

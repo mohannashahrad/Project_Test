@@ -90,4 +90,10 @@ public class Person {
         return null;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Person first = (Person) this;
+        Person second = (Person) obj;
+        return first.getUsername().equals(second.getUsername());
+    }
 }
