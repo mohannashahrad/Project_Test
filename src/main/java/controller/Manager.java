@@ -19,7 +19,6 @@ public class Manager {
     protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
 
-
     public Manager() {
         storage = Storage.getStorage();
         cart = Cart.getCart();
@@ -126,10 +125,6 @@ public class Manager {
         else
             return storage.getCategoryByName(name);
     }
-
-   /* public ArrayList<Sort> viewAllSorts() {
-        return storage.getAllSorts();
-    }*/
 
     public ArrayList<Sale> viewAllOffs() {
         return storage.getAllSales();
