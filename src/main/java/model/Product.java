@@ -196,7 +196,7 @@ public class Product implements Comparable<Product> {
                 " -brand :" + brand + "\n" +
                 " -price :" + price + "\n" +
                 " -supply :" + supply + "\n" +
-                " -category :" + category.getCategoryName() + "\n" +
+                //" -category :" + category.getCategoryName() + "\n" +
                 " -explanation :" + explanation + "\n" +
                 " -average rate :" + averageRate + "\n" +
                 " -seller's name :" + seller.getName() + " " + seller.getFamilyName() + "\n";

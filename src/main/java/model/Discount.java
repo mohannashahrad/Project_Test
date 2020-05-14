@@ -78,7 +78,7 @@ public class Discount {
     }
 
     public void addCustomer(Customer newCustomer) {
-        customersWithThisDiscount.put(newCustomer, 0);
+        customersWithThisDiscount.put(newCustomer, this.usagePerCustomer);
     }
 
     public void removeCustomer(Customer specificCustomer, int usage) {
