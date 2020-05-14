@@ -25,6 +25,11 @@ public class Manager {
         storage.addCart(cart);
 
     }
+    public boolean doesAnyAdminExist(){
+        if (storage.getAllAdmins().isEmpty())
+            return false;
+        return true;
+    }
 
     public void register(HashMap<String, String> information) throws Exception {
         if (!checkValidity(information.get("username")))

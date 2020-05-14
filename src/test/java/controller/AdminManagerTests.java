@@ -136,18 +136,18 @@ public class AdminManagerTests {
         Assert.assertNotNull(storage.getCategoryByName("Cloth"));
     }
 
-    /*@Test
+    @Test
     public void removeCategoryTest() throws Exception {
-        Category category = new Category("Housing");
+        Category category = new Category("Gardening");
         storage.addCategory(category);
-        adminManager.removeCategory("Housing");
-        Assert.assertNull(storage.getCategoryByName("Housing"));
+        adminManager.removeCategory("Gardening");
+        Assert.assertNull(storage.getCategoryByName("Gardening"));
         try {
-            adminManager.removeCategory("Housing");
+            adminManager.removeCategory("Gardening");
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"There is not a category with this name!!");
         }
-    }*/
+    }
 
     @Test
     public void editDiscountFieldTest(){

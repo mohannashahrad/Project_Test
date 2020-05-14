@@ -50,6 +50,9 @@ public class LoginRegisterMenu extends Menu {
         if(!(type.equalsIgnoreCase("admin") || type.equalsIgnoreCase("seller") || type.equalsIgnoreCase("customer"))){
             System.out.println("Invalid type");
             return false;
+        }else if (type.equalsIgnoreCase("admin") && manager.doesAnyAdminExist()){
+            System.out.println("Only admins can add admins.\nplease go to admin menu->manage users->create admin.");
+            return false;
         }
         HashMap<String,String> data;
         data = personGetInfo(type);

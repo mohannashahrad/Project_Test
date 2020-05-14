@@ -35,7 +35,11 @@ public class AdminMenu extends AccountMenu{
                 manageRequestsMenu();
             else if (command.equals("7"))
                 manageCategoriesMenu();
-            else if (command.equals("8"))
+            else if (command.equals("8")){
+                LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
+                loginRegisterMenu.run();
+            }
+            else if (command.equals("9"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -495,6 +499,6 @@ public class AdminMenu extends AccountMenu{
     public void show() {
         System.out.println("Admin Menu :");
         System.out.println("1.view personal info\n2.manage users\n3.manage all products\n4.create discount code" +
-                "\n5.view discount codes\n6.manage requests\n7.manage categories\n8.back");
+                "\n5.view discount codes\n6.manage requests\n7.manage categories\n8.Login and Register\n9.back");
     }
 }
