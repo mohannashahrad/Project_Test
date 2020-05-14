@@ -60,4 +60,11 @@ public class Sort {
     public String toString() {
         return "Sort by : " + sortName;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Sort first = (Sort) this;
+        Sort second = (Sort) obj;
+        return first.getSortName().equals(second.getSortName());
+    }
 }

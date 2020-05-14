@@ -121,6 +121,8 @@ public class SearchingManager extends Manager {
             return viewAllProducts();
         }
     }
+
+
     public void addFilter(Filter filter){
         storage.addFilter(filter);
     }
