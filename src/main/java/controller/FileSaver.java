@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class FileSaver {
     private YaGson gson = new YaGson();
@@ -66,7 +67,7 @@ public class FileSaver {
     private void readUser (){
         try(FileReader fileReader = new FileReader("./dataBase/allUsers.json")) {
             Person [] fromFile = gson.fromJson(fileReader,Person[].class);
-            storage.setAllUsers(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllUsers(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -74,7 +75,7 @@ public class FileSaver {
     private void readCustomer(){
         try(FileReader fileReader = new FileReader("./dataBase/allCustomers.json")) {
             Customer[] fromFile = gson.fromJson(fileReader,Customer[].class);
-            storage.setAllCustomers(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllCustomers(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -82,7 +83,7 @@ public class FileSaver {
     private void readAdmin(){
         try(FileReader fileReader = new FileReader("./dataBase/allAdmins.json")) {
             Admin[] fromFile = gson.fromJson(fileReader, Admin[].class);
-            storage.setAllAdmins(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllAdmins(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -90,7 +91,7 @@ public class FileSaver {
     private void readSeller(){
         try(FileReader fileReader = new FileReader("./dataBase/allSellers.json")) {
             Seller[] fromFile = gson.fromJson(fileReader, Seller[].class);
-            storage.setAllSellers(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllSellers(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -98,7 +99,7 @@ public class FileSaver {
     private void readProduct(){
         try(FileReader fileReader = new FileReader("./dataBase/allProducts.json")) {
             Product[] fromFile = gson.fromJson(fileReader,Product[].class);
-            storage.setAllProducts(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllProducts(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -106,7 +107,7 @@ public class FileSaver {
     private void readSale(){
         try(FileReader fileReader = new FileReader("./dataBase/allSales.json")) {
             Sale[] fromFile = gson.fromJson(fileReader,Sale[].class);
-            storage.setAllSales(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllSales(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -114,7 +115,12 @@ public class FileSaver {
     private void readCategory(){
         try(FileReader fileReader = new FileReader("./dataBase/allCategories.json")) {
             Category[] fromFile = gson.fromJson(fileReader,Category[].class);
-            storage.setAllCategories(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllCategories(),fromFile);
+            for (Category category : storage.getAllCategories()){
+                if (category.getCategoryName().equals("uncategorized"))
+                    return;
+            }
+            storage.getAllCategories().add(new Category("uncategorized"));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -122,7 +128,7 @@ public class FileSaver {
     private void readDiscount(){
         try(FileReader fileReader = new FileReader("./dataBase/allDiscounts.json")) {
             Discount[] fromFile = gson.fromJson(fileReader,Discount[].class);
-            storage.setAllDiscounts(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllDiscounts(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -130,7 +136,7 @@ public class FileSaver {
     private void readRate(){
         try(FileReader fileReader = new FileReader("./dataBase/allRates.json")) {
             Rate[] fromFile = gson.fromJson(fileReader,Rate[].class);
-            storage.setAllRates(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllRates(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -138,7 +144,7 @@ public class FileSaver {
     private void readComment(){
         try(FileReader fileReader = new FileReader("./dataBase/allComments.json")) {
             Comment[] fromFile = gson.fromJson(fileReader,Comment[].class);
-            storage.setAllComments(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllComments(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -146,7 +152,7 @@ public class FileSaver {
     private void readRequest(){
         try(FileReader fileReader = new FileReader("./dataBase/allRequests.json")) {
             Request[] fromFile = gson.fromJson(fileReader,Request[].class);
-            storage.setAllRequests(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllRequests(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -154,7 +160,7 @@ public class FileSaver {
     private void readFilter(){
         try(FileReader fileReader = new FileReader("./dataBase/allFilters.json")) {
             Filter[] fromFile = gson.fromJson(fileReader,Filter[].class);
-            storage.setAllFilters(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllFilters(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -162,7 +168,7 @@ public class FileSaver {
     private void readSort(){
         try(FileReader fileReader = new FileReader("./dataBase/allSorts.json")) {
             Sort[] fromFile = gson.fromJson(fileReader,Sort[].class);
-            storage.setAllSorts(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllSorts(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -170,7 +176,7 @@ public class FileSaver {
     private void readLog(){
         try(FileReader fileReader = new FileReader("./dataBase/allLogs.json")) {
             Log[] fromFile = gson.fromJson(fileReader,Log[].class);
-            storage.setAllLogs(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllLogs(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -178,7 +184,7 @@ public class FileSaver {
     private void readBuyLog(){
         try(FileReader fileReader = new FileReader("./dataBase/allBuyLogs.json")) {
             BuyLog[] fromFile = gson.fromJson(fileReader,BuyLog[].class);
-            storage.setAllBuyLogs(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllBuyLogs(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -186,7 +192,7 @@ public class FileSaver {
     private void readSellLog(){
         try(FileReader fileReader = new FileReader("./dataBase/allSellLogs.json")) {
             SellLog[] fromFile = gson.fromJson(fileReader,SellLog[].class);
-            storage.setAllSellLogs(new ArrayList<>(Arrays.asList(fromFile)));
+            Collections.addAll(storage.getAllSellLogs(),fromFile);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

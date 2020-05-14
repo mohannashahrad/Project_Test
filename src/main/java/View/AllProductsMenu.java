@@ -272,10 +272,12 @@ public class AllProductsMenu extends Menu {
             System.out.println("no categories yet.");
             return;
         }
+        int i =1;
         for (Category category : productManager.viewAllCategories()) {
-            System.out.println(category.getCategoryName());
+            System.out.println(i+")"+category.getCategoryName());
             System.out.println(category.getProperties());
             System.out.println("-------");
+            i++;
         }
     }
 

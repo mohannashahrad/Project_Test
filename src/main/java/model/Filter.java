@@ -33,7 +33,7 @@ public class Filter {
     public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts){
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getCategoryName().equals(category.getCategoryName())){
+            if (product.getCategory().getCategoryName().equals(category.getCategoryName())){
                 filteredProducts.add(product);
             }
         }
@@ -61,5 +61,14 @@ public class Filter {
     @Override
     public String toString() {
         return "Filter by :" + filterName ;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Filter first = (Filter) this;
+        Filter second = (Filter) obj;
+        boolean info = first.getFilterInfo().equals(second.getFilterInfo());
+        boolean name = first.getFilterName().equals(second.getFilterName());
+        return (info && name);
     }
 }

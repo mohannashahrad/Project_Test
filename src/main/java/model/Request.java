@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class Request {
     private int requestId;
-    static private int lastRequestCode = 0;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
     private HashMap<String, String> information;
@@ -16,20 +15,27 @@ public class Request {
     }
 
     public Request(String typeOfRequest, HashMap<String, String> information) {
-        this.requestId = lastRequestCode + 1;
-        lastRequestCode++;
+        this.requestId = idSetter();
         this.typeOfRequest = requestTypeFinder(typeOfRequest);
         this.information = information;
         this.stateOfRequest = StateType.PROCESSING;
    }
+    private int idSetter (){
+        if (allRequests.size() == 0){
+            return 1;
+        }
+        int max = 0;
+        for (Request request : allRequests){
+            if (request.requestId>max)
+                max = request.requestId;
+        }
+        return max+1;
+    }
 
     public int getRequestId() {
         return requestId;
     }
 
-    public int getLastRequestCode() {
-        return lastRequestCode;
-    }
 
     public RequestType getTypeOfRequest() {
         return typeOfRequest;

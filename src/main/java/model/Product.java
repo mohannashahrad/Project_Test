@@ -5,13 +5,12 @@ import java.util.HashMap;
 
 public class Product implements Comparable<Product> {
     private int productId;
-    static private int lastProductId = 0;
     private String name;
     private String brand;
     private double price;
     private Seller seller;
     private int supply;
-    private String categoryName;
+    private Category category;
     private String explanation;
     private double averageRate;
     private ArrayList<Comment> comments;
@@ -26,14 +25,13 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
-        this.productId = lastProductId + 1;
-        lastProductId++;
+        this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
         this.price = Double.parseDouble(information.get("price"));
         this.seller = seller;
         this.supply = Integer.parseInt(information.get("supply"));
-        this.categoryName = information.get("categoryName");
+        this.category = Category.getCategoryByName(information.get("categoryName"));
         this.explanation = information.get("explanation");
         this.averageRate = 0;
         this.comments = new ArrayList<>();
@@ -41,16 +39,26 @@ public class Product implements Comparable<Product> {
         this.thisProductsBuyers = new ArrayList<>();
         this.sale = null;
         this.numberOfSeen = 0;
-        allProducts.add(this);
+        if (this.category!=null)
+            this.category.addProductToCategory(this);
     }
+    private int idSetter (){
+        if (allProducts.size() == 0){
+            return 1;
+        }
+        int max = 0;
+        for (Product product : allProducts){
+            if (product.productId>max)
+                max = product.productId;
+        }
+        return max+1;
+    }
+
 
     public int getProductId() {
         return productId;
     }
 
-    public int getLastProductId() {
-        return lastProductId;
-    }
 
     public String getName() {
         return name;
@@ -76,8 +84,8 @@ public class Product implements Comparable<Product> {
         return supply;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public Category getCategory() {
+        return category;
     }
 
     public String getExplanation() {
@@ -120,8 +128,8 @@ public class Product implements Comparable<Product> {
         this.supply = supply;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setExplanation(String explanation) {
@@ -188,7 +196,7 @@ public class Product implements Comparable<Product> {
                 " -brand :" + brand + "\n" +
                 " -price :" + price +"\n" +
                 " -supply :" + supply +"\n" +
-                " -category :" + categoryName + "\n" +
+                " -category :" + category.getCategoryName() + "\n" +
                 " -explanation :" + explanation + "\n" +
                 " -average rate :" + averageRate + "\n" +
                 " -seller's name :" + seller.getName() + " " + seller.getFamilyName() + "\n";

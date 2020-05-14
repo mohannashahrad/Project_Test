@@ -9,6 +9,18 @@ public class Category {
     private HashMap<String, String> properties;
     private static ArrayList<Category>allCategories = new ArrayList<>();
 
+    static {
+        addUncategorized();
+    }
+
+    private static void addUncategorized() {
+        for (Category category : allCategories){
+            if (category.categoryName.equals("uncategorized"))
+                return;
+        }
+        allCategories.add(new Category("uncategorized"));
+    }
+
     public static ArrayList<Category> getAllCategories() {
         return allCategories;
     }
@@ -21,6 +33,16 @@ public class Category {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();
         this.properties = new HashMap<>();
+    }
+    public void addProductToCategory(Product product){
+        this.thisCategoryProducts.add(product);
+    }
+    public static Category getCategoryByName(String name){
+        for (Category category : allCategories){
+            if (category.getCategoryName().equals(name))
+                return category;
+        }
+        return null;
     }
 
     public String getCategoryName() {
