@@ -306,13 +306,13 @@ public class SellerMenu extends AccountMenu {
         while (true) {
             System.out.println("Enter field to edit :\n1.name\n2.brand\n3.price\n4." +
                     "supply" + "\n5.category\n6.explanation\n7.back");
-            int command = scanner.nextInt();
-            if (!(0 < command && command < 8)) {
+            String command = scanner.nextLine().trim();
+            if (!(command.matches("[1-7]"))) {
                 System.out.println("Invalid command");
                 continue;
-            } else if (command == 7)
+            } else if (command.equals("7"))
                 break;
-            else if (command==5){
+            else if (command.equals("5")){
                 String category = categoryShow();
                 try {
                     sellerManager.editProduct(productId, "category", category);
@@ -323,31 +323,31 @@ public class SellerMenu extends AccountMenu {
             }
             System.out.println("Enter new value :");
             String newValue = scanner.nextLine();
-            if (command == 1) {
+            if (command.equals("1")) {
                 try {
                     sellerManager.editProduct(productId, "name", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 2) {
+            } else if (command.equals("2")) {
                 try {
                     sellerManager.editProduct(productId, "brand", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 3) {
+            } else if (command.equals("3")) {
                 try {
                     sellerManager.editProduct(productId, "price", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 4) {
+            } else if (command.equals("4")) {
                 try {
                     sellerManager.editProduct(productId, "supply", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 6) {
+            } else if (command.equals("5")) {
                 try {
                     sellerManager.editProduct(productId, "explanation", newValue);
                 } catch (Exception e) {
@@ -364,7 +364,7 @@ public class SellerMenu extends AccountMenu {
         try {
             Product product = sellerManager.viewSellerProduct(productId);
             System.out.println("productId :" + product.getProductId() +
-                    "Product's name : " + product.getName() +
+                    "\nProduct's name : " + product.getName() +
                     "\nProduct's brand : " + product.getBrand() +
                     "\nProduct's price : " + product.getPrice() +
                     "\nProduct's supply : " + product.getSupply() +
