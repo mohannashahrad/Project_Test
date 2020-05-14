@@ -215,6 +215,10 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showCurrentFilters() {
+        if (searchingManager.getCurrentFilters().isEmpty()){
+            System.out.println("no current filters.");
+            return;
+        }
         for (Filter currentFilter : searchingManager.getCurrentFilters()) {
             System.out.println("Filter By : " + currentFilter.getFilterName());
             System.out.println("----");
