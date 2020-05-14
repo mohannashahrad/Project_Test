@@ -121,6 +121,6 @@ public class LoginRegisterMenu extends Menu {
     @Override
     public void show() {
         System.out.println("LoginRegisterMenu :");
-        System.out.println("Enter your choice :\n1.Login\n2.Register\n3.Logout\n4.Back");
+        System.out.println("Enter\n1.Login\n2.Register\n3.Logout\n4.Back");
     }
 }

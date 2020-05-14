@@ -41,6 +41,7 @@ public class AllProductsMenu extends Menu {
                 System.out.println("Invalid choice");
 
         }while (true);
+        this.getPreviousMenu().run();
     }
 
     private void showSingleProduct() {

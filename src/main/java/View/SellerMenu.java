@@ -51,6 +51,7 @@ public class SellerMenu extends AccountMenu {
                 System.out.println("Invalid choice");
 
         } while (true);
+        this.getPreviousMenu().run();
 
     }
 

@@ -49,7 +49,7 @@ public class AdminMenu extends AccountMenu{
 
         }
         while (true);
-
+        this.getPreviousMenu().run();
     }
 
     private void manageCategoriesMenu() {

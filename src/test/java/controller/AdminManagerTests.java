@@ -101,8 +101,18 @@ public class AdminManagerTests {
     @Test
     public void removeProductTest() throws Exception{
         fileSaver.dataReader();
-        Product product = storage.getProductById(2);
-        adminManager.removeProduct("2");
+        HashMap<String,String> productInformation = new HashMap<>();
+        productInformation.put("productId", "17");
+        productInformation.put("name", "sweater");
+        productInformation.put("brand", "GAP");
+        productInformation.put("price", "230");
+        productInformation.put("supply", "2" );
+        productInformation.put("categoryName", "children");
+        productInformation.put("explanation", "warm and cozy");
+        productInformation.put("seller","s1");
+        Product product = new Product(productInformation, (Seller)storage.getUserByUsername("s1"));
+        storage.addProduct(product);
+        adminManager.removeProduct("17");
         ArrayList<Product> original = storage.getAllProducts();
         Assert.assertFalse(original.contains(product));
         try {
@@ -129,11 +139,11 @@ public class AdminManagerTests {
     @Test
     public void editCategoryByNameTest(){
         fileSaver.dataReader();
-        Category category = new Category("Housing");
+        Category category = new Category("Clothing");
         storage.addCategory(category);
-        adminManager.editCategoryByName("Housing","Cloth");
-        Assert.assertEquals("Cloth",category.getCategoryName());
-        Assert.assertNotNull(storage.getCategoryByName("Cloth"));
+        adminManager.editCategoryByName("Clothing","Babies");
+        Assert.assertEquals("Babies",category.getCategoryName());
+        Assert.assertNotNull(storage.getCategoryByName("Babies"));
     }
 
     @Test

@@ -76,7 +76,7 @@ public class CustomerManagerTests {
     @Test
     public void doesProductExistTest(){
         Assert.assertTrue(customerManager.doesProductExist(3));
-        Assert.assertFalse(customerManager.doesProductExist(1));
+        Assert.assertFalse(customerManager.doesProductExist(7));
     }
 
     @Test
