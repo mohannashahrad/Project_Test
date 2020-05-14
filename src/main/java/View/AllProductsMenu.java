@@ -29,7 +29,11 @@ public class AllProductsMenu extends Menu {
                 showProducts();
             else if (command.equals("5"))
                 showSingleProduct();
-            else if (command.equals("6"))
+            else if (command.equals("6")){
+                LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
+                loginRegisterMenu.run();
+            }
+            else if (command.equals("7"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -288,6 +292,6 @@ public class AllProductsMenu extends Menu {
     @Override
     public void show() {
         System.out.println("All Products Menu :");
-        System.out.println("1.view categories\n2.filtering\n3.sorting\n4.show products\n5.show single product\n6.back");
+        System.out.println("1.view categories\n2.filtering\n3.sorting\n4.show products\n5.show single product\n6.Login and Register\n7.back");
     }
 }
