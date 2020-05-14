@@ -253,7 +253,7 @@ public class SellerMenu extends AccountMenu {
         }
         int command = Integer.parseInt(scanner.nextLine());
         if (command > allCategories.size()) {
-            System.out.println("invalid choice.added to uncategorized.");
+            System.out.println("invalid choice.regarded as uncategorized.");
             return "uncategorized";
         }
         return allCategories.get(command - 1).getCategoryName();
@@ -312,6 +312,15 @@ public class SellerMenu extends AccountMenu {
                 continue;
             } else if (command == 7)
                 break;
+            else if (command==5){
+                String category = categoryShow();
+                try {
+                    sellerManager.editProduct(productId, "category", category);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                continue;
+            }
             System.out.println("Enter new value :");
             String newValue = scanner.nextLine();
             if (command == 1) {
@@ -335,12 +344,6 @@ public class SellerMenu extends AccountMenu {
             } else if (command == 4) {
                 try {
                     sellerManager.editProduct(productId, "supply", newValue);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (command == 5) {
-                try {
-                    sellerManager.editProduct(productId, "category", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
