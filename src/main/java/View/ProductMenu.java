@@ -38,7 +38,7 @@ public class ProductMenu extends Menu {
                 System.out.println("Invalid choice");
 
         } while (true);
-
+        this.getPreviousMenu().run();
     }
 
     private void comments() {

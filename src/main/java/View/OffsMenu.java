@@ -40,7 +40,7 @@ public class OffsMenu extends Menu{
             }
 
         }while (true);
-        
+        this.getPreviousMenu().run();
     }
 
     private boolean AllOffShow() {
