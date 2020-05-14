@@ -63,7 +63,7 @@ public class Manager {
 
     public void logout() {
         Menu.setPerson(null);
-        this.person = null;
+        person = null;
         this.cart = null;
     }
 
@@ -72,21 +72,21 @@ public class Manager {
             if (!checkValidity(updatedVersion))
                 throw new Exception("Password is not valid");
             else
-                this.person.setPassword(updatedVersion);
+                person.setPassword(updatedVersion);
         } else if (field.equals("name"))
-            this.person.setName(updatedVersion);
+            person.setName(updatedVersion);
         else if (field.equals("familyName"))
-            this.person.setFamilyName(updatedVersion);
+            person.setFamilyName(updatedVersion);
         else if (field.equals("email")) {
             if (!checkEmailValidity(updatedVersion))
                 throw new Exception("Email is not valid");
             else
-                this.person.setEmail(updatedVersion);
+                person.setEmail(updatedVersion);
         } else if (field.equals("number")) {
             if (!checkPhoneNumberValidity(updatedVersion))
                 throw new Exception("Phone Number is not valid");
             else
-                this.person.setNumber(updatedVersion);
+                person.setNumber(updatedVersion);
         }
     }
 
@@ -131,25 +131,6 @@ public class Manager {
             return storage.getCategoryByName(name);
     }
 
-    public ArrayList<Sale> viewAllOffs() {
-        return storage.getAllSales();
-    }
-
-    public Product viewProduct(int productId) throws Exception {
-        if (storage.getProductById(productId) == null)
-            throw new Exception("There is not such product");
-        else
-            return storage.getProductById(productId);
-    }
-
-    public boolean doesPersonBoughtProduct(Person person, int productId) {
-        for (Person buyer : storage.getProductById(productId).getThisProductsBuyers()) {
-            if (buyer.equals(person))
-                return true;
-        }
-        return false;
-    }
-
     public Product getProductById(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
             throw new Exception("Product doesn't exist!");
@@ -170,6 +151,7 @@ public class Manager {
     protected void setPerson(Person person1){
         person = person1;
     }
+
     protected Person getPerson(){
         return person;
     }
