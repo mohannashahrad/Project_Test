@@ -4,7 +4,9 @@ import controller.*;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PurchasingManagerTests {
@@ -17,10 +19,10 @@ public class PurchasingManagerTests {
     public void getTotalPriceWithoutDiscountTest(){
         fileSaver.dataReader();
         HashMap<Product, Integer> productsInCart = new HashMap<>();
-        productsInCart.put(storage.getProductById(2),2);
-        productsInCart.put(storage.getProductById(3),3);
+        productsInCart.put(storage.getProductById(1),2);
+        productsInCart.put(storage.getProductById(2),3);
         manager.cart.setProductsInCart(productsInCart);
-        double expected = 2*12 + 3*21 ;
+        double expected = 2*10 + 3*20 ;
         double original = purchasingManager.getTotalPriceWithoutDiscount();
         Assert.assertEquals(expected,original,0.0);
     }
@@ -41,11 +43,11 @@ public class PurchasingManagerTests {
     @Test
     public void getProductsInCartTest(){
         HashMap<Product, Integer> productsInCart = new HashMap<>();
-        productsInCart.put(storage.getProductById(2),2);
-        productsInCart.put(storage.getProductById(3),3);
+        productsInCart.put(storage.getProductById(1),2);
+        productsInCart.put(storage.getProductById(2),3);
         manager.cart.setProductsInCart(productsInCart);
         Assert.assertEquals(purchasingManager.getProductsInCart().size(),2);
-        Assert.assertEquals(purchasingManager.getProductsInCart().get(0),storage.getProductById(3));
+        Assert.assertEquals(purchasingManager.getProductsInCart().get(0),storage.getProductById(1));
         Assert.assertEquals(purchasingManager.getProductsInCart().get(1),storage.getProductById(2));
     }
 
@@ -74,8 +76,83 @@ public class PurchasingManagerTests {
     }
 
     @Test
-    public void findDistinctSellersTest(){
-        
+    public void calculateTotalPriceWithDiscountTest(){
+        fileSaver.dataReader();
+        HashMap<Product, Integer> productsInCart = new HashMap<>();
+        productsInCart.put(storage.getProductById(1),2);
+        productsInCart.put(storage.getProductById(2),3);
+        manager.cart.setProductsInCart(productsInCart);
+        LocalDateTime firstBeginDate = LocalDateTime.of(2020,06,29,12,20);
+        LocalDateTime firstEndDate = LocalDateTime.of(2020,07,29,12,30);
+        Discount discount = new Discount("discount1", firstBeginDate,firstEndDate,
+                20,2,100);
+        storage.addDiscount(discount);
+        double expected = (2*10 + 3*20) * (0.8) ;
+        double original = purchasingManager.calculateTotalPriceWithDiscount("discount1");
+        Assert.assertEquals(expected,original,0.0);
     }
 
+    @Test
+    public void findDistinctSellersTest() {
+        fileSaver.dataReader();
+        HashMap<Product, Integer> products = new HashMap<>();
+        products.put(storage.getProductById(1), 2);
+        products.put(storage.getProductById(2), 3);
+        manager.cart.setProductsInCart(products);
+        ArrayList<Seller> original = purchasingManager.findDistinctSellers(manager.cart);
+        ArrayList<Seller> expected = new ArrayList<>();
+        expected.add((Seller)storage.getUserByUsername("s1"));
+        Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
+    }
+
+    @Test
+    public void sellerProductsInCartTest(){
+        fileSaver.dataReader();
+        HashMap<Product, Integer> productsFromDifferentSellers = new HashMap<>();
+        productsFromDifferentSellers.put(storage.getProductById(1), 2);
+        productsFromDifferentSellers.put(storage.getProductById(2), 3);
+        manager.cart.setProductsInCart(productsFromDifferentSellers);
+        ArrayList <Product> original = purchasingManager.sellerProductsInCart(manager.cart,
+                (Seller) storage.getUserByUsername("s1"));
+        ArrayList<Product> expected = new ArrayList<>();
+        expected.add(storage.getProductById(2));
+        expected.add(storage.getProductById(1));
+        Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
+    }
+
+    @Test
+    public void calculateEachSellerMoneyTransferTest(){
+        ArrayList<Product> productsToBeCalculated = new ArrayList<>();
+        productsToBeCalculated.add(storage.getProductById(1));
+        productsToBeCalculated.add(storage.getProductById(2));
+        double expected = purchasingManager.calculateEachSellerMoneyTransfer(productsToBeCalculated);
+        double original = 30.0;
+        Assert.assertEquals(expected,original,0.0);
+    }
+
+    @Test
+    public void createBuyLogTest(){
+        fileSaver.dataReader();
+        HashMap<Product, Integer> productsCart = new HashMap<>();
+        productsCart.put(storage.getProductById(1), 2);
+        productsCart.put(storage.getProductById(2), 3);
+        manager.cart.setProductsInCart(productsCart);
+        manager.setPerson(storage.getUserByUsername("c1"));
+        HashMap<String,String> receiverInformation = new HashMap<>();
+        receiverInformation.put("name","mohanna");
+        receiverInformation.put("address","tehran");
+        ArrayList<Product> productsInLog = new ArrayList<>();
+        productsInLog.add(storage.getProductById(1));
+        productsInLog.add(storage.getProductById(2));
+        ArrayList<Seller> sellers = new ArrayList<>();
+        sellers.add((Seller)storage.getUserByUsername("s1"));
+        BuyLog buyLog = new BuyLog(LocalDateTime.now(),20.0,10.0,sellers,receiverInformation,
+                productsInLog);
+        purchasingManager.createBuyLog(receiverInformation,20.0,10.0);
+        for (Log log : storage.getAllBuyLogs()) {
+            if (log.equals(buyLog))
+                Assert.assertTrue(true);
+        }
+
+    }
 }
