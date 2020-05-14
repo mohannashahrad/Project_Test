@@ -18,7 +18,7 @@ public class Product implements Comparable<Product> {
     private ArrayList<Customer> thisProductsBuyers;
     private Sale sale;
     private int numberOfSeen;
-    private static ArrayList<Product>allProducts = new ArrayList<>();
+    private static ArrayList<Product> allProducts = new ArrayList<>();
 
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
@@ -39,19 +39,20 @@ public class Product implements Comparable<Product> {
         this.thisProductsBuyers = new ArrayList<>();
         this.sale = null;
         this.numberOfSeen = 0;
-        if (this.category!=null)
+        if (this.category != null)
             this.category.addProductToCategory(this);
     }
-    private int idSetter (){
-        if (allProducts.size() == 0){
+
+    private int idSetter() {
+        if (allProducts.size() == 0) {
             return 1;
         }
         int max = 0;
-        for (Product product : allProducts){
-            if (product.productId>max)
+        for (Product product : allProducts) {
+            if (product.productId > max)
                 max = product.productId;
         }
-        return max+1;
+        return max + 1;
     }
 
 
@@ -148,14 +149,14 @@ public class Product implements Comparable<Product> {
         this.numberOfSeen = numberOfSeen;
     }
 
-    public double getPriceWithSale (){
+    public double getPriceWithSale() {
         if (this.sale == null)
             return price;
         else
-             return  this.price - this.sale.calculateAmountOfSale(this.price);
+            return this.price - this.sale.calculateAmountOfSale(this.price);
     }
 
-    public double getAmountOfSale (){
+    public double getAmountOfSale() {
         if (sale == null)
             return 0;
         else
@@ -187,15 +188,14 @@ public class Product implements Comparable<Product> {
         return Double.compare(this.getPrice(), productToBeComparedTo.getPrice());
     }
 
-
     @Override
     public String toString() {
         return "Product :" +
-                "productId :" + productId +"\n" +
+                "productId :" + productId + "\n" +
                 " -name :" + name + "\n" +
                 " -brand :" + brand + "\n" +
-                " -price :" + price +"\n" +
-                " -supply :" + supply +"\n" +
+                " -price :" + price + "\n" +
+                " -supply :" + supply + "\n" +
                 " -category :" + category.getCategoryName() + "\n" +
                 " -explanation :" + explanation + "\n" +
                 " -average rate :" + averageRate + "\n" +

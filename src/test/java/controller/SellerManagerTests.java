@@ -4,8 +4,8 @@ import model.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class SellerManagerTests {
     private Storage storage = Storage.getStorage();
@@ -77,7 +77,8 @@ public class SellerManagerTests {
     public void viewSellerProducts() throws Exception {
         fileSaver.dataReader();
         loginTest();
-        ArrayList<Product> allProducts = new ArrayList<>(Arrays.asList(storage.getProductById(2)));
-        Assert.assertEquals(allProducts, sellerManager.viewSellerProducts());
+        ArrayList<Product> allProducts = new ArrayList<>(Collections.singletonList(storage.getProductById(2)));
+        String checkAllProducts = allProducts.toString();
+        Assert.assertEquals(checkAllProducts, sellerManager.viewSellerProducts().toString());
     }
 }
