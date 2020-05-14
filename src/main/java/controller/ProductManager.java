@@ -18,7 +18,11 @@ public class ProductManager extends Manager {
         information.put("productId",Integer.toString(productId));
         information.put("title",title);
         information.put("content",content);
-        information.put("username",person.getUsername());
+        String name;
+        if (person == null){
+            name = "anonymous";
+        }else name=person.getUsername();
+        information.put("username",name);
         storage.addRequest(new Request("add comment",information));
     }
 
