@@ -39,7 +39,11 @@ public class SellerMenu extends AccountMenu {
                 viewOffsMenu();
             else if (command.equals("9"))
                 viewBalance();
-            else if (command.equals("10"))
+            else if (command.equals("10")){
+                LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
+                loginRegisterMenu.run();
+            }
+            else if (command.equals("11"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -420,6 +424,6 @@ public class SellerMenu extends AccountMenu {
         System.out.println("Seller Menu :");
         System.out.println("1.view personal info\n2.view company information\n3.view sales history\n" +
                 "4.manage products\n5.add product\n6.remove product\n7.show categories\n8.view offs\n" +
-                "9.view balance\n10.back");
+                "9.view balance\n10.Login and Register\n11.back");
     }
 }
