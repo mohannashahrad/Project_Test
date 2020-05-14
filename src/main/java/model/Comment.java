@@ -35,4 +35,17 @@ public class Comment {
     public String getCommentBody() {
         return commentBody;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Comment first = (Comment) this;
+        Comment second = (Comment) obj;
+        boolean user = this.user.equals(((Comment) obj).user);
+        boolean title = this.commentTitle.equals(((Comment) obj).commentTitle);
+        boolean content = this.commentBody.equals(((Comment) obj).commentBody);
+        boolean product = this.product.equals(((Comment) obj).product);
+        if (user && title && content && product)
+            return true;
+        else return false;
+    }
 }

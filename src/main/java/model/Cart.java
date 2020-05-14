@@ -26,6 +26,10 @@ public class Cart {
         return productsInCart;
     }
 
+    public void setProductsInCart(HashMap<Product, Integer> productsInCart) {
+        this.productsInCart = productsInCart;
+    }
+
     public double getTotalPrice() {
         return totalPrice;
     }

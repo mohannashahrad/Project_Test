@@ -175,7 +175,7 @@ public class AdminManager extends Manager {
         storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
     }
 
-    private void processAcceptedRequest (Request request){
+    public void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
                 storage.addUser(new Seller(request.getInformation()));
@@ -219,7 +219,7 @@ public class AdminManager extends Manager {
         }
     }
 
-    private void editProduct (String productId, String field, String updatedVersion){
+    public void editProduct (String productId, String field, String updatedVersion){
         if (field.equalsIgnoreCase("name"))
             storage.getProductById(Integer.parseInt(productId)).setName(updatedVersion);
         else if (field.equalsIgnoreCase("brand"))
@@ -231,10 +231,10 @@ public class AdminManager extends Manager {
         else if (field.equalsIgnoreCase("supply"))
             storage.getProductById(Integer.parseInt(productId)).setSupply(Integer.parseInt(updatedVersion));
         else if (field.equalsIgnoreCase("categoryName"))
-            storage.getProductById(Integer.parseInt(productId)).setExplanation(updatedVersion);
+            storage.getProductById(Integer.parseInt(productId)).setCategoryName(updatedVersion);
     }
 
-    private void editSale (int offId, String field, String updatedVersion){
+    public void editSale (int offId, String field, String updatedVersion){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
@@ -274,7 +274,7 @@ public class AdminManager extends Manager {
         storage.getSaleById(removedProductFromSAle).removeProductFromThisSale(storage.getProductById(saleIdToBeRemoved));
     }
 
-    private void addCommentRequest (Request request){
+    public void addCommentRequest (Request request){
         int productIdForComment = Integer.parseInt(request.getInformation().get("productId"));
         String title = request.getInformation().get("title");
         String content = request.getInformation().get("content");

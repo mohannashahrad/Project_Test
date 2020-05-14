@@ -92,4 +92,19 @@ public class Discount {
     public double calculateAmountOfDiscount(double totalPrice) {
         return totalPrice * ((double) percentage / 100);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Discount first = (Discount) this;
+        Discount second = (Discount) obj;
+        boolean percentage = this.percentage == ((Discount) obj).percentage;
+        boolean usagePerCustomer = this.usagePerCustomer == ((Discount) obj).usagePerCustomer;
+        boolean maxAmount = this.maxAmount == ((Discount) obj).maxAmount;
+        boolean beginDate = this.beginDate.equals(((Discount) obj).beginDate);
+        boolean endDate = this.endDate.equals(((Discount) obj).endDate);
+        boolean discountCode = this.discountCode.equals(((Discount) obj).discountCode);
+        if (percentage && usagePerCustomer && maxAmount && beginDate && endDate && discountCode)
+            return true;
+        else return false;
+    }
 }

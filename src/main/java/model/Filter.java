@@ -62,4 +62,13 @@ public class Filter {
     public String toString() {
         return "Filter by :" + filterName ;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Filter first = (Filter) this;
+        Filter second = (Filter) obj;
+        boolean info = first.getFilterInfo().equals(second.getFilterInfo());
+        boolean name = first.getFilterName().equals(second.getFilterName());
+        return (info && name);
+    }
 }
