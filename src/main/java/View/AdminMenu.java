@@ -169,7 +169,7 @@ public class AdminMenu extends AccountMenu{
                 try {
                     Request request = adminManager.viewRequest(command);
                     ShowSingleRequest(request);
-                    System.out.println("Enter 1.accept\n2.decline\n3.take no action");
+                    System.out.println("Enter\n1.accept\n2.decline\n3.take no action");
                     int choice =Integer.parseInt(scanner.nextLine());
                     if (choice == 1){
                         adminManager.acceptRequest(command);
@@ -207,16 +207,18 @@ public class AdminMenu extends AccountMenu{
             return;
         }
         for (Request request: allRequests) {
-            System.out.println("request id : "+request.getRequestId());
+            System.out.println("request id : "+request.getRequestId()+"   state : "+request.getStateOfRequest());
             System.out.println("-------");
         }
 
     }
 
     private void viewDiscountCodes() {
-        viewAllDiscount();
+        boolean anythingShowed = viewAllDiscount();
+        if (anythingShowed == false)
+            return;
         while (true) {
-            System.out.println("Enter\n1.view a DiscountCode\n2.edit a DiscountCode\n3.remove a DiscountCode\n4.back :");
+            System.out.println("Enter\n1.view a DiscountCode\n2.edit a DiscountCode\n3.remove a DiscountCode\n4.back");
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 showSingleDiscountMenu();
@@ -313,16 +315,17 @@ public class AdminMenu extends AccountMenu{
     }
 
 
-    private void viewAllDiscount() {
+    private boolean viewAllDiscount() {
         ArrayList<Discount> allCodes = adminManager.viewAllDiscountCodes();
         if (allCodes.isEmpty()){
             System.out.println("no discount codes yet.");
-            return;
+            return false;
         }
         for (Discount discount : allCodes) {
             System.out.println(discount.getDiscountCode());
             System.out.println("-------------------------");
         }
+        return true;
     }
 
     private void showSingleDiscountMenu() {
@@ -409,18 +412,27 @@ public class AdminMenu extends AccountMenu{
 
     private void manageUsers() {
         while (true) {
-            System.out.println("Enter\n1.view user\n2.delete user\n3.create manager profile\n4.back");
+            System.out.println("Enter\n1.view all users\n2.view user\n3.delete user\n4.create manager profile\n5.back");
             String choice = scanner.nextLine().trim();
             if (choice.equals("1"))
-                viewUser();
+                viewAllUsers();
             else if (choice.equals("2"))
-                deleteUser();
+                viewUser();
             else if (choice.equals("3"))
-                createManagerProfile();
+                deleteUser();
             else if (choice.equals("4"))
+                createManagerProfile();
+            else if (choice.equals("5"))
                 break;
             else
                 System.out.println("Invalid choice!");
+        }
+    }
+
+    private void viewAllUsers() {
+        ArrayList<Person>allUsers = adminManager.viewAllUsers();
+        for (Person person : allUsers){
+            System.out.println(person.getUsername()+" : "+person.getRole());
         }
     }
 

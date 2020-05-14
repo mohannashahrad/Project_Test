@@ -26,6 +26,7 @@ public class FileSaver {
         writeArrayToFile(storage.getAllLogs(),"./dataBase/allLogs.json");
         writeArrayToFile(storage.getAllSellLogs(),"./dataBase/allSellLogs.json");
         writeArrayToFile(storage.getAllBuyLogs(),"./dataBase/allBuyLogs.json");
+        Category.deleteUncategorized();
         writeArrayToFile(storage.getAllCategories(),"./dataBase/allCategories.json");
         writeArrayToFile(storage.getAllDiscounts(),"./dataBase/allDiscounts.json");
         writeArrayToFile(storage.getAllRates(),"./dataBase/allRates.json");
@@ -50,8 +51,8 @@ public class FileSaver {
         readComment();
         readSale();
         readRequest();
-        readFilter();
-        readSort();
+        //readFilter();
+        //readSort();
         //readCart();
     }
 
@@ -116,11 +117,15 @@ public class FileSaver {
         try(FileReader fileReader = new FileReader("./dataBase/allCategories.json")) {
             Category[] fromFile = gson.fromJson(fileReader,Category[].class);
             Collections.addAll(storage.getAllCategories(),fromFile);
+            boolean uncatExist = false;
             for (Category category : storage.getAllCategories()){
                 if (category.getCategoryName().equals("uncategorized"))
-                    return;
+                    uncatExist = true;
             }
-            storage.getAllCategories().add(new Category("uncategorized"));
+            if (!uncatExist) {
+                storage.getAllCategories().add(new Category("uncategorized"));
+                System.out.println("******");
+            }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

@@ -165,4 +165,7 @@ public class Manager {
     protected void setPerson(Person person1){
         person = person1;
     }
+    protected Person getPerson(){
+        return person;
+    }
 }

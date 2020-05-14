@@ -24,6 +24,18 @@ public class Category {
     public static ArrayList<Category> getAllCategories() {
         return allCategories;
     }
+    public static boolean doesCategoryExist(String name){
+        for (Category category : allCategories){
+            if (category.categoryName.equals(name))
+                return true;
+        }
+        return false;
+    }
+
+    public static void deleteUncategorized() {
+       if (doesCategoryExist("uncategorized"))
+            allCategories.remove(Category.getCategoryByName("uncategorized"));
+    }
 
     public HashMap<String, String> getProperties() {
         return properties;

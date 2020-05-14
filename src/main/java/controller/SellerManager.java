@@ -59,7 +59,8 @@ public class SellerManager extends Manager {
             throw new Exception("You don't have such product!");
         else {
             HashMap<String, String> information = new HashMap<>();
-            information.put(field, updatedVersion);
+            information.put("field", field);
+            information.put("updatedVersion",updatedVersion);
             information.put("productId", Integer.toString(productId));
             storage.addRequest(new Request("edit product", information));
         }
