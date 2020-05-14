@@ -17,12 +17,7 @@ public class OffsMenu extends Menu{
     public void commandProcess() {
         do {
             show();
-            boolean saleExist = AllOffShow();
-            if (!saleExist){
-                System.out.println("no offs yet.");
-                this.getPreviousMenu().run();
-                break;
-            }
+            AllOffShow();
             System.out.println("Enter\n1.Login and Register\n2.single product menu\n3.back");
             String command = scanner.nextLine().trim();
             if (command.equals("3"))
@@ -66,7 +61,6 @@ public class OffsMenu extends Menu{
     @Override
     public void show() {
         System.out.println("Offs Menu :");
-        System.out.println("Enter\n1.Login and Register\n2.single product menu\n3.back");
 
     }
 }
