@@ -30,7 +30,11 @@ public class CustomerMenu extends AccountMenu {
                 viewBalance();
             else if (command.equals("6"))
                 viewDiscountCodes();
-            else if (command.equals("7"))
+            else if (command.equals("7")){
+                LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
+                loginRegisterMenu.run();
+            }
+            else if (command.equals("8"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -139,6 +143,6 @@ public class CustomerMenu extends AccountMenu {
     public void show() {
         System.out.println("Customer Menu :");
         System.out.println("1.view personal info\n2.view cart\n3.purchase\n4.view orders\n5.view balance\n" +
-                "6.view discount codes\n7.back");
+                "6.view discount codes\n7.Login and Register\n8.back");
     }
 }
