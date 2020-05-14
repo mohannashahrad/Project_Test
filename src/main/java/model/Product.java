@@ -41,6 +41,7 @@ public class Product implements Comparable<Product> {
         this.thisProductsBuyers = new ArrayList<>();
         this.sale = null;
         this.numberOfSeen = 0;
+        allProducts.add(this);
     }
 
     public int getProductId() {

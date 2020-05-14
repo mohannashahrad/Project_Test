@@ -18,7 +18,7 @@ public class SellerManager extends Manager {
 
     public Product viewSellerProduct(int productId) throws Exception {
         if (storage.getProductById(productId) == null)
-            throw new Exception("A product with this Id does noe exist!!");
+            throw new Exception("A product with this Id does not exist!!");
         else if (!storage.getProductById(productId).getSeller().equals(person))
             throw new Exception("You don't have this product!!");
         else

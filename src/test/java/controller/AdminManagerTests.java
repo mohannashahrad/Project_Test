@@ -258,5 +258,4 @@ public class AdminManagerTests {
         adminManager.processAcceptedRequest(request);
         Assert.assertNotNull(storage.getUserByUsername("sellerUser"));
     }
-    
 }
