@@ -181,13 +181,13 @@ public class Storage {
         return allRequests;
     }
 
-    /*public ArrayList<Filter> getAllFilters() {
+    public ArrayList<Filter> getAllFilters() {
         return allFilters;
-    }*/
+    }
 
-    /*public ArrayList<Sort> getAllSorts() {
+    public ArrayList<Sort> getAllSorts() {
         return allSorts;
-    }*/
+    }
 
     public ArrayList<Cart> getAllCarts() {
         return allCarts;

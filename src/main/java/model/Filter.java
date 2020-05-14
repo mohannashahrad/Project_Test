@@ -33,7 +33,7 @@ public class Filter {
     public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts){
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getCategoryName().equals(category.getCategoryName())){
+            if (product.getCategory().getCategoryName().equals(category.getCategoryName())){
                 filteredProducts.add(product);
             }
         }

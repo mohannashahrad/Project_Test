@@ -253,8 +253,8 @@ public class SellerMenu extends AccountMenu {
         }
         int command = Integer.parseInt(scanner.nextLine());
         if (command > allCategories.size()) {
-            System.out.println("invalid choice.added to no category.");
-            return "no category";
+            System.out.println("invalid choice.added to uncategorized.");
+            return "uncategorized";
         }
         return allCategories.get(command - 1).getCategoryName();
     }
@@ -365,7 +365,7 @@ public class SellerMenu extends AccountMenu {
                     "\nProduct's brand : " + product.getBrand() +
                     "\nProduct's price : " + product.getPrice() +
                     "\nProduct's supply : " + product.getSupply() +
-                    "\nProduct's category : " + product.getCategoryName() +
+                    "\nProduct's category : " + product.getCategory().getCategoryName() +
                     "\nProduct's explanation : " + product.getExplanation() +
                     "\nProduct's average rate : " + product.getAverageRate());
         } catch (Exception e) {
