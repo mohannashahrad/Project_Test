@@ -205,7 +205,7 @@ public class AdminManagerTests {
         adminManager.editProduct("1","supply","4");
         Assert.assertEquals(product.getSupply(),Integer.parseInt("4"));
         adminManager.editProduct("1","categoryName","Children");
-        Assert.assertEquals(product.getCategoryName(),"Children");
+        Assert.assertEquals(product.getCategory(),Category.getCategoryByName("Children"));
         adminManager.editProduct("1","explanation","Good");
         Assert.assertEquals(product.getExplanation(),"Good");;
     }
@@ -258,5 +258,4 @@ public class AdminManagerTests {
         adminManager.processAcceptedRequest(request);
         Assert.assertNotNull(storage.getUserByUsername("sellerUser"));
     }
-    
 }
