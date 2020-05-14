@@ -40,7 +40,9 @@ public class AdminManagerTests {
         adminManager.deleteUser("s1");
         ArrayList<Person> original = new ArrayList<>();
         original.addAll(storage.getAllUsers());
-        Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
+        for (int counter = 0; counter < expected.size(); counter++){
+            Assert.assertTrue(expected.get(counter).equals(original.get(counter)));
+        }
         try {
             adminManager.deleteUser("s7");
         } catch (Exception e){
@@ -139,7 +141,6 @@ public class AdminManagerTests {
         Category category = new Category("Housing");
         storage.addCategory(category);
         adminManager.removeCategory("Housing");
-        //Assert.assertFalse(storage.getAllCategories().contains(category));
         Assert.assertNull(storage.getCategoryByName("Housing"));
         try {
             adminManager.removeCategory("Housing");
@@ -174,39 +175,34 @@ public class AdminManagerTests {
     }
 
     @Test
-    public void editProductTest(){
-        HashMap<String,String> sellerInformation = new HashMap<>();
-        sellerInformation.put("username", "sellerUser");
-        sellerInformation.put("password", "5678");
-        sellerInformation.put("name", "Jack");
-        sellerInformation.put("family name", "Fallon");
-        sellerInformation.put("email", "JackFallon@gmail.com");
-        sellerInformation.put("number", "001987654");
-        sellerInformation.put("balance", "100");
-        sellerInformation.put("role", "seller");
-        sellerInformation.put("company", "Best Products");
-        Seller seller = new Seller(sellerInformation);
+    public void editProductTest() throws Exception {
+        fileSaver.dataReader();
+        Seller seller = (Seller) storage.getUserByUsername("s1");
         HashMap<String,String> productInformation = new HashMap<>();
-        productInformation.put("productId", "1");
+        productInformation.put("productId", "5");
         productInformation.put("name", "sweater");
         productInformation.put("brand", "GAP");
         productInformation.put("price", "280");
         productInformation.put("supply", "2" );
         productInformation.put("categoryName", "clothing");
         productInformation.put("explanation", "warm and cozy");
+        productInformation.put("seller","s1");
         Product product = new Product(productInformation,seller);
         storage.addProduct(product);
-        adminManager.editProduct("1","name","pants");
+        Request request = new Request("add product",productInformation);
+        storage.addRequest(request);
+        adminManager.acceptRequest(Integer.toString(request.getRequestId()));
+        adminManager.editProduct("5","name","pants");
         Assert.assertEquals(product.getName(),"pants");
-        adminManager.editProduct("1","brand","Adidas");
+        adminManager.editProduct("5","brand","Adidas");
         Assert.assertEquals(product.getBrand(),"Adidas");
-        adminManager.editProduct("1","price","300");
+        adminManager.editProduct("5","price","300");
         Assert.assertEquals(product.getPrice(),Double.parseDouble("300.0"),0.0);
-        adminManager.editProduct("1","supply","4");
+        adminManager.editProduct("5","supply","4");
         Assert.assertEquals(product.getSupply(),Integer.parseInt("4"));
-        adminManager.editProduct("1","categoryName","Children");
+        adminManager.editProduct("5","categoryName","Children");
         Assert.assertEquals(product.getCategory(),Category.getCategoryByName("Children"));
-        adminManager.editProduct("1","explanation","Good");
+        adminManager.editProduct("5","explanation","Good");
         Assert.assertEquals(product.getExplanation(),"Good");;
     }
 

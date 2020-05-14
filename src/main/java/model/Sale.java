@@ -75,7 +75,7 @@ public class Sale {
 
     public static void removeProductFromItSale(ArrayList<Sale> allSales, Product specificProduct) { //problem detected:deleting from ArrayList in a loop
         for (Sale sale : allSales) {
-            if(sale.getProductsWithThisSale().contains(specificProduct)){
+            if(sale != null && sale.getProductsWithThisSale().contains(specificProduct)){
                 sale.removeProductFromThisSale(specificProduct);
             }
         }
