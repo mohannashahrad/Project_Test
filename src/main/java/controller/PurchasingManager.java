@@ -21,10 +21,8 @@ public class PurchasingManager extends Manager{
         createBuyLog(receiverInformation,totalPrice,discountPercentage);
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {
-            System.out.println(seller.getBalance());
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
             seller.addBalance(totalPricePerSeller);
-            System.out.println(seller.getBalance());
             createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
         }
         cart.emptyCart();
