@@ -24,6 +24,7 @@ public class PurchasingManager extends Manager{
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
             createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
         }
+        cart.emptyCart();
     }
 
     private void addCustomerToProductsBuyers(){
