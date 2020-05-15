@@ -2,9 +2,9 @@ package View;
 
 import controller.CustomerManager;
 import controller.Manager;
-import model.BuyLog;
-import model.Customer;
-import model.Product;
+import model.*;
+
+import java.util.ArrayList;
 
 public class CustomerMenu extends AccountMenu {
     private CustomerManager customerManager;
@@ -49,8 +49,14 @@ public class CustomerMenu extends AccountMenu {
     private void viewDiscountCodes() {
         if(((Customer)person).getAllDiscounts().isEmpty())
             System.out.println("You don't have any discount code!");
-        else
-            System.out.println("Your discounts are as followed :\n" + ((Customer)person).getAllDiscounts());
+        else {
+            System.out.println("Your discounts are as followed :");
+            ArrayList<Discount> discountArrayList = ((Customer)person).getAllDiscounts();
+            for (Discount discount : discountArrayList){
+                System.out.println("discount code : "+discount.getDiscountCode()+"\npercentage : "+discount.getPercentage()+"%\n" +
+                        "left usage times : "+discount.getUsageCount());
+            }
+        }
     }
 
     private void viewBalance() {
