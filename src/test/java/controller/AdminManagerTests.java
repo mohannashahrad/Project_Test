@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class AdminManagerTests {
 
     private Storage storage = Storage.getStorage();
+    private Manager manager = new Manager();
     private FileSaver fileSaver = new FileSaver(storage);
     private AdminManager adminManager = new AdminManager();
 
@@ -263,5 +264,22 @@ public class AdminManagerTests {
         Request request = new Request("register seller",information);
         adminManager.processAcceptedRequest(request);
         Assert.assertNotNull(storage.getUserByUsername("sellerUser"));
+    }
+
+    @Test
+    public void addSaleRequestTest(){
+        manager.setPerson(storage.getUserByUsername("s1"));
+        ArrayList<Product> productsInSale = new ArrayList<>();
+        productsInSale.add(storage.getProductById(1));
+        productsInSale.add(storage.getProductById(2));
+        HashMap<String,String> saleInformation = new HashMap<>();
+        saleInformation.put("beginDate","2020-07-01 12:20");
+        saleInformation.put("endDate","2020-09-01 12:20");
+        saleInformation.put("amountOfSale","20");
+        saleInformation.put("offId","1");
+        Request request = new Request("add sale",saleInformation);
+        adminManager.processAcceptedRequest(request);
+        Assert.assertEquals(storage.getSaleById(1).getAmountOfSale(),20);
+        Assert.assertEquals(storage.getSaleById(1).getEndDate().toString(),"2020-09-01 12:20");
     }
 }

@@ -154,8 +154,8 @@ public class SellerManagerTests {
         for (Request request : storage.getAllRequests()) {
             if (request.getTypeOfRequest().toString().equals("add sale")) {
                 if (request.getInformation().get("username").equals("s1") && request.getInformation().get("offId").
-                        equals("1") && request.getInformation().get("amountOfSale").equals("20")) {
-                    adminManager.acceptRequest(Integer.toString(request.getRequestId()));
+                        equals("9") && request.getInformation().get("amountOfSale").equals("20")) {
+                    adminManager.processAcceptedRequest(request);
                     Assert.assertTrue(true);
                 }
             }
