@@ -92,7 +92,7 @@ public class SellerManager extends Manager {
             HashMap<String, String> information = new HashMap<>();
             information.put(field, updatedVersion);
             information.put("offId", Integer.toString(offId));
-            storage.addRequest(new Request("edit off", information));
+            storage.addRequest(new Request("edit sale", information));
         }
     }
 
