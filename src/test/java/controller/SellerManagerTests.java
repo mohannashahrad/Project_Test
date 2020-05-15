@@ -106,10 +106,10 @@ public class SellerManagerTests {
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"You don't have such product!");
         }
-        sellerManager.removeProduct(1);
+        sellerManager.removeProduct(2);
         for (Request request : storage.getAllRequests()) {
-            if (request.getTypeOfRequest().toString().equals("remove product")){
-                if (request.getInformation().get("username").equals("s1") && request.getInformation().get("productId").equals("1")){
+            if (request.getTypeOfRequest().equals(RequestType.REMOVE_PRODUCT)){
+                if (request.getInformation().get("username").equals("s1") && request.getInformation().get("productId").equals("2")){
                     Assert.assertTrue(true);
                 }
             }
@@ -147,21 +147,21 @@ public class SellerManagerTests {
         productsInSale.add(storage.getProductById(1));
         productsInSale.add(storage.getProductById(2));
         HashMap<String,String> saleInformation = new HashMap<>();
-        saleInformation.put("beginDate","2020-07-01 12:20");
-        saleInformation.put("endDate","2020-09-01 12:20");
+        saleInformation.put("beginDate","2020,07,01,12,20");
+        saleInformation.put("endDate","2020,09,01,12,20");
         saleInformation.put("amountOfSale","20");
         sellerManager.addOff(saleInformation,productsInSale);
         for (Request request : storage.getAllRequests()) {
-            if (request.getTypeOfRequest().toString().equals("add sale")) {
+            if (request.getTypeOfRequest().equals(RequestType.ADD_SALE)) {
                 if (request.getInformation().get("username").equals("s1") && request.getInformation().get("offId").
                         equals("1") && request.getInformation().get("amountOfSale").equals("20")) {
-                    adminManager.processAcceptedRequest(request);
+                    adminManager.acceptRequest(Integer.toString(request.getRequestId()));
                     Assert.assertTrue(true);
                 }
             }
         }
         try {
-            sellerManager.editOff(3,"endDate","2020-09-20 12:20");
+            sellerManager.editOff(3,"endDate","2020,09,20,12,20");
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"There is not such off!");
         }

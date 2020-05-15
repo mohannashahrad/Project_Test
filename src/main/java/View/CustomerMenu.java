@@ -56,13 +56,13 @@ public class CustomerMenu extends AccountMenu {
     private void viewBalance() {
         System.out.println("Your balance is : "+person.getBalance());
         System.out.println("Enter\n1.add balance\n2.back");
-        int command = Integer.parseInt(scanner.nextLine());
-        if (command == 1){
+        String  command = scanner.nextLine().trim();
+        if (command.equals("1")){
             System.out.println("Enter Amount to add :");
             double amount = Double.parseDouble(scanner.nextLine());
             customerManager.addBalance(amount);
             System.out.println("added successfully.\nYour current balance is : "+person.getBalance());
-        }else if (command == 2)
+        }else if (command.equals("2"))
             return;
         else
             System.out.println("Invalid choice");
@@ -72,12 +72,12 @@ public class CustomerMenu extends AccountMenu {
         showAllOrders();
         while (true){
             System.out.println("Enter\n1.show order\n2.rate\n3.back");
-            int command = Integer.parseInt(scanner.nextLine());
-            if (command == 1)
+            String command = scanner.nextLine().trim();
+            if (command.equals("1"))
                 showSingleOrder();
-            else if (command == 2)
+            else if (command.equals("2"))
                 rateProduct();
-            else if (command == 3)
+            else if (command.equals("3"))
                 break;
             else
                 System.out.println("Invalid choice");

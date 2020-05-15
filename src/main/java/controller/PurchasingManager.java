@@ -86,7 +86,7 @@ public class PurchasingManager extends Manager{
 
     public boolean doesCustomerHaveEnoughMoney(double price){
         return !(person.getBalance() < price);
-}
+     }
 
     public double calculateTotalPriceWithDiscount (String discountCode){
         double totalPriceWithoutDiscount = getTotalPriceWithoutDiscount();

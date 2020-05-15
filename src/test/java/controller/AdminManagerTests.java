@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class AdminManagerTests {
@@ -17,6 +18,7 @@ public class AdminManagerTests {
     private Manager manager = new Manager();
     private FileSaver fileSaver = new FileSaver(storage);
     private AdminManager adminManager = new AdminManager();
+    private SellerManager sellerManager = new SellerManager();
 
     @Test
     public void viewUserTest() throws Exception{
@@ -33,12 +35,12 @@ public class AdminManagerTests {
     @Test
     public void deleteUserTest() throws Exception {
         fileSaver.dataReader();
-        Person person = storage.getUserByUsername("s1");
+        Person person = storage.getUserByUsername("s2");
         int index = storage.getAllUsers().lastIndexOf(person);
         storage.getAllUsers().remove(person);
         ArrayList<Person> expected = new ArrayList<>(storage.getAllUsers());
         storage.getAllUsers().add(index, person);
-        adminManager.deleteUser("s1");
+        adminManager.deleteUser("s2");
         ArrayList<Person> original = new ArrayList<>(storage.getAllUsers());
         for (int counter = 0; counter < expected.size(); counter++){
             Assert.assertEquals(expected.get(counter), original.get(counter));
@@ -49,7 +51,6 @@ public class AdminManagerTests {
             Assert.assertEquals(e.getMessage(),"There is not such user!!");
         }
     }
-
     @Test
     public void createManagerTest() throws Exception{
         fileSaver.dataReader();
@@ -102,7 +103,6 @@ public class AdminManagerTests {
     public void removeProductTest() throws Exception{
         fileSaver.dataReader();
         HashMap<String,String> productInformation = new HashMap<>();
-        productInformation.put("productId", "17");
         productInformation.put("name", "sweater");
         productInformation.put("brand", "GAP");
         productInformation.put("price", "230");
@@ -112,7 +112,7 @@ public class AdminManagerTests {
         productInformation.put("seller","s1");
         Product product = new Product(productInformation, (Seller)storage.getUserByUsername("s1"));
         storage.addProduct(product);
-        adminManager.removeProduct("17");
+        adminManager.removeProduct("5");
         ArrayList<Product> original = storage.getAllProducts();
         Assert.assertFalse(original.contains(product));
         try {
@@ -218,13 +218,13 @@ public class AdminManagerTests {
 
     @Test
     public void editSaleTest(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         Sale sale = new Sale(LocalDateTime.now(),LocalDateTime.now(),20,null);
         storage.addSale(sale);
-        adminManager.editSale(sale.getSaleId(),"beginDate","2020-05-28 12:20");
-        Assert.assertEquals(sale.getBeginDate(),LocalDateTime.parse("2020-05-28 12:20", formatter));
-        adminManager.editSale(sale.getSaleId(),"endDate","2020-08-28 12:20");
-        Assert.assertEquals(sale.getEndDate(),LocalDateTime.parse("2020-08-28 12:20", formatter));
+        adminManager.editSale(sale.getSaleId(),"beginDate","2020,05,28,12,20");
+        Assert.assertEquals(sale.getBeginDate(),LocalDateTime.parse("2020,05,28,12,20", formatter));
+        adminManager.editSale(sale.getSaleId(),"endDate","2020,08,28,12,20");
+        Assert.assertEquals(sale.getEndDate(),LocalDateTime.parse("2020,08,28,12,20", formatter));
         adminManager.editSale(sale.getSaleId(),"amountOfSale","30");
         Assert.assertEquals(sale.getAmountOfSale(),30);
     }
@@ -268,18 +268,17 @@ public class AdminManagerTests {
     @Test
     public void addSaleRequestTest(){
         manager.setPerson(storage.getUserByUsername("s1"));
-        ArrayList<Product> productsInSale = new ArrayList<>();
-        productsInSale.add(storage.getProductById(1));
-        productsInSale.add(storage.getProductById(2));
+        ArrayList<Product> productsInSale = new ArrayList<>(Arrays.asList(storage.getProductById(1),storage.getProductById(2)));
+        sellerManager.getSavedProductsInSale().put(1, productsInSale);
         HashMap<String,String> saleInformation = new HashMap<>();
         saleInformation.put("username","s1");
         saleInformation.put("beginDate","2020,07,01,12,20");
         saleInformation.put("endDate","2020,09,01,12,20");
-        saleInformation.put("amountOfSale","20");
+        saleInformation.put("amountOfSale","30");
         saleInformation.put("offId","1");
         Request request = new Request("add sale",saleInformation);
         adminManager.processAcceptedRequest(request);
-        Assert.assertEquals(storage.getSaleById(1).getAmountOfSale(),20);
-        Assert.assertEquals(storage.getSaleById(1).getEndDate().toString(),"2020,09,01,12,20");
+        Assert.assertEquals(storage.getSaleById(1).getAmountOfSale(),30);
+        Assert.assertEquals("2020-08-28T12:20", storage.getSaleById(1).getEndDate().toString());
     }
 }

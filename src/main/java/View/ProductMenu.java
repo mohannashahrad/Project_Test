@@ -53,10 +53,10 @@ public class ProductMenu extends Menu {
         }
         while (true) {
             System.out.println("Enter\n1.add comment\n2.back");
-            int command = Integer.parseInt(scanner.nextLine());
-            if (command == 1)
+            String command = scanner.nextLine();
+            if (command.equals("1"))
                 addComment();
-            else if (command == 2)
+            else if (command.equals("2"))
                 break;
             else
                 System.out.println("Invalid choice");

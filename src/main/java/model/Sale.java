@@ -5,20 +5,30 @@ import java.util.ArrayList;
 
 public class Sale {
     private int saleId;
-    static private int lastSaleId = 0;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
     private static ArrayList<Sale>allSales = new ArrayList<>();
 
+    private int idSetter() {
+        if (allSales.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Sale sale : allSales) {
+            if (sale.saleId > max)
+                max = sale.saleId;
+        }
+        return max + 1;
+    }
+
     public static ArrayList<Sale> getAllSales() {
         return allSales;
     }
 
     public Sale(LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
-        this.saleId = lastSaleId + 1;
-        lastSaleId++;
+        this.saleId = idSetter();
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.amountOfSale = amountOfSale;
@@ -42,7 +52,7 @@ public class Sale {
     }
 
     public int getLastSaleId() {
-        return lastSaleId;
+        return this.idSetter();
     }
 
     public ArrayList<Product> getProductsWithThisSale() {
