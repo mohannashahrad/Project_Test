@@ -154,13 +154,13 @@ public class SellerManagerTests {
         for (Request request : storage.getAllRequests()) {
             if (request.getTypeOfRequest().toString().equals("add sale")) {
                 if (request.getInformation().get("username").equals("s1") && request.getInformation().get("offId").
-                        equals("9") && request.getInformation().get("amountOfSale").equals("20")) {
+                        equals("1") && request.getInformation().get("amountOfSale").equals("20")) {
                     adminManager.processAcceptedRequest(request);
                     Assert.assertTrue(true);
                 }
             }
         }
-        /*try {
+        try {
             sellerManager.editOff(3,"endDate","2020-09-20 12:20");
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"There is not such off!");
@@ -173,7 +173,7 @@ public class SellerManagerTests {
                     Assert.assertTrue(true);
                 }
             }
-        }*/
+        }
     }
 
     @Test
