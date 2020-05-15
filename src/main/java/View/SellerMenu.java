@@ -412,6 +412,13 @@ public class SellerMenu extends AccountMenu {
         return localDateTime;
 
     }
+    @Override
+    public void run() {
+        if (!(person instanceof Seller) )
+            MainMenu.getMainMenu().run();
+        else super.run();
+
+    }
 
     @Override
     public void show() {

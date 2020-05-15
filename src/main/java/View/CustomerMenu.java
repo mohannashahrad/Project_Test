@@ -141,6 +141,14 @@ public class CustomerMenu extends AccountMenu {
     }
 
     @Override
+    public void run() {
+        if (!(person instanceof Customer) )
+            MainMenu.getMainMenu().run();
+        else super.run();
+
+    }
+
+    @Override
     public void show() {
         System.out.println("Customer Menu :");
         System.out.println("1.view personal info\n2.view cart\n3.purchase\n4.view orders\n5.view balance\n" +

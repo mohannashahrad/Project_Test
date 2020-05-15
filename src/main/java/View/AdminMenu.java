@@ -481,6 +481,13 @@ public class AdminMenu extends AccountMenu {
             System.out.println(e.getMessage());
         }
     }
+    @Override
+    public void run() {
+        if (!(person instanceof Admin) )
+            MainMenu.getMainMenu().run();
+        else super.run();
+
+    }
 
 
     @Override

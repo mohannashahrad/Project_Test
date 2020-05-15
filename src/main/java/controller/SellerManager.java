@@ -85,7 +85,7 @@ public class SellerManager extends Manager {
 
     public void editOff(int offId, String field, String updatedVersion) throws Exception {
         if (storage.getSaleById(offId) == null)
-            throw new Exception("There is not such off!");
+            throw new Exception("There is no such off!");
         else if (!((Seller)person).getSaleList().contains(storage.getSaleById(offId)))
             throw new Exception("You don't have such off!");
         else {

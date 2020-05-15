@@ -10,10 +10,18 @@ public class MainMenu extends Menu {
     protected Filter filterPrice = new Filter("price", "temp");
     protected Sort sortAverageRate = new Sort("average rate");
     protected Sort sortPrice = new Sort("price");
+    private static MainMenu MainMenu;
 
-    public MainMenu(Menu previousMenu) {
+    private MainMenu(Menu previousMenu) {
         super("MainMenu", previousMenu);
     }
+    public static MainMenu getMainMenu(){
+        if (MainMenu == null)
+            return new MainMenu(null);
+        else return MainMenu;
+
+    }
+
 
 
     @Override
