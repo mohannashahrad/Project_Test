@@ -28,7 +28,11 @@ public class CartMenu extends Menu{
                 showTotalPrice();
             else if (command.equals("6"))
                 purchase();
-            else if (command.equals("7"))
+            else if (command.equals("7")){
+                LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
+                loginRegisterMenu.run();
+            }
+            else if (command.equals("8"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -36,6 +40,7 @@ public class CartMenu extends Menu{
                 System.out.println("Invalid choice");
 
         }while (true);
+        this.getPreviousMenu().run();
 
     }
 
@@ -110,7 +115,7 @@ public class CartMenu extends Menu{
     public void show() {
         System.out.println("Cart Menu :");
         System.out.println("Enter\n1.show products\n2.view a product\n3.increase a product\n4.decrease a product" +
-                "\n5.show total price\n6.purchase\n7.back");
+                "\n5.show total price\n6.purchase\n7.Login and register\n8.back");
 
     }
 }
