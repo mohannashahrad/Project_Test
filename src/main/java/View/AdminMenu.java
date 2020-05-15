@@ -250,7 +250,7 @@ public class AdminMenu extends AccountMenu {
             System.out.println("Enter field to edit :\n1.start date and time\n2.end date and time\n3.percentage\n4.maximum amount" +
                     "\n5.usage per customer\n6.add customer to this discount\n7.remove customer from this discount\n8.back");
             String command = scanner.nextLine().trim();
-            if (!(command.matches("[1-7]"))) {
+            if (!(command.matches("[1-8]"))) {
                 System.out.println("Invalid command");
                 continue;
             } else if (command.equals("8"))
