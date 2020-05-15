@@ -37,6 +37,8 @@ public class CustomerManager extends Manager {
     public void increaseProduct(String productId) throws Exception {
         if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!");
+        if(storage.getProductById(Integer.parseInt(productId)).getSupply() == 0)
+            throw new Exception("We have run out of this product!!");
         else if (!cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
             cart.addProductToCart(storage.getProductById(Integer.parseInt(productId)));
         else

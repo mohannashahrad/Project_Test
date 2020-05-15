@@ -76,7 +76,8 @@ public class ProductMenu extends Menu {
         System.out.println("Enter the second product's Id :");
         int secondProductId = Integer.parseInt(scanner.nextLine());
         try {
-            productManager.compareTwoProducts(product.getProductId(), secondProductId);
+            String output = productManager.compareTwoProducts(product.getProductId(), secondProductId);
+            System.out.println(output);
             System.out.println("Comparing finished Successfully!");
         } catch (Exception e) {
             System.out.println(e.getMessage());

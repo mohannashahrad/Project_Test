@@ -26,7 +26,7 @@ public class ProductManager extends Manager {
         storage.addRequest(new Request("add comment",information));
     }
 
-    public void compareTwoProducts(int firstProduct, int secondProduct) throws Exception {
+    public String compareTwoProducts(int firstProduct, int secondProduct) throws Exception {
         if (storage.getProductById(secondProduct) == null)
             throw new Exception("There is not a product with this Id!");
         else if (firstProduct == secondProduct)
@@ -34,21 +34,18 @@ public class ProductManager extends Manager {
         else {
             Product first = storage.getProductById(firstProduct);
             Product second = storage.getProductById(secondProduct);
-            System.out.println("First Product Name : " + first.getName() +
-                    " --- Second Product Name : " + second.getName());
-            System.out.println("First Product Price : " + first.getPrice() +
-                    " --- Second Product Price : " + second.getPrice());
-            System.out.println("First Product Seller Name : " + first.getSeller().getName() + " " +
-                    first.getSeller().getFamilyName() + " --- Second Product Seller Name : " +
-                    second.getSeller().getName() + " " + second.getSeller().getFamilyName());
-            System.out.println("First Product Average Rate : " + first.getAverageRate() +
-                    " --- Second Product Average Rate : " + second.getAverageRate());
-            System.out.println("First Product Brand : " + first.getBrand() +
-                    " --- Second Product Brand : " + second.getBrand());
-            System.out.println("First Product Explanation: " + first.getExplanation() +
-                    " --- Second Product Explanation : " + second.getExplanation());
-            System.out.println("First Product Number Of Available Samples : " + first.getSupply() +
-                    " --- Second Product Number Of Available Samples : " + second.getSupply());
+            String output = "First Product Name : " + first.getName() +
+                    " --- Second Product Name : " + second.getName() + "\n" + "First Product Price : " + first.getPrice()+
+            " --- Second Product Price : " + second.getPrice() + "\n" + "First Product Seller Name : " +
+                    first.getSeller().getName() + " " + first.getSeller().getFamilyName() + " --- " +
+                    "Second Product Seller Name : " + second.getSeller().getName() + " " + second.getSeller().getFamilyName()
+                    + "\n" + "First Product Average Rate : " + first.getAverageRate() + " --- Second Product Average" +
+                    " Rate : " + second.getAverageRate() + "\n" + "First Product Brand : " + first.getBrand() +
+                    " --- Second Product Brand : " + second.getBrand() + "\n" + "First Product Explanation: " +
+                    first.getExplanation() + " --- Second Product Explanation : " + second.getExplanation() +
+                    "\n" +"First Product Number Of Available Samples : " + first.getSupply() + " --- Second Product" +
+                    " Number Of Available Samples : " + second.getSupply();
+            return output;
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class AdminManagerTests {
 
     private Storage storage = Storage.getStorage();
+    private Manager manager = new Manager();
     private FileSaver fileSaver = new FileSaver(storage);
     private AdminManager adminManager = new AdminManager();
 
@@ -33,14 +34,15 @@ public class AdminManagerTests {
     public void deleteUserTest() throws Exception {
         fileSaver.dataReader();
         Person person = storage.getUserByUsername("s1");
+        int index = storage.getAllUsers().lastIndexOf(person);
         storage.getAllUsers().remove(person);
-        ArrayList<Person> expected = new ArrayList<>();
-        expected.addAll(storage.getAllUsers());
-        storage.addUser(person);
+        ArrayList<Person> expected = new ArrayList<>(storage.getAllUsers());
+        storage.getAllUsers().add(index, person);
         adminManager.deleteUser("s1");
-        ArrayList<Person> original = new ArrayList<>();
-        original.addAll(storage.getAllUsers());
-        Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
+        ArrayList<Person> original = new ArrayList<>(storage.getAllUsers());
+        for (int counter = 0; counter < expected.size(); counter++){
+            Assert.assertEquals(expected.get(counter), original.get(counter));
+        }
         try {
             adminManager.deleteUser("s7");
         } catch (Exception e){
@@ -99,8 +101,18 @@ public class AdminManagerTests {
     @Test
     public void removeProductTest() throws Exception{
         fileSaver.dataReader();
-        Product product = storage.getProductById(2);
-        adminManager.removeProduct("2");
+        HashMap<String,String> productInformation = new HashMap<>();
+        productInformation.put("productId", "17");
+        productInformation.put("name", "sweater");
+        productInformation.put("brand", "GAP");
+        productInformation.put("price", "230");
+        productInformation.put("supply", "2" );
+        productInformation.put("categoryName", "children");
+        productInformation.put("explanation", "warm and cozy");
+        productInformation.put("seller","s1");
+        Product product = new Product(productInformation, (Seller)storage.getUserByUsername("s1"));
+        storage.addProduct(product);
+        adminManager.removeProduct("17");
         ArrayList<Product> original = storage.getAllProducts();
         Assert.assertFalse(original.contains(product));
         try {
@@ -127,26 +139,25 @@ public class AdminManagerTests {
     @Test
     public void editCategoryByNameTest(){
         fileSaver.dataReader();
-        Category category = new Category("Housing");
+        Category category = new Category("Clothing");
         storage.addCategory(category);
-        adminManager.editCategoryByName("Housing","Cloth");
-        Assert.assertEquals("Cloth",category.getCategoryName());
-        Assert.assertNotNull(storage.getCategoryByName("Cloth"));
+        adminManager.editCategoryByName("Clothing","Babies");
+        Assert.assertEquals("Babies",category.getCategoryName());
+        Assert.assertNotNull(storage.getCategoryByName("Babies"));
     }
 
-    /*@Test
+    @Test
     public void removeCategoryTest() throws Exception {
-        Category category = new Category("Housing");
+        Category category = new Category("Gardening");
         storage.addCategory(category);
-        adminManager.removeCategory("Housing");
-        //Assert.assertFalse(storage.getAllCategories().contains(category));
-        Assert.assertNull(storage.getCategoryByName("Housing"));
+        adminManager.removeCategory("Gardening");
+        Assert.assertNull(storage.getCategoryByName("Gardening"));
         try {
-            adminManager.removeCategory("Housing");
+            adminManager.removeCategory("Gardening");
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"There is not a category with this name!!");
         }
-    }*/
+    }
 
     @Test
     public void editDiscountFieldTest(){
@@ -174,39 +185,34 @@ public class AdminManagerTests {
     }
 
     @Test
-    public void editProductTest(){
-        HashMap<String,String> sellerInformation = new HashMap<>();
-        sellerInformation.put("username", "sellerUser");
-        sellerInformation.put("password", "5678");
-        sellerInformation.put("name", "Jack");
-        sellerInformation.put("family name", "Fallon");
-        sellerInformation.put("email", "JackFallon@gmail.com");
-        sellerInformation.put("number", "001987654");
-        sellerInformation.put("balance", "100");
-        sellerInformation.put("role", "seller");
-        sellerInformation.put("company", "Best Products");
-        Seller seller = new Seller(sellerInformation);
+    public void editProductTest() throws Exception {
+        fileSaver.dataReader();
+        Seller seller = (Seller) storage.getUserByUsername("s1");
         HashMap<String,String> productInformation = new HashMap<>();
-        productInformation.put("productId", "1");
+        productInformation.put("productId", "5");
         productInformation.put("name", "sweater");
         productInformation.put("brand", "GAP");
         productInformation.put("price", "280");
         productInformation.put("supply", "2" );
         productInformation.put("categoryName", "clothing");
         productInformation.put("explanation", "warm and cozy");
+        productInformation.put("seller","s1");
         Product product = new Product(productInformation,seller);
         storage.addProduct(product);
-        adminManager.editProduct("1","name","pants");
+        Request request = new Request("add product",productInformation);
+        storage.addRequest(request);
+        adminManager.acceptRequest(Integer.toString(request.getRequestId()));
+        adminManager.editProduct("5","name","pants");
         Assert.assertEquals(product.getName(),"pants");
-        adminManager.editProduct("1","brand","Adidas");
+        adminManager.editProduct("5","brand","Adidas");
         Assert.assertEquals(product.getBrand(),"Adidas");
-        adminManager.editProduct("1","price","300");
+        adminManager.editProduct("5","price","300");
         Assert.assertEquals(product.getPrice(),Double.parseDouble("300.0"),0.0);
-        adminManager.editProduct("1","supply","4");
+        adminManager.editProduct("5","supply","4");
         Assert.assertEquals(product.getSupply(),Integer.parseInt("4"));
-        adminManager.editProduct("1","categoryName","Children");
+        adminManager.editProduct("5","categoryName","Children");
         Assert.assertEquals(product.getCategory(),Category.getCategoryByName("Children"));
-        adminManager.editProduct("1","explanation","Good");
+        adminManager.editProduct("5","explanation","Good");
         Assert.assertEquals(product.getExplanation(),"Good");;
     }
 
@@ -257,5 +263,23 @@ public class AdminManagerTests {
         Request request = new Request("register seller",information);
         adminManager.processAcceptedRequest(request);
         Assert.assertNotNull(storage.getUserByUsername("sellerUser"));
+    }
+
+    @Test
+    public void addSaleRequestTest(){
+        manager.setPerson(storage.getUserByUsername("s1"));
+        ArrayList<Product> productsInSale = new ArrayList<>();
+        productsInSale.add(storage.getProductById(1));
+        productsInSale.add(storage.getProductById(2));
+        HashMap<String,String> saleInformation = new HashMap<>();
+        saleInformation.put("username","s1");
+        saleInformation.put("beginDate","2020,07,01,12,20");
+        saleInformation.put("endDate","2020,09,01,12,20");
+        saleInformation.put("amountOfSale","20");
+        saleInformation.put("offId","1");
+        Request request = new Request("add sale",saleInformation);
+        adminManager.processAcceptedRequest(request);
+        Assert.assertEquals(storage.getSaleById(1).getAmountOfSale(),20);
+        Assert.assertEquals(storage.getSaleById(1).getEndDate().toString(),"2020,09,01,12,20");
     }
 }

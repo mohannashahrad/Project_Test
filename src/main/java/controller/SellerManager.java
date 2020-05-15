@@ -7,7 +7,7 @@ import model.*;
 
 public class SellerManager extends Manager {
 
-    private HashMap<Integer, ArrayList<Product>> savedProductsInSale = new HashMap<>();
+    private static HashMap<Integer, ArrayList<Product>> savedProductsInSale = new HashMap<>();
 
     public SellerManager() {
     }
@@ -77,7 +77,7 @@ public class SellerManager extends Manager {
     public void addOff(HashMap<String, String> information, ArrayList<Product> productsInOff){
         Sale sale = new Sale(null,null,0,null);
         int offId = sale.getLastSaleId() + 1;
-        savedProductsInSale.put(offId, productsInOff);
+        savedProductsInSale.put(offId,productsInOff);
         information.put("username", person.getUsername());
         information.put("offId", Integer.toString(offId));
         storage.addRequest(new Request("add sale", information));

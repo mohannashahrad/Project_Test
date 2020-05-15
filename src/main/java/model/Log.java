@@ -30,4 +30,13 @@ public class Log {
     public void addProductToLog(Product product) {
         products.add(product);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Log first = (Log) this;
+        Log second = (Log) obj;
+        boolean date = this.date.equals(((Log) obj).date);
+        boolean products = this.products.equals(((Log) obj).products);
+        return date && products;
+    }
 }

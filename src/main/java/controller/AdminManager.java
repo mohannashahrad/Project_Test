@@ -8,6 +8,8 @@ import model.*;
 import java.util.HashMap;
 
 public class AdminManager extends Manager {
+
+    private SellerManager tempSellerManager = new SellerManager();
     public AdminManager() {
     }
 
@@ -235,7 +237,7 @@ public class AdminManager extends Manager {
     }
 
     public void editSale (int offId, String field, String updatedVersion){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("endDate"))
@@ -245,15 +247,15 @@ public class AdminManager extends Manager {
     }
 
     private void addSaleRequest (Request request){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
         LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);
         int amountOfOff = Integer.parseInt(request.getInformation().get("amountOfSale"));
         int offId = Integer.parseInt(request.getInformation().get("offId"));
-        Sale sale = new Sale(beginDate,endDate,amountOfOff,sellerManager.getSavedProductsInSale().get(offId));
+        Sale sale = new Sale(beginDate,endDate,amountOfOff,tempSellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);
         ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
-        for (Product product : sellerManager.getSavedProductsInSale().get(offId)) {
+        for (Product product : tempSellerManager.getSavedProductsInSale().get(offId)) {
             product.setSale(sale);
         }
     }
