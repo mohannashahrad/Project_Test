@@ -39,10 +39,13 @@ public class CustomerManager extends Manager {
             throw new Exception("There is not such product!");
         if(storage.getProductById(Integer.parseInt(productId)).getSupply() == 0)
             throw new Exception("We have run out of this product!!");
-        else if (!cart.getProductsInCart().containsKey(storage.getProductById(Integer.parseInt(productId))))
-            cart.addProductToCart(storage.getProductById(Integer.parseInt(productId)));
-        else
-            super.cart.addNumberOfProductInTheCart(storage.getProductById(Integer.parseInt(productId)));
+        for (Product product : cart.getProductsInCart().keySet()) {
+            if(product.equals(storage.getProductById(Integer.parseInt(productId)))){
+                super.cart.addNumberOfProductInTheCart(storage.getProductById(Integer.parseInt(productId)));
+                return;
+            }
+        }
+        cart.addProductToCart(storage.getProductById(Integer.parseInt(productId)));
     }
 
     public void decreaseProduct(String productId) throws Exception {

@@ -201,4 +201,11 @@ public class Product implements Comparable<Product> {
                 " -average rate :" + averageRate + "\n" +
                 " -seller's name :" + seller.getName() + " " + seller.getFamilyName() + "\n";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Product first = (Product) this;
+        Product second = (Product) obj;
+        return first.getProductId() == second.getProductId();
+    }
 }
