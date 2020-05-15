@@ -90,7 +90,8 @@ public class SellerManager extends Manager {
             throw new Exception("You don't have such off!");
         else {
             HashMap<String, String> information = new HashMap<>();
-            information.put(field, updatedVersion);
+            information.put("field", field);
+            information.put("updatedVersion",updatedVersion);
             information.put("offId", Integer.toString(offId));
             storage.addRequest(new Request("edit sale", information));
         }
