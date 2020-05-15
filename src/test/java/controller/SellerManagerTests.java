@@ -106,10 +106,10 @@ public class SellerManagerTests {
         } catch (Exception e){
             Assert.assertEquals(e.getMessage(),"You don't have such product!");
         }
-        sellerManager.removeProduct(1);
+        sellerManager.removeProduct(2);
         for (Request request : storage.getAllRequests()) {
-            if (request.getTypeOfRequest().toString().equals("remove product")){
-                if (request.getInformation().get("username").equals("s1") && request.getInformation().get("productId").equals("1")){
+            if (request.getTypeOfRequest().equals(RequestType.REMOVE_PRODUCT)){
+                if (request.getInformation().get("username").equals("s1") && request.getInformation().get("productId").equals("2")){
                     Assert.assertTrue(true);
                 }
             }
