@@ -90,7 +90,7 @@ public class Discount {
     }
 
     public double calculateAmountOfDiscount(double totalPrice) {
-        return totalPrice * ((double) percentage / 100);
+        return totalPrice * (1.0* percentage / 100);
     }
 
     @Override

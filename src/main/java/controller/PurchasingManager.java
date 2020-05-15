@@ -16,7 +16,7 @@ public class PurchasingManager extends Manager{
     }
 
     public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double discountPercentage){
-        double moneyToTransfer = totalPrice - totalPrice*(discountPercentage/100);
+        double moneyToTransfer = totalPrice - totalPrice*(1.0*discountPercentage/100);
         person.setBalance(person.getBalance() - moneyToTransfer);
         createBuyLog(receiverInformation,totalPrice,discountPercentage);
         addCustomerToProductsBuyers();
@@ -93,7 +93,7 @@ public class PurchasingManager extends Manager{
     public double calculateTotalPriceWithDiscount (String discountCode){
         double totalPriceWithoutDiscount = getTotalPriceWithoutDiscount();
         double discountPercentage = storage.getDiscountByCode(discountCode).getPercentage();
-        return (double)((100 - discountPercentage) * totalPriceWithoutDiscount)/100;
+        return (1.0*(100 - discountPercentage) * totalPriceWithoutDiscount)/100;
     }
 
     public double getDiscountPercentage (String discountCode){

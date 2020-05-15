@@ -170,5 +170,12 @@ public class PurchasingManagerTests {
         manager.setPerson(storage.getUserByUsername("c1"));
         Assert.assertFalse(purchasingManager.doesCustomerHaveEnoughMoney(30.0));
     }
+    @Test
+    public void MoneyToTransferTest(){
+        double totalPrice = 20;
+        int discountPercentage = 10;
+        double moneyToTransfer =   totalPrice - totalPrice*(1.0*discountPercentage/100);
+      Assert.assertEquals(moneyToTransfer,18,0.0);
+    }
 
 }
