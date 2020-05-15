@@ -107,6 +107,10 @@ public class CustomerMenu extends AccountMenu {
     private void showSingleOrder (){
         System.out.println("Enter your orderId :");
         String orderId = scanner.nextLine();
+        if (customerManager.getCustomerBuyLogs().isEmpty()){
+            System.out.println("You didn't have this order!");
+            return;
+        }
         BuyLog buyLog = customerManager.getOrderWithId(orderId);
         System.out.println("Your Buy Order :" + buyLog.getBuyCode());
         System.out.println("Date : " + buyLog.getDate());

@@ -22,8 +22,10 @@ public class PurchasingManager extends Manager{
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
+            seller.addBalance(totalPricePerSeller);
             createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
         }
+        cart.emptyCart();
     }
 
     private void addCustomerToProductsBuyers(){

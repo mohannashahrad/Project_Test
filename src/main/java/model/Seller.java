@@ -66,4 +66,8 @@ public class Seller extends Person {
     public void addSale(Sale newSale) {
         saleList.add(newSale);
     }
+
+    public void addBalance(double amountToBeAdded){
+        this.setBalance(this.getBalance() + amountToBeAdded);
+    }
 }

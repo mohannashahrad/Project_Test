@@ -76,4 +76,10 @@ public class Cart {
     public void removeProduct(Product specificProduct) {
         productsInCart.remove(specificProduct, 0);
     }
+
+    public void emptyCart(){
+        this.totalPrice = 0;
+        this.customer = null;
+        this.productsInCart.clear();
+    }
 }

@@ -64,7 +64,7 @@ public class Manager {
     public void logout() {
         Menu.setPerson(null);
         person = null;
-        this.cart = null;
+        cart.emptyCart();
     }
 
     public void editField(String field, String updatedVersion) throws Exception {
