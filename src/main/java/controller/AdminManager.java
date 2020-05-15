@@ -231,7 +231,7 @@ public class AdminManager extends Manager {
         else if (field.equalsIgnoreCase("supply"))
             storage.getProductById(Integer.parseInt(productId)).setSupply(Integer.parseInt(updatedVersion));
         else if (field.equalsIgnoreCase("categoryName"))
-            storage.getProductById(Integer.parseInt(productId)).setCategory(storage.getCategoryByName(updatedVersion));
+            storage.getProductById(Integer.parseInt(productId)).setCategory(Category.getCategoryByName(updatedVersion));
     }
 
     public void editSale (int offId, String field, String updatedVersion){
