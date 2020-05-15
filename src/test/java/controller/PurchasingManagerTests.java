@@ -156,4 +156,19 @@ public class PurchasingManagerTests {
 
     }
 
+    @Test
+    public void displayDetailsOfProductTest(){
+        HashMap<Product,Integer> products = new HashMap<>();
+        products.put(storage.getProductById(1),1);
+        manager.cart.setProductsInCart(products);
+        String original = purchasingManager.displayDetailsOfProduct(storage.getProductById(1));
+        String expected = "p11 -- 10.0 -- 0.0 -- 10.0 -- 1";
+    }
+
+    @Test
+    public void doesCustomerHaveEnoughMoneyTest(){
+        manager.setPerson(storage.getUserByUsername("c1"));
+        Assert.assertFalse(purchasingManager.doesCustomerHaveEnoughMoney(30.0));
+    }
+
 }
