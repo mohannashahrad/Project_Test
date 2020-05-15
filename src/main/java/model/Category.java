@@ -9,17 +9,6 @@ public class Category {
     private HashMap<String, String> properties;
     private static ArrayList<Category>allCategories = new ArrayList<>();
 
-    static {
-        addUncategorized();
-    }
-
-    private static void addUncategorized() {
-        for (Category category : allCategories){
-            if (category.categoryName.equals("uncategorized"))
-                return;
-        }
-        allCategories.add(new Category("uncategorized"));
-    }
 
     public static ArrayList<Category> getAllCategories() {
         return allCategories;
