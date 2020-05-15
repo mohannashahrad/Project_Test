@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminMenu extends AccountMenu{
+public class AdminMenu extends AccountMenu {
     AdminManager adminManager;
 
     public AdminMenu(Menu previousMenu) {
@@ -35,11 +35,10 @@ public class AdminMenu extends AccountMenu{
                 manageRequestsMenu();
             else if (command.equals("7"))
                 manageCategoriesMenu();
-            else if (command.equals("8")){
+            else if (command.equals("8")) {
                 LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
                 loginRegisterMenu.run();
-            }
-            else if (command.equals("9"))
+            } else if (command.equals("9"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -54,14 +53,14 @@ public class AdminMenu extends AccountMenu{
 
     private void manageCategoriesMenu() {
         viewAllCategories();
-        while (true){
+        while (true) {
             System.out.println("Enter\n1.edit a category\n2.add a category\n3.remove a category\n4.back :");
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 editCategory();
             else if (command.equals("2"))
                 addCategory();
-            else if (command.equals(3))
+            else if (command.equals("3"))
                 removeCategory();
             else if (command.equals("4"))
                 break;
@@ -75,7 +74,7 @@ public class AdminMenu extends AccountMenu{
         String name = scanner.nextLine();
         try {
             adminManager.removeCategory(name);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -83,14 +82,14 @@ public class AdminMenu extends AccountMenu{
     private void addCategory() {
         System.out.println("Enter category's name :");
         String name = scanner.nextLine();
-        if (adminManager.doesCategoryExist(name)){
+        if (adminManager.doesCategoryExist(name)) {
             System.out.println("category with this name already exists.");
             return;
         }
         try {
             adminManager.addCategory(name);
             System.out.println("category created!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -102,31 +101,28 @@ public class AdminMenu extends AccountMenu{
         try {
             Category category = adminManager.viewCategory(name);
             viewSingleCategory(category);
-            while (true){
-                System.out.println("Enter\n1.edit name\n2.edit propeties\n3.back :");
+            while (true) {
+                System.out.println("Enter\n1.edit name\n2.edit properties\n3.back :");
                 String command = scanner.nextLine().trim();
-                if (command.equals("1")){
+                if (command.equals("1")) {
                     System.out.println("Enter new name:");
                     String newName = scanner.nextLine();
-                    adminManager.editCategoryByName(name,newName);
+                    adminManager.editCategoryByName(name, newName);
                     System.out.println("edited successfully!");
-                }
-                else if (command.equals("2")){
+                } else if (command.equals("2")) {
                     System.out.println("Enter property's name :");
                     String property = scanner.nextLine();
                     System.out.println("Enter property's value :");
                     String newValue = scanner.nextLine();
-                    adminManager.editCategoryByProperties(category,property,newValue);
+                    adminManager.editCategoryByProperties(category, property, newValue);
                     System.out.println("edited successfully!");
-                }
-
-                else if (command.equals("3"))
+                } else if (command.equals("3"))
                     break;
                 else
                     System.out.println("Invalid choice");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -134,14 +130,14 @@ public class AdminMenu extends AccountMenu{
     }
 
     private void viewSingleCategory(Category category) {
-        System.out.println("name : "+category.getCategoryName());
+        System.out.println("name : " + category.getCategoryName());
         System.out.println("products in this category : ");
         ArrayList<Product> products = category.getThisCategoryProducts();
-        if (((ArrayList) products).isEmpty()){
+        if (((ArrayList) products).isEmpty()) {
             System.out.println("no products in this category yet.");
-        }else {
-            for (Product product : products){
-                System.out.println(product.getName()+"***"+product.getProductId());
+        } else {
+            for (Product product : products) {
+                System.out.println(product.getName() + "***" + product.getProductId());
             }
         }
         System.out.println(category.getProperties());
@@ -151,12 +147,12 @@ public class AdminMenu extends AccountMenu{
 
     private void viewAllCategories() {
         ArrayList<Category> allCategories = adminManager.viewAllCategories();
-        if (allCategories.isEmpty()){
+        if (allCategories.isEmpty()) {
             System.out.println("no categories yet.");
             return;
         }
 
-        for (Category category : allCategories){
+        for (Category category : allCategories) {
             System.out.println(category.getCategoryName());
         }
     }
@@ -164,7 +160,7 @@ public class AdminMenu extends AccountMenu{
     private void manageRequestsMenu() {
         ArrayList<Request> allRequests = adminManager.viewAllRequests();
         showAllRequests(allRequests);
-        while (true){
+        while (true) {
             System.out.println("Enter request id or 'back' to return :");
             String command = scanner.nextLine().trim();
             if (command.equalsIgnoreCase("back"))
@@ -174,20 +170,15 @@ public class AdminMenu extends AccountMenu{
                     Request request = adminManager.viewRequest(command);
                     ShowSingleRequest(request);
                     System.out.println("Enter\n1.accept\n2.decline\n3.take no action");
-                    int choice =Integer.parseInt(scanner.nextLine());
-                    if (choice == 1){
+                    String choice = scanner.nextLine().trim();
+                    if (choice.equals("1")) {
                         adminManager.acceptRequest(command);
                         System.out.println("accepted!");
-                    }
-
-
-                    else if (choice == 2){
+                    } else if (choice.equals("2")) {
                         adminManager.declineRequest(command);
                         System.out.println("declined!");
                     }
-
-
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
 
@@ -198,20 +189,20 @@ public class AdminMenu extends AccountMenu{
     }
 
     private void ShowSingleRequest(Request request) {
-        System.out.println("id : "+request.getRequestId());
-        System.out.println("type of request : "+request.getTypeOfRequest());
-        System.out.println("state : "+request.getStateOfRequest());
+        System.out.println("id : " + request.getRequestId());
+        System.out.println("type of request : " + request.getTypeOfRequest());
+        System.out.println("state : " + request.getStateOfRequest());
         System.out.println("information : ");
         System.out.println(request.getInformation());
     }
 
     private void showAllRequests(ArrayList<Request> allRequests) {
-        if (allRequests.isEmpty()){
+        if (allRequests.isEmpty()) {
             System.out.println("no requests yet.");
             return;
         }
-        for (Request request: allRequests) {
-            System.out.println("request id : "+request.getRequestId()+"   state : "+request.getStateOfRequest());
+        for (Request request : allRequests) {
+            System.out.println("request id : " + request.getRequestId() + "   state : " + request.getStateOfRequest());
             System.out.println("-------");
         }
 
@@ -228,7 +219,7 @@ public class AdminMenu extends AccountMenu{
                 showSingleDiscountMenu();
             else if (command.equals("2"))
                 editDiscountMenu();
-            else if (command.equals(3))
+            else if (command.equals("3"))
                 removeDiscount();
             else if (command.equals("4"))
                 break;
@@ -242,7 +233,7 @@ public class AdminMenu extends AccountMenu{
         String code = scanner.nextLine().trim();
         try {
             adminManager.removeDiscountCode(code);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -258,14 +249,14 @@ public class AdminMenu extends AccountMenu{
         while (true) {
             System.out.println("Enter field to edit :\n1.start date and time\n2.end date and time\n3.percentage\n4.maximum amount" +
                     "\n5.usage per customer\n6.add customer to this discount\n7.remove customer from this discount\n8.back");
-            int command = Integer.parseInt(scanner.nextLine());
-            if (!(0 < command && command < 9)) {
+            String command = scanner.nextLine().trim();
+            if (!(command.matches("[1-7]"))) {
                 System.out.println("Invalid command");
                 continue;
-            } else if (command == 8)
+            } else if (command.equals("8"))
                 break;
 
-            if (command == 1) {
+            if (command.equals("1")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 try {
@@ -273,7 +264,7 @@ public class AdminMenu extends AccountMenu{
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 2) {
+            } else if (command.equals("2")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 try {
@@ -281,30 +272,27 @@ public class AdminMenu extends AccountMenu{
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 3) {
+            } else if (command.equals("3")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "percentage", newValue);
-            }
-            else if (command == 4) {
+            } else if (command.equals("4")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "maxAmount", newValue);
-            }
-            else if (command == 5) {
+            } else if (command.equals("5")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "usagePerCustomer", newValue);
-            }
-            else if (command == 6) {
+            } else if (command.equals("6")) {
                 System.out.println("Enter customer's username :");
                 String username = scanner.nextLine().trim();
                 try {
-                    adminManager.addCustomerToDiscount(username,discount);
+                    adminManager.addCustomerToDiscount(username, discount);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 7) {
+            } else if (command.equals("7")) {
                 System.out.println("Enter customer's username :");
                 String username = scanner.nextLine().trim();
                 try {
@@ -321,7 +309,7 @@ public class AdminMenu extends AccountMenu{
 
     private boolean viewAllDiscount() {
         ArrayList<Discount> allCodes = adminManager.viewAllDiscountCodes();
-        if (allCodes.isEmpty()){
+        if (allCodes.isEmpty()) {
             System.out.println("no discount codes yet.");
             return false;
         }
@@ -379,7 +367,7 @@ public class AdminMenu extends AccountMenu{
             double maxAmount = Double.parseDouble(scanner.nextLine());
             System.out.println("Enter usage per customer :");
             int usagePerCustomer = Integer.parseInt(scanner.nextLine());
-            adminManager.createDiscountCode(code, start, end, percentage, usagePerCustomer,maxAmount);
+            adminManager.createDiscountCode(code, start, end, percentage, usagePerCustomer, maxAmount);
             System.out.println("created successfully!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -434,9 +422,9 @@ public class AdminMenu extends AccountMenu{
     }
 
     private void viewAllUsers() {
-        ArrayList<Person>allUsers = adminManager.viewAllUsers();
-        for (Person person : allUsers){
-            System.out.println(person.getUsername()+" : "+person.getRole());
+        ArrayList<Person> allUsers = adminManager.viewAllUsers();
+        for (Person person : allUsers) {
+            System.out.println(person.getUsername() + " : " + person.getRole());
         }
     }
 
@@ -461,12 +449,12 @@ public class AdminMenu extends AccountMenu{
         data.put("email", scanner.nextLine());
         System.out.println("phone number :");
         data.put("number", scanner.nextLine());
-        data.put("role","admin");
+        data.put("role", "admin");
 
         try {
             adminManager.createManager(data);
             System.out.println("Admin created!");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 

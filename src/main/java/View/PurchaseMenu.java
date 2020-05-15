@@ -69,12 +69,12 @@ public class PurchaseMenu extends Menu {
             public void commandProcess() {
                 show();
                 System.out.println("Do you want to use a discount code ?\n1.yes\n2.no\n3.cancel");
-                int choice = Integer.parseInt(scanner.nextLine());
-                if (choice == 3){
+                String choice = scanner.nextLine();
+                if (choice.equals("3")){
                     return;
-                } else if (choice == 2){
+                } else if (choice.equals("2")){
                     menuSuccess = true;
-                } else if (choice == 1){
+                } else if (choice.equals("1")){
                     System.out.println("Please enter your discount code!");
                     String discountCode = scanner.nextLine();
                     if (discountCode.equalsIgnoreCase("cancel")){
@@ -92,7 +92,6 @@ public class PurchaseMenu extends Menu {
                 } else{
                     System.out.println("Invalid choice!");
                 }
-
             }
 
             @Override
@@ -133,12 +132,12 @@ public class PurchaseMenu extends Menu {
                     }
                 }
                 System.out.println("Do you want to perform payment ?\n1.yes\n2.no\n3.cancel");
-                int choice = Integer.parseInt(scanner.nextLine());
-                if (choice == 3)
+                String choice = scanner.nextLine().trim();
+                if (choice.equals("3"))
                     return;
-                else if (choice == 2)
+                else if (choice.equals("2"))
                     menuSuccess = true;
-                else if (choice == 1){
+                else if (choice.equals("1")){
                     if (!purchasingManager.doesCustomerHaveEnoughMoney(finalTotalPrice)){
                         System.out.println("You don't have enough money in your account!");
                         menuSuccess = true;
