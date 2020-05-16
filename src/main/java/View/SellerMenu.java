@@ -120,7 +120,7 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter number of products in this off:");
             int numberOfProducts = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < numberOfProducts; i++) {
-                System.out.println("Enter the username of " + (i + 1) + "th product");
+                System.out.println("Enter the id of " + (i + 1) + "th product");
                 productId = Integer.parseInt(scanner.nextLine());
                 if (!sellerManager.doesProductExist(productId)) {
                     System.out.println("There is not a product with this Id! Try again :)");
