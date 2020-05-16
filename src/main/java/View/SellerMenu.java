@@ -106,7 +106,7 @@ public class SellerMenu extends AccountMenu {
         HashMap<String, String> information = new HashMap<>();
         ArrayList<Product> productsInThisSale = new ArrayList<>();
         int productId = 0;
-        scanner.nextLine();
+       // scanner.nextLine();
         System.out.println("start date and time (yyyy,MM,dd,HH,mm) :");
         String startDate = scanner.nextLine().trim();
         information.put("beginDate", startDate);
