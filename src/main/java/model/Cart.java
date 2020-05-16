@@ -51,9 +51,9 @@ public class Cart {
     }
 
     public void addProductToCart(Product newProduct) {
-        productsInCart.put(newProduct, 1);
-        newProduct.setSupply(newProduct.getSupply() - 1);
-        totalPrice += newProduct.getPrice();
+            productsInCart.put(newProduct, 1);
+            newProduct.setSupply(newProduct.getSupply() - 1);
+            totalPrice += newProduct.getPrice();
     }
 
     public void addNumberOfProductInTheCart(Product product) {
