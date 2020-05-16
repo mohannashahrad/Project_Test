@@ -238,6 +238,7 @@ public class AdminManager extends Manager {
 
     public void editSale (int offId, String field, String updatedVersion){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
+        System.out.println(updatedVersion);
         if (field.equalsIgnoreCase("beginDate"))
             storage.getSaleById(offId).setBeginDate(LocalDateTime.parse(updatedVersion, formatter));
         if (field.equalsIgnoreCase("endDate"))
