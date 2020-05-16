@@ -39,11 +39,10 @@ public class SellerMenu extends AccountMenu {
                 viewOffsMenu();
             else if (command.equals("9"))
                 viewBalance();
-            else if (command.equals("10")){
+            else if (command.equals("10")) {
                 LoginRegisterMenu loginRegisterMenu = new LoginRegisterMenu(this);
                 loginRegisterMenu.run();
-            }
-            else if (command.equals("11"))
+            } else if (command.equals("11"))
                 break;
             else if (command.equalsIgnoreCase("help"))
                 show();
@@ -63,22 +62,21 @@ public class SellerMenu extends AccountMenu {
         ArrayList<Sale> allOffs = sellerManager.viewSellerOffs();
         if (allOffs.isEmpty()) {
             System.out.println("no offs yet.");
-        }
-        else {
+        } else {
             for (Sale off : allOffs) {
                 System.out.println(off.getSaleId());
             }
         }
         while (true) {
             System.out.println("Enter\n1.view off\n2.edit off\n3.add off\n4.back");
-            int command = scanner.nextInt();
-            if (command == 1)
+            String command = scanner.nextLine();
+            if (command.equals("1"))
                 viewSingleOff();
-            else if (command == 2)
+            else if (command.equals("2"))
                 editOff();
-            else if (command == 3)
+            else if (command.equals("3"))
                 addOff();
-            else if (command == 4)
+            else if (command.equals("4"))
                 break;
             else
                 System.out.println("Invalid choice");
@@ -88,7 +86,7 @@ public class SellerMenu extends AccountMenu {
 
     private void viewSingleOff() {
         System.out.println("Enter offId :");
-        int offId = scanner.nextInt();
+        int offId = Integer.parseInt(scanner.nextLine());
         try {
             Sale sale = sellerManager.viewSingleOff(offId);
             System.out.println(sale.getSaleId());
@@ -118,13 +116,12 @@ public class SellerMenu extends AccountMenu {
         information.put("endDate", endDate);
         try {
             System.out.println("Enter amount of sale :");
-            int amountOfSale = scanner.nextInt();
-            information.put("amountOfSale", Integer.toString(amountOfSale));
+            information.put("amountOfSale", scanner.nextLine());
             System.out.println("Enter number of products in this off:");
-            int numberOfProducts = scanner.nextInt();
+            int numberOfProducts = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < numberOfProducts; i++) {
-                System.out.println("Enter the username of " + (i+1) + "th product");
-                productId = scanner.nextInt();
+                System.out.println("Enter the username of " + (i + 1) + "th product");
+                productId = Integer.parseInt(scanner.nextLine());
                 if (!sellerManager.doesProductExist(productId)) {
                     System.out.println("There is not a product with this Id! Try again :)");
                     i--;
@@ -145,7 +142,7 @@ public class SellerMenu extends AccountMenu {
 
     private void editOff() {
         System.out.println("Enter Off Id :");
-        int offId = scanner.nextInt();
+        int offId = Integer.parseInt(scanner.nextLine());
         if (!sellerManager.doesSellerHaveThisOff(offId)) {
             System.out.println("Invalid offId.");
             return;
@@ -153,43 +150,43 @@ public class SellerMenu extends AccountMenu {
         while (true) {
             System.out.println("Enter field to edit :\n1.start date and time\n2.end date and time\n3.amount of sale\n4." +
                     "add product to off" + "\n5.remove product from off\n6.back");
-            int command = scanner.nextInt();
-            if (!(0 < command && command < 7)) {
+            String command = scanner.nextLine();
+            if (!(command.matches("[1-7]"))) {
                 System.out.println("Invalid command");
                 continue;
-            } else if (command == 6)
+            } else if (command.equals("6"))
                 break;
             System.out.println("Enter new value :");
             String newValue = scanner.nextLine();
-            if (command == 1) {
+            if (command.equals("1")) {
                 try {
                     sellerManager.editOff(offId, "beginDate", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 2) {
+            } else if (command.equals("2")) {
                 try {
                     sellerManager.editOff(offId, "endDate", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 3) {
+            } else if (command.equals("3")) {
                 try {
                     sellerManager.editOff(offId, "amountOfSale", newValue);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 4) {
+            } else if (command.equals("4")) {
                 System.out.println("Enter productId : ");
-                int productId = scanner.nextInt();
+                int productId = Integer.parseInt(scanner.nextLine());
                 try {
                     sellerManager.addProductToOff(offId, productId);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command == 5) {
+            } else if (command.equals("5")) {
                 System.out.println("Enter productId : ");
-                int productId = scanner.nextInt();
+                int productId = Integer.parseInt(scanner.nextLine());
                 try {
                     sellerManager.removeProductFromOff(offId, productId);
                 } catch (Exception e) {
@@ -268,28 +265,26 @@ public class SellerMenu extends AccountMenu {
         showSellerProducts();
         while (true) {
             System.out.println("Enter\n1.view a product\n2.view buyers of a product\n3.edit a product\n4.back");
-            int command = scanner.nextInt();
-            if (!(0 < command && command < 5)) {
-                System.out.println("Invalid command");
-                continue;
-            } else if (command == 1) {
+            String command = scanner.nextLine();
+            if (command.equals("1")) {
                 viewSingleProduct();
-            } else if (command == 2) {
+            } else if (command.equals("2")) {
                 viewBuyers();
-            } else if (command == 3) {
+            } else if (command.equals("3")) {
                 editProduct();
-            } else
+            } else if (command.equals("4"))
                 break;
+            else
+                System.out.println("Invalid command");
         }
-
     }
 
     private void viewBuyers() {
         System.out.println("Enter productId:");
-        int productId = scanner.nextInt();
+        int productId = Integer.parseInt(scanner.nextLine());
         try {
             ArrayList<Customer> thisProductBuyers = sellerManager.viewProductBuyers(productId);
-            if (thisProductBuyers.isEmpty()){
+            if (thisProductBuyers.isEmpty()) {
                 System.out.println("No one bought this product yet!");
             }
             for (Customer buyer : thisProductBuyers) {
@@ -303,7 +298,7 @@ public class SellerMenu extends AccountMenu {
 
     private void editProduct() {
         System.out.println("Enter productId:");
-        int productId = scanner.nextInt();
+        int productId = Integer.parseInt(scanner.nextLine());
         if (!sellerManager.doesSellerHaveProduct(productId)) {
             System.out.println("Invalid productId.");
             return;
@@ -317,7 +312,7 @@ public class SellerMenu extends AccountMenu {
                 continue;
             } else if (command.equals("7"))
                 break;
-            else if (command.equals("5")){
+            else if (command.equals("5")) {
                 String category = categoryShow();
                 try {
                     sellerManager.editProduct(productId, "category", category);
@@ -400,12 +395,12 @@ public class SellerMenu extends AccountMenu {
     private void viewCompanyInfo() {
         System.out.println("company name : " + ((Seller) person).getCompany());
         System.out.println("Enter\n1.edit\n2.back");
-        int command = scanner.nextInt();
-        if (command == 1) {
+        String command = scanner.nextLine();
+        if (command.equals("1")) {
             System.out.println("Enter new value");
             String newValue = scanner.nextLine();
             ((Seller) person).setCompany(newValue);
-        } else if (command == 2)
+        } else if (command.equals("2"))
             return;
         else
             System.out.println("Invalid choice");
