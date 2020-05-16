@@ -62,7 +62,6 @@ public class ModelTest {
     }
 
     public HashMap<String, String> firstProductInformation(HashMap<String, String> information) {
-        information.put("productId", "1");
         information.put("name", "shoes");
         information.put("brand", "NIKE");
         information.put("price", "123");
@@ -72,11 +71,10 @@ public class ModelTest {
         return information;
     }
     public HashMap<String, String> secondProductInformation(HashMap<String, String> information) {
-        information.put("productId", "2");
         information.put("name", "sweater");
         information.put("brand", "GAP");
         information.put("price", "280");
-        information.put("supply", "2" );
+        information.put("supply", "3" );
         information.put("categoryName", "clothing");
         information.put("explanation", "warm and cozy");
         return information;
@@ -98,29 +96,28 @@ public class ModelTest {
 
     @Test
     public void addToCartTest() {
-        //newCart1.addProduct(firstProduct);
-        //newCart1.addProduct(secondProduct);
-        newCart1.removeProduct(firstProduct);
-        firstProduct.setSupply(firstProduct.getSupply() + 1);
+        newCart1.addProductToCart(firstProduct);
+        newCart1.addProductToCart(secondProduct);
+        newCart1.decreaseProduct(firstProduct);
         double actual = newCart1.calculateTotalPrice();
-        //Assert.assertEquals(newCart1.getProductsInCart(), Collections.singletonList(secondProduct));
-        Assert.assertEquals(280, actual, 0.001);
-        //BuyLog firstBuyLog = new BuyLog( new Date(), newCart1.getTotalPrice(), 0 , firstSeller, );
+        ArrayList<Product> productsInCart = new ArrayList<>(newCart1.getProductsInCart().keySet());
+        Assert.assertEquals(productsInCart, Collections.singletonList(secondProduct));
+        //BuyLog firstBuyLog = new BuyLog( new Date(), newCart1.getTotalPrice(), 0 , firstSeller);
         //SellLog firstLog = new SellLog(new Date(), newCart1.getTotalPrice(), 0, testCustomer);
         //firstSeller.addToSellLogs(firstLog);
-        secondProduct.addBuyer(testCustomer);
+        //secondProduct.addBuyer(testCustomer);
         //Assert.assertEquals(newCart1.getProductsInCart(), Collections.singletonList(secondProduct));
         //Assert.assertEquals(testCustomer, newCart1.getCustomer());
         //newCart2.addProduct(firstProduct);
         //newCart2.addProduct(secondProduct);
-        firstProduct.addBuyer(testCustomer2);
-        secondProduct.addBuyer(testCustomer2);
+        //firstProduct.addBuyer(testCustomer2);
+        //secondProduct.addBuyer(testCustomer2);
         //SellLog secondLog = new SellLog(new Date(), newCart2.getTotalPrice(), 0, testCustomer2);
         //firstSeller.addToSellLogs(secondLog);
        // Assert.assertEquals(Collections.singletonList(testCustomer2), firstProduct.getThisProductsBuyers());
         //Assert.assertEquals(Arrays.asList(testCustomer, testCustomer2), secondProduct.getThisProductsBuyers());
-        Assert.assertEquals(0, firstProduct.getSupply());
-        Assert.assertEquals(0, secondProduct.getSupply());
+        //Assert.assertEquals(0, firstProduct.getSupply());
+        //Assert.assertEquals(0, secondProduct.getSupply());
         //Assert.assertEquals(Arrays.asList(firstLog, secondLog), firstSeller.getSellHistory());
     }
 

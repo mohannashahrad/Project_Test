@@ -34,15 +34,14 @@ public class AdminManagerTests {
     public void deleteUserTest() throws Exception {
         fileSaver.dataReader();
         Person person = storage.getUserByUsername("s1");
+        int index = storage.getAllUsers().lastIndexOf(person);
         storage.getAllUsers().remove(person);
-        ArrayList<Person> expected = new ArrayList<>();
-        expected.addAll(storage.getAllUsers());
-        storage.addUser(person);
+        ArrayList<Person> expected = new ArrayList<>(storage.getAllUsers());
+        storage.getAllUsers().add(index, person);
         adminManager.deleteUser("s1");
-        ArrayList<Person> original = new ArrayList<>();
-        original.addAll(storage.getAllUsers());
+        ArrayList<Person> original = new ArrayList<>(storage.getAllUsers());
         for (int counter = 0; counter < expected.size(); counter++){
-            Assert.assertTrue(expected.get(counter).equals(original.get(counter)));
+            Assert.assertEquals(expected.get(counter), original.get(counter));
         }
         try {
             adminManager.deleteUser("s7");
@@ -273,13 +272,14 @@ public class AdminManagerTests {
         productsInSale.add(storage.getProductById(1));
         productsInSale.add(storage.getProductById(2));
         HashMap<String,String> saleInformation = new HashMap<>();
-        saleInformation.put("beginDate","2020-07-01 12:20");
-        saleInformation.put("endDate","2020-09-01 12:20");
+        saleInformation.put("username","s1");
+        saleInformation.put("beginDate","2020,07,01,12,20");
+        saleInformation.put("endDate","2020,09,01,12,20");
         saleInformation.put("amountOfSale","20");
         saleInformation.put("offId","1");
         Request request = new Request("add sale",saleInformation);
         adminManager.processAcceptedRequest(request);
         Assert.assertEquals(storage.getSaleById(1).getAmountOfSale(),20);
-        Assert.assertEquals(storage.getSaleById(1).getEndDate().toString(),"2020-09-01 12:20");
+        Assert.assertEquals(storage.getSaleById(1).getEndDate().toString(),"2020,09,01,12,20");
     }
 }

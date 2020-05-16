@@ -14,6 +14,7 @@ public class Cart {
     private Cart(Customer customer) {
         this.productsInCart = new HashMap<>();
         this.customer = customer;
+        this.totalPrice = 0;
     }
 
     public static Cart getCart(){
@@ -44,7 +45,7 @@ public class Cart {
 
     public double calculateTotalPrice() {
         for (Product product : productsInCart.keySet()) {
-            totalPrice += product.getPrice() * productsInCart.get(product);
+            totalPrice += (product.getPrice() * productsInCart.get(product));
         }
         return totalPrice;
     }

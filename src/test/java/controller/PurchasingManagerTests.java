@@ -115,8 +115,8 @@ public class PurchasingManagerTests {
         ArrayList <Product> original = purchasingManager.sellerProductsInCart(manager.cart,
                 (Seller) storage.getUserByUsername("s1"));
         ArrayList<Product> expected = new ArrayList<>();
-        expected.add(storage.getProductById(2));
         expected.add(storage.getProductById(1));
+        expected.add(storage.getProductById(2));
         Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
     }
 
@@ -155,4 +155,5 @@ public class PurchasingManagerTests {
         }
 
     }
+
 }

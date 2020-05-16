@@ -189,4 +189,11 @@ public class ManagerTests {
        Assert.assertEquals(manager.getPerson().getNumber(),"929283");
    }
 
+   @Test
+    public void logoutTest() throws Exception {
+        manager.login("s1","s1");
+        manager.logout();
+       Assert.assertNull(manager.getPerson());
+       Assert.assertNull(manager.getCart());
+   }
 }
