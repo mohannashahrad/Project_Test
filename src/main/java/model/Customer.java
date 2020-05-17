@@ -7,7 +7,7 @@ public class Customer extends Person {
     private Cart shoppingCart;
     private ArrayList<BuyLog> buyHistory;
     private ArrayList<Discount> allDiscounts;
-    private static ArrayList<Person>allCustomers = new ArrayList<>();
+    private static ArrayList<Person> allCustomers = new ArrayList<>();
 
     public static ArrayList<Person> getAllCustomers() {
         return allCustomers;
@@ -35,15 +35,16 @@ public class Customer extends Person {
         this.allDiscounts.add(newDiscount);
     }
 
-    public void removeFromAllDiscounts(Discount specificDiscount) {
+   /* public void removeFromAllDiscounts(Discount specificDiscount) {
         allDiscounts.removeIf(specificDiscount::equals);
-    }
+    }*/
 
     public void addToBuyLogs(BuyLog newBuyLog) {
         buyHistory.add(newBuyLog);
     }
-    public Cart newCartForThisCustomer(){
+
+    /*public Cart newCartForThisCustomer() {
         this.shoppingCart = Cart.getCart();
         return this.shoppingCart;
-    }
+    }*/
 }

@@ -12,7 +12,7 @@ public class Discount {
     private int percentage;
     private double maxAmount;
     private HashMap<Customer, Integer> customersWithThisDiscount;
-    private static ArrayList<Discount>allDiscounts = new ArrayList<>();
+    private static ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public static ArrayList<Discount> getAllDiscounts() {
         return allDiscounts;
@@ -90,7 +90,7 @@ public class Discount {
     }
 
     public double calculateAmountOfDiscount(double totalPrice) {
-        return totalPrice * (1.0* percentage / 100);
+        return totalPrice * (1.0 * percentage / 100);
     }
 
     @Override

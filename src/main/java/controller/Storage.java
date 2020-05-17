@@ -24,7 +24,7 @@ public class Storage {
     private ArrayList<Sort> allSorts;
     private ArrayList<Cart> allCarts;
 
-    private Storage() {
+    public Storage() {
         newArrayLists();
     }
 

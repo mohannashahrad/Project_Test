@@ -7,14 +7,20 @@ public class Category {
     private String categoryName;
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
-    private static ArrayList<Category>allCategories = new ArrayList<>();
+    private static ArrayList<Category> allCategories = new ArrayList<>();
 
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
+        this.thisCategoryProducts = new ArrayList<>();
+        this.properties = new HashMap<>();
+    }
 
     public static ArrayList<Category> getAllCategories() {
         return allCategories;
     }
-    public static boolean doesCategoryExist(String name){
-        for (Category category : allCategories){
+
+    public static boolean doesCategoryExist(String name) {
+        for (Category category : allCategories) {
             if (category.categoryName.equals(name))
                 return true;
         }
@@ -22,7 +28,7 @@ public class Category {
     }
 
     public static void deleteUncategorized() {
-       if (doesCategoryExist("uncategorized"))
+        if (doesCategoryExist("uncategorized"))
             allCategories.remove(Category.getCategoryByName("uncategorized"));
     }
 
@@ -30,16 +36,12 @@ public class Category {
         return properties;
     }
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-        this.thisCategoryProducts = new ArrayList<>();
-        this.properties = new HashMap<>();
-    }
-    public void addProductToCategory(Product product){
+    public void addProductToCategory(Product product) {
         this.thisCategoryProducts.add(product);
     }
-    public static Category getCategoryByName(String name){
-        for (Category category : allCategories){
+
+    public static Category getCategoryByName(String name) {
+        for (Category category : allCategories) {
             if (category.getCategoryName().equals(name))
                 return category;
         }
@@ -58,12 +60,12 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public void setSingleValueInProperties(String property , String newValue){
-        this.properties.replace(property,newValue);
+    public void setSingleValueInProperties(String property, String newValue) {
+        this.properties.replace(property, newValue);
     }
 
-    public void addNewProperty (String property , String value){
-        this.properties.put(property,value);
+    public void addNewProperty(String property, String value) {
+        this.properties.put(property, value);
     }
 
     public void addToThisCategoryProducts(Product newProduct) {
@@ -74,17 +76,13 @@ public class Category {
         thisCategoryProducts.removeIf(categoryProduct -> categoryProduct.equals(specificProduct));
     }
 
-    public void addToProperties(String key, String value) {
-        this.properties.put(key, value);
-    }
-
     public void removeProperty(String key, String value) {
         this.properties.remove(key, value);
     }
 
     @Override
     public String toString() {
-        return "CategoryName='" + categoryName + '\'' + "\n" +
-                ", thisCategoryProducts=" + thisCategoryProducts;
+        return "CategoryName ='" + categoryName + '\'' + "\n" +
+                ", thisCategoryProducts =" + thisCategoryProducts;
     }
 }

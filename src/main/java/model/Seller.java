@@ -8,7 +8,7 @@ public class Seller extends Person {
     private ArrayList<SellLog> sellHistory;
     private ArrayList<Product> productsToSell;
     private ArrayList<Sale> saleList;
-    private static ArrayList<Person>allSellers = new ArrayList<>();
+    private static ArrayList<Person> allSellers = new ArrayList<>();
 
     public static ArrayList<Person> getAllSellers() {
         return allSellers;
@@ -67,7 +67,7 @@ public class Seller extends Person {
         saleList.add(newSale);
     }
 
-    public void addBalance(double amountToBeAdded){
+    public void addBalance(double amountToBeAdded) {
         this.setBalance(this.getBalance() + amountToBeAdded);
     }
 }

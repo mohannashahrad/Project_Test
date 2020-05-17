@@ -11,7 +11,7 @@ public class Cart {
     private double totalPrice;
     private Customer customer;
 
-    private Cart(Customer customer) {
+    public Cart(Customer customer) {
         this.productsInCart = new HashMap<>();
         this.customer = customer;
         this.totalPrice = 0;
@@ -43,23 +43,27 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public double calculateTotalPrice() {
+    /*public double calculateTotalPrice() {
         for (Product product : productsInCart.keySet()) {
             totalPrice += (product.getPrice() * productsInCart.get(product));
         }
         return totalPrice;
-    }
+    }*/
 
     public void addProductToCart(Product newProduct) {
+        if(newProduct.getSupply() != 0) {
             productsInCart.put(newProduct, 1);
             newProduct.setSupply(newProduct.getSupply() - 1);
             totalPrice += newProduct.getPrice();
+        }
     }
 
     public void addNumberOfProductInTheCart(Product product) {
-        productsInCart.replace(product, productsInCart.get(product) + 1);
-        product.setSupply(product.getSupply() - 1);
-        totalPrice += product.getPrice();
+        if(product.getSupply() != 0) {
+            productsInCart.replace(product, productsInCart.get(product) + 1);
+            product.setSupply(product.getSupply() - 1);
+            totalPrice += product.getPrice();
+        }
     }
 
     public void decreaseProduct(Product specificProduct) {

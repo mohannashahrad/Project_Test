@@ -7,9 +7,7 @@ public class Filter {
     private String filterInfo;
     private static ArrayList<Filter> allFilters = new ArrayList<>();
 
-
-
-    public Filter(String filterName , String filterInfo) {
+    public Filter(String filterName, String filterInfo) {
         this.filterName = filterName;
         this.filterInfo = filterInfo;
         allFilters.add(this);
@@ -26,32 +24,35 @@ public class Filter {
     public static ArrayList<Filter> getAllFilters() {
         return allFilters;
     }
+
     public void setFilterInfo(String filterInfo) {
         this.filterInfo = filterInfo;
     }
 
-    public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts){
+    public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getCategory().getCategoryName().equals(category.getCategoryName())){
+            if (product.getCategory().getCategoryName().equals(category.getCategoryName())) {
                 filteredProducts.add(product);
             }
         }
         return filteredProducts;
     }
-    public ArrayList<Product> filterByPrice(double price, ArrayList<Product> allProducts){
+
+    public ArrayList<Product> filterByPrice(double price, ArrayList<Product> allProducts) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if(product.getPrice() <= price){
+            if (product.getPrice() <= price) {
                 filteredProducts.add(product);
             }
         }
         return filteredProducts;
     }
-    public ArrayList<Product> filterByName(String name, ArrayList<Product> allProducts){
+
+    public ArrayList<Product> filterByName(String name, ArrayList<Product> allProducts) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if(product.getName().equals(name)){
+            if (product.getName().equals(name)) {
                 filteredProducts.add(product);
             }
         }
@@ -60,7 +61,7 @@ public class Filter {
 
     @Override
     public String toString() {
-        return "Filter by :" + filterName ;
+        return "Filter by :" + filterName;
     }
 
     @Override

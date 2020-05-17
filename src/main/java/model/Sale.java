@@ -9,7 +9,7 @@ public class Sale {
     private LocalDateTime endDate;
     private int amountOfSale;
     private ArrayList<Product> productsWithThisSale;
-    private static ArrayList<Sale>allSales = new ArrayList<>();
+    private static ArrayList<Sale> allSales = new ArrayList<>();
 
     private int idSetter() {
         if (allSales.size() == 0) {
@@ -85,7 +85,7 @@ public class Sale {
 
     public static void removeProductFromItSale(ArrayList<Sale> allSales, Product specificProduct) { //problem detected:deleting from ArrayList in a loop
         for (Sale sale : allSales) {
-            if(sale != null && sale.getProductsWithThisSale().contains(specificProduct)){
+            if (sale != null && sale.getProductsWithThisSale().contains(specificProduct)) {
                 sale.removeProductFromThisSale(specificProduct);
             }
         }
