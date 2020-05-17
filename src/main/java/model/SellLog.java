@@ -50,4 +50,14 @@ public class SellLog extends Log {
     public static ArrayList<Integer> getAllSellCodes() {
         return allSellCodes;
     }
+
+    @Override
+    public String toString() {
+        return "SellLog{" +
+                "sellCode=" + sellCode +
+                ", receivedMoney=" + receivedMoney +
+                ", saleAmount=" + saleAmount +
+                ", customer=" + customer.getUsername() +
+                '}';
+    }
 }

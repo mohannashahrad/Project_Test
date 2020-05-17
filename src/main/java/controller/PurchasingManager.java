@@ -122,5 +122,17 @@ public class PurchasingManager extends Manager{
         }
         return totalPrice;
     }
+
+    public void updateDiscountUsagePerPerson(String discountCode){
+        storage.getDiscountByCode(discountCode).setUsageCount(storage.getDiscountByCode(discountCode).getUsageCount() - 1);
+    }
+
+    public boolean doesCustomerHaveDiscountCode(String discountCode){
+        for (Discount discount : ((Customer) person).getAllDiscounts()) {
+            if (discount.getDiscountCode().equals(discountCode))
+                return true;
+        }
+        return false;
+    }
 }
 

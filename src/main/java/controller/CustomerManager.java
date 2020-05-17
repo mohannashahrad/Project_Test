@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 public class CustomerManager extends Manager {
 
+    private AdminManager adminManager = new AdminManager();
+
     public CustomerManager() {
     }
 
@@ -32,6 +34,13 @@ public class CustomerManager extends Manager {
 
     public void addBalance (double money){
         person.setBalance(person.getBalance() + money);
+        if(person.getBalance() > 1000){
+            try {
+                adminManager.getDiscountAwarded();
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void increaseProduct(String productId) throws Exception {

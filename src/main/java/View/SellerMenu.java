@@ -26,7 +26,7 @@ public class SellerMenu extends AccountMenu {
             else if (command.equals("2"))
                 viewCompanyInfo();
             else if (command.equals("3"))
-                viewSalesHistory();
+                viewSellHistory();
             else if (command.equals("4"))
                 manageProductsMenu();
             else if (command.equals("5"))
@@ -382,12 +382,14 @@ public class SellerMenu extends AccountMenu {
         System.out.println(sellerManager.viewSellerProducts());
     }
 
-    private void viewSalesHistory() {
-        if (sellerManager.viewSellerOffs().isEmpty()) {
-            System.out.println("no sales yet.");
+    private void viewSellHistory() {
+        if (sellerManager.getSellerSellHistory().isEmpty()) {
+            System.out.println("no sell logs yet.");
             return;
         }
-        System.out.println(sellerManager.viewSellerOffs());
+        for (SellLog sellLog : sellerManager.getSellerSellHistory()) {
+            System.out.println(sellLog.toString());
+        }
     }
 
     private void viewCompanyInfo() {
@@ -423,7 +425,7 @@ public class SellerMenu extends AccountMenu {
     @Override
     public void show() {
         System.out.println("Seller Menu :");
-        System.out.println("1.view personal info\n2.view company information\n3.view sales history\n" +
+        System.out.println("1.view personal info\n2.view company information\n3.view sell history\n" +
                 "4.manage products\n5.add product\n6.remove product\n7.show categories\n8.view offs\n" +
                 "9.view balance\n10.Login and Register\n11.back");
     }

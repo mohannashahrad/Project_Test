@@ -80,6 +80,10 @@ public class PurchaseMenu extends Menu {
                     if (discountCode.equalsIgnoreCase("cancel")){
                         return;
                     }
+                    if (!purchasingManager.doesCustomerHaveDiscountCode(discount)){
+                        System.out.println("This discount was not assigned to you by the admin !");
+                        return;
+                    }
                     try {
                         purchasingManager.checkDiscountValidity(discountCode);
                         System.out.println("Your discount code is valid and you can use it :)");
@@ -144,6 +148,9 @@ public class PurchaseMenu extends Menu {
                         return;
                     } else {
                         purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        if (!discount.equals("")){
+                            purchasingManager.updateDiscountUsagePerPerson(discount);
+                        }
                         System.out.println("Payment finished successfully!");
                         System.out.println("This is your buyLog code : " + purchasingManager.getBuyLogCode());
                         System.out.println("Thank you for buying from us :)");

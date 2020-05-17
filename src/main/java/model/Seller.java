@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Seller extends Person {
     private String company;
-    private ArrayList<SellLog> sellHistory;
+    private static ArrayList<SellLog> sellHistory = new ArrayList<>();
     private ArrayList<Product> productsToSell;
     private ArrayList<Sale> saleList;
     private static ArrayList<Person> allSellers = new ArrayList<>();
@@ -17,7 +17,6 @@ public class Seller extends Person {
     public Seller(HashMap<String, String> information) {
         super(information);
         this.company = information.get("company");
-        this.sellHistory = new ArrayList<>();
         this.productsToSell = new ArrayList<>();
         this.saleList = new ArrayList<>();
     }

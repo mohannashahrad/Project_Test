@@ -160,5 +160,9 @@ public class SellerManager extends Manager {
         else
             return storage.getSaleById(offId);
     }
+
+    public ArrayList<SellLog> getSellerSellHistory(){
+        return ((Seller)person).getSellHistory();
+    }
 }
 
