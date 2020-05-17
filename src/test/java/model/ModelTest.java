@@ -305,5 +305,5 @@ public class ModelTest {
                 12,2,100);
         Assert.assertFalse(firstDiscount.equals(secondDiscount));
     }
-    
+
 }

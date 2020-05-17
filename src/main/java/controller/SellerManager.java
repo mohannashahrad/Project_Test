@@ -124,7 +124,7 @@ public class SellerManager extends Manager {
         else if (storage.getSaleById(offId) == null)
             throw new Exception("There is no off with this Id");
         else if (!((Seller)person).getSaleList().contains(storage.getSaleById(offId)))
-            throw new Exception("You don't have this odd");
+            throw new Exception("You don't have this off");
         else if (storage.getSaleById(offId).getProductsWithThisSale().contains(storage.getProductById(productId)))
             throw new Exception("This product is already added in this sale!");
         else {

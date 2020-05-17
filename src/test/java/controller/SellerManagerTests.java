@@ -141,7 +141,7 @@ public class SellerManagerTests {
     }
 
     @Test
-    public void addAndEditOffTest() throws Exception{
+    public void sellerOffTest() throws Exception{
         manager.setPerson(storage.getUserByUsername("s1"));
         ArrayList<Product> productsInSale = new ArrayList<>();
         productsInSale.add(storage.getProductById(1));
@@ -163,7 +163,7 @@ public class SellerManagerTests {
         try {
             sellerManager.editOff(3,"endDate","2020,09,20,12,20");
         } catch (Exception e){
-            Assert.assertEquals(e.getMessage(),"There is not such off!");
+            Assert.assertEquals(e.getMessage(),"There is no such off!");
         }
         sellerManager.editOff(1,"amountOfSale","40");
         for (Request request : storage.getAllRequests()) {
@@ -171,8 +171,56 @@ public class SellerManagerTests {
                 if (request.getInformation().get("offId").equals("1") && request.getInformation().get("amountOfSale").
                         equals("40")){
                     Assert.assertTrue(true);
+                    adminManager.acceptRequest(Integer.toString(request.getRequestId()));
                 }
             }
+        }
+        Assert.assertNotNull(storage.getSaleById(1));
+        Sale original = sellerManager.viewSingleOff(1);
+        Assert.assertEquals(original,storage.getSaleById(1));
+        try {
+            sellerManager.viewSingleOff(2);
+        } catch (Exception e) {
+            Assert.assertEquals(e.getMessage(), "There is not such off!");
+        }
+            try {
+            sellerManager.removeProductFromOff(1,30);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"There is no product with this Id!");
+        }
+        try {
+            sellerManager.removeProductFromOff(10,1);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"There is no off with this Id");
+        }
+        try {
+            sellerManager.removeProductFromOff(1,3);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"This product is not assigned to this sale!");
+        }
+        sellerManager.removeProductFromOff(1,1);
+        for (Request request : storage.getAllRequests()) {
+            if (request.getTypeOfRequest().equals(RequestType.REMOVE_PRODUCT_FROM_SALE)) {
+                if (request.getInformation().get("productId").equals("1") && request.getInformation().get("offId").
+                        equals("1")) {
+                    Assert.assertTrue(true);
+                }
+            }
+        }
+        try {
+            sellerManager.addProductToOff(1,1);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"This product is already added in this sale!");
+        }
+        try {
+            sellerManager.addProductToOff(2,1);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"There is no off with this Id");
+        }
+        try {
+            sellerManager.addProductToOff(1,19);
+        } catch (Exception e){
+            Assert.assertEquals(e.getMessage(),"There is no product with this Id!");
         }
     }
 

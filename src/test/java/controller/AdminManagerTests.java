@@ -101,20 +101,10 @@ public class AdminManagerTests {
 
     @Test
     public void removeProductTest() throws Exception{
-        fileSaver.dataReader();
-        HashMap<String,String> productInformation = new HashMap<>();
-        productInformation.put("name", "sweater");
-        productInformation.put("brand", "GAP");
-        productInformation.put("price", "230");
-        productInformation.put("supply", "2" );
-        productInformation.put("categoryName", "children");
-        productInformation.put("explanation", "warm and cozy");
-        productInformation.put("seller","s1");
-        Product product = new Product(productInformation, (Seller)storage.getUserByUsername("s1"));
-        storage.addProduct(product);
-        adminManager.removeProduct("5");
-        ArrayList<Product> original = storage.getAllProducts();
-        Assert.assertFalse(original.contains(product));
+        ArrayList<Product> first = storage.getAllProducts();
+        adminManager.removeProduct("1");
+        ArrayList<Product> second = storage.getAllProducts();
+        Assert.assertArrayEquals(new ArrayList[]{first}, new ArrayList[]{second});
         try {
             adminManager.removeProduct("9");
         } catch (Exception e){
