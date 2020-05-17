@@ -296,4 +296,14 @@ public class ModelTest {
         discount.removeCustomer((Customer) storage.getUserByUsername("c1"), 1);
         Assert.assertFalse(discount.getCustomersWithThisDiscount().containsKey((Customer) storage.getUserByUsername("c1")));
     }
+
+    @Test
+    public void equalityOfDiscountTest(){
+        Discount firstDiscount = new Discount("code1",LocalDateTime.now(),LocalDateTime.now(),
+                12,2,100);
+        Discount secondDiscount = new Discount("code2",LocalDateTime.now(),LocalDateTime.now(),
+                12,2,100);
+        Assert.assertFalse(firstDiscount.equals(secondDiscount));
+    }
+    
 }
