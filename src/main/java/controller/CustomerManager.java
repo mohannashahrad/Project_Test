@@ -70,8 +70,8 @@ public class CustomerManager extends Manager {
         return cart.getTotalPrice();
     }
 
-    public ArrayList<Discount> getCustomerDiscountCodes (){
-        return ((Customer)person).getAllDiscounts();
+    public double getCartTotalPriceWithSale(){
+         return cart.getTotalPriceWithSale();
     }
 
     public BuyLog getOrderWithId(String orderId){
@@ -92,6 +92,5 @@ public class CustomerManager extends Manager {
     public ArrayList<BuyLog> getCustomerBuyLogs(){
         return ((Customer)person).getBuyHistory();
     }
-
 
 }

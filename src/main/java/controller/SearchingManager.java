@@ -26,10 +26,6 @@ public class SearchingManager extends Manager {
         return processOfViewProduct(storage.getAllProducts());
     }
 
-    public ArrayList<Product> viewAllProductsInSale(){
-        return processOfViewProduct(productManager.viewAllProductsWithSale());
-    }
-
     private ArrayList<Product> processOfViewProduct (ArrayList <Product> selectedProducts){
         return sortProducts(filterProducts(selectedProducts));
     }
@@ -124,10 +120,5 @@ public class SearchingManager extends Manager {
             currentSorts.remove(removedSort);
             return viewAllProducts();
         }
-    }
-
-
-    public void addFilter(Filter filter){
-        storage.addFilter(filter);
     }
 }

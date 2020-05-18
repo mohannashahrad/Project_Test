@@ -194,6 +194,5 @@ public class ManagerTests {
         manager.login("s1","s1");
         manager.logout();
        Assert.assertNull(manager.getPerson());
-       Assert.assertNull(manager.getCart());
    }
 }
