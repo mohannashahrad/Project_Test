@@ -87,6 +87,8 @@ public class PurchasingManager extends Manager {
             throw new Exception("This discount is expired!");
         else if (storage.getDiscountByCode(discountCode).getBeginDate().isAfter(LocalDateTime.now()))
             throw new Exception("You can't use a discount which is not available yet!");
+        else if(storage.getDiscountByCode(discountCode).getUsageCount() == 0)
+            throw new Exception("You used this discount before and it's not available anymore!");
     }
 
     public boolean doesCustomerHaveEnoughMoney(double price) {
