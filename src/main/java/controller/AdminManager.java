@@ -212,7 +212,7 @@ public class AdminManager extends Manager {
                 addProductToSAleRequest(request);
                 return;
             case REMOVE_PRODUCT_FROM_SALE:
-                removeProductFromRequest(request);
+                removeProductFromSaleRequest(request);
         }
     }
 
