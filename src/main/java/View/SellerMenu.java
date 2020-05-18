@@ -376,7 +376,7 @@ public class SellerMenu extends AccountMenu {
 
     private void showSellerProducts() {
         if (sellerManager.viewSellerProducts().isEmpty()) {
-            System.out.println("you dont have any products yet.");
+            System.out.println("you don't have any products yet.");
             return;
         }
         System.out.println(sellerManager.viewSellerProducts());
