@@ -119,12 +119,6 @@ public class AdminManager extends Manager {
         }
     }
 
-    public boolean doesDiscountCodeExist (String code){
-        if (storage.getDiscountByCode(code) == null)
-            return false;
-        else return true;
-    }
-
     public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
                                     int percentage, int usagePerCustomer, double maxAmount){
         storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,maxAmount));
