@@ -13,10 +13,8 @@ public class Manager {
     protected Storage storage;
     protected static Person person;
     protected Cart cart;
-    protected SellerManager sellerManager;
     protected static ArrayList<Filter> currentFilters = new ArrayList<>();
     protected static ArrayList<Sort> currentSorts = new ArrayList<>();
-    protected ArrayList<Product> filteredProducts = new ArrayList<>();
 
 
     public Manager() {
