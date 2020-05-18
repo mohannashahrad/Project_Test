@@ -18,6 +18,17 @@ public class BuyLog extends Log {
     public static ArrayList<Log> getAllBuyLogs() {
         return allBuyLogs;
     }
+    private int idSetter() {
+        if (allBuyLogs.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Log buyLog : allBuyLogs) {
+            if (((BuyLog)buyLog).getBuyCode() > max)
+                max = ((BuyLog)buyLog).getBuyCode();
+        }
+        return max + 1;
+    }
 
     public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers,
                   HashMap<String, String> customerInfo , ArrayList<Product> productsInThisBuyLog) {
@@ -26,9 +37,8 @@ public class BuyLog extends Log {
         this.discountAmount = discountAmount;
         this.seller = sellers;
         this.customerInfo = customerInfo;
-        this.buyCode = lastBuyCode + 1;
+        this.buyCode = idSetter();
         this.products = productsInThisBuyLog;
-        lastBuyCode++;
         allBuyCodes.add(buyCode);
     }
 
