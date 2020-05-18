@@ -252,7 +252,7 @@ public class AdminManager extends Manager {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
         LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);
-        int amountOfOff = Integer.parseInt(request.getInformation().get("amountOfSale"));
+        double amountOfOff = Double.parseDouble(request.getInformation().get("amountOfSale"));
         int offId = Integer.parseInt(request.getInformation().get("offId"));
         Sale sale = new Sale(beginDate,endDate,amountOfOff,tempSellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);

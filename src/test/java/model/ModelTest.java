@@ -11,8 +11,35 @@ import java.util.*;
 public class ModelTest {
     private HashMap<String, String> productInformation = new HashMap<>();
     private HashMap<String, String> informationAdmin = new HashMap<>();
+    private HashMap<String, String> informationCustomer = new HashMap<>();
+    private HashMap<String, String> informationSeller = new HashMap<>();
     private Storage storage = new Storage();
     private FileSaver fileSaver = new FileSaver(storage);
+
+    public HashMap<String, String> addTestCustomerInformation(HashMap<String, String> information) {
+        information.put("username", "firstUser");
+        information.put("password", "1234");
+        information.put("name", "Joe");
+        information.put("family name", "Bruce");
+        information.put("email", "JoeBruce@gmail.com");
+        information.put("number", "001234567");
+        information.put("balance", "200");
+        information.put("role", "customer");
+        return information;
+    }
+
+    public HashMap<String, String> addTestSellerInformation(HashMap<String, String> information) {
+        information.put("username", "sellerUser");
+        information.put("password", "5678");
+        information.put("name", "Jack");
+        information.put("family name", "Fallon");
+        information.put("email", "JackFallon@gmail.com");
+        information.put("number", "001987654");
+        information.put("balance", "100");
+        information.put("role", "seller");
+        information.put("company", "Best Products");
+        return information;
+    }
 
     public HashMap<String, String> productInformation(HashMap<String, String> information) {
         information.put("name", "bag");
@@ -29,7 +56,7 @@ public class ModelTest {
         information.put("username", "adminUser");
         information.put("password", "5764");
         information.put("name", "Alex");
-        information.put("family name", "Nick");
+        information.put("familyName", "Nick");
         information.put("email", "alexN@gmail.com");
         information.put("number", "001937654");
         information.put("balance", "43");
@@ -38,17 +65,19 @@ public class ModelTest {
     }
 
     private Admin testAdmin = new Admin(addToAdminInformation(informationAdmin));
+    private Customer testCustomer = new Customer(addTestCustomerInformation(informationCustomer));
+    private Seller testSeller = new Seller(addTestSellerInformation(informationSeller));
 
     @Test
     public void addToCartTest() {
         fileSaver.dataReader();
         Seller firstSeller = (Seller) storage.getUserByUsername("s1");
-        Customer testCustomer = (Customer) storage.getUserByUsername("c1");
-        Customer testCustomer2 = (Customer) storage.getUserByUsername("c2");
+        Customer firstCustomer = (Customer) storage.getUserByUsername("c1");
+        Customer secondCustomer = (Customer) storage.getUserByUsername("c2");
         Product firstProduct = storage.getProductById(1);
         Product secondProduct = storage.getProductById(2);
-        Cart newCart1 = new Cart(testCustomer);
-        Cart newCart2 = new Cart(testCustomer2);
+        Cart newCart1 = new Cart(firstCustomer);
+        Cart newCart2 = new Cart(secondCustomer);
         HashMap<String, String> customerInfo = new HashMap<>();
         customerInfo.put("address", "Tehran");
         customerInfo.put("Phone number", "11");
@@ -63,24 +92,31 @@ public class ModelTest {
         Assert.assertEquals(secondProduct.getPrice(), actual, 0.0);
         BuyLog firstBuyLog = new BuyLog(LocalDateTime.now(), newCart1.getTotalPrice(), 0.0,
                 sellers, customerInfo, productsInCart);
-        testCustomer.addToBuyLogs(firstBuyLog);
+        Assert.assertEquals(sellers, firstBuyLog.getSeller());
+        Assert.assertEquals(actual, newCart1.getTotalPrice(), 0.0);
+        Assert.assertEquals(0.0, firstBuyLog.getDiscountAmount(), 0.1);
+        Assert.assertEquals(secondProduct.getPrice(), firstBuyLog.getPaidMoney(), 0.1);
+        firstCustomer.addToBuyLogs(firstBuyLog);
         ArrayList<BuyLog> buyLogs = new ArrayList<>();
         buyLogs.add(firstBuyLog);
-        Assert.assertEquals(buyLogs, testCustomer.getBuyHistory());
-        SellLog firstLog = new SellLog(LocalDateTime.now(), newCart1.getTotalPrice(), 0, testCustomer);
+        Assert.assertEquals(buyLogs, firstCustomer.getBuyHistory());
+        SellLog firstLog = new SellLog(LocalDateTime.now(), newCart1.getTotalPrice(), 0, firstCustomer);
         firstSeller.addToSellLogs(firstLog);
-        secondProduct.addBuyer(testCustomer);
-        Assert.assertEquals(testCustomer, newCart1.getCustomer());
+        secondProduct.addBuyer(firstCustomer);
+        Assert.assertEquals(firstCustomer, newCart1.getCustomer());
         newCart2.addProductToCart(firstProduct);
         newCart2.addProductToCart(secondProduct);
-        firstProduct.addBuyer(testCustomer2);
-        secondProduct.addBuyer(testCustomer2);
-        SellLog secondLog = new SellLog(LocalDateTime.now(), newCart2.getTotalPrice(), 0, testCustomer2);
+        firstProduct.addBuyer(secondCustomer);
+        secondProduct.addBuyer(secondCustomer);
+        SellLog secondLog = new SellLog(LocalDateTime.now(), newCart2.getTotalPrice(), 0, secondCustomer);
         firstSeller.addToSellLogs(secondLog);
-        Assert.assertEquals(Collections.singletonList(testCustomer2), firstProduct.getThisProductsBuyers());
+        Assert.assertEquals(Collections.singletonList(secondCustomer), firstProduct.getThisProductsBuyers());
         Assert.assertEquals(0, storage.getProductById(1).getSupply());
         Assert.assertEquals(0, storage.getProductById(2).getSupply());
         Assert.assertEquals(Arrays.asList(firstLog, secondLog), firstSeller.getSellHistory());
+        newCart2.emptyCart();
+        Assert.assertEquals(0, newCart2.getTotalPrice(), 0.0);
+        Assert.assertNull(newCart2.getCustomer());
     }
 
     @Test
@@ -103,13 +139,6 @@ public class ModelTest {
         Assert.assertEquals(expectedBody, firstComment.getCommentBody());
         Assert.assertEquals(Arrays.asList(firstComment, secondComment).toString(), firstProduct.getComments().toString());
 
-        /*secondProduct.addRate(firstRate);
-        secondProduct.addRate(secondRate);
-        double expectedAverageRate = (4 + 4.5) / 2;
-        secondProduct.calculateAverageRate();
-        Assert.assertEquals(expectedAverageRate, secondProduct.getAverageRate(), 0.2);
-        Assert.assertEquals(Arrays.asList(firstRate, secondRate), secondProduct.getRates());*/
-
         Comment checkEqualityComment = new Comment("user", firstProduct,
                 "First Comment", "The style was not really good.");
         Assert.assertEquals(firstComment, checkEqualityComment);
@@ -130,6 +159,12 @@ public class ModelTest {
 
         Product product = new Product(productInformation(productInformation), seller);
         Assert.assertEquals(6, product.getProductId());
+        Assert.assertEquals("bag", product.getName());
+        Assert.assertEquals("LV", product.getBrand());
+        Assert.assertEquals(200.0, product.getPrice(), 0.0);
+        Assert.assertEquals(10, product.getSupply());
+        Assert.assertEquals("uncategorized", product.getCategory().getCategoryName());
+        Assert.assertEquals("Shoulder Bag", product.getExplanation());
         seller.removeProduct(product);
         Assert.assertNull(storage.getProductById(6));
     }
@@ -284,6 +319,9 @@ public class ModelTest {
         Sale.removeProductFromItSale(allSales, storage.getProductById(2));
         Assert.assertFalse(firstSaleProducts.contains(storage.getProductById(2)));
         Assert.assertFalse(secondSaleProducts.contains(storage.getProductById(2)));
+        Assert.assertEquals(50, secondSale.getAmountOfSale(), 0.1);
+        secondSale.setAmountOfSale(30.5);
+        Assert.assertEquals(30.5, secondSale.getAmountOfSale(), 0.1);
 
         Discount discount = new Discount("MH17", LocalDateTime.now(), LocalDateTime.now(), 40,
                 1, 300);
@@ -298,12 +336,66 @@ public class ModelTest {
     }
 
     @Test
-    public void equalityOfDiscountTest(){
-        Discount firstDiscount = new Discount("code1",LocalDateTime.now(),LocalDateTime.now(),
-                12,2,100);
-        Discount secondDiscount = new Discount("code2",LocalDateTime.now(),LocalDateTime.now(),
-                12,2,100);
-        Assert.assertFalse(firstDiscount.equals(secondDiscount));
+    public void equalityOfDiscountTest() {
+        Discount firstDiscount = new Discount("code1", LocalDateTime.now(), LocalDateTime.now(),
+                12, 2, 100);
+        Discount secondDiscount = new Discount("code2", LocalDateTime.now(), LocalDateTime.now(),
+                12, 2, 100);
+        Assert.assertNotEquals(firstDiscount, secondDiscount);
+        Assert.assertEquals("code1", firstDiscount.getDiscountCode());
+        Assert.assertEquals(12, firstDiscount.getPercentage(), 0.1);
+        Assert.assertEquals(2, firstDiscount.getUsageCount());
+        Assert.assertEquals(100, firstDiscount.getMaxAmount(), 0.1);
+        secondDiscount.setUsageCount(3);
+        Assert.assertEquals(3, secondDiscount.getUsageCount());
+        secondDiscount.setPercentage(24);
+        Assert.assertEquals(24, secondDiscount.getPercentage(), 0.1);
+        secondDiscount.setMaxAmount(250);
+        Assert.assertEquals(250, secondDiscount.getMaxAmount(), 0.1);
     }
 
+    @Test
+    public void setProductInformationCheck() {
+        fileSaver.dataReader();
+        Seller seller = (Seller) storage.getUserByUsername("s1");
+        Product newProduct = new Product(productInformation(productInformation), seller);
+        newProduct.setName("backpack");
+        Assert.assertEquals("backpack", newProduct.getName());
+        newProduct.setBrand("CAT");
+        Assert.assertEquals("CAT", newProduct.getBrand());
+        newProduct.setPrice(300.50);
+        Assert.assertEquals(300.50, newProduct.getPrice(), 0.0);
+        newProduct.setSupply(20);
+        Assert.assertEquals(20, newProduct.getSupply());
+        newProduct.setExplanation("of high quality");
+        Assert.assertEquals("of high quality", newProduct.getExplanation());
+    }
+
+    @Test
+    public void personSetterGetterCheck() {
+        Assert.assertEquals("sellerUser", testSeller.getUsername());
+        Assert.assertEquals("1234", testCustomer.getPassword());
+        Assert.assertEquals("Alex", testAdmin.getName());
+        Assert.assertEquals("Nick", testAdmin.getFamilyName());
+        Assert.assertEquals("alexN@gmail.com", testAdmin.getEmail());
+        Assert.assertEquals("001937654", testAdmin.getNumber());
+        Assert.assertEquals(Role.ADMIN, testAdmin.getRole());
+        testAdmin.setPassword("1234");
+        Assert.assertEquals("1234", testAdmin.getPassword());
+        testAdmin.setName("Noah");
+        Assert.assertEquals("Noah", testAdmin.getName());
+        testAdmin.setFamilyName("Walker");
+        Assert.assertEquals("Walker", testAdmin.getFamilyName());
+        testAdmin.setEmail("nwalker@gmail.com");
+        Assert.assertEquals("nwalker@gmail.com", testAdmin.getEmail());
+        testAdmin.setNumber("001227453");
+        Assert.assertEquals("001227453", testAdmin.getNumber());
+        testAdmin.setBalance(550.50);
+        Assert.assertEquals(550.50, testAdmin.getBalance(), 0.0);
+        fileSaver.dataReader();
+        Seller seller = (Seller) storage.getUserByUsername("s1");
+        Assert.assertEquals(Role.SELLER, seller.getRole());
+        Customer customer = (Customer) storage.getUserByUsername("c1");
+        Assert.assertEquals(Role.CUSTOMER, customer.getRole());
+    }
 }

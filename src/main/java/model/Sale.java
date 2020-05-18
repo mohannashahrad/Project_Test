@@ -7,7 +7,7 @@ public class Sale {
     private int saleId;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
-    private int amountOfSale;
+    private double amountOfSale;
     private ArrayList<Product> productsWithThisSale;
     private static ArrayList<Sale> allSales = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class Sale {
         return allSales;
     }
 
-    public Sale(LocalDateTime beginDate, LocalDateTime endDate, int amountOfSale, ArrayList<Product> productsWithThisSale) {
+    public Sale(LocalDateTime beginDate, LocalDateTime endDate, double amountOfSale, ArrayList<Product> productsWithThisSale) {
         this.saleId = idSetter();
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -47,7 +47,7 @@ public class Sale {
         return endDate;
     }
 
-    public int getAmountOfSale() {
+    public double getAmountOfSale() {
         return amountOfSale;
     }
 
@@ -67,7 +67,7 @@ public class Sale {
         this.endDate = endDate;
     }
 
-    public void setAmountOfSale(int amountOfSale) {
+    public void setAmountOfSale(double amountOfSale) {
         this.amountOfSale = amountOfSale;
     }
 

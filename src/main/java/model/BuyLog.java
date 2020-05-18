@@ -36,10 +36,6 @@ public class BuyLog extends Log {
         return buyCode;
     }
 
-    public int getLastBuyCode() {
-        return lastBuyCode;
-    }
-
     public double getPaidMoney() {
         return paidMoney;
     }
@@ -50,10 +46,6 @@ public class BuyLog extends Log {
 
     public ArrayList<Seller> getSeller() {
         return seller;
-    }
-
-    public HashMap<String, String> getCustomerInfo() {
-        return customerInfo;
     }
 
     public ArrayList<Integer> getAllBuyCodes() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Customer extends Person {
-    private Cart shoppingCart;
     private ArrayList<BuyLog> buyHistory;
     private ArrayList<Discount> allDiscounts;
     private static ArrayList<Person> allCustomers = new ArrayList<>();
@@ -19,10 +18,6 @@ public class Customer extends Person {
         this.allDiscounts = new ArrayList<>();
     }
 
-    public Cart getShoppingCart() {
-        return shoppingCart;
-    }
-
     public ArrayList<BuyLog> getBuyHistory() {
         return buyHistory;
     }
@@ -35,16 +30,7 @@ public class Customer extends Person {
         this.allDiscounts.add(newDiscount);
     }
 
-   /* public void removeFromAllDiscounts(Discount specificDiscount) {
-        allDiscounts.removeIf(specificDiscount::equals);
-    }*/
-
     public void addToBuyLogs(BuyLog newBuyLog) {
         buyHistory.add(newBuyLog);
     }
-
-    /*public Cart newCartForThisCustomer() {
-        this.shoppingCart = Cart.getCart();
-        return this.shoppingCart;
-    }*/
 }
