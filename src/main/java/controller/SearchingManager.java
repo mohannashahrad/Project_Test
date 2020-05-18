@@ -41,8 +41,12 @@ public class SearchingManager extends Manager {
         else {
             ArrayList<Product> temp = new ArrayList<>();
             for (Filter filter : currentFilters) {
-                if (filter.getFilterName().equals("category"))
-                    temp.addAll(filter.filterByCategory(storage.getCategoryByName(filter.getFilterInfo()),products));
+                if (filter.getFilterName().equals("category")) {
+                    if (storage.getCategoryByName(filter.getFilterInfo()) == null){
+                        continue;
+                    }
+                    temp.addAll(filter.filterByCategory(storage.getCategoryByName(filter.getFilterInfo()), products));
+                }
                 if (filter.getFilterName().equals("name"))
                     temp.addAll(filter.filterByName(filter.getFilterInfo(),products));
                 if (filter.getFilterName().equals("price"))

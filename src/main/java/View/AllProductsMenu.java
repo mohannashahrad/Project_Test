@@ -127,6 +127,9 @@ public class AllProductsMenu extends Menu {
     }
 
     private void showCurrentSorts() {
+        if (searchingManager.getCurrentSorts().isEmpty()){
+            System.out.println("There is no sort selected yet!");
+        }
         for (Sort currentSort : searchingManager.getCurrentSorts()) {
             System.out.println("Sort By : " + currentSort.getSortName());
             System.out.println("----");
@@ -222,7 +225,7 @@ public class AllProductsMenu extends Menu {
 
     private void showCurrentFilters() {
         if (searchingManager.getCurrentFilters().isEmpty()){
-            System.out.println("no current filters.");
+            System.out.println("There is no current filters!");
             return;
         }
         for (Filter currentFilter : searchingManager.getCurrentFilters()) {
