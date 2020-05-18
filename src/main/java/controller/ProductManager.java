@@ -31,6 +31,9 @@ public class ProductManager extends Manager {
             throw new Exception("There is not a product with this Id!");
         else if (firstProduct == secondProduct)
             throw new Exception("These products are the same!");
+        else if (!storage.getProductById(firstProduct).getCategory().getCategoryName().
+                equals(storage.getProductById(secondProduct).getCategory().getCategoryName()))
+            throw new Exception("These products are from different categories and can't be compared!");
         else {
             Product first = storage.getProductById(firstProduct);
             Product second = storage.getProductById(secondProduct);

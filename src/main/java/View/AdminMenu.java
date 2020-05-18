@@ -82,6 +82,10 @@ public class AdminMenu extends AccountMenu {
     private void addCategory() {
         System.out.println("Enter category's name :");
         String name = scanner.nextLine();
+        if (name.equals("")){
+            System.out.println("This is not a valid name!");
+            return;
+        }
         if (adminManager.doesCategoryExist(name)) {
             System.out.println("category with this name already exists.");
             return;
@@ -210,7 +214,7 @@ public class AdminMenu extends AccountMenu {
 
     private void viewDiscountCodes() {
         boolean anythingShowed = viewAllDiscount();
-        if (anythingShowed == false)
+        if (!anythingShowed)
             return;
         while (true) {
             System.out.println("Enter\n1.view a DiscountCode\n2.edit a DiscountCode\n3.remove a DiscountCode\n4.back");
