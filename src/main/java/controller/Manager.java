@@ -155,6 +155,7 @@ public class Manager {
     protected Person getPerson(){
         return person;
     }
+
     protected Cart getCart(){
         return this.cart;
     }

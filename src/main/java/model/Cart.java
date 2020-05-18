@@ -1,8 +1,5 @@
 package model;
 
-
-import controller.Storage;
-
 import java.util.HashMap;
 
 public class Cart {
@@ -42,13 +39,6 @@ public class Cart {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    /*public double calculateTotalPrice() {
-        for (Product product : productsInCart.keySet()) {
-            totalPrice += (product.getPrice() * productsInCart.get(product));
-        }
-        return totalPrice;
-    }*/
 
     public void addProductToCart(Product newProduct) {
         if(newProduct.getSupply() != 0) {

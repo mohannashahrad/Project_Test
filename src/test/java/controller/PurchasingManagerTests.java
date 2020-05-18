@@ -22,7 +22,7 @@ public class PurchasingManagerTests {
         productsInCart.put(storage.getProductById(1),2);
         productsInCart.put(storage.getProductById(2),3);
         manager.cart.setProductsInCart(productsInCart);
-        double expected = 2*10 + 3*20 ;
+        double expected = 2*10 + 3*10 ;
         double original = purchasingManager.getTotalPriceWithoutDiscount();
         Assert.assertEquals(expected,original,0.0);
     }
@@ -87,7 +87,7 @@ public class PurchasingManagerTests {
         Discount discount = new Discount("discount1", firstBeginDate,firstEndDate,
                 20,2,100);
         storage.addDiscount(discount);
-        double expected = (2*10 + 3*20) * (0.8) ;
+        double expected = (2*10 + 3*10) * (0.8) ;
         double original = purchasingManager.calculateTotalPriceWithDiscount("discount1");
         Assert.assertEquals(expected,original,0.0);
     }
@@ -126,7 +126,7 @@ public class PurchasingManagerTests {
         productsToBeCalculated.add(storage.getProductById(1));
         productsToBeCalculated.add(storage.getProductById(2));
         double expected = purchasingManager.calculateEachSellerMoneyTransfer(productsToBeCalculated);
-        double original = 30.0;
+        double original = 20.0;
         Assert.assertEquals(expected,original,0.0);
     }
 

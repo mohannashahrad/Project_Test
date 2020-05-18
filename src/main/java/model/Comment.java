@@ -7,10 +7,10 @@ public class Comment {
     private Product product;
     private String commentTitle;
     private String commentBody;
-    private static ArrayList<Comment>allComents = new ArrayList<>();
+    private static ArrayList<Comment>allComments = new ArrayList<>();
 
-    public static ArrayList<Comment> getAllComents() {
-        return allComents;
+    public static ArrayList<Comment> getAllComments() {
+        return allComments;
     }
 
     public Comment(String user, Product product, String commentTitle, String commentBody) {
@@ -18,10 +18,6 @@ public class Comment {
         this.product = product;
         this.commentTitle = commentTitle;
         this.commentBody = commentBody;
-    }
-
-    public String getUser() {
-        return user;
     }
 
     public Product getProduct() {

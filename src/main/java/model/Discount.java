@@ -85,13 +85,6 @@ public class Discount {
         customersWithThisDiscount.remove(specificCustomer, usage);
     }
 
-    public void updateUsageOfDiscount(Customer specificCustomer) {
-        this.customersWithThisDiscount.replace(specificCustomer, this.customersWithThisDiscount.get(specificCustomer) + 1);
-    }
-
-    public double calculateAmountOfDiscount(double totalPrice) {
-        return totalPrice * (1.0 * percentage / 100);
-    }
 
     @Override
     public boolean equals(Object obj) {
