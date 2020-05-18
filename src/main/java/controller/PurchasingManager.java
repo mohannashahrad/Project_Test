@@ -11,11 +11,6 @@ import java.util.HashMap;
 public class PurchasingManager extends Manager{
 
     private int buyLogCode = 0;
-    public boolean CartIsEmpty(){
-        if (super.cart.getProductsInCart().isEmpty())
-            return true;
-        else return false;
-    }
 
     public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double discountPercentage){
         double moneyToTransfer = totalPrice - totalPrice*(1.0*discountPercentage/100);

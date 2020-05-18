@@ -141,7 +141,10 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void purchase() {
-        if ()
+        if (customerManager.CartIsEmpty()){
+            System.out.println("your cart is empty.nothing to purchase!");
+            return;
+        }
         PurchaseMenu purchaseMenu = new PurchaseMenu(this);
         purchaseMenu.run();
     }
