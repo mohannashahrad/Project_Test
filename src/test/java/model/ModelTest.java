@@ -124,7 +124,6 @@ public class ModelTest {
         fileSaver.dataReader();
         Seller firstSeller = (Seller) storage.getUserByUsername("s1");
         Product firstProduct = storage.getProductById(1);
-        Product secondProduct = storage.getProductById(2);
         Comment firstComment = new Comment("user", storage.getProductById(1),
                 "First Comment", "The style was not really good.");
         Comment secondComment = new Comment("person", storage.getProductById(1),
