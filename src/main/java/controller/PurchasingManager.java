@@ -25,6 +25,7 @@ public class PurchasingManager extends Manager {
             seller.addBalance(totalPricePerSeller);
             createSellLog(seller, receiverInformation, totalPricePerSeller, discountPercentage);
         }
+        cart.isPurchased();
         cart.emptyCart();
     }
 

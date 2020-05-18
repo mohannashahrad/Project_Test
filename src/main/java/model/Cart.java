@@ -7,6 +7,7 @@ public class Cart {
     private HashMap<Product, Integer> productsInCart;
     private double totalPrice;
     private Customer customer;
+    private boolean isPurchased = false;
 
     public Cart(Customer customer) {
         this.productsInCart = new HashMap<>();
@@ -72,6 +73,11 @@ public class Cart {
     }
 
     public void emptyCart(){
+        if (!cart.isPurchased){
+            for (Product product : productsInCart.keySet()) {
+                product.setSupply(product.getSupply() + productsInCart.get(product));
+            }
+        }
         this.totalPrice = 0;
         this.customer = null;
         this.productsInCart.clear();
@@ -83,5 +89,9 @@ public class Cart {
             finalPrice += product.getPriceWithSale() * this.getProductsInCart().get(product);
         }
         return finalPrice;
+    }
+
+    public void isPurchased(){
+        this.isPurchased = true;
     }
 }
