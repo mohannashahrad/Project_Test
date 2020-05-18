@@ -65,7 +65,7 @@ public class PurchasingManager extends Manager{
     public ArrayList<Product> sellerProductsInCart (Cart cart , Seller seller){
         ArrayList<Product> aimedProducts = new ArrayList<>();
         for (Product product : cart.getProductsInCart().keySet()) {
-            if(product.getSeller().equals(seller))
+            if(product.getSeller().getUsername().equals(seller.getUsername()))
                 aimedProducts.add(product);
         }
         return aimedProducts;
