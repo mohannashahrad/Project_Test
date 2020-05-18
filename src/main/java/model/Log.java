@@ -27,10 +27,6 @@ public class Log {
         return products;
     }
 
-    public void addProductToLog(Product product) {
-        products.add(product);
-    }
-
     @Override
     public boolean equals(Object obj) {
         Log first = (Log) this;

@@ -112,7 +112,7 @@ public class PurchaseMenu extends Menu {
             public void commandProcess() {
                 show();
                 System.out.println("This is your final receipt!");
-                System.out.println("In the following part the details of your cart will be displayed as below patter!");
+                System.out.println("In the following part the details of your cart will be displayed as below pattern!");
                 System.out.println("Product's Name -- Product's Price -- Product's Amount Of Sale -- Product's Price With Sale" +
                         " -- Number Of Product In Cart");
                 if (purchasingManager.getProductsInCart().isEmpty()){

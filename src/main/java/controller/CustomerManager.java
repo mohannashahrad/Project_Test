@@ -8,7 +8,10 @@ public class CustomerManager extends Manager {
 
     private AdminManager adminManager = new AdminManager();
 
-    public CustomerManager() {
+    public boolean CartIsEmpty(){
+        if (super.cart.getProductsInCart().isEmpty())
+            return true;
+        else return false;
     }
 
     public Cart getCart (){

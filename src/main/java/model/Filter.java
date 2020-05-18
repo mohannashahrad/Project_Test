@@ -25,10 +25,6 @@ public class Filter {
         return allFilters;
     }
 
-    public void setFilterInfo(String filterInfo) {
-        this.filterInfo = filterInfo;
-    }
-
     public ArrayList<Product> filterByCategory(Category category, ArrayList<Product> allProducts) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : allProducts) {

@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SellLog extends Log {
     private int sellCode;
@@ -25,22 +24,6 @@ public class SellLog extends Log {
         this.saleAmount = saleAmount;
         this.customer = customer;
         allSellCodes.add(sellCode);
-    }
-
-    public int getSellCode() {
-        return sellCode;
-    }
-
-    public double getReceivedMoney() {
-        return receivedMoney;
-    }
-
-    public int getLastSellCode() {
-        return lastSellCode;
-    }
-
-    public double getSaleAmount() {
-        return saleAmount;
     }
 
     public Customer getCustomer() {

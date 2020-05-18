@@ -49,7 +49,7 @@ public class Storage {
         allCategories = Category.getAllCategories();
         allDiscounts = Discount.getAllDiscounts();
         allRates = Rate.getAllRates();
-        allComments = Comment.getAllComents();
+        allComments = Comment.getAllComments();
         allSales = Sale.getAllSales();
         allRequests = Request.getAllRequests();
         allFilters = Filter.getAllFilters();

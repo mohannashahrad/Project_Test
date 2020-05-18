@@ -212,7 +212,7 @@ public class AdminManager extends Manager {
                 addProductToSAleRequest(request);
                 return;
             case REMOVE_PRODUCT_FROM_SALE:
-                removeProductFromSaleRequest(request);
+                removeProductFromRequest(request);
         }
     }
 
@@ -258,7 +258,7 @@ public class AdminManager extends Manager {
 
     private void addProductToSAleRequest (Request request){
         int addedProductToSAle = Integer.parseInt(request.getInformation().get("productId"));
-        int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("offId"));
+        int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("saleId"));
         storage.getProductById(addedProductToSAle).setSale(storage.getSaleById(saleIdToBeAdded));
         storage.getSaleById(saleIdToBeAdded).addProductToThisSale(storage.getProductById(addedProductToSAle));
     }
@@ -269,7 +269,7 @@ public class AdminManager extends Manager {
         if (storage.getProductById(removedProductFromSAle).getSale() == storage.getSaleById(saleIdToBeRemoved)){
             storage.getProductById(removedProductFromSAle).setSale(null);
         }
-        storage.getSaleById(saleIdToBeRemoved).removeProductFromThisSale(storage.getProductById(removedProductFromSAle));
+        storage.getSaleById(removedProductFromSAle).removeProductFromThisSale(storage.getProductById(saleIdToBeRemoved));
     }
 
     public void addCommentRequest (Request request){

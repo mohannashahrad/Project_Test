@@ -27,11 +27,6 @@ public class Category {
         return false;
     }
 
-    public static void deleteUncategorized() {
-        if (doesCategoryExist("uncategorized"))
-            allCategories.remove(Category.getCategoryByName("uncategorized"));
-    }
-
     public HashMap<String, String> getProperties() {
         return properties;
     }
@@ -70,14 +65,6 @@ public class Category {
 
     public void addToThisCategoryProducts(Product newProduct) {
         thisCategoryProducts.add(newProduct);
-    }
-
-    public void removeFromThisCategoryProducts(Product specificProduct) {
-        thisCategoryProducts.removeIf(categoryProduct -> categoryProduct.equals(specificProduct));
-    }
-
-    public void removeProperty(String key, String value) {
-        this.properties.remove(key, value);
     }
 
     @Override
