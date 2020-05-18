@@ -17,11 +17,11 @@ public class PurchasingManager extends Manager{
         person.setBalance(person.getBalance() - moneyToTransfer);
         createBuyLog(receiverInformation,totalPrice,discountPercentage);
         addCustomerToProductsBuyers();
-        System.out.println(findDistinctSellers(super.cart).size());
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
             seller.addBalance(totalPricePerSeller);
             createSellLog(seller,receiverInformation,totalPricePerSeller,discountPercentage);
+            System.out.println("******"+seller.getBalance());
         }
         cart.emptyCart();
     }
