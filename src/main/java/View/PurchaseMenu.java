@@ -80,7 +80,7 @@ public class PurchaseMenu extends Menu {
                     if (discountCode.equalsIgnoreCase("cancel")){
                         return;
                     }
-                    if (!purchasingManager.doesCustomerHaveDiscountCode(discount)){
+                    if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)){
                         System.out.println("This discount was not assigned to you by the admin !");
                         return;
                     }

@@ -24,7 +24,7 @@ public class PurchasingManager extends Manager {
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart, seller));
             seller.addBalance(totalPricePerSeller);
-            createSellLog(seller, receiverInformation, totalPricePerSeller, discountPercentage);
+            createSellLog(seller, totalPricePerSeller, discountPercentage);
         }
         cart.isPurchased();
         cart.emptyCart();
@@ -59,7 +59,7 @@ public class PurchasingManager extends Manager {
         return buyLogCode;
     }
 
-    public void createSellLog(Seller seller, HashMap<String, String> receiverInformation, double totalPrice, double saleAmount) {
+    public void createSellLog(Seller seller, double totalPrice, double saleAmount) {
         SellLog sellLog = new SellLog(LocalDateTime.now(), totalPrice, saleAmount, (Customer) person);
         storage.addSellLog(sellLog);
         seller.addToSellLogs(sellLog);

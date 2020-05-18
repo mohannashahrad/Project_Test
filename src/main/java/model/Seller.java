@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Seller extends Person {
     private String company;
-    private static ArrayList<SellLog> sellHistory = new ArrayList<>();
+    private ArrayList<SellLog> sellHistory = new ArrayList<>();
     private ArrayList<Product> productsToSell;
     private ArrayList<Sale> saleList;
     private static ArrayList<Person> allSellers = new ArrayList<>();
@@ -47,15 +47,6 @@ public class Seller extends Person {
 
     public void removeProduct(Product specificProduct) {
         productsToSell.removeIf(product -> product.equals(specificProduct));
-    }
-
-    boolean hasProductWithId(String productId) {
-        for (Product product : productsToSell) {
-            if (product.getProductId() == Integer.parseInt(productId)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void addToSellLogs(SellLog newSellLog) {
