@@ -70,6 +70,10 @@ public class CustomerManager extends Manager {
         return cart.getTotalPrice();
     }
 
+    public double getCartTotalPriceWithSale(){
+         return cart.getTotalPriceWithSale();
+    }
+
     public ArrayList<Discount> getCustomerDiscountCodes (){
         return ((Customer)person).getAllDiscounts();
     }

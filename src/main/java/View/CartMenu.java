@@ -61,7 +61,8 @@ public class CartMenu extends Menu{
     }
 
     private void showTotalPrice() {
-        System.out.println(customerManager.getCartTotalPrice()+" $");
+        System.out.println("Total Price : " + customerManager.getCartTotalPrice()+" $");
+        System.out.println("Total Price With Sale : " + customerManager.getCartTotalPriceWithSale()+" $");
     }
 
     private void decreaseProduct() {

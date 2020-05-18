@@ -86,4 +86,12 @@ public class Cart {
         this.customer = null;
         this.productsInCart.clear();
     }
+
+    public double getTotalPriceWithSale(){
+        double finalPrice = 0.0;
+        for (Product product : this.getProductsInCart().keySet()) {
+            finalPrice += product.getPriceWithSale() * this.getProductsInCart().get(product);
+        }
+        return finalPrice;
+    }
 }
