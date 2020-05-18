@@ -141,6 +141,7 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void purchase() {
+        if ()
         PurchaseMenu purchaseMenu = new PurchaseMenu(this);
         purchaseMenu.run();
     }

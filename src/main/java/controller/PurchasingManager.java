@@ -11,8 +11,10 @@ import java.util.HashMap;
 public class PurchasingManager extends Manager{
 
     private int buyLogCode = 0;
-
-    public PurchasingManager() {
+    public boolean CartIsEmpty(){
+        if (super.cart.getProductsInCart().isEmpty())
+            return true;
+        else return false;
     }
 
     public void performPayment(HashMap<String,String> receiverInformation , double totalPrice , double discountPercentage){
@@ -20,6 +22,7 @@ public class PurchasingManager extends Manager{
         person.setBalance(person.getBalance() - moneyToTransfer);
         createBuyLog(receiverInformation,totalPrice,discountPercentage);
         addCustomerToProductsBuyers();
+        System.out.println(findDistinctSellers(super.cart).size());
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart,seller));
             seller.addBalance(totalPricePerSeller);
