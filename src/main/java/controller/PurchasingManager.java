@@ -3,6 +3,7 @@ package controller;
 import model.BuyLog;
 import model.*;
 
+import javax.print.DocFlavor;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -64,19 +65,19 @@ public class PurchasingManager extends Manager {
         seller.addToSellLogs(sellLog);
     }
 
-    public ArrayList<Product> sellerProductsInCart(Cart cart, Seller seller) {
-        ArrayList<Product> aimedProducts = new ArrayList<>();
+    public HashMap<Product, Integer> sellerProductsInCart(Cart cart, Seller seller) {
+        HashMap<Product, Integer> aimedProducts = new HashMap<>();
         for (Product product : cart.getProductsInCart().keySet()) {
             if (product.getSeller().equals(seller))
-                aimedProducts.add(product);
+                aimedProducts.put(product, cart.getProductsInCart().get(product));
         }
         return aimedProducts;
     }
 
-    public double calculateEachSellerMoneyTransfer(ArrayList<Product> products) {
+    public double calculateEachSellerMoneyTransfer(HashMap<Product, Integer> products) {
         double totalMoney = 0;
-        for (Product product : products) {
-            totalMoney += product.getPrice();
+        for (Product product : products.keySet()) {
+            totalMoney += product.getPrice() *products.get(product);
         }
         return totalMoney;
     }

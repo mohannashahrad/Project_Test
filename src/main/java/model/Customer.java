@@ -30,6 +30,10 @@ public class Customer extends Person {
         this.allDiscounts.add(newDiscount);
     }
 
+    public void removeFromDiscounts(Discount specificDiscount){
+        allDiscounts.removeIf(discount -> discount.equals(specificDiscount));
+    }
+
     public void addToBuyLogs(BuyLog newBuyLog) {
         buyHistory.add(newBuyLog);
     }
