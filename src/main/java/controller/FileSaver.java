@@ -50,9 +50,6 @@ public class FileSaver {
         readComment();
         readSale();
         readRequest();
-        //readFilter();
-        //readSort();
-        //readCart();
     }
 
     private void writeArrayToFile(ArrayList arrayList,String filePath){
@@ -160,22 +157,6 @@ public class FileSaver {
             System.out.println(e.getMessage());
         }
     }
-    private void readFilter(){
-        try(FileReader fileReader = new FileReader("./dataBase/allFilters.json")) {
-            Filter[] fromFile = gson.fromJson(fileReader,Filter[].class);
-            Collections.addAll(storage.getAllFilters(),fromFile);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    private void readSort(){
-        try(FileReader fileReader = new FileReader("./dataBase/allSorts.json")) {
-            Sort[] fromFile = gson.fromJson(fileReader,Sort[].class);
-            Collections.addAll(storage.getAllSorts(),fromFile);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
     private void readLog(){
         try(FileReader fileReader = new FileReader("./dataBase/allLogs.json")) {
             Log[] fromFile = gson.fromJson(fileReader,Log[].class);
@@ -196,14 +177,6 @@ public class FileSaver {
         try(FileReader fileReader = new FileReader("./dataBase/allSellLogs.json")) {
             SellLog[] fromFile = gson.fromJson(fileReader,SellLog[].class);
             Collections.addAll(storage.getAllSellLogs(),fromFile);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    private void readCart(){
-        try(FileReader fileReader = new FileReader("./dataBase/allCarts.json")) {
-            Cart[] fromFile = gson.fromJson(fileReader,Cart[].class);
-            storage.setAllCarts(new ArrayList<>(Arrays.asList(fromFile)));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
