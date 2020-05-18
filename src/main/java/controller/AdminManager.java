@@ -212,7 +212,7 @@ public class AdminManager extends Manager {
                 addProductToSAleRequest(request);
                 return;
             case REMOVE_PRODUCT_FROM_SALE:
-                removeProductFromRequest(request);
+                removeProductFromSaleRequest(request);
         }
     }
 
@@ -258,18 +258,18 @@ public class AdminManager extends Manager {
 
     private void addProductToSAleRequest (Request request){
         int addedProductToSAle = Integer.parseInt(request.getInformation().get("productId"));
-        int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("saleId"));
+        int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("offId"));
         storage.getProductById(addedProductToSAle).setSale(storage.getSaleById(saleIdToBeAdded));
         storage.getSaleById(saleIdToBeAdded).addProductToThisSale(storage.getProductById(addedProductToSAle));
     }
 
-    private void removeProductFromRequest(Request request){
+    private void removeProductFromSaleRequest(Request request){
         int removedProductFromSAle = Integer.parseInt(request.getInformation().get("productId"));
-        int saleIdToBeRemoved = Integer.parseInt(request.getInformation().get("saleId"));
+        int saleIdToBeRemoved = Integer.parseInt(request.getInformation().get("offId"));
         if (storage.getProductById(removedProductFromSAle).getSale() == storage.getSaleById(saleIdToBeRemoved)){
             storage.getProductById(removedProductFromSAle).setSale(null);
         }
-        storage.getSaleById(removedProductFromSAle).removeProductFromThisSale(storage.getProductById(saleIdToBeRemoved));
+        storage.getSaleById(saleIdToBeRemoved).removeProductFromThisSale(storage.getProductById(removedProductFromSAle));
     }
 
     public void addCommentRequest (Request request){
