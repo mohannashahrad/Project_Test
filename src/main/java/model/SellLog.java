@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class SellLog extends Log {
     private int sellCode;
-    static private int lastSellCode = 0;
     private double receivedMoney;
     private double saleAmount;
     private Customer customer;
