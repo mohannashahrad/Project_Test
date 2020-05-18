@@ -46,12 +46,12 @@ public class SellerManagerTests {
         Product expected = sellerManager.getSellerProductById(2);
         Assert.assertEquals(expected, sellerManager.viewSellerProduct(2));
         try {
-            Assert.assertNotEquals(expected, sellerManager.viewSellerProduct(7));
+            sellerManager.getSellerProductById(7);
         } catch (Exception e) {
             Assert.assertEquals(e.getMessage(), "A product with this Id does not exist!!");
         }
         try {
-            Assert.assertNotEquals(expected.getSeller(), storage.getProductById(3).getSeller());
+            sellerManager.getSellerProductById(3);
         } catch (Exception e) {
             Assert.assertEquals(e.getMessage(), "You don't have this product!!");
         }
@@ -61,16 +61,19 @@ public class SellerManagerTests {
     public void doesSellerHaveProductTest() throws Exception {
         loginTest();
         Assert.assertTrue(sellerManager.doesSellerHaveProduct(2));
-        Assert.assertFalse(sellerManager.doesSellerHaveProduct(3));
+        Assert.assertFalse(sellerManager.doesSellerHaveProduct(4));
     }
 
     /*@Test
     public void viewSellerProducts() throws Exception {
         fileSaver.dataReader();
         loginTest();
-        ArrayList<Product> allProducts = new ArrayList<>(Arrays.asList(storage.getProductById(1),storage.getProductById(2)));
-        String checkAllProducts = allProducts.toString();
-        Assert.assertEquals(checkAllProducts, sellerManager.viewSellerProducts().toString());
+        ArrayList<Product> original = sellerManager.viewSellerProducts();
+        ArrayList<Product> expected = new ArrayList<>();
+        expected.add(storage.getProductById(1));
+        expected.add(storage.getProductById(2));
+        expected.add(storage.getProductById(3));
+        Assert.assertArrayEquals(new ArrayList[]{expected}, new ArrayList[]{original});
     }*/
 
     @Test
