@@ -6,8 +6,8 @@ import java.util.HashMap;
 public class Seller extends Person {
     private String company;
     private static ArrayList<SellLog> sellHistory = new ArrayList<>();
-    private ArrayList<Product> productsToSell;
-    private ArrayList<Sale> saleList;
+    private transient ArrayList<Product> productsToSell;
+    private transient ArrayList<Sale> saleList;
     private static ArrayList<Person> allSellers = new ArrayList<>();
 
     public static ArrayList<Person> getAllSellers() {

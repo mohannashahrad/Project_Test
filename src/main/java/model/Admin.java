@@ -23,15 +23,6 @@ public class Admin extends Person{
         return allRequests;
     }
 
-
-    public ArrayList<Integer> getAllRequestIds(){
-        ArrayList<Integer>allRequestIds = new ArrayList<>();
-        for (Request request : allRequests){
-            allRequestIds.add(request.getRequestId());
-        }
-        return allRequestIds;
-    }
-
 }
 
 

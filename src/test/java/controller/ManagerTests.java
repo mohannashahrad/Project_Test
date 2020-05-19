@@ -194,4 +194,11 @@ public class ManagerTests {
         manager.logout();
         Assert.assertNull(manager.getPerson());
     }
+
+    @Test
+    public void json(){
+        Seller seller = (Seller) storage.getUserByUsername("s1");
+        File_Saver file_saver = new File_Saver();
+        System.out.println(file_saver.test(seller));
+    }
 }
