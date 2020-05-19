@@ -18,6 +18,7 @@ public class File_Saver {
         gsonBuilder.registerTypeAdapter(Comment.class,new CommentSerializer());
         gsonBuilder.registerTypeAdapter(Rate.class,new RateSerializer());
         gsonBuilder.registerTypeAdapter(Sale.class,new SaleSerializer());
+        gsonBuilder.registerTypeAdapter(Product.class,new ProductSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -174,6 +175,44 @@ class SaleSerializer implements JsonSerializer<Sale> {
         JsonElement jsonElement = gsonDefault.toJsonTree(sale);
         JsonElement products = gsonDefault.toJsonTree(getAllProductId(sale.getProductsWithThisSale()));
         jsonElement.getAsJsonObject().add("productsWithThisSale",products);
+        return jsonElement;
+    }
+}
+class ProductSerializer implements JsonSerializer<Product> {
+    Gson gsonDefault = new Gson();
+    private ArrayList<String> getAllBuyerIds(ArrayList<Customer> customers){
+        ArrayList<String> temp = new ArrayList<>();
+        for (Customer customer : customers){
+            temp.add(customer.getUsername());
+        }
+        return temp;
+    }
+    private ArrayList<Double> getAllRates(ArrayList<Rate> rates){
+        ArrayList<Double> temp = new ArrayList<>();
+        for (Rate rate : rates){
+            temp.add(rate.getRate());
+        }
+        return temp;
+    }
+    private ArrayList<String> getAllCommentContents(ArrayList<Comment> comments){
+        ArrayList<String> temp = new ArrayList<>();
+        for (Comment comment : comments){
+            temp.add(comment.getCommentBody());
+        }
+        return temp;
+    }
+    @Override
+    public JsonElement serialize(Product product, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(product);
+        jsonElement.getAsJsonObject().addProperty("seller",product.getSeller().getUsername());
+        jsonElement.getAsJsonObject().addProperty("category",product.getCategory().getCategoryName());
+        jsonElement.getAsJsonObject().addProperty("sale",product.getSale().getSaleId());
+        JsonElement allBuyer = gsonDefault.toJsonTree(getAllBuyerIds(product.getThisProductsBuyers()));
+        jsonElement.getAsJsonObject().add("buyers",allBuyer);
+        JsonElement allRates = gsonDefault.toJsonTree(getAllRates(product.getRates()));
+        jsonElement.getAsJsonObject().add("rates",allRates);
+        JsonElement allComments = gsonDefault.toJsonTree(getAllCommentContents(product.getComments()));
+        jsonElement.getAsJsonObject().add("comments",allComments);
         return jsonElement;
     }
 }
