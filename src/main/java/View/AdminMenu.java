@@ -54,7 +54,7 @@ public class AdminMenu extends AccountMenu {
     private void manageCategoriesMenu() {
         viewAllCategories();
         while (true) {
-            System.out.println("Enter\n1.edit a category\n2.add a category\n3.remove a category\n4.back :");
+            System.out.println("Enter\n1.edit a category\n2.add a category\n3.remove a category\n4.back");
             String command = scanner.nextLine().trim();
             if (command.equals("1"))
                 editCategory();
@@ -74,6 +74,7 @@ public class AdminMenu extends AccountMenu {
         String name = scanner.nextLine();
         try {
             adminManager.removeCategory(name);
+            System.out.println("Category removed successfully!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -82,13 +83,17 @@ public class AdminMenu extends AccountMenu {
     private void addCategory() {
         System.out.println("Enter category's name :");
         String name = scanner.nextLine();
+        if (name.equals("")){
+            System.out.println("This is not a valid name!");
+            return;
+        }
         if (adminManager.doesCategoryExist(name)) {
             System.out.println("category with this name already exists.");
             return;
         }
         try {
             adminManager.addCategory(name);
-            System.out.println("category created!");
+            System.out.println("category created successfully!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -102,7 +107,7 @@ public class AdminMenu extends AccountMenu {
             Category category = adminManager.viewCategory(name);
             viewSingleCategory(category);
             while (true) {
-                System.out.println("Enter\n1.edit name\n2.edit properties\n3.back :");
+                System.out.println("Enter\n1.edit name\n2.edit properties\n3.back");
                 String command = scanner.nextLine().trim();
                 if (command.equals("1")) {
                     System.out.println("Enter new name:");
@@ -137,10 +142,11 @@ public class AdminMenu extends AccountMenu {
             System.out.println("no products in this category yet.");
         } else {
             for (Product product : products) {
-                System.out.println(product.getName() + "***" + product.getProductId());
+                System.out.println("Product's name : " + product.getName() + "    ***    " +
+                        " productId : " + product.getProductId());
             }
         }
-        System.out.println(category.getProperties());
+        System.out.println("Category's properties : " + category.getProperties());
 
 
     }
@@ -210,7 +216,7 @@ public class AdminMenu extends AccountMenu {
 
     private void viewDiscountCodes() {
         boolean anythingShowed = viewAllDiscount();
-        if (anythingShowed == false)
+        if (!anythingShowed)
             return;
         while (true) {
             System.out.println("Enter\n1.view a DiscountCode\n2.edit a DiscountCode\n3.remove a DiscountCode\n4.back");
@@ -233,6 +239,7 @@ public class AdminMenu extends AccountMenu {
         String code = scanner.nextLine().trim();
         try {
             adminManager.removeDiscountCode(code);
+            System.out.println("Discount removed Successfully!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -261,6 +268,7 @@ public class AdminMenu extends AccountMenu {
                 String newValue = scanner.nextLine();
                 try {
                     adminManager.editDiscountField(discount, "beginDate", newValue);
+                    System.out.println("Edited Successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -269,6 +277,7 @@ public class AdminMenu extends AccountMenu {
                 String newValue = scanner.nextLine();
                 try {
                     adminManager.editDiscountField(discount, "endDate", newValue);
+                    System.out.println("Edited Successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -276,19 +285,23 @@ public class AdminMenu extends AccountMenu {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "percentage", newValue);
+                System.out.println("Edited Successfully!");
             } else if (command.equals("4")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "maxAmount", newValue);
+                System.out.println("Edited Successfully!");
             } else if (command.equals("5")) {
                 System.out.println("Enter new value :");
                 String newValue = scanner.nextLine();
                 adminManager.editDiscountField(discount, "usagePerCustomer", newValue);
+                System.out.println("Edited Successfully!");
             } else if (command.equals("6")) {
                 System.out.println("Enter customer's username :");
                 String username = scanner.nextLine().trim();
                 try {
                     adminManager.addCustomerToDiscount(username, discount);
+                    System.out.println("Edited Successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -297,6 +310,7 @@ public class AdminMenu extends AccountMenu {
                 String username = scanner.nextLine().trim();
                 try {
                     adminManager.removeCustomerFromDiscount(discount, username);
+                    System.out.println("Edited Successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

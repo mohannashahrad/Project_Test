@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class AdminManager extends Manager {
 
     private SellerManager tempSellerManager = new SellerManager();
-    private static int lastAwardedIndex = 0;
+    private static int lastAwardedIndex = 1;
     public AdminManager() {
     }
 
@@ -146,7 +146,7 @@ public class AdminManager extends Manager {
     }
 
     public void editCategoryByName (String oldName , String newName){
-            storage.getCategoryByName(oldName).setCategoryName(newName);
+        storage.getCategoryByName(oldName).setCategoryName(newName);
     }
 
     public void editCategoryByProperties (Category category ,String property, String newValue){
@@ -283,12 +283,11 @@ public class AdminManager extends Manager {
     }
 
     public void getDiscountAwarded() throws Exception {
-        LocalDateTime endDate = LocalDateTime.of(2021,01,01,12,30);
-        Discount discount = new Discount(("Award" + lastAwardedIndex),LocalDateTime.now(),endDate,10,
-                3,100);
-        storage.addDiscount(discount);
-        lastAwardedIndex ++;
-        addCustomerToDiscount(person.getUsername(),discount);
-    }
-
+            LocalDateTime endDate = LocalDateTime.of(2021, 01, 01, 12, 30);
+            Discount discount = new Discount(("Award" + lastAwardedIndex), LocalDateTime.now(), endDate, 10,
+                    3, 100);
+            storage.addDiscount(discount);
+            lastAwardedIndex++;
+            addCustomerToDiscount(person.getUsername(), discount);
+        }
 }

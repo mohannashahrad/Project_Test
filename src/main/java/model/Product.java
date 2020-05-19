@@ -2,8 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import controller.Storage;
 
 public class Product implements Comparable<Product> {
+    private Storage storage = new Storage();
     private int productId;
     private String name;
     private String brand;
@@ -31,7 +33,7 @@ public class Product implements Comparable<Product> {
         this.price = Double.parseDouble(information.get("price"));
         this.seller = seller;
         this.supply = Integer.parseInt(information.get("supply"));
-        this.category = Category.getCategoryByName(information.get("categoryName"));
+        this.category = storage.getCategoryByName(information.get("categoryName"));
         this.explanation = information.get("explanation");
         this.averageRate = 0;
         this.comments = new ArrayList<>();
@@ -196,7 +198,7 @@ public class Product implements Comparable<Product> {
                 " -brand :" + brand + "\n" +
                 " -price :" + price + "\n" +
                 " -supply :" + supply + "\n" +
-                //" -category :" + category.getCategoryName() + "\n" +
+                " -category :" + category.getCategoryName() + "\n" +
                 " -explanation :" + explanation + "\n" +
                 " -average rate :" + averageRate + "\n" +
                 " -seller's name :" + seller.getName() + " " + seller.getFamilyName() + "\n";

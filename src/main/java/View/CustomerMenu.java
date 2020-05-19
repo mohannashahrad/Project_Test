@@ -91,6 +91,10 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void showAllOrders (){
+        if (customerManager.getCustomerBuyLogs().isEmpty()) {
+            System.out.println("No orders yet !");
+            return;
+        }
         for (BuyLog buyLog : customerManager.getCustomerBuyLogs()) {
             System.out.println("Your Buy Order :" + buyLog.getBuyCode());
             System.out.println("Date : " + buyLog.getDate());
@@ -105,21 +109,30 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void showSingleOrder (){
+        boolean doesCustomerHaveOrderId = false;
         System.out.println("Enter your orderId :");
         String orderId = scanner.nextLine();
         if (customerManager.getCustomerBuyLogs().isEmpty()){
-            System.out.println("You didn't have this order!");
+            System.out.println("You don't have any orders yet!");
             return;
         }
-        BuyLog buyLog = customerManager.getOrderWithId(orderId);
-        System.out.println("Your Buy Order :" + buyLog.getBuyCode());
-        System.out.println("Date : " + buyLog.getDate());
-        System.out.println("Paid money : " + buyLog.getPaidMoney());
-        System.out.println("Discount Amount : " + buyLog.getDiscountAmount());
-        System.out.println("Products in this log : ");
-        for (Product product : buyLog.getProducts()) {
-            System.out.println("Name " +product.getName() + "--- productId :" + product.getProductId() +
-                    "--- price : " + product.getPrice());
+        for (BuyLog buyLog : customerManager.getCustomerBuyLogs()) {
+            if (buyLog.getBuyCode() == Integer.parseInt(orderId))
+                doesCustomerHaveOrderId = true;
+        }
+        if (doesCustomerHaveOrderId) {
+            BuyLog buyLog = customerManager.getOrderWithId(orderId);
+            System.out.println("Your Buy Order :" + buyLog.getBuyCode());
+            System.out.println("Date : " + buyLog.getDate());
+            System.out.println("Paid money : " + buyLog.getPaidMoney());
+            System.out.println("Discount Amount : " + buyLog.getDiscountAmount());
+            System.out.println("Products in this log : ");
+            for (Product product : buyLog.getProducts()) {
+                System.out.println("Name : " + product.getName() + "--- productId :" + product.getProductId() +
+                        "--- price : " + product.getPrice());
+            }
+        } else {
+           System.out.println("You don't have any order with this Id in your buying history");
         }
     }
 
@@ -142,7 +155,7 @@ public class CustomerMenu extends AccountMenu {
 
     private void purchase() {
         if (customerManager.CartIsEmpty()){
-            System.out.println("your cart is empty.nothing to purchase!");
+            System.out.println("your cart is empty. Nothing to purchase!");
             return;
         }
         PurchaseMenu purchaseMenu = new PurchaseMenu(this);

@@ -46,7 +46,7 @@ public class OffsMenu extends Menu{
     private boolean AllOffShow() {
         ArrayList<Product> offProducts = productManager.viewAllProductsWithSale();
         if (offProducts.isEmpty()){
-            System.out.println("nothing in sale!");
+            System.out.println("Nothing in sale!");
             return false;
         }
         for (Product product : offProducts){

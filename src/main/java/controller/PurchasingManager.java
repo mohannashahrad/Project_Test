@@ -3,7 +3,6 @@ package controller;
 import model.BuyLog;
 import model.*;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,20 +10,28 @@ import java.util.HashMap;
 public class PurchasingManager extends Manager {
 
     private int buyLogCode = 0;
+    private AdminManager adminManager = new AdminManager();
 
     public PurchasingManager() {
     }
 
-    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage) {
+    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage)
+            throws Exception {
         double moneyToTransfer = totalPrice - totalPrice * (1.0 * discountPercentage / 100);
         person.setBalance(person.getBalance() - moneyToTransfer);
+        ((Customer)person).addAmountOfAllPurchasing(moneyToTransfer);
+        if(((Customer)person).getAmountOfAllPurchasing() > 100){
+            adminManager.getDiscountAwarded();
+            ((Customer)person).setAmountOfAllPurchasing(0);
+        }
         createBuyLog(receiverInformation, totalPrice, discountPercentage);
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart, seller));
             seller.addBalance(totalPricePerSeller);
-            createSellLog(seller, receiverInformation, totalPricePerSeller, discountPercentage);
+            createSellLog(seller, totalPricePerSeller, discountPercentage);
         }
+        cart.isPurchased();
         cart.emptyCart();
     }
 
@@ -57,25 +64,25 @@ public class PurchasingManager extends Manager {
         return buyLogCode;
     }
 
-    public void createSellLog(Seller seller, HashMap<String, String> receiverInformation, double totalPrice, double saleAmount) {
+    public void createSellLog(Seller seller, double totalPrice, double saleAmount) {
         SellLog sellLog = new SellLog(LocalDateTime.now(), totalPrice, saleAmount, (Customer) person);
         storage.addSellLog(sellLog);
         seller.addToSellLogs(sellLog);
     }
 
-    public ArrayList<Product> sellerProductsInCart(Cart cart, Seller seller) {
-        ArrayList<Product> aimedProducts = new ArrayList<>();
+    public HashMap<Product, Integer> sellerProductsInCart(Cart cart, Seller seller) {
+        HashMap<Product, Integer> aimedProducts = new HashMap<>();
         for (Product product : cart.getProductsInCart().keySet()) {
             if (product.getSeller().equals(seller))
-                aimedProducts.add(product);
+                aimedProducts.put(product, cart.getProductsInCart().get(product));
         }
         return aimedProducts;
     }
 
-    public double calculateEachSellerMoneyTransfer(ArrayList<Product> products) {
+    public double calculateEachSellerMoneyTransfer(HashMap<Product, Integer> products) {
         double totalMoney = 0;
-        for (Product product : products) {
-            totalMoney += product.getPrice();
+        for (Product product : products.keySet()) {
+            totalMoney += product.getPrice() *products.get(product);
         }
         return totalMoney;
     }
@@ -85,6 +92,8 @@ public class PurchasingManager extends Manager {
             throw new Exception("This discount is expired!");
         else if (storage.getDiscountByCode(discountCode).getBeginDate().isAfter(LocalDateTime.now()))
             throw new Exception("You can't use a discount which is not available yet!");
+        else if(storage.getDiscountByCode(discountCode).getUsageCount() == 0)
+            throw new Exception("You used this discount before and it's not available anymore!");
     }
 
     public boolean doesCustomerHaveEnoughMoney(double price) {

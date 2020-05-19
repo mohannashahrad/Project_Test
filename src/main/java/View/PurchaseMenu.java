@@ -80,7 +80,7 @@ public class PurchaseMenu extends Menu {
                     if (discountCode.equalsIgnoreCase("cancel")){
                         return;
                     }
-                    if (!purchasingManager.doesCustomerHaveDiscountCode(discount)){
+                    if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)){
                         System.out.println("This discount was not assigned to you by the admin !");
                         return;
                     }
@@ -147,7 +147,11 @@ public class PurchaseMenu extends Menu {
                         menuSuccess = true;
                         return;
                     } else {
-                        purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        try {
+                            purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        } catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
                         if (!discount.equals("")){
                             purchasingManager.updateDiscountUsagePerPerson(discount);
                         }

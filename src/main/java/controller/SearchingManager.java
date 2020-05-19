@@ -94,8 +94,14 @@ public class SearchingManager extends Manager {
     public ArrayList<Product> disableFilter(String filterTag, String info) throws Exception {
         Filter removedFilter = null;
         for (Filter filter : currentFilters) {
-            if (filter.getFilterName().equals(filterTag) && filter.getFilterInfo().equals(info)) {
-                removedFilter = filter;
+            if(filter.getFilterName().equals("price")) {
+                if (filter.getFilterName().equals(filterTag) && Double.parseDouble(filter.getFilterInfo()) == Double.parseDouble(info)) {
+                    removedFilter = filter;
+                }
+            } else{
+                if (filter.getFilterName().equals(filterTag) && filter.getFilterInfo().equals(info)) {
+                    removedFilter = filter;
+                }
             }
         }
         if(removedFilter == null){
