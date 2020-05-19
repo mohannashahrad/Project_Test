@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class FileSaver {
-    private YaGson gson = new YaGson();
+    private Gson gson = new File_Saver().getCustomeGson();
     private Storage storage;
 
     public FileSaver(Storage storage) {

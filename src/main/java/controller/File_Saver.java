@@ -8,10 +8,11 @@ import java.util.ArrayList;
 
 public class File_Saver {
     private GsonBuilder gsonBuilder = new GsonBuilder();
-    private Gson getCustomeGson(){
+    public Gson getCustomeGson(){
         gsonBuilder.registerTypeAdapter(Admin.class,new AdminSerializer());
         gsonBuilder.registerTypeAdapter(Seller.class,new SellerSerializer());
         gsonBuilder.registerTypeAdapter(Customer.class,new CustomerSerializer());
+        gsonBuilder.registerTypeAdapter(BuyLog.class,new BuyLogSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -90,6 +91,23 @@ class CustomerSerializer implements JsonSerializer<Customer> {
         JsonElement discount = gsonDefault.toJsonTree(getAllDiscountId(customer.getAllDiscounts()));
         jsonElement.getAsJsonObject().add("allDiscounts",discount);
         jsonElement.getAsJsonObject().add("buyHistory",buyLog);
+        return jsonElement;
+    }
+}
+class BuyLogSerializer implements JsonSerializer<BuyLog> {
+    Gson gsonDefault = new Gson();
+    private ArrayList<String> getAllSellerIds(ArrayList<Seller> sellers){
+        ArrayList<String> temp = new ArrayList<>();
+        for (Seller seller : sellers){
+            temp.add(seller.getUsername());
+        }
+        return temp;
+    }
+    @Override
+    public JsonElement serialize(BuyLog buyLog, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(buyLog);
+        JsonElement allSeller = gsonDefault.toJsonTree(getAllSellerIds(buyLog.getSeller()));
+        jsonElement.getAsJsonObject().add("seller",allSeller);
         return jsonElement;
     }
 }

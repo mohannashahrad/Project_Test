@@ -9,7 +9,7 @@ public class BuyLog extends Log {
     private int buyCode;
     private double paidMoney;
     private double discountAmount;
-    private ArrayList<Seller> seller;
+    private transient ArrayList<Seller> seller;
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
     private static ArrayList<Log>allBuyLogs = new ArrayList<>();
