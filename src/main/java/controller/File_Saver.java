@@ -65,3 +65,31 @@ class SellerSerializer implements JsonSerializer<Seller> {
         return jsonElement;
     }
 }
+class CustomerSerializer implements JsonSerializer<Customer> {
+    Gson gsonDefault = new Gson();
+    private ArrayList<Integer> getAllDiscountId(ArrayList<Discount> allDiscounts){
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Discount discount : allDiscounts){
+            temp.add(discount.c);
+        }
+        return temp;
+    }
+    private ArrayList<Integer> getAllBuyLogId(ArrayList<BuyLog> buyHistory){
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (BuyLog buyLog : buyHistory){
+            temp.add(buyLog.getBuyCode());
+        }
+        return temp;
+    }
+
+    @Override
+    public JsonElement serialize(Seller seller, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(seller);
+        JsonElement products = gsonDefault.toJsonTree(getAllProductId(seller.getProductsToSell()));
+        JsonElement sales = gsonDefault.toJsonTree(getAllSaleId(seller.getSaleList()));
+        jsonElement.getAsJsonObject().add("productsToSell",products);
+        jsonElement.getAsJsonObject().add("saleList",sales);
+        return jsonElement;
+    }
+}
+

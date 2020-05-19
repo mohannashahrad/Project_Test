@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Customer extends Person {
-    private ArrayList<BuyLog> buyHistory;
-    private ArrayList<Discount> allDiscounts;
+    private transient ArrayList<BuyLog> buyHistory;
+    private transient ArrayList<Discount> allDiscounts;
     private static ArrayList<Person> allCustomers = new ArrayList<>();
 
     public static ArrayList<Person> getAllCustomers() {

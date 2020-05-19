@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Discount {
+
+    private int discountId;
     private String discountCode;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
@@ -20,6 +22,7 @@ public class Discount {
 
     public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage,
                     int usagePerCustomer, double maxAmount) {
+        this.discountId = idSetter();
         this.discountCode = discountCode;
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -27,6 +30,20 @@ public class Discount {
         this.usagePerCustomer = usagePerCustomer;
         this.customersWithThisDiscount = new HashMap<>();
         this.maxAmount = maxAmount;
+    }
+    private int idSetter() {
+        if (allDiscounts.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Discount discount : allDiscounts) {
+            if (discount.getDiscountId() > max)
+                max = discount.getDiscountId();
+        }
+        return max + 1;
+    }
+    public int getDiscountId() {
+        return discountId;
     }
 
     public String getDiscountCode() {
