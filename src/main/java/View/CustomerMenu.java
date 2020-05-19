@@ -14,7 +14,7 @@ public class CustomerMenu extends AccountMenu {
     }
 
     @Override
-    public void commandProcess() {
+    public void commandProcess(){
         do {
             show();
             String command = scanner.nextLine().trim();
@@ -54,12 +54,13 @@ public class CustomerMenu extends AccountMenu {
             ArrayList<Discount> discountArrayList = ((Customer)person).getAllDiscounts();
             for (Discount discount : discountArrayList){
                 System.out.println("discount code : "+discount.getDiscountCode()+"\npercentage : "+discount.getPercentage()+"%\n" +
-                        "left usage times : "+discount.getUsageCount());
+                        "left usage times : "+discount.getUsageCount()+"\nbegin date : "+ discount.getBeginDate().toString()
+                +"\nend date : "+discount.getEndDate().toString());
             }
         }
     }
 
-    private void viewBalance() {
+    private void viewBalance(){
         System.out.println("Your balance is : "+person.getBalance());
         System.out.println("Enter\n1.add balance\n2.back");
         String  command = scanner.nextLine().trim();
