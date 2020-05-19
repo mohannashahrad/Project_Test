@@ -34,4 +34,16 @@ public class Customer extends Person {
     public void addToBuyLogs(BuyLog newBuyLog) {
         buyHistory.add(newBuyLog);
     }
+
+    public void addAmountOfAllPurchasing(double amountToBeAdded){
+        this.amountOfAllPurchasing += amountToBeAdded;
+    }
+
+    public void setAmountOfAllPurchasing(double amountOfAllPurchasing) {
+        this.amountOfAllPurchasing = amountOfAllPurchasing;
+    }
+
+    public double getAmountOfAllPurchasing() {
+        return amountOfAllPurchasing;
+    }
 }
