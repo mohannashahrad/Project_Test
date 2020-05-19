@@ -17,6 +17,7 @@ public class File_Saver {
         gsonBuilder.registerTypeAdapter(Category.class,new CategorySerializer());
         gsonBuilder.registerTypeAdapter(Comment.class,new CommentSerializer());
         gsonBuilder.registerTypeAdapter(Rate.class,new RateSerializer());
+        gsonBuilder.registerTypeAdapter(Sale.class,new SaleSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -155,7 +156,24 @@ class RateSerializer implements JsonSerializer<Rate> {
     @Override
     public JsonElement serialize(Rate rate, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonElement jsonElement = gsonDefault.toJsonTree(rate);
-        jsonElement.getAsJsonObject().addProperty("customer",rate.getProduct().getProductId());
+        jsonElement.getAsJsonObject().addProperty("product",rate.getProduct().getProductId());
+        return jsonElement;
+    }
+}
+class SaleSerializer implements JsonSerializer<Sale> {
+    Gson gsonDefault = new Gson();
+    private ArrayList<Integer> getAllProductId(ArrayList<Product> products) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Product product : products) {
+            temp.add(product.getProductId());
+        }
+        return temp;
+    }
+    @Override
+    public JsonElement serialize(Sale sale, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(sale);
+        JsonElement products = gsonDefault.toJsonTree(getAllProductId(sale.getProductsWithThisSale()));
+        jsonElement.getAsJsonObject().add("productsWithThisSale",products);
         return jsonElement;
     }
 }
