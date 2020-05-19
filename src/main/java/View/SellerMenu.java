@@ -106,6 +106,7 @@ public class SellerMenu extends AccountMenu {
         HashMap<String, String> information = new HashMap<>();
         ArrayList<Product> productsInThisSale = new ArrayList<>();
         int productId = 0;
+        int numberOfErrors = 4;
         System.out.println("start date and time (yyyy,MM,dd,HH,mm) :");
         String startDate = scanner.nextLine().trim();
         information.put("beginDate", startDate);
@@ -118,14 +119,20 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter number of products in this off:");
             int numberOfProducts = Integer.parseInt(scanner.nextLine());
             for (int i = 0; i < numberOfProducts; i++) {
+                if (numberOfErrors == 0){
+                    System.out.println("Error happened more than 3 times. Try again:)");
+                    return;
+                }
                 System.out.println("Enter the id of " + (i + 1) + "th product");
                 productId = Integer.parseInt(scanner.nextLine());
                 if (!sellerManager.doesProductExist(productId)) {
                     System.out.println("There is not a product with this Id! Try again :)");
                     i--;
+                    numberOfErrors --;
                 } else if (!sellerManager.doesSellerHaveProduct(productId)) {
                     System.out.println("You don't have this product in your available products! Try again :)");
                     i--;
+                    numberOfErrors--;
                 } else {
                     productsInThisSale.add(sellerManager.getSellerProductById(productId));
                 }
@@ -154,39 +161,47 @@ public class SellerMenu extends AccountMenu {
                 continue;
             } else if (command.equals("6"))
                 break;
+            if (command.equals("4")) {
+                System.out.println("Enter productId : ");
+                int productId = Integer.parseInt(scanner.nextLine());
+                try {
+                    sellerManager.addProductToOff(offId, productId);
+                    System.out.println("Request of adding product to off has been sent to the admins successfully :)");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return;
+            } else if (command.equals("5")) {
+                System.out.println("Enter productId : ");
+                int productId = Integer.parseInt(scanner.nextLine());
+                try {
+                    sellerManager.removeProductFromOff(offId, productId);
+                    System.out.println("Request of removing product from off has been sent to the admins successfully :)");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return;
+            }
             System.out.println("Enter new value :");
             String newValue = scanner.nextLine();
             if (command.equals("1")) {
                 try {
                     sellerManager.editOff(offId, "beginDate", newValue);
+                    System.out.println("Request of editing begin date of off has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command.equals("2")) {
                 try {
                     sellerManager.editOff(offId, "endDate", newValue);
+                    System.out.println("Request of editing end date of off has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command.equals("3")) {
                 try {
                     sellerManager.editOff(offId, "amountOfSale", newValue);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (command.equals("4")) {
-                System.out.println("Enter productId : ");
-                int productId = Integer.parseInt(scanner.nextLine());
-                try {
-                    sellerManager.addProductToOff(offId, productId);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (command.equals("5")) {
-                System.out.println("Enter productId : ");
-                int productId = Integer.parseInt(scanner.nextLine());
-                try {
-                    sellerManager.removeProductFromOff(offId, productId);
+                    System.out.println("Request of editing amount of sale of off has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }

@@ -55,7 +55,9 @@ public class Manager {
             throw new Exception("Your password is wrong");
         else {
             person = storage.getUserByUsername(username);
+            cart.emptyCart();
             return storage.getUserByUsername(username);
+
         }
     }
 

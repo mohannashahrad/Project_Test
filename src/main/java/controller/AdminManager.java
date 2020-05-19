@@ -4,38 +4,35 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import model.*;
-
 import java.util.HashMap;
 
 public class AdminManager extends Manager {
 
     private SellerManager tempSellerManager = new SellerManager();
     private static int lastAwardedIndex = 0;
-
     public AdminManager() {
     }
 
-    public ArrayList<Person> viewAllUsers() {
+    public ArrayList<Person> viewAllUsers (){
         return storage.getAllUsers();
     }
 
-    public Person viewUser(String username) throws Exception {
+    public Person viewUser (String username) throws Exception {
         if (storage.getUserByUsername(username) == null)
             throw new Exception("There is not such user!!");
         else
-            return storage.getUserByUsername(username);
+        return storage.getUserByUsername(username);
     }
 
-    public void deleteUser(String username) throws Exception {
+    public void deleteUser (String username) throws Exception {
         if (storage.getUserByUsername(username) == null)
             throw new Exception("There is not such user!!");
         else
-            storage.deleteUser(storage.getUserByUsername(username));
+        storage.deleteUser(storage.getUserByUsername(username));
     }
 
-    public void createManager(HashMap<String, String> information) throws Exception {
+    public void createManager (HashMap<String,String> information) throws Exception {
         if (!checkValidity(information.get("username")))
             throw new Exception("Username is not valid!!");
         else if (!checkValidity(information.get("password")))
@@ -45,41 +42,41 @@ public class AdminManager extends Manager {
         else if (!checkPhoneNumberValidity(information.get("number")))
             throw new Exception("Phone Number is not valid");
         else
-            storage.addUser(new Admin(information));
+            storage.addUser(new Admin (information));
     }
 
-    public void removeProduct(String productId) throws Exception {
-        if (storage.getProductById(Integer.parseInt(productId)) == null)
+    public void removeProduct (String productId) throws Exception {
+        if(storage.getProductById(Integer.parseInt(productId)) == null)
             throw new Exception("There is not such product!!");
         else {
             Sale sale = null;
             Product removedProduct = storage.getProductById(Integer.parseInt(productId));
             storage.deleteProduct(removedProduct);
             removedProduct.getSeller().removeProduct(removedProduct);
-            sale.removeProductFromItSale(storage.getAllSales(), removedProduct);
+            sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
         }
     }
 
-    public void addCategory(String name) throws Exception {
+    public void addCategory (String name) throws Exception {
         if (storage.getCategoryByName(name) != null)
             throw new Exception("Category with this name already exists!!");
         else
             storage.addCategory(new Category(name));
     }
 
-    public ArrayList<Discount> viewAllDiscountCodes() {
+    public ArrayList<Discount> viewAllDiscountCodes (){
         return storage.getAllDiscounts();
     }
 
-    public ArrayList<Request> viewAllRequests() {
+    public ArrayList<Request> viewAllRequests (){
         return storage.getAllRequests();
     }
 
-    public Discount viewDiscountCode(String code) {
+    public Discount viewDiscountCode (String code) {
         return storage.getDiscountByCode(code);
     }
 
-    public void addCustomerToDiscount(String username, Discount discount) throws Exception {
+    public void addCustomerToDiscount(String username , Discount discount) throws Exception {
         if (storage.getUserByUsername(username) == null)
             throw new Exception("There is not a user with this username!");
         else if (discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
@@ -90,30 +87,30 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void removeCustomerFromDiscount(Discount discount, String username) throws Exception {
+    public void removeCustomerFromDiscount (Discount discount , String username) throws Exception {
         if (storage.getUserByUsername(username) == null)
             throw new Exception("There is not a user with this username!");
         else if (!discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
             throw new Exception("This customer does not have this discount!!");
         else
-            discount.removeCustomer((Customer) storage.getUserByUsername(username), discount.getUsageCount());
+            discount.removeCustomer((Customer) storage.getUserByUsername(username),discount.getUsageCount());
     }
 
-    public void editDiscountField(Discount discount, String field, String updatedVersion) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
-        switch (field) {
-            case "percentage":
-                discount.setPercentage(Double.parseDouble(updatedVersion));
+    public void editDiscountField ( Discount discount,String field , String updatedVersion ){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        switch (field){
+            case "percentage" :
+                discount.setPercentage(Integer.parseInt(updatedVersion));
                 return;
             case "usagePerCustomer":
                 discount.setUsageCount(Integer.parseInt(updatedVersion));
                 return;
             case "beginDate":
-                LocalDateTime beginDate = LocalDateTime.parse(updatedVersion, formatter);
+                LocalDateTime beginDate = LocalDateTime.parse(updatedVersion,formatter);
                 discount.setBeginDate(beginDate);
                 return;
             case "endDate":
-                LocalDateTime endDate = LocalDateTime.parse(updatedVersion, formatter);
+                LocalDateTime endDate = LocalDateTime.parse(updatedVersion,formatter);
                 discount.setEndDate(endDate);
                 return;
             case "maxAmount":
@@ -122,49 +119,45 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void createDiscountCode(String code, LocalDateTime startDate, LocalDateTime endDate,
-                                   int percentage, int usagePerCustomer, double maxAmount) {
-        storage.addDiscount(new Discount(code, startDate, endDate, percentage, usagePerCustomer, maxAmount));
+    public void createDiscountCode (String code, LocalDateTime startDate, LocalDateTime endDate,
+                                    int percentage, int usagePerCustomer, double maxAmount){
+        storage.addDiscount(new Discount(code,startDate,endDate,percentage,usagePerCustomer,maxAmount));
     }
 
-    public void removeDiscountCode(String code) throws Exception {
+    public void removeDiscountCode (String code) throws Exception {
         if (storage.getDiscountByCode(code) == null)
             throw new Exception("There is not such Discount Code!!");
-        else {
-            for(Customer customer :storage.getDiscountByCode(code).getCustomersWithThisDiscount().keySet()){
-                customer.removeFromDiscounts(storage.getDiscountByCode(code));
-            }
-            storage.deleteDiscount(storage.getDiscountByCode(code));
-        }
+        else
+        storage.deleteDiscount(storage.getDiscountByCode(code));
     }
 
-    public Request viewRequest(String requestId) throws Exception {
+    public Request viewRequest (String requestId) throws Exception {
         if (storage.getRequestById(Integer.parseInt(requestId)) == null)
             throw new Exception("There is not such request!!");
         else
-            return storage.getRequestById(Integer.parseInt(requestId));
+        return storage.getRequestById(Integer.parseInt(requestId));
     }
 
-    public void removeCategory(String name) throws Exception {
+    public void removeCategory (String name) throws Exception {
         if (storage.getCategoryByName(name) == null)
             throw new Exception("There is not a category with this name!!");
         else
-            storage.deleteCategory(storage.getCategoryByName(name));
+        storage.deleteCategory(storage.getCategoryByName(name));
     }
 
-    public void editCategoryByName(String oldName, String newName) {
-        storage.getCategoryByName(oldName).setCategoryName(newName);
+    public void editCategoryByName (String oldName , String newName){
+            storage.getCategoryByName(oldName).setCategoryName(newName);
     }
 
-    public void editCategoryByProperties(Category category, String property, String newValue) {
-        if (!category.getProperties().containsKey(property))
-            category.addNewProperty(property, newValue);
+    public void editCategoryByProperties (Category category ,String property, String newValue){
+        if(!category.getProperties().containsKey(property))
+            category.addNewProperty(property,newValue);
         else
-            category.setSingleValueInProperties(property, newValue);
+            category.setSingleValueInProperties(property,newValue);
     }
 
-    public void acceptRequest(String requestId) throws Exception {
-        if (storage.getRequestById(Integer.parseInt(requestId)) == null)
+    public void acceptRequest (String requestId) throws Exception {
+        if(storage.getRequestById(Integer.parseInt(requestId)) == null)
             throw new Exception("There is not a request with this Id!!");
         else {
             storage.getRequestById(Integer.parseInt(requestId)).acceptRequest();
@@ -172,21 +165,21 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void declineRequest(String requestId) throws Exception {
-        if (storage.getRequestById(Integer.parseInt(requestId)) == null)
+    public void declineRequest (String requestId) throws Exception {
+        if(storage.getRequestById(Integer.parseInt(requestId)) == null)
             throw new Exception("There is not a request with this Id!!");
         else
-            storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
+        storage.getRequestById(Integer.parseInt(requestId)).declineRequest();
     }
 
-    public void processAcceptedRequest(Request request) {
+    public void processAcceptedRequest (Request request){
         switch (request.getTypeOfRequest()) {
             case REGISTER_SELLER:
                 storage.addUser(new Seller(request.getInformation()));
                 return;
             case ADD_PRODUCT:
                 Seller seller = (Seller) storage.getUserByUsername(request.getInformation().get("seller"));
-                Product product = new Product(request.getInformation(), seller);
+                Product product = new Product(request.getInformation(),seller);
                 storage.addProduct(product);
                 seller.addProduct(product);
                 return;
@@ -197,32 +190,33 @@ public class AdminManager extends Manager {
                 String productField = request.getInformation().get("field");
                 String productUpdatedVersion = request.getInformation().get("updatedVersion");
                 String productId = request.getInformation().get("productId");
-                editProduct(productId, productField, productUpdatedVersion);
+                editProduct(productId,productField,productUpdatedVersion);
                 return;
             case EDIT_SALE:
                 String saleField = request.getInformation().get("field");
                 String saleUpdatedVersion = request.getInformation().get("updatedVersion");
                 int saleId = Integer.parseInt(request.getInformation().get("offId"));
-                editSale(saleId, saleField, saleUpdatedVersion);
+                editSale(saleId,saleField,saleUpdatedVersion);
                 return;
             case REMOVE_PRODUCT:
+                Sale sale = null;
                 Product removedProduct = storage.getProductById(Integer.parseInt(request.getInformation().get("productId")));
                 storage.deleteProduct(removedProduct);
-                ((Seller) storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
-                Sale.removeProductFromItSale(storage.getAllSales(), removedProduct);
+                ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
+                sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
                 return;
             case ADD_COMMENT:
                 addCommentRequest(request);
                 return;
             case ADD_PRODUCT_TO_SALE:
-                addProductToSaleRequest(request);
+                addProductToSAleRequest(request);
                 return;
             case REMOVE_PRODUCT_FROM_SALE:
-                removeProductFromRequest(request);
+                removeProductFromSaleRequest(request);
         }
     }
 
-    public void editProduct(String productId, String field, String updatedVersion) {
+    public void editProduct (String productId, String field, String updatedVersion){
         if (field.equalsIgnoreCase("name"))
             storage.getProductById(Integer.parseInt(productId)).setName(updatedVersion);
         else if (field.equalsIgnoreCase("brand"))
@@ -237,7 +231,7 @@ public class AdminManager extends Manager {
             storage.getProductById(Integer.parseInt(productId)).setCategory(Category.getCategoryByName(updatedVersion));
     }
 
-    public void editSale(int offId, String field, String updatedVersion) {
+    public void editSale (int offId, String field, String updatedVersion){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         System.out.println(updatedVersion);
         if (field.equalsIgnoreCase("beginDate"))
@@ -248,53 +242,53 @@ public class AdminManager extends Manager {
             storage.getSaleById(offId).setAmountOfSale(Integer.parseInt(updatedVersion));
     }
 
-    private void addSaleRequest(Request request) {
+    private void addSaleRequest (Request request){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
-        LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"), formatter);
-        LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"), formatter);
-        double amountOfOff = Double.parseDouble(request.getInformation().get("amountOfSale"));
+        LocalDateTime beginDate = LocalDateTime.parse(request.getInformation().get("beginDate"),formatter);
+        LocalDateTime endDate = LocalDateTime.parse(request.getInformation().get("endDate"),formatter);
+        int amountOfOff = Integer.parseInt(request.getInformation().get("amountOfSale"));
         int offId = Integer.parseInt(request.getInformation().get("offId"));
-        Sale sale = new Sale(beginDate, endDate, amountOfOff, tempSellerManager.getSavedProductsInSale().get(offId));
+        Sale sale = new Sale(beginDate,endDate,amountOfOff,tempSellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);
-        ((Seller) storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
+        ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
         for (Product product : tempSellerManager.getSavedProductsInSale().get(offId)) {
             product.setSale(sale);
         }
     }
 
-    private void addProductToSaleRequest(Request request) {
+    private void addProductToSAleRequest (Request request){
         int addedProductToSAle = Integer.parseInt(request.getInformation().get("productId"));
         int saleIdToBeAdded = Integer.parseInt(request.getInformation().get("saleId"));
         storage.getProductById(addedProductToSAle).setSale(storage.getSaleById(saleIdToBeAdded));
         storage.getSaleById(saleIdToBeAdded).addProductToThisSale(storage.getProductById(addedProductToSAle));
     }
 
-    private void removeProductFromRequest(Request request) {
+    private void removeProductFromSaleRequest(Request request){
         int removedProductFromSAle = Integer.parseInt(request.getInformation().get("productId"));
-        int saleIdToBeRemoved = Integer.parseInt(request.getInformation().get("saleId"));
-        if (storage.getProductById(removedProductFromSAle).getSale() == storage.getSaleById(saleIdToBeRemoved)) {
+        int saleIdToBeRemoved = Integer.parseInt(request.getInformation().get("offId"));
+        if (storage.getProductById(removedProductFromSAle).getSale() == storage.getSaleById(saleIdToBeRemoved)){
             storage.getProductById(removedProductFromSAle).setSale(null);
         }
         storage.getSaleById(removedProductFromSAle).removeProductFromThisSale(storage.getProductById(saleIdToBeRemoved));
     }
 
-    public void addCommentRequest(Request request) {
+    public void addCommentRequest (Request request){
         int productIdForComment = Integer.parseInt(request.getInformation().get("productId"));
         String title = request.getInformation().get("title");
         String content = request.getInformation().get("content");
         String username = request.getInformation().get("username");
-        Comment comment = new Comment(username, storage.getProductById(productIdForComment), title, content);
+        Comment comment = new Comment(username,storage.getProductById(productIdForComment),title,content);
         storage.addComment(comment);
         storage.getProductById(productIdForComment).addComment(comment);
     }
 
     public void getDiscountAwarded() throws Exception {
-        LocalDateTime endDate = LocalDateTime.of(2021, 01, 01, 12, 30);
-        Discount discount = new Discount(("Award" + lastAwardedIndex), LocalDateTime.now(), endDate, 10,
-                3, 100);
+        LocalDateTime endDate = LocalDateTime.of(2021,01,01,12,30);
+        Discount discount = new Discount(("Award" + lastAwardedIndex),LocalDateTime.now(),endDate,10,
+                3,100);
         storage.addDiscount(discount);
-        lastAwardedIndex++;
-        addCustomerToDiscount(person.getUsername(), discount);
+        lastAwardedIndex ++;
+        addCustomerToDiscount(person.getUsername(),discount);
     }
 
 }

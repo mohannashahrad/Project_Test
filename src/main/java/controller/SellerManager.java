@@ -123,6 +123,8 @@ public class SellerManager extends Manager {
             throw new Exception("There is no product with this Id!");
         else if (storage.getSaleById(offId) == null)
             throw new Exception("There is no off with this Id");
+        else if (!storage.getProductById(productId).getSeller().getUsername().equals(person.getUsername()))
+            throw new Exception("This product is not belonged to you");
         else if (!((Seller)person).getSaleList().contains(storage.getSaleById(offId)))
             throw new Exception("You don't have this off");
         else if (storage.getSaleById(offId).getProductsWithThisSale().contains(storage.getProductById(productId)))

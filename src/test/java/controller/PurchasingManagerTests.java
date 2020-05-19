@@ -177,5 +177,9 @@ public class PurchasingManagerTests {
         double moneyToTransfer =   totalPrice - totalPrice*(1.0*discountPercentage/100);
       Assert.assertEquals(moneyToTransfer,18,0.0);
     }
+    @Test
+    public void performPaymentTest(){
+
+    }
 
 }
