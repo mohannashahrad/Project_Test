@@ -11,6 +11,7 @@ public class File_Saver {
     private Gson getCustomeGson(){
         gsonBuilder.registerTypeAdapter(Admin.class,new AdminSerializer());
         gsonBuilder.registerTypeAdapter(Seller.class,new SellerSerializer());
+        gsonBuilder.registerTypeAdapter(Customer.class,new CustomerSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -70,7 +71,7 @@ class CustomerSerializer implements JsonSerializer<Customer> {
     private ArrayList<Integer> getAllDiscountId(ArrayList<Discount> allDiscounts){
         ArrayList<Integer> temp = new ArrayList<>();
         for (Discount discount : allDiscounts){
-            temp.add(discount.c);
+            temp.add(discount.getDiscountId());
         }
         return temp;
     }
@@ -83,12 +84,12 @@ class CustomerSerializer implements JsonSerializer<Customer> {
     }
 
     @Override
-    public JsonElement serialize(Seller seller, Type type, JsonSerializationContext jsonSerializationContext) {
-        JsonElement jsonElement = gsonDefault.toJsonTree(seller);
-        JsonElement products = gsonDefault.toJsonTree(getAllProductId(seller.getProductsToSell()));
-        JsonElement sales = gsonDefault.toJsonTree(getAllSaleId(seller.getSaleList()));
-        jsonElement.getAsJsonObject().add("productsToSell",products);
-        jsonElement.getAsJsonObject().add("saleList",sales);
+    public JsonElement serialize(Customer customer, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(customer);
+        JsonElement buyLog = gsonDefault.toJsonTree(getAllBuyLogId(customer.getBuyHistory()));
+        JsonElement discount = gsonDefault.toJsonTree(getAllDiscountId(customer.getAllDiscounts()));
+        jsonElement.getAsJsonObject().add("allDiscounts",discount);
+        jsonElement.getAsJsonObject().add("buyHistory",buyLog);
         return jsonElement;
     }
 }
