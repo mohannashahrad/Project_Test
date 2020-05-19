@@ -8,15 +8,15 @@ public class Product implements Comparable<Product> {
     private String name;
     private String brand;
     private double price;
-    private Seller seller;
+    private transient Seller seller;
     private int supply;
-    private Category category;
+    private transient Category category;
     private String explanation;
     private double averageRate;
-    private ArrayList<Comment> comments;
-    private ArrayList<Rate> rates;
-    private ArrayList<Customer> thisProductsBuyers;
-    private Sale sale;
+    private transient ArrayList<Comment> comments;
+    private transient ArrayList<Rate> rates;
+    private transient ArrayList<Customer> thisProductsBuyers;
+    private transient Sale sale;
     private int numberOfSeen;
     private static ArrayList<Product> allProducts = new ArrayList<>();
 

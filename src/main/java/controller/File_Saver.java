@@ -177,5 +177,13 @@ class SaleSerializer implements JsonSerializer<Sale> {
         return jsonElement;
     }
 }
+//product
+class AdminDeserializer implements JsonDeserializer<Admin>{
+
+    @Override
+    public Admin deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+        return null;
+    }
+}
 
 
