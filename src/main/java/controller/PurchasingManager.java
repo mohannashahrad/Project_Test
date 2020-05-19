@@ -24,6 +24,7 @@ public class PurchasingManager extends Manager {
             adminManager.getDiscountAwarded();
             ((Customer)person).setAmountOfAllPurchasing(0);
         }
+        adminManager.createRandomDiscounts();
         createBuyLog(receiverInformation, totalPrice, discountPercentage);
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {

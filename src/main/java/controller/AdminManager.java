@@ -1,16 +1,18 @@
 package controller;
 
-import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import model.*;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AdminManager extends Manager {
 
     private SellerManager tempSellerManager = new SellerManager();
     private static int lastAwardedIndex = 1;
+    private static int lastRandomIndex = 1;
     public AdminManager() {
     }
 
@@ -283,11 +285,24 @@ public class AdminManager extends Manager {
     }
 
     public void getDiscountAwarded() throws Exception {
-            LocalDateTime endDate = LocalDateTime.of(2021, 01, 01, 12, 30);
-            Discount discount = new Discount(("Award" + lastAwardedIndex), LocalDateTime.now(), endDate, 10,
-                    3, 100);
-            storage.addDiscount(discount);
-            lastAwardedIndex++;
-            addCustomerToDiscount(person.getUsername(), discount);
-        }
+        LocalDateTime endDate = LocalDateTime.of(2021, 01, 01, 12, 30);
+        Discount discount = new Discount(("Award" + lastAwardedIndex), LocalDateTime.now(), endDate, 10,
+                3, 100);
+        storage.addDiscount(discount);
+        lastAwardedIndex++;
+        addCustomerToDiscount(person.getUsername(), discount);
+    }
+
+    public void createRandomDiscounts() throws Exception {
+        long minDay = LocalDate.of(2020, 5, 20).toEpochDay();
+        long maxDay = LocalDate.of(2021, 5, 20).toEpochDay();
+        long randomDay = ThreadLocalRandom.current().nextLong(minDay, maxDay);
+        LocalDate randomDate = LocalDate.ofEpochDay(randomDay);
+        LocalDateTime beginDate = randomDate.atTime(8,00);
+        LocalDateTime endDate = randomDate.atTime(20,00);
+        Discount randomDiscount = new Discount(("Random" + lastRandomIndex),beginDate,endDate,20,
+                2,100);
+        storage.addDiscount(randomDiscount);
+        addCustomerToDiscount(person.getUsername(), randomDiscount);
+    }
 }
