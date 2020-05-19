@@ -1,6 +1,7 @@
 package controller;
 
 import com.gilecode.yagson.YaGson;
+import com.google.gson.Gson;
 import model.*;
 
 import java.io.FileReader;
@@ -32,7 +33,6 @@ public class FileSaver {
         writeArrayToFile(storage.getAllComments(),"./dataBase/allComments.json");
         writeArrayToFile(storage.getAllSales(),"./dataBase/allSales.json");
         writeArrayToFile(storage.getAllRequests(),"./dataBase/allRequests.json");
-        writeArrayToFile(storage.getAllCarts(),"./dataBase/allCarts.json");
 
     }
     public void dataReader(){
