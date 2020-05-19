@@ -201,11 +201,10 @@ public class AdminManager extends Manager {
                 editSale(saleId,saleField,saleUpdatedVersion);
                 return;
             case REMOVE_PRODUCT:
-                Sale sale = null;
                 Product removedProduct = storage.getProductById(Integer.parseInt(request.getInformation().get("productId")));
                 storage.deleteProduct(removedProduct);
                 ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
-                sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
+                Sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
                 return;
             case ADD_COMMENT:
                 addCommentRequest(request);
@@ -229,7 +228,7 @@ public class AdminManager extends Manager {
             storage.getProductById(Integer.parseInt(productId)).setExplanation(updatedVersion);
         else if (field.equalsIgnoreCase("supply"))
             storage.getProductById(Integer.parseInt(productId)).setSupply(Integer.parseInt(updatedVersion));
-        else if (field.equalsIgnoreCase("categoryName"))
+        else if (field.equalsIgnoreCase("category"))
             storage.getProductById(Integer.parseInt(productId)).setCategory(Category.getCategoryByName(updatedVersion));
     }
 

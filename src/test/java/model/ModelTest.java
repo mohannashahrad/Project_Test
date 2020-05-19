@@ -91,7 +91,7 @@ public class ModelTest {
         Assert.assertEquals(productsInCart, Collections.singletonList(secondProduct));
         Assert.assertEquals(secondProduct.getPrice(), actual, 0.0);
         BuyLog firstBuyLog = new BuyLog(LocalDateTime.now(), newCart1.getTotalPrice(), 0.0,
-                sellers, customerInfo, productsInCart);
+                sellers, customerInfo, newCart1.getProductsInCart());
         Assert.assertEquals(sellers, firstBuyLog.getSeller());
         Assert.assertEquals(actual, newCart1.getTotalPrice(), 0.0);
         Assert.assertEquals(0.0, firstBuyLog.getDiscountAmount(), 0.1);

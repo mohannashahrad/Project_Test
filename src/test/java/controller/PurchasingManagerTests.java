@@ -147,7 +147,7 @@ public class PurchasingManagerTests {
         ArrayList<Seller> sellers = new ArrayList<>();
         sellers.add((Seller)storage.getUserByUsername("s1"));
         BuyLog buyLog = new BuyLog(LocalDateTime.now(),20.0,10.0,sellers,receiverInformation,
-                productsInLog);
+                productsCart);
         purchasingManager.createBuyLog(receiverInformation,20.0,10.0);
         for (Log log : storage.getAllBuyLogs()) {
             if (log.equals(buyLog))
