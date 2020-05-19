@@ -54,10 +54,14 @@ public class Manager {
         else if (!storage.getUserByUsername(username).getPassword().equals(password))
             throw new Exception("Your password is wrong");
         else {
-            person = storage.getUserByUsername(username);
-            cart.emptyCart();
-            return storage.getUserByUsername(username);
-
+            if (person != null){
+                person = storage.getUserByUsername(username);
+                cart.emptyCart();
+                return person;
+            } else {
+                person = storage.getUserByUsername(username);
+                return person;
+            }
         }
     }
 
