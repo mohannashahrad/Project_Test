@@ -44,30 +44,33 @@ public class LoginRegisterMenu extends Menu {
 
 
     private boolean register() {
+        if(person != null){
+            System.out.println("logout first!");
+            return false;
+        }else {
+            System.out.println("Enter type :");
+            String type = scanner.nextLine().trim();
+            if (!(type.equalsIgnoreCase("admin") || type.equalsIgnoreCase("seller") || type.equalsIgnoreCase("customer"))) {
+                System.out.println("Invalid type");
+                return false;
+            } else if (type.equalsIgnoreCase("admin") && manager.doesAnyAdminExist()) {
+                System.out.println("Only admins can add admins.\nplease go to admin menu->manage users->create admin.");
+                return false;
+            }
+            HashMap<String, String> data;
+            data = personGetInfo(type);
+            if (data == null)
+                return false;
 
-        System.out.println("Enter type :");
-        String type = scanner.nextLine().trim();
-        if(!(type.equalsIgnoreCase("admin") || type.equalsIgnoreCase("seller") || type.equalsIgnoreCase("customer"))){
-            System.out.println("Invalid type");
-            return false;
-        }else if (type.equalsIgnoreCase("admin") && manager.doesAnyAdminExist()){
-            System.out.println("Only admins can add admins.\nplease go to admin menu->manage users->create admin.");
-            return false;
+            try {
+                manager.register(data);
+                System.out.println("register successful!");
+                return true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
         }
-        HashMap<String,String> data;
-        data = personGetInfo(type);
-        if (data == null)
-            return false;
-
-        try {
-            manager.register(data);
-            System.out.println("register successful!");
-            return true;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
-        }
-
     }
 
     private HashMap<String,String> personGetInfo(String type){
@@ -100,21 +103,26 @@ public class LoginRegisterMenu extends Menu {
     }
 
     private boolean login() {
-        System.out.println("Enter username :");
-        String username=scanner.nextLine();
-        if (! manager.doesUsernameExist(username)){
-            System.out.println("username does not exist");
+        if(person != null){
+            System.out.println("logout first!");
             return false;
-        }
-        System.out.println("password :");
-        String password=scanner.nextLine();
-        try {
-            Menu.setPerson(manager.login(username,password));
-            System.out.println("login successful!");
-            return true;
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            return false;
+        }else {
+            System.out.println("Enter username :");
+            String username = scanner.nextLine();
+            if (!manager.doesUsernameExist(username)) {
+                System.out.println("username does not exist");
+                return false;
+            }
+            System.out.println("password :");
+            String password = scanner.nextLine();
+            try {
+                Menu.setPerson(manager.login(username, password));
+                System.out.println("login successful!");
+                return true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
         }
     }
 
