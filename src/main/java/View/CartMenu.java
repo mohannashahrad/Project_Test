@@ -47,7 +47,7 @@ public class CartMenu extends Menu{
     private void purchase() {
         if (person instanceof Customer){
             if (customerManager.getProductsInCart().isEmpty()){
-                System.out.println("Your cart is empty.nothing to purchase!");
+                System.out.println("Your cart is empty. Nothing to purchase!");
                 return;
             }
             PurchaseMenu purchaseMenu = new PurchaseMenu(this);

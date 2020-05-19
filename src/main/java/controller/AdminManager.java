@@ -146,7 +146,7 @@ public class AdminManager extends Manager {
     }
 
     public void editCategoryByName (String oldName , String newName){
-            storage.getCategoryByName(oldName).setCategoryName(newName);
+        storage.getCategoryByName(oldName).setCategoryName(newName);
     }
 
     public void editCategoryByProperties (Category category ,String property, String newValue){

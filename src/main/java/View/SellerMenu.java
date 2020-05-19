@@ -138,10 +138,10 @@ public class SellerMenu extends AccountMenu {
                 }
             }
             sellerManager.addOff(information, productsInThisSale);
-            System.out.println("created successfully!");
+            System.out.println("Your request for adding off was sent to the admins successfully :)");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("unsuccessful creation!");
+            System.out.println("Unsuccessful creation! An error occurred !");
         }
     }
 
@@ -226,7 +226,7 @@ public class SellerMenu extends AccountMenu {
         String id = scanner.nextLine();
         try {
             sellerManager.removeProduct(Integer.parseInt(id));
-            System.out.println("product removed successfully!");
+            System.out.println("Request of removing your product has been sent to the admins successfully :)");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -251,10 +251,10 @@ public class SellerMenu extends AccountMenu {
             System.out.println("Enter product explanation:");
             information.put("explanation", scanner.nextLine());
             sellerManager.addProduct(information);
-            System.out.println("created successfully!");
+            System.out.println("Request of adding a new product has been sent to the admins successfully :)");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("unsuccessful creation!");
+            System.out.println("Unsuccessful creation! An error occurred.");
         }
     }
 
@@ -301,7 +301,7 @@ public class SellerMenu extends AccountMenu {
                 System.out.println("No one bought this product yet!");
             }
             for (Customer buyer : thisProductBuyers) {
-                System.out.println(buyer.getName() + " " + buyer.getFamilyName());///inja name o familyName kafie???
+                System.out.println(buyer.getName() + " " + buyer.getFamilyName());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -329,6 +329,7 @@ public class SellerMenu extends AccountMenu {
                 String category = categoryShow();
                 try {
                     sellerManager.editProduct(productId, "category", category);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -339,30 +340,35 @@ public class SellerMenu extends AccountMenu {
             if (command.equals("1")) {
                 try {
                     sellerManager.editProduct(productId, "name", newValue);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command.equals("2")) {
                 try {
                     sellerManager.editProduct(productId, "brand", newValue);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command.equals("3")) {
                 try {
                     sellerManager.editProduct(productId, "price", newValue);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             } else if (command.equals("4")) {
                 try {
                     sellerManager.editProduct(productId, "supply", newValue);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (command.equals("5")) {
+            } else if (command.equals("6")) {
                 try {
                     sellerManager.editProduct(productId, "explanation", newValue);
+                    System.out.println("Request of editing has been sent to the admins successfully :)");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -391,7 +397,7 @@ public class SellerMenu extends AccountMenu {
 
     private void showSellerProducts() {
         if (sellerManager.viewSellerProducts().isEmpty()) {
-            System.out.println("you don't have any products yet.");
+            System.out.println("You don't have any products yet.");
             return;
         }
         System.out.println(sellerManager.viewSellerProducts());
@@ -399,7 +405,7 @@ public class SellerMenu extends AccountMenu {
 
     private void viewSellHistory() {
         if (sellerManager.getSellerSellHistory().isEmpty()) {
-            System.out.println("no sell logs yet.");
+            System.out.println("No sell logs yet.");
             return;
         }
         for (SellLog sellLog : sellerManager.getSellerSellHistory()) {
@@ -419,15 +425,6 @@ public class SellerMenu extends AccountMenu {
             return;
         else
             System.out.println("Invalid choice");
-    }
-
-    private LocalDateTime dateMaker(String date) throws Exception {
-        String[] stringDateArray = date.split(",");
-        int[] intDateArray = new int[stringDateArray.length];
-        for (int i = 0; i < stringDateArray.length; i++) intDateArray[i] = Integer.parseInt(stringDateArray[i]);
-        LocalDateTime localDateTime = LocalDateTime.of(intDateArray[0], intDateArray[1], intDateArray[2], intDateArray[3], intDateArray[4]);
-        return localDateTime;
-
     }
     @Override
     public void run() {

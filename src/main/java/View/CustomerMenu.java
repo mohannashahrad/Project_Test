@@ -91,6 +91,10 @@ public class CustomerMenu extends AccountMenu {
     }
 
     private void showAllOrders (){
+        if (customerManager.getCustomerBuyLogs().isEmpty()) {
+            System.out.println("No orders yet !");
+            return;
+        }
         for (BuyLog buyLog : customerManager.getCustomerBuyLogs()) {
             System.out.println("Your Buy Order :" + buyLog.getBuyCode());
             System.out.println("Date : " + buyLog.getDate());
@@ -151,7 +155,7 @@ public class CustomerMenu extends AccountMenu {
 
     private void purchase() {
         if (customerManager.CartIsEmpty()){
-            System.out.println("your cart is empty.nothing to purchase!");
+            System.out.println("your cart is empty. Nothing to purchase!");
             return;
         }
         PurchaseMenu purchaseMenu = new PurchaseMenu(this);

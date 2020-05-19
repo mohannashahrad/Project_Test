@@ -88,7 +88,7 @@ public class ProductMenu extends Menu {
         System.out.println("This product's attributes :\n");
         HashMap<String, String> attributes = productManager.viewAttributes(product.getCategory().getCategoryName());
         if (attributes.isEmpty()){
-            System.out.println("no attributes.");
+            System.out.println("No attributes.");
             return;
         }
         for (String key : attributes.keySet()) {
