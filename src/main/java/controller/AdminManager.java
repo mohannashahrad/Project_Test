@@ -283,7 +283,6 @@ public class AdminManager extends Manager {
     }
 
     public void getDiscountAwarded() throws Exception {
-        if (((Customer)person).getAllDiscounts().isEmpty()) {
             LocalDateTime endDate = LocalDateTime.of(2021, 01, 01, 12, 30);
             Discount discount = new Discount(("Award" + lastAwardedIndex), LocalDateTime.now(), endDate, 10,
                     3, 100);
@@ -291,6 +290,4 @@ public class AdminManager extends Manager {
             lastAwardedIndex++;
             addCustomerToDiscount(person.getUsername(), discount);
         }
-    }
-
 }

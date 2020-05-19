@@ -3,8 +3,6 @@ package controller;
 import model.BuyLog;
 import model.*;
 
-import javax.print.DocFlavor;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,13 +10,20 @@ import java.util.HashMap;
 public class PurchasingManager extends Manager {
 
     private int buyLogCode = 0;
+    private AdminManager adminManager = new AdminManager();
 
     public PurchasingManager() {
     }
 
-    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage) {
+    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage)
+            throws Exception {
         double moneyToTransfer = totalPrice - totalPrice * (1.0 * discountPercentage / 100);
         person.setBalance(person.getBalance() - moneyToTransfer);
+        ((Customer)person).addAmountOfAllPurchasing(moneyToTransfer);
+        if(((Customer)person).getAmountOfAllPurchasing() > 100){
+            adminManager.getDiscountAwarded();
+            ((Customer)person).setAmountOfAllPurchasing(0);
+        }
         createBuyLog(receiverInformation, totalPrice, discountPercentage);
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {

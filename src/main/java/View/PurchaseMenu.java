@@ -147,7 +147,11 @@ public class PurchaseMenu extends Menu {
                         menuSuccess = true;
                         return;
                     } else {
-                        purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        try {
+                            purchasingManager.performPayment(receivedInfo,finalTotalPrice,purchasingManager.getDiscountPercentage(discount));
+                        } catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
                         if (!discount.equals("")){
                             purchasingManager.updateDiscountUsagePerPerson(discount);
                         }
