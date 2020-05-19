@@ -7,7 +7,7 @@ public class SellLog extends Log {
     private int sellCode;
     private double receivedMoney;
     private double saleAmount;
-    private Customer customer;
+    private transient Customer customer;
     private static ArrayList<Integer> allSellCodes = new ArrayList<>();
     private static ArrayList<Log>allSellLogs = new ArrayList<>();
 

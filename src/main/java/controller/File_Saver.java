@@ -13,6 +13,7 @@ public class File_Saver {
         gsonBuilder.registerTypeAdapter(Seller.class,new SellerSerializer());
         gsonBuilder.registerTypeAdapter(Customer.class,new CustomerSerializer());
         gsonBuilder.registerTypeAdapter(BuyLog.class,new BuyLogSerializer());
+        gsonBuilder.registerTypeAdapter(SellLog.class,new SellLogSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -108,6 +109,15 @@ class BuyLogSerializer implements JsonSerializer<BuyLog> {
         JsonElement jsonElement = gsonDefault.toJsonTree(buyLog);
         JsonElement allSeller = gsonDefault.toJsonTree(getAllSellerIds(buyLog.getSeller()));
         jsonElement.getAsJsonObject().add("seller",allSeller);
+        return jsonElement;
+    }
+}
+class SellLogSerializer implements JsonSerializer<SellLog> {
+    Gson gsonDefault = new Gson();
+    @Override
+    public JsonElement serialize(SellLog sellLog, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(sellLog);
+        jsonElement.getAsJsonObject().addProperty("customer",sellLog.getCustomer().getUsername());
         return jsonElement;
     }
 }
