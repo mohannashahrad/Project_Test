@@ -15,6 +15,7 @@ public class File_Saver {
         gsonBuilder.registerTypeAdapter(BuyLog.class,new BuyLogSerializer());
         gsonBuilder.registerTypeAdapter(SellLog.class,new SellLogSerializer());
         gsonBuilder.registerTypeAdapter(Category.class,new CategorySerializer());
+        gsonBuilder.registerTypeAdapter(Comment.class,new CommentSerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -139,4 +140,14 @@ class CategorySerializer implements JsonSerializer<Category> {
         return jsonElement;
     }
 }
+class CommentSerializer implements JsonSerializer<Comment> {
+    Gson gsonDefault = new Gson();
+    @Override
+    public JsonElement serialize(Comment comment, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(comment);
+        jsonElement.getAsJsonObject().addProperty("customer",comment.getProduct().getProductId());
+        return jsonElement;
+    }
+}
+
 
