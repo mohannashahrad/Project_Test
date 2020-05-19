@@ -55,7 +55,18 @@ public class SellerMenu extends AccountMenu {
     }
 
     private void viewBalance() {
-        System.out.println("Your balance is : " + person.getBalance());
+        System.out.println("Your balance is : "+person.getBalance());
+        System.out.println("Enter\n1.add balance\n2.back");
+        String  command = scanner.nextLine().trim();
+        if (command.equals("1")){
+            System.out.println("Enter Amount to add :");
+            double amount = Double.parseDouble(scanner.nextLine());
+            sellerManager.addBalance(amount);
+            System.out.println("added successfully.\nYour current balance is : "+person.getBalance());
+        }else if (command.equals("2"))
+            return;
+        else
+            System.out.println("Invalid choice");
     }
 
     private void viewOffsMenu() {

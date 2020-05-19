@@ -30,7 +30,7 @@ public class BuyLog extends Log {
     }
 
     public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers,
-                  HashMap<String, String> customerInfo , ArrayList<Product> productsInThisBuyLog) {
+                  HashMap<String, String> customerInfo , HashMap<Product, Integer> productsInThisBuyLog) {
         super(date);
         this.paidMoney = paidMoney;
         this.discountAmount = discountAmount;

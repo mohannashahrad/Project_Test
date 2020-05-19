@@ -4,10 +4,11 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Log {
     protected LocalDateTime date;
-    protected ArrayList<Product> products;
+    protected HashMap<Product, Integer> products;
     private static ArrayList<Log>allLogs = new ArrayList<>();
 
     public static ArrayList<Log> getAllLogs() {
@@ -16,14 +17,14 @@ public class Log {
 
     public Log(LocalDateTime date) {
         this.date = date;
-        this.products = new ArrayList<>();
+        this.products = new HashMap<>();
     }
 
     public LocalDateTime getDate() {
         return date;
     }
 
-    public ArrayList<Product> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 

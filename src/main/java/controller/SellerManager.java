@@ -166,5 +166,8 @@ public class SellerManager extends Manager {
     public ArrayList<SellLog> getSellerSellHistory(){
         return ((Seller)person).getSellHistory();
     }
-}
 
+    public void addBalance(double amount) {
+        person.setBalance(person.getBalance() + amount);
+    }
+}

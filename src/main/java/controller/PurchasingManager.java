@@ -53,9 +53,8 @@ public class PurchasingManager extends Manager {
     }
 
     public void createBuyLog(HashMap<String, String> receiverInformation, double totalPrice, double saleAmount) {
-        ArrayList<Product> productsInCart = new ArrayList<>(cart.getProductsInCart().keySet());
         BuyLog buyLog = new BuyLog(LocalDateTime.now(), totalPrice, saleAmount, findDistinctSellers(super.cart),
-                receiverInformation, productsInCart);
+                receiverInformation, cart.getProductsInCart());
         storage.addBuyLog(buyLog);
         ((Customer) person).addToBuyLogs(buyLog);
         this.buyLogCode = buyLog.getBuyCode();
@@ -83,7 +82,7 @@ public class PurchasingManager extends Manager {
     public double calculateEachSellerMoneyTransfer(HashMap<Product, Integer> products) {
         double totalMoney = 0;
         for (Product product : products.keySet()) {
-            totalMoney += product.getPrice() *products.get(product);
+            totalMoney += product.getPrice() * products.get(product);
         }
         return totalMoney;
     }
