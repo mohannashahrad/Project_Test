@@ -100,10 +100,10 @@ public class AdminManager extends Manager {
     }
 
     public void editDiscountField(Discount discount, String field, String updatedVersion) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         switch (field) {
             case "percentage":
-                discount.setPercentage(Integer.parseInt(updatedVersion));
+                discount.setPercentage(Double.parseDouble(updatedVersion));
                 return;
             case "usagePerCustomer":
                 discount.setUsageCount(Integer.parseInt(updatedVersion));
@@ -130,8 +130,12 @@ public class AdminManager extends Manager {
     public void removeDiscountCode(String code) throws Exception {
         if (storage.getDiscountByCode(code) == null)
             throw new Exception("There is not such Discount Code!!");
-        else
+        else {
+            for(Customer customer :storage.getDiscountByCode(code).getCustomersWithThisDiscount().keySet()){
+                customer.removeFromDiscounts(storage.getDiscountByCode(code));
+            }
             storage.deleteDiscount(storage.getDiscountByCode(code));
+        }
     }
 
     public Request viewRequest(String requestId) throws Exception {

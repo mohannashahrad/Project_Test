@@ -9,7 +9,7 @@ public class Discount {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private int usagePerCustomer;
-    private int percentage;
+    private double percentage;
     private double maxAmount;
     private HashMap<Customer, Integer> customersWithThisDiscount;
     private static ArrayList<Discount> allDiscounts = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Discount {
         return allDiscounts;
     }
 
-    public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, int percentage,
+    public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, double percentage,
                     int usagePerCustomer, double maxAmount) {
         this.discountCode = discountCode;
         this.beginDate = beginDate;
@@ -69,7 +69,7 @@ public class Discount {
         this.maxAmount = maxAmount;
     }
 
-    public void setPercentage(int percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 

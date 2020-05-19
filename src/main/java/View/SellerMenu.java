@@ -358,7 +358,7 @@ public class SellerMenu extends AccountMenu {
 
     private void viewSingleProduct() {
         System.out.println("Enter productId:");
-        int productId = scanner.nextInt();
+        int productId = Integer.parseInt(scanner.nextLine());
         try {
             Product product = sellerManager.viewSellerProduct(productId);
             System.out.println("productId :" + product.getProductId() +

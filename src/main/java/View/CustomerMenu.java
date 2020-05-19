@@ -118,7 +118,7 @@ public class CustomerMenu extends AccountMenu {
         System.out.println("Discount Amount : " + buyLog.getDiscountAmount());
         System.out.println("Products in this log : ");
         for (Product product : buyLog.getProducts()) {
-            System.out.println("Name " +product.getName() + "--- productId :" + product.getProductId() +
+            System.out.println("Name : " +product.getName() + "--- productId :" + product.getProductId() +
                     "--- price : " + product.getPrice());
         }
     }
