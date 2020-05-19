@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Category {
     private String categoryName;
-    private ArrayList<Product> thisCategoryProducts;
+    private transient ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
 

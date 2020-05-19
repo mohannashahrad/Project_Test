@@ -14,6 +14,7 @@ public class File_Saver {
         gsonBuilder.registerTypeAdapter(Customer.class,new CustomerSerializer());
         gsonBuilder.registerTypeAdapter(BuyLog.class,new BuyLogSerializer());
         gsonBuilder.registerTypeAdapter(SellLog.class,new SellLogSerializer());
+        gsonBuilder.registerTypeAdapter(Category.class,new CategorySerializer());
         Gson customGson = gsonBuilder.create();
         return customGson;
     }
@@ -118,6 +119,23 @@ class SellLogSerializer implements JsonSerializer<SellLog> {
     public JsonElement serialize(SellLog sellLog, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonElement jsonElement = gsonDefault.toJsonTree(sellLog);
         jsonElement.getAsJsonObject().addProperty("customer",sellLog.getCustomer().getUsername());
+        return jsonElement;
+    }
+}
+class CategorySerializer implements JsonSerializer<Category> {
+    Gson gsonDefault = new Gson();
+    private ArrayList<Integer> getAllProductId(ArrayList<Product> products) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Product product : products) {
+            temp.add(product.getProductId());
+        }
+        return temp;
+    }
+        @Override
+    public JsonElement serialize(Category category, Type type, JsonSerializationContext jsonSerializationContext) {
+        JsonElement jsonElement = gsonDefault.toJsonTree(category);
+        JsonElement products = gsonDefault.toJsonTree(getAllProductId(category.getThisCategoryProducts()));
+        jsonElement.getAsJsonObject().add("thisCategoryProducts",products);
         return jsonElement;
     }
 }
