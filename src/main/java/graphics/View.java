@@ -1,8 +1,9 @@
-import View.MainMenu;
+package graphics;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class View extends Application {
     private static Stage guiStage;
     public static Stage getStage() {
         return guiStage;
