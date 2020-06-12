@@ -25,7 +25,7 @@ public class View extends Application {
         scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
 
         stage.setScene(scenes.get(SceneName.MAIN).getScene());
-        stage.setTitle("Multi-Scene Demo");
+        stage.setTitle("TEAM-18");
         stage.show();
     }
 
