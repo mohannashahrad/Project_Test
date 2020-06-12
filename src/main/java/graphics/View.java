@@ -8,10 +8,9 @@ import javafx.stage.Stage;
 
 public class View extends Application {
 
-    private static final String MAIN_FXML = "/fxml/main-view.fxml";
-    private static final String SCENE_ONE_FXML = "/fxml/scene-one.fxml";
-    private static final String SCENE_TWO_FXML = "/fxml/scene-two.fxml";
-    private static final String SCENE_THREE_FXML = "/fxml/scene-three.fxml";
+    private static final String MAIN_FXML = "/fxml/MAinMenu.fxml";
+    private static final String LR_FXML = "/fxml/LoginRegisterMenu.fxml";
+
 
     private static Map<SceneName, FxmlInfo> scenes = new HashMap<>();
 
@@ -23,9 +22,7 @@ public class View extends Application {
     public void start(Stage stage) {
 
         scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
-        scenes.put(SceneName.SCENE1, new FxmlInfo(SCENE_ONE_FXML, SceneName.SCENE1, stage));
-        scenes.put(SceneName.SCENE2, new FxmlInfo(SCENE_TWO_FXML, SceneName.SCENE2, stage));
-        scenes.put(SceneName.SCENE3, new FxmlInfo(SCENE_THREE_FXML, SceneName.SCENE3, stage));
+        scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
 
         stage.setScene(scenes.get(SceneName.MAIN).getScene());
         stage.setTitle("Multi-Scene Demo");
