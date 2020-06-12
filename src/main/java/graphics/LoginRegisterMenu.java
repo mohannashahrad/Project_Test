@@ -1,4 +1,4 @@
 package graphics;
 
-public class LoginRegisterMenu {
+public class LoginRegisterMenu extends Menu {
 }
