@@ -2,7 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
-import View.Menu;
+
+import graphics.Menu;
 import model.*;
 
 import java.util.HashMap;

@@ -1,15 +1,19 @@
 package graphics;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class View extends Application {
 
-    private static final String MAIN_FXML = "/fxml/MAinMenu.fxml";
-    private static final String LR_FXML = "/fxml/LoginRegisterMenu.fxml";
+    private static final String MAIN_FXML = "fxml/MAinMenu.fxml";
+    private static final String LR_FXML = "fxml/LoginRegisterMenu.fxml";
 
 
     private static Map<SceneName, FxmlInfo> scenes = new HashMap<>();
@@ -19,12 +23,22 @@ public class View extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
 
-        scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
-        scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
+       // scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
+       // scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
 
-        stage.setScene(scenes.get(SceneName.MAIN).getScene());
+       // stage.setScene(scenes.get(SceneName.MAIN).getScene());
+        /**
+         * the comments above are real code
+         * the below one is for finding the true address
+         */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/MainMenu.fxml"));
+        Parent mainCallWindowFXML = loader.load();
+        stage.setScene(new Scene(mainCallWindowFXML,600,600));
+        /**
+         * to here
+         */
         stage.setTitle("TEAM-18");
         stage.show();
     }
