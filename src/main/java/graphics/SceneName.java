@@ -1,5 +1,5 @@
 package graphics;
 
 public enum SceneName {
-	MAIN, LOGIN_REGISTER;
+	MAIN, LOGIN_REGISTER , PRODUCT;
 }
