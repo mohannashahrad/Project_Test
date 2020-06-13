@@ -4,7 +4,7 @@ import model.Person;
 
 
 public class Menu {
-    private Stage stage;
+    protected Stage stage;
     protected static Person person;
     public void setStage(Stage stage) {
         this.stage = stage;

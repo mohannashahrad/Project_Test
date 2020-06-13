@@ -15,7 +15,7 @@ public class View extends Application {
 
     private static final String MAIN_FXML = "fxml/MAinMenu.fxml";
     private static final String LR_FXML = "fxml/LoginRegisterMenu.fxml";
-
+    private static final String PRODUCT_FXML = "fxml/ProductMenu.fxml";
 
     private static Map<SceneName, FxmlInfo> scenes = new HashMap<>();
 
