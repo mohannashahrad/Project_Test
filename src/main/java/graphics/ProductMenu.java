@@ -35,6 +35,27 @@ public class ProductMenu extends Menu implements Initializable {
     }
 
     public void choiceBoxAction(){
+        switch (choiceBox.getValue().toString()){
+            case "Comments":
+                System.out.println("Comments");
+                return;
+            case "Attributes":
+                System.out.println("Attributes");
+                return;
+            case "Compare":
+                System.out.println("Compare");
+                return;
+            case "Digest":
+                System.out.println("Digest");
+                return;
+            case "Rate":
+                System.out.println("Rate");
+                return;
+            case "More Options":
+                //Here is a problem with stage which gives runtime Error
+                showNotification(Alert.AlertType.ERROR, this.stage.getScene().getWindow(), "Error!",
+                        "No Action Selected");
+        }
     }
 
     private void showNotification(Alert.AlertType alertType, Window owner, String title, String message) {

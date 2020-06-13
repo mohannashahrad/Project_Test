@@ -25,16 +25,16 @@ public class View extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        /*scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
+        scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
+        scenes.put(SceneName.PRODUCT, new FxmlInfo(PRODUCT_FXML, SceneName.PRODUCT, stage));/*
 
-       // scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
-       // scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
-
-       // stage.setScene(scenes.get(SceneName.MAIN).getScene());
+        stage.setScene(scenes.get(SceneName.MAIN).getScene());
         /**
          * the comments above are real code
          * the below one is for finding the true address
          */
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ProductMenu.fxml").toURI().toURL());
         Parent mainCallWindowFXML = loader.load();
         stage.setScene(new Scene(mainCallWindowFXML,600,600));
         /**
