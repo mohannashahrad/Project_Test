@@ -1,20 +1,18 @@
 package graphics;
 
 import controller.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Window;
-
+import model.Product;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -74,7 +72,7 @@ public class ProductMenu extends Menu implements Initializable {
         alert.show();
     }
 
-    private void compareAction() throws IOException {
+    private void compareAction() throws Exception {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CompareMenu.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(),600,600));
     }
@@ -87,10 +85,36 @@ public class ProductMenu extends Menu implements Initializable {
     }
 
     public static class CompareMenu extends Menu implements Initializable{
+        @FXML TableView tableView;
+        @FXML TableColumn<Product, String> nameColumn;
+        @FXML TableColumn<Product, Double> priceColumn;
+        @FXML TableColumn<Product, String> explanationColumn;
+        @FXML TableColumn<Product, Double> rateColumn;
+        @FXML TableColumn<Product, String> brandColumn;
+        @FXML TableColumn<Product, Integer> supplyColumn;
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+            try {
+                setTable(tableView);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
+        public void setTable(TableView tableView) throws Exception{
+            ProductManager productManager1 = new ProductManager();
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+            priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+            explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
+            rateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
+            brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
+            supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
+             final ObservableList<Product> data = FXCollections.observableArrayList(
+                    productManager1.getProductById(1),
+                    productManager1.getProductById(2)
+            );
+            tableView.setItems(data);
         }
     }
 }
