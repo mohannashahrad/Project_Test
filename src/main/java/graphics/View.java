@@ -34,13 +34,15 @@ public class View extends Application {
          * the comments above are real code
          * the below one is for finding the true address
          */
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ProductMenu.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
         Parent mainCallWindowFXML = loader.load();
         stage.setScene(new Scene(mainCallWindowFXML,600,600));
         /**
          * to here
          */
         stage.setTitle("TEAM-18");
+        Menu menu = new Menu();
+        menu.setStage(stage);
         stage.show();
     }
 
