@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.ProductMenu">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="198.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="228.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="152.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="24.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="232.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="232.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label fx:id="productNameLabel" alignment="CENTER" graphicTextGap="10.0" prefHeight="82.0" prefWidth="200.0" text="Product Name" textAlignment="CENTER" textFill="#130e1b" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageview" fitHeight="144.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+            <image>
+                <Image url="@images/product.jpg" />
+            </image>
+        </ImageView>
+        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button alignment="CENTER" mnemonicParsing="false" onAction="#button" prefHeight="61.0" prefWidth="186.0" text="Add to Cart" GridPane.rowIndex="4" />
+        <VBox prefHeight="169.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <children>
+                <TilePane hgap="30.0" prefHeight="94.0" prefWidth="249.0" vgap="30.0">
+                    <children>
+                        <ChoiceBox fx:id="choiceBox" prefHeight="27.0" prefWidth="264.0" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choiceBoxAction" prefHeight="32.0" prefWidth="137.0" text="Apply Action" />
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </TilePane>
+            </children>
+        </VBox>
+        <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>
