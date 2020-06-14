@@ -31,12 +31,11 @@ public class ProductMenu extends Menu implements Initializable {
 
 
     public void button(){
-        System.out.println(customerManager.doesProductExist(1));
-        /*try {
+        try {
             customerManager.increaseProduct(Integer.toString(this.productId));
         } catch (Exception e){
-            showNotification(Alert.AlertType.ERROR, this.stage.getScene().getWindow(), "Error!", e.getMessage());
-        }*/
+            showNotification(Alert.AlertType.ERROR, stage.getScene().getWindow(), "Error!", e.getMessage());
+        }
     }
 
     public void choiceBoxAction() throws Exception {
@@ -50,15 +49,12 @@ public class ProductMenu extends Menu implements Initializable {
             case "Compare":
                 compareAction();
                 return;
-            case "Digest":
-                System.out.println("Digest");
-                return;
             case "Rate":
                 System.out.println("Rate");
                 return;
             case "More Options":
                 //Here is a problem with stage which gives runtime Error
-                showNotification(Alert.AlertType.ERROR, this.stage.getScene().getWindow(), "Error!",
+                showNotification(Alert.AlertType.ERROR, stage.getScene().getWindow(), "Error!",
                         "No Action Selected");
         }
     }
@@ -77,22 +73,41 @@ public class ProductMenu extends Menu implements Initializable {
         stage.setScene(new Scene(loader.load(),600,600));
     }
 
+    private void listViewContents() throws Exception{
+        Product product = productManager.getProductById(productId);
+        String id = Integer.toString(product.getProductId());
+        String name = product.getName();
+        String brand = product.getBrand();
+        String price = Double.toString(product.getPrice());
+        String supply = Integer.toString(product.getSupply());
+        String category = product.getCategory().getCategoryName();
+        String rate = Double.toString(product.getAverageRate());
+        listView.getItems().addAll("productId    | " + id, "Name          | " + name , "Brand          | " + brand ,
+                "Price           | " + price , "supply         | " + supply , "Category     | " + category ,
+                "Average Rate | " + rate);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productNameLabel.setText("p1");
-        choiceBox.getItems().addAll("Compare" , "Digest" , "Attributes" , "Comments" , "Rate" , "More Options");
+        choiceBox.getItems().addAll("Compare", "Attributes" , "Comments" , "Rate" , "More Options");
         choiceBox.setValue("More Options");
+        try {
+            listViewContents();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static class CompareMenu extends Menu implements Initializable{
-        @FXML TableView tableView;
-        @FXML TableColumn<Product, String> nameColumn;
-        @FXML TableColumn<Product, Double> priceColumn;
-        @FXML TableColumn<Product, String> explanationColumn;
-        @FXML TableColumn<Product, Double> rateColumn;
-        @FXML TableColumn<Product, String> brandColumn;
-        @FXML TableColumn<Product, Integer> supplyColumn;
-
+        @FXML TableView<Product> tableView = new TableView<>();
+        @FXML TableColumn<Product, String> nameColumn = new TableColumn<>();
+        @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
+        @FXML TableColumn<Product, String> explanationColumn = new TableColumn<>();
+        @FXML TableColumn<Product, Double> rateColumn = new TableColumn<>();
+        @FXML TableColumn<Product, String> brandColumn = new TableColumn<>();
+        @FXML TableColumn<Product, Integer> supplyColumn = new TableColumn<>();
+        @FXML Button button = new Button();
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             try {
@@ -102,19 +117,26 @@ public class ProductMenu extends Menu implements Initializable {
             }
         }
 
-        public void setTable(TableView tableView) throws Exception{
+        public void back(){
+
+        }
+
+        public void setTable(TableView<Product> tableView) throws Exception {
             ProductManager productManager1 = new ProductManager();
-            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-            priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-            explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
-            rateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
-            brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-            supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
+            explanationColumn.setCellValueFactory(new PropertyValueFactory<>("Explanation"));
+            rateColumn.setCellValueFactory(new PropertyValueFactory<>("AverageRate"));
+            brandColumn.setCellValueFactory(new PropertyValueFactory<>("Brand"));
+            supplyColumn.setCellValueFactory(new PropertyValueFactory<>("Supply"));
              final ObservableList<Product> data = FXCollections.observableArrayList(
                     productManager1.getProductById(1),
-                    productManager1.getProductById(2)
+                    productManager1.getProductById(3)
             );
             tableView.setItems(data);
+            for (Product item : tableView.getItems()) {
+                System.out.println(item.getName());
+            }
         }
     }
 }
