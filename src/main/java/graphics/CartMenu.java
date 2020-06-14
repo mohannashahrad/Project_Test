@@ -1,6 +1,8 @@
 package graphics;
 
 import controller.CustomerManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import model.Customer;
+import model.Product;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +48,9 @@ public class CartMenu extends Menu implements Initializable {
     }
 
     private void updateTable(){
-
+        final ObservableList<Product> data = FXCollections.observableArrayList(
+                customerManager.getProductsInCart().keySet()
+        );
     }
 
     @FXML
@@ -60,7 +65,7 @@ public class CartMenu extends Menu implements Initializable {
             stage.setScene(new Scene(loader.load(), 600, 600));
         } else{
             System.out.println("First login as customer then purchase.");
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/LoginRegisterMenu.fxml").toURI().toURL());
             stage.setScene(new Scene(loader.load(), 600, 600));
         }
     }
