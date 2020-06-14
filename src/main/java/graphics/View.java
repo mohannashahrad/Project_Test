@@ -41,6 +41,8 @@ public class View extends Application {
          * to here
          */
         stage.setTitle("TEAM-18");
+        Menu menu = new Menu();
+        menu.setStage(stage);
         stage.show();
     }
 
