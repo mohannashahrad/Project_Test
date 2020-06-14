@@ -100,6 +100,7 @@
             </font>
         </Label>
         <Separator layoutX="23.0" layoutY="104.0" prefHeight="18.0" prefWidth="146.0" />
+      <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#back" text="back" />
     </children>
 
 </AnchorPane>
