@@ -123,12 +123,12 @@ public class ProductMenu extends Menu implements Initializable {
 
         public void setTable(TableView<Product> tableView) throws Exception {
             ProductManager productManager1 = new ProductManager();
-            nameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            priceColumn.setCellValueFactory(new PropertyValueFactory<>("Price"));
-            explanationColumn.setCellValueFactory(new PropertyValueFactory<>("Explanation"));
-            rateColumn.setCellValueFactory(new PropertyValueFactory<>("AverageRate"));
-            brandColumn.setCellValueFactory(new PropertyValueFactory<>("Brand"));
-            supplyColumn.setCellValueFactory(new PropertyValueFactory<>("Supply"));
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+            priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+            explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
+            rateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
+            brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
+            supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
              final ObservableList<Product> data = FXCollections.observableArrayList(
                     productManager1.getProductById(1),
                     productManager1.getProductById(3)
