@@ -4,6 +4,7 @@ import controller.PurchasingManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -43,6 +44,9 @@ public class PurchasingMenu extends Menu {
         if (number.getText().matches("")) {
             showError("All fields are essential except Discount Code!");
             return false;
+        } else if (!number.getText().matches("\\d+")) {
+            showError("Invalid phone number!");
+            return false;
         }
         return true;
     }
@@ -59,7 +63,8 @@ public class PurchasingMenu extends Menu {
                 finalPrice = purchasingManager.calculateTotalPriceWithDiscount(discountCode);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                showError("You can't use this discount for one of following reasons:\n -This discount is expired!\n" +
+                        " -This discount is not available yet!\n -You used this discount before and it's not available anymore!");
                 return false;
             }
         } else {
@@ -86,7 +91,11 @@ public class PurchasingMenu extends Menu {
             if (person.getBalance() < finalPrice) {
                 showError("Oops!You don't have enough money in your account!");
             } else {
+                receivedInfo.put("receiverName", name.getText());
+                receivedInfo.put("address", address.getText());
+                receivedInfo.put("phoneNumber", name.getText());
                 purchasingManager.performPayment(receivedInfo, finalPrice, purchasingManager.getDiscountPercentage(discountCodeField.getText()));
+                showMessage();
             }
         }
     }
@@ -94,5 +103,13 @@ public class PurchasingMenu extends Menu {
     public void goToPreviousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CartMenu.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));
+    }
+
+    public void showMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Buying Message");
+        alert.setContentText("Thanks for buying from us:)");
+        alert.setHeaderText(null);
+        alert.show();
     }
 }

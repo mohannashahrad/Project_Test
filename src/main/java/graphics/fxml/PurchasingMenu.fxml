@@ -33,7 +33,7 @@
                         <Font name="Bookshelf Symbol 7" size="14.0" />
                     </font>
                 </Label>
-                <Label text="Number" GridPane.rowIndex="2">
+                <Label text="Phone Number" GridPane.rowIndex="2">
                     <font>
                         <Font name="Bookshelf Symbol 7" size="14.0" />
                     </font>
