@@ -4,13 +4,17 @@ import controller.ProductManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Product;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,8 +28,6 @@ public class CompareMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, Double> rateColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> brandColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> supplyColumn = new TableColumn<>();
-    @FXML
-    Button button = new Button();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -35,8 +37,9 @@ public class CompareMenu extends Menu implements Initializable {
         }
     }
 
-    public void back(){
-
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ProductMenu.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(),600,600));
     }
 
     public void setTable(TableView<Product> tableView) throws Exception {
