@@ -10,10 +10,13 @@ import javafx.scene.control.TextField;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 
 
 public class PurchaseMenu extends Menu {
     private PurchasingManager purchasingManager = new PurchasingManager();
+    private HashMap<String, String> receivedInfo = new HashMap<>();
+    private double finalPrice;
     @FXML
     private TextField name;
     @FXML
@@ -23,41 +26,62 @@ public class PurchaseMenu extends Menu {
     @FXML
     private TextField discountCodeField;
 
-    private void checkName() {
+    private boolean checkName() {
         if (name.getText().matches("")) {
             showError("This field is essential!");
+            return false;
         }
+        return true;
     }
 
-    private void checkAddress() {
+    private boolean checkAddress() {
         if (address.getText().matches("")) {
             showError("This field is essential!");
+            return false;
         }
+        return true;
     }
 
-    private void checkNumber() {
+    private boolean checkNumber() {
         if (number.getText().matches("")) {
             showError("This field is essential!");
+            return false;
         }
+        return true;
     }
 
-    private void checkValidityOfDiscountCode() {
+    private boolean checkValidityOfDiscountCode() {
         String discountCode = discountCodeField.getText();
-        if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)) {
-            showError("Sorry!You don't have this discount!");
-        }
-        try {
-            purchasingManager.checkDiscountValidity(discountCode);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (discountCode != null) {
+            if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)) {
+                showError("Sorry!You don't have this discount!");
+                return false;
+            }
+            try {
+                purchasingManager.checkDiscountValidity(discountCode);
+                finalPrice = purchasingManager.calculateTotalPriceWithDiscount(discountCode);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else{
+            finalPrice = purchasingManager.getTotalPriceWithoutDiscount();
+            return true;
         }
     }
-    public void checkInputsValidity(){
-        checkName();
-        checkAddress();
-        checkNumber();
-        checkValidityOfDiscountCode();
+    public void checkInputsValidity() throws Exception {
+        boolean nameValidity = checkName();
+        boolean addressValidity = checkAddress();
+        boolean numberValidity = checkNumber();
+        boolean discountCodeValidity = checkValidityOfDiscountCode();
+        if (nameValidity && addressValidity && numberValidity && discountCodeValidity){
+            if (person.getBalance() < finalPrice){
+                showError("Oops!You don't have enough money in your account!");
+            } else{
+                purchasingManager.performPayment(receivedInfo,finalPrice,purchasingManager.getDiscountPercentage(discountCodeField.getText()));
+            }
+        }
     }
     public void goToPreviousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CustomerMenu.fxml").toURI().toURL());
