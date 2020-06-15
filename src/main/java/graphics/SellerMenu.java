@@ -37,21 +37,6 @@ public class SellerMenu extends Menu implements Initializable {
     public SellerMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
     }
-    public void run() {
-        FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File(fxmlPath).toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-            loader.setControllerFactory(c -> this);
-            root = loader.load();
-            stage.setScene(new Scene(root, 600, 600));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

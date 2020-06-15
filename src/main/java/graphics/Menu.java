@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
-public class Menu {
+public abstract class Menu {
     protected static Stage stage = View.getStage();
     protected static Person person;
     protected static Manager manager = new Manager();
@@ -23,6 +23,14 @@ public class Menu {
     public Menu(Menu previousMenu,String fxmlPath) {
         this.previousMenu = previousMenu;
         this.fxmlPath = fxmlPath;
+    }
+
+    public Menu getPreviousMenu() {
+        return previousMenu;
+    }
+
+    public void setPreviousMenu(Menu previousMenu) {
+        this.previousMenu = previousMenu;
     }
 
     public static Person getPerson() {
@@ -40,7 +48,10 @@ public class Menu {
         alert.setHeaderText(null);
         alert.show();
     }
-   /* public void run(){
+  /*  public void back(){
+        this.getPreviousMenu().run();
+    }*/
+    public void run(){
         FXMLLoader loader = null;
         try {
             loader = new FXMLLoader(new File(fxmlPath).toURI().toURL());
@@ -55,6 +66,6 @@ public class Menu {
             e.printStackTrace();
         }
 
-    }*/
+    }
 
 }
