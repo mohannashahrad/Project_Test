@@ -29,8 +29,8 @@ public class SellerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
-    public SellerMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public SellerMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
     }
 
     @Override
