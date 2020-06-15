@@ -29,13 +29,13 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="PASSWORD" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="172.0" layoutY="74.0" GridPane.columnIndex="1" />
+            <TextField fx:id="username" layoutX="172.0" layoutY="74.0" GridPane.columnIndex="1" />
             <Button mnemonicParsing="false" onAction="#login" text="LOGIN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="usernameMessage" prefHeight="17.0" prefWidth="23.0" GridPane.columnIndex="2" />
             <Label fx:id="passwordMessage" layoutX="280.0" layoutY="24.0" prefHeight="17.0" prefWidth="21.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />

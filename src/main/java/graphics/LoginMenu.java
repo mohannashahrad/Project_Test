@@ -1,12 +1,6 @@
 package graphics;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class LoginMenu extends Menu {
     public LoginMenu(Menu previousMenu) {
@@ -14,8 +8,11 @@ public class LoginMenu extends Menu {
     }
 
     public void goToRegisterMenu(ActionEvent actionEvent) {
+        RegisterMenu registerMenu = new RegisterMenu(this);
+        registerMenu.run();
     }
 
     public void login(ActionEvent actionEvent) {
+
     }
 }
