@@ -78,7 +78,7 @@ public class CartMenu extends Menu implements Initializable {
             stage.setScene(new Scene(loader.load(), 600, 600));
         } else{
             System.out.println("First login as customer then purchase.");
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/LoginRegisterMenu.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/LoginMenu.fxml").toURI().toURL());
             stage.setScene(new Scene(loader.load(), 600, 600));
         }
     }
