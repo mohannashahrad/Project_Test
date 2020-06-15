@@ -1,17 +1,21 @@
 package graphics;
 
 import controller.CustomerManager;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Customer;
 import model.Product;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +25,12 @@ public class CartMenu extends Menu implements Initializable {
     private CustomerManager customerManager = new CustomerManager();
     @FXML
     TextField productTextField;
+    @FXML TableView<Product> tableView = new TableView<>();
+    @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Number> totalPriceColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Integer> idColumn = new TableColumn<>();
+    @FXML TableColumn<Product, String> imageColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Integer> numberColumn = new TableColumn<>();
 
     public CartMenu(Menu previousMenu, String fxmlPath) {
         super(previousMenu, fxmlPath);
@@ -28,7 +38,7 @@ public class CartMenu extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        updateTable();
     }
 
     public void decreaseProduct(){
@@ -55,6 +65,27 @@ public class CartMenu extends Menu implements Initializable {
         final ObservableList<Product> data = FXCollections.observableArrayList(
                 customerManager.getProductsInCart().keySet()
         );
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
+        totalPriceColumn.setCellValueFactory(cellData -> {
+            Product product = cellData.getValue();
+            return Bindings.createDoubleBinding(
+                    () -> {
+                        try {
+                            double price = product.getPrice();
+                            int quantity = customerManager.getProductsInCart().get(product);
+                            return price * quantity ;
+                        } catch (NumberFormatException nfe) {
+                            return Double.valueOf(0);
+                        }
+                    },
+                    product.priceProperty(),
+                    product.numberInCartProperty()
+            );
+        });
+        tableView.setItems(data);
     }
 
     @FXML

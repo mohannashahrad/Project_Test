@@ -1,10 +1,10 @@
 package graphics;
 
+
 import controller.PurchasingManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -58,8 +58,9 @@ public class PurchasingMenu extends Menu {
 
     private boolean checkValidityOfDiscountCode() {
         String discountCode = discountCodeField.getText();
-        if (discountCode != null) {
+        if (!discountCode.equals("")) {
             if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)) {
+                System.out.println(discountCode);
                 showError("Sorry!You don't have this discount!");
                 return false;
             }
@@ -93,14 +94,17 @@ public class PurchasingMenu extends Menu {
         boolean numberValidity = checkNumber();
         boolean discountCodeValidity = checkValidityOfDiscountCode();
         if (nameValidity && addressValidity && numberValidity && discountCodeValidity) {
-            if (person.getBalance() < finalPrice) {
+            if (!purchasingManager.doesCustomerHaveEnoughMoney(finalPrice)) {
                 showError("Oops!You don't have enough money in your account!");
             } else {
                 receivedInfo.put("receiverName", name.getText());
                 receivedInfo.put("address", address.getText());
                 receivedInfo.put("phoneNumber", name.getText());
                 purchasingManager.performPayment(receivedInfo, finalPrice, purchasingManager.getDiscountPercentage(discountCodeField.getText()));
-                showMessage();
+                if (!discountCodeField.getText().equals("")) {
+                    purchasingManager.updateDiscountUsagePerPerson(discountCodeField.getText());
+                }
+                showBuyLogPage();
             }
         }
     }
@@ -110,11 +114,14 @@ public class PurchasingMenu extends Menu {
         stage.setScene(new Scene(loader.load(), 600, 600));
     }
 
-    public void showMessage() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Buying Message");
-        alert.setContentText("Thanks for buying from us:)");
-        alert.setHeaderText(null);
-        alert.show();
+    public void showBuyLogPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/BuyLogPage.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Buying Message");
+//        alert.setContentText("Thanks for buying from us:)");
+//        alert.setHeaderText(null);
+//        alert.show();
     }
+
 }

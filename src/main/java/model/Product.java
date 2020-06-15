@@ -3,13 +3,20 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import controller.Storage;
+import javafx.beans.Observable;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Product implements Comparable<Product> {
     private Storage storage = new Storage();
+    private ImageView imageView;
     private int productId;
     private String name;
     private String brand;
     private double price;
+    private int numberInCart;
     private transient Seller seller;
     private int supply;
     private transient Category category;
@@ -27,6 +34,7 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
+        imageView = new ImageView(new Image("images/book.png"));
         this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
@@ -45,6 +53,10 @@ public class Product implements Comparable<Product> {
             this.category.addProductToCategory(this);
     }
 
+    public ImageView getImageView() {
+        return imageView;
+    }
+
     private int idSetter() {
         if (allProducts.size() == 0) {
             return 1;
@@ -57,11 +69,23 @@ public class Product implements Comparable<Product> {
         return max + 1;
     }
 
+    public ObservableValue priceProperty() {
+        ObservableValue<Double> observablePrice = new ReadOnlyObjectWrapper<Double>(price);
+        return observablePrice;
+    }
+
+    public ObservableValue numberInCartProperty() {
+        ObservableValue<Integer> observableNum = new ReadOnlyObjectWrapper<Integer>(numberInCart);
+        return observableNum;
+    }
 
     public int getProductId() {
         return productId;
     }
 
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
 
     public String getName() {
         return name;
