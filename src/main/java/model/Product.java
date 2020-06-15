@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import controller.Storage;
+import javafx.beans.Observable;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,6 +16,7 @@ public class Product implements Comparable<Product> {
     private String name;
     private String brand;
     private double price;
+    private int numberInCart;
     private transient Seller seller;
     private int supply;
     private transient Category category;
@@ -65,11 +69,23 @@ public class Product implements Comparable<Product> {
         return max + 1;
     }
 
+    public ObservableValue priceProperty() {
+        ObservableValue<Double> observablePrice = new ReadOnlyObjectWrapper<Double>(price);
+        return observablePrice;
+    }
+
+    public ObservableValue numberInCartProperty() {
+        ObservableValue<Integer> observableNum = new ReadOnlyObjectWrapper<Integer>(numberInCart);
+        return observableNum;
+    }
 
     public int getProductId() {
         return productId;
     }
 
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
 
     public String getName() {
         return name;

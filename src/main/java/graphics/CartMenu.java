@@ -1,6 +1,7 @@
 package graphics;
 
 import controller.CustomerManager;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +27,7 @@ public class CartMenu extends Menu implements Initializable {
     TextField productTextField;
     @FXML TableView<Product> tableView = new TableView<>();
     @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
-    @FXML TableColumn<Product, Double> totalPriceColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Number> totalPriceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> idColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> imageColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> numberColumn = new TableColumn<>();
@@ -62,7 +63,24 @@ public class CartMenu extends Menu implements Initializable {
         );
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
+        totalPriceColumn.setCellValueFactory(cellData -> {
+            Product product = cellData.getValue();
+            return Bindings.createDoubleBinding(
+                    () -> {
+                        try {
+                            double price = product.getPrice();
+                            int quantity = customerManager.getProductsInCart().get(product);
+                            return price * quantity ;
+                        } catch (NumberFormatException nfe) {
+                            return Double.valueOf(0);
+                        }
+                    },
+                    product.priceProperty(),
+                    product.numberInCartProperty()
+            );
+        });
         tableView.setItems(data);
     }
 

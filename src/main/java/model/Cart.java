@@ -46,6 +46,7 @@ public class Cart {
             productsInCart.put(newProduct, 1);
             newProduct.setSupply(newProduct.getSupply() - 1);
             totalPrice += newProduct.getPrice();
+            newProduct.setNumberInCart(1);
         }
     }
 
@@ -54,6 +55,7 @@ public class Cart {
             productsInCart.replace(product, productsInCart.get(product) + 1);
             product.setSupply(product.getSupply() - 1);
             totalPrice += product.getPrice();
+            product.setNumberInCart(productsInCart.get(product));
         }
     }
 
@@ -62,8 +64,10 @@ public class Cart {
             productsInCart.replace(specificProduct, productsInCart.get(specificProduct) - 1);
             specificProduct.setSupply(specificProduct.getSupply() + 1);
             totalPrice -= specificProduct.getPrice();
+            specificProduct.setNumberInCart(productsInCart.get(specificProduct));
         }
         if (productsInCart.get(specificProduct) == 0) {
+            specificProduct.setNumberInCart(productsInCart.get(specificProduct));
             removeProduct(specificProduct);
         }
     }
