@@ -1,12 +1,17 @@
 package graphics;
 
 import controller.AdminManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
-public class AdminMenu extends Menu {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminMenu extends Menu implements Initializable {
     private AdminManager adminManager = new AdminManager();
     @FXML
     public Label usernameLabel;
@@ -23,8 +28,14 @@ public class AdminMenu extends Menu {
     @FXML
     public Label roleLabel;
 
+
     public AdminMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/AdminMenu.fxml");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        viewPersonalInfo();
     }
 
     public void viewPersonalInfo() {
@@ -120,4 +131,24 @@ public class AdminMenu extends Menu {
     }
 
 
+    public void goToManageProductsMenu(ActionEvent actionEvent) {
+    }
+
+    public void goToManageUsersMenu(ActionEvent actionEvent) {
+    }
+
+    public void goToManageCodesMenu(ActionEvent actionEvent) {
+    }
+
+    public void goToManageRequestsMenu(ActionEvent actionEvent) {
+    }
+
+    public void goToManageCategoyMenu(ActionEvent actionEvent) {
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        MainMenu mainMenu = new MainMenu(null);
+        person = null;
+        mainMenu.run();
+    }
 }
