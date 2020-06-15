@@ -48,7 +48,9 @@ public class Manager {
     }
 
     public Person login(String username, String password) throws Exception {
-        if (!checkValidity(password))
+        if (!checkValidity(username))
+            throw new Exception("Username is not valid");
+        else if (!checkValidity(password))
             throw new Exception("Password is not valid");
         else if (!storage.getUserByUsername(username).getPassword().equals(password))
             throw new Exception("Your password is wrong");

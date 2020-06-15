@@ -13,28 +13,26 @@ public class LoginMenu extends Menu {
         super(previousMenu, "src/main/java/graphics/fxml/LoginMenu.fxml");
     }
     @FXML public TextField username;
-    @FXML public Label usernameMessage;
+    @FXML public Label message;
     @FXML public TextField password;
-    @FXML public Label passwordMessage;
     public void goToRegisterMenu(ActionEvent actionEvent) {
         RegisterMenu registerMenu = new RegisterMenu(this);
         registerMenu.run();
     }
 
     public void login(ActionEvent actionEvent) {
-        usernameMessage.setText("");
-        passwordMessage.setText("");
+        message.setText("");
         String username = this.username.getText();
         String password = this.password.getText();
         if (!manager.doesUsernameExist(username)) {
-            usernameMessage.setText("username does not exist");
+            message.setText("username does not exist");
         }
         try {
             Menu.setPerson(manager.login(username, password));
             goToAccount(person);
 
         } catch (Exception e) {
-            passwordMessage.setText(e.getMessage());
+            message.setText(e.getMessage());
         }
     }
 
