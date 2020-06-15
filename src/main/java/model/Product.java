@@ -3,9 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import controller.Storage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Product implements Comparable<Product> {
     private Storage storage = new Storage();
+    private ImageView imageView;
     private int productId;
     private String name;
     private String brand;
@@ -27,6 +30,7 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
+        imageView = new ImageView(new Image("images/book.png"));
         this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
@@ -43,6 +47,10 @@ public class Product implements Comparable<Product> {
         this.numberOfSeen = 0;
         if (this.category != null)
             this.category.addProductToCategory(this);
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 
     private int idSetter() {
