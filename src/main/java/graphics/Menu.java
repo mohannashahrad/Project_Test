@@ -16,9 +16,9 @@ public class Menu {
     protected static Stage stage = View.getStage();
     protected static Person person;
     protected static Manager manager = new Manager();
-    private Parent root;
+    protected Parent root;
     private Menu previousMenu;
-    private String fxmlPath;
+    protected String fxmlPath;
 
     public Menu(Menu previousMenu,String fxmlPath) {
         this.previousMenu = previousMenu;
@@ -40,7 +40,7 @@ public class Menu {
         alert.setHeaderText(null);
         alert.show();
     }
-    public void run(){
+   /* public void run(){
         FXMLLoader loader = null;
         try {
             loader = new FXMLLoader(new File(fxmlPath).toURI().toURL());
@@ -55,6 +55,6 @@ public class Menu {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 }

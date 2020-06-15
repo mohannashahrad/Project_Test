@@ -2,11 +2,16 @@ package graphics;
 
 import controller.SellerManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,6 +36,21 @@ public class SellerMenu extends Menu implements Initializable {
 
     public SellerMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
+    }
+    public void run() {
+        FXMLLoader loader = null;
+        try {
+            loader = new FXMLLoader(new File(fxmlPath).toURI().toURL());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            loader.setControllerFactory(c -> this);
+            root = loader.load();
+            stage.setScene(new Scene(root, 600, 600));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

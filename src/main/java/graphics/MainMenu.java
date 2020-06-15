@@ -9,6 +9,7 @@ import model.Seller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class MainMenu extends Menu {
     public MainMenu(Menu previousMenu) {
@@ -35,6 +36,22 @@ public class MainMenu extends Menu {
             CustomerMenu customerMenu = new CustomerMenu(this);
             customerMenu.run();
         }
+    }
+    public void run(){
+        FXMLLoader loader = null;
+        try {
+            loader = new FXMLLoader(new File(fxmlPath).toURI().toURL());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            loader.setControllerFactory(c -> this);
+            root = loader.load();
+            stage.setScene(new Scene(root,600,600));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
