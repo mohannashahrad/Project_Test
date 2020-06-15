@@ -48,9 +48,9 @@ public abstract class Menu {
         alert.setHeaderText(null);
         alert.show();
     }
-  /*  public void back(){
+    public void back(){
         this.getPreviousMenu().run();
-    }*/
+    }
     public void run(){
         FXMLLoader loader = null;
         try {

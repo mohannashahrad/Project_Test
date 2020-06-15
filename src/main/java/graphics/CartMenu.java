@@ -105,8 +105,5 @@ public class CartMenu extends Menu implements Initializable {
         }
     }
 
-    @FXML
-    private void back(){
 
-    }
 }

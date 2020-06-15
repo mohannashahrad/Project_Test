@@ -40,10 +40,6 @@ public class CompareMenu extends Menu implements Initializable {
         }
     }
 
-    public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ProductMenu.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(),600,600));
-    }
 
     public void setTable(TableView<Product> tableView) throws Exception {
         ProductManager productManager1 = new ProductManager();
