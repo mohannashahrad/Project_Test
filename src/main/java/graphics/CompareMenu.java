@@ -26,6 +26,11 @@ public class CompareMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, Double> rateColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> brandColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> supplyColumn = new TableColumn<>();
+
+    public CompareMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

@@ -22,6 +22,10 @@ public class CartMenu extends Menu implements Initializable {
     @FXML
     TextField productTextField;
 
+    public CartMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

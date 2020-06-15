@@ -1,4 +1,4 @@
 package graphics;
 
-public class RegisterMenu extends Menu {
+public class RegisterMenu {
 }

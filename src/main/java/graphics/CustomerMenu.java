@@ -33,6 +33,10 @@ public class CustomerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
+    public CustomerMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewPersonalInfo();

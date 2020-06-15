@@ -29,6 +29,10 @@ public class SellerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
+    public SellerMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewPersonalInfo();

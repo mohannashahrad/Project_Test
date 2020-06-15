@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProductMenu extends Menu implements Initializable {
+
     private CustomerManager customerManager = new CustomerManager();
     private ProductManager productManager = new ProductManager();
     private int productId = 2;
@@ -28,6 +29,10 @@ public class ProductMenu extends Menu implements Initializable {
     public ImageView imageview;
     @FXML
     public ListView listView;
+
+    public ProductMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
 
 
     public void button(){

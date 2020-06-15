@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class PurchasingMenu extends Menu {
+
     private PurchasingManager purchasingManager = new PurchasingManager();
     private HashMap<String, String> receivedInfo = new HashMap<>();
     private double finalPrice;
@@ -23,6 +24,10 @@ public class PurchasingMenu extends Menu {
     private TextField number;
     @FXML
     private TextField discountCodeField;
+
+    public PurchasingMenu(Menu previousMenu, String fxmlPath) {
+        super(previousMenu, fxmlPath);
+    }
 
     private boolean checkName() {
         if (name.getText().matches("")) {
