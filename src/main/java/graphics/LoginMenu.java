@@ -25,7 +25,8 @@ public class LoginMenu extends Menu {
         String username = this.username.getText();
         String password = this.password.getText();
         if (!manager.doesUsernameExist(username)) {
-            message.setText("username does not exist");
+            message.setText("username does not exist!");
+            return;
         }
         try {
             Menu.setPerson(manager.login(username, password));

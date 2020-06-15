@@ -51,6 +51,6 @@
       </Label>
       <Hyperlink layoutX="340.0" layoutY="321.0" onAction="#goToRegisterMenu" text="SIGN UP" />
       <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" text="back" />
-      <Label fx:id="message" layoutX="213.0" layoutY="369.0" prefHeight="17.0" prefWidth="195.0" />
+      <Label fx:id="message" layoutX="243.0" layoutY="369.0" prefHeight="17.0" prefWidth="195.0" />
    </children>
 </AnchorPane>
