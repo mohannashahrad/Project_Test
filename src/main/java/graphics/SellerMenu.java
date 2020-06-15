@@ -6,14 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import model.Person;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SellerMenu extends Menu implements Initializable {
-    HashMap<String, String> info = new HashMap<>();
     SellerManager sellerManager = new SellerManager();
     @FXML
     private Label usernameLabel;
@@ -124,7 +121,6 @@ public class SellerMenu extends Menu implements Initializable {
             dialog.getDialogPane().setContent(content);
             dialog.showAndWait();
             updatedVersion = passwordField.getText();
-            return updatedVersion;
         } else {
             TextField textField = new TextField();
             HBox content = new HBox();
@@ -138,7 +134,7 @@ public class SellerMenu extends Menu implements Initializable {
             dialog.getDialogPane().setContent(content);
             dialog.showAndWait();
             updatedVersion = textField.getText();
-            return updatedVersion;
         }
+        return updatedVersion;
     }
 }
