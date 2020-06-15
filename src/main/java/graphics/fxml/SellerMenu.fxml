@@ -8,7 +8,16 @@
     <children>
         <VBox layoutX="20.0" layoutY="109.0">
             <children>
-                <ComboBox fx:id="personalInfoBox" prefHeight="41.0" prefWidth="146.0" promptText="Edit Personal Info" />
+                <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="146.0" text="Edit Personal Info">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
+                        <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />
+                        <MenuItem mnemonicParsing="false" onAction="#editFamilyNameField" text="Family Name" />
+                        <MenuItem mnemonicParsing="false" onAction="#editBalanceField" text="Balance" />
+                        <MenuItem mnemonicParsing="false" onAction="#editEmailField" text="E-mail" />
+                        <MenuItem mnemonicParsing="false" onAction="#editNumberField" text="Number" />
+                    </items>
+                </MenuButton>
                 <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="145.0" text="My Sell History" />
                 <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="146.0" text="My Products" />
                 <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="146.0" text="My Offs" />
@@ -67,7 +76,7 @@
                 <Label fx:id="numberLabel" prefHeight="18.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             </children>
         </GridPane>
-        <Separator layoutX="165.0" layoutY="97.0" orientation="VERTICAL" prefHeight="254.0" prefWidth="30.0" />
+        <Separator layoutX="165.0" layoutY="106.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="30.0" />
         <Separator layoutX="202.0" layoutY="128.0" prefHeight="24.0" prefWidth="326.0" />
         <Separator layoutX="202.0" layoutY="164.0" prefHeight="24.0" prefWidth="326.0" />
         <Separator layoutX="201.0" layoutY="191.0" prefHeight="27.0" prefWidth="326.0" />

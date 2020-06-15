@@ -1,4 +1,5 @@
 package graphics;
+import controller.Manager;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Person;
@@ -7,6 +8,7 @@ import model.Person;
 public class Menu {
     protected static Stage stage;
     protected static Person person;
+    protected static Manager manager = new Manager();
     public void setStage(Stage stage) {
         this.stage = stage;
     }
