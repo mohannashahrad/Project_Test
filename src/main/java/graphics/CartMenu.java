@@ -32,9 +32,10 @@ public class CartMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, String> imageColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> numberColumn = new TableColumn<>();
 
-    public CartMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public CartMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/CartMenu.fxml");
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,16 +93,16 @@ public class CartMenu extends Menu implements Initializable {
     private void purchase() throws IOException {
         if (person instanceof Customer){
             if (customerManager.getProductsInCart().isEmpty()){
-                System.out.println("Your cart is empty. Nothing to purchase!");
+                showError("Your cart is empty. Nothing to purchase!");
                 return;
             }
             System.out.println("Proceed to purchase ");
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/PurchasingMenu.fxml").toURI().toURL());
-            stage.setScene(new Scene(loader.load(), 600, 600));
+            PurchasingMenu purchasingMenu = new PurchasingMenu(this);
+            purchasingMenu.run();
         } else{
             System.out.println("First login as customer then purchase.");
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/LoginMenu.fxml").toURI().toURL());
-            stage.setScene(new Scene(loader.load(), 600, 600));
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
         }
     }
 
