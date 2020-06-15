@@ -1,15 +1,9 @@
 package graphics;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import model.Admin;
 import model.Seller;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class MainMenu extends Menu {
     public MainMenu(Menu previousMenu) {
@@ -17,9 +11,13 @@ public class MainMenu extends Menu {
     }
 
     public void goToSalesMenu(ActionEvent actionEvent) {
+        //SalesMenu salesMenu = new SalesMenu(this);
+        //salesMenu.run();
     }
 
     public void goToProductsMenu(ActionEvent actionEvent) {
+        AllProductsMenu allProductsMenu = new AllProductsMenu(this);
+        allProductsMenu.run();
     }
 
     public void goToAccount(ActionEvent actionEvent) {
