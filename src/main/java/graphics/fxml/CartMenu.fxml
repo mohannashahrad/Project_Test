@@ -30,17 +30,17 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="416.0">
                     <children>
-                        <TableView layoutX="1.0" layoutY="42.0" prefHeight="460.0" prefWidth="412.0">
+                        <TableView fx:id="tableView" layoutX="1.0" layoutY="42.0" prefHeight="460.0" prefWidth="412.0">
                             <columns>
                                 <TableColumn prefWidth="75.0" text=" Product">
                                     <columns>
-                                        <TableColumn prefWidth="75.0" text="Id" />
-                                        <TableColumn prefWidth="75.0" text=" Image" />
+                                        <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+                                        <TableColumn fx:id="imageColumn" prefWidth="75.0" text=" Image" />
                                     </columns>
                                 </TableColumn>
-                                <TableColumn prefWidth="102.0" text="Number In Cart" />
-                                <TableColumn prefWidth="56.0" text="Price" />
-                                <TableColumn prefWidth="76.0" text="Total Price" />
+                                <TableColumn fx:id="numberColumn" prefWidth="102.0" text="Number In Cart" />
+                                <TableColumn fx:id="priceColumn" prefWidth="56.0" text="Price" />
+                                <TableColumn fx:id="totalPriceColumn" prefWidth="76.0" text="Total Price" />
                             </columns>
                         </TableView>
                         <Label layoutX="128.0" layoutY="14.0" prefHeight="28.0" prefWidth="159.0" text="Cart Summary" />

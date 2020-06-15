@@ -1,14 +1,20 @@
 package graphics;
 
 import controller.CustomerManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Customer;
-
+import model.Product;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -18,10 +24,16 @@ public class CartMenu extends Menu implements Initializable {
     private CustomerManager customerManager = new CustomerManager();
     @FXML
     TextField productTextField;
+    @FXML TableView<Product> tableView = new TableView<>();
+    @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Double> totalPriceColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Integer> idColumn = new TableColumn<>();
+    @FXML TableColumn<Product, String> imageColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Integer> numberColumn = new TableColumn<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        updateTable();
     }
 
     public void decreaseProduct(){
@@ -45,7 +57,13 @@ public class CartMenu extends Menu implements Initializable {
     }
 
     private void updateTable(){
-
+        final ObservableList<Product> data = FXCollections.observableArrayList(
+                customerManager.getProductsInCart().keySet()
+        );
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
+        tableView.setItems(data);
     }
 
     @FXML
@@ -60,7 +78,7 @@ public class CartMenu extends Menu implements Initializable {
             stage.setScene(new Scene(loader.load(), 600, 600));
         } else{
             System.out.println("First login as customer then purchase.");
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/LoginMenu.fxml").toURI().toURL());
             stage.setScene(new Scene(loader.load(), 600, 600));
         }
     }

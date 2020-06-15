@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class View extends Application {
 
     private static final String MAIN_FXML = "fxml/MAinMenu.fxml";
-    private static final String LR_FXML = "fxml/LoginRegisterMenu.fxml";
+    private static final String LR_FXML = "fxml/LoginMenu.fxml";
     private static final String PRODUCT_FXML = "fxml/ProductMenu.fxml";
 
     private static Map<SceneName, FxmlInfo> scenes = new HashMap<>();
@@ -34,7 +34,7 @@ public class View extends Application {
          * the comments above are real code
          * the below one is for finding the true address
          */
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CartMenu.fxml").toURI().toURL());
         Parent mainCallWindowFXML = loader.load();
         stage.setScene(new Scene(mainCallWindowFXML,600,600));
         /**
