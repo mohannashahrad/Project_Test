@@ -16,9 +16,7 @@ public class Menu {
     protected static Stage stage = View.getStage();
     protected static Person person;
     protected static Manager manager = new Manager();
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+    private Parent root;
     private Menu previousMenu;
     private String fxmlPath;
 
@@ -49,10 +47,10 @@ public class Menu {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        Parent mainCallWindowFXML = null;
         try {
-            mainCallWindowFXML = loader.load();
-            stage.setScene(new Scene(mainCallWindowFXML,600,600));
+            loader.setControllerFactory(c -> this);
+            root = loader.load();
+            stage.setScene(new Scene(root,600,600));
         } catch (IOException e) {
             e.printStackTrace();
         }

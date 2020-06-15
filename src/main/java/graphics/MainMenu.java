@@ -24,4 +24,5 @@ public class MainMenu extends Menu {
     public void goToAccount(ActionEvent actionEvent) {
 
     }
+
 }

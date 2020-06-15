@@ -17,7 +17,6 @@ public class View extends Application {
     private static final String LR_FXML = "fxml/LoginMenu.fxml";
     private static final String PRODUCT_FXML = "fxml/ProductMenu.fxml";
 
-    private static Map<SceneName, FxmlInfo> scenes = new HashMap<>();
     public static Stage mainStage;
 
     public static Stage getStage() {
@@ -31,33 +30,11 @@ public class View extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
-        /*scenes.put(SceneName.MAIN, new FxmlInfo(MAIN_FXML, SceneName.MAIN, stage));
-        scenes.put(SceneName.LOGIN_REGISTER, new FxmlInfo(LR_FXML, SceneName.LOGIN_REGISTER, stage));
-        scenes.put(SceneName.PRODUCT, new FxmlInfo(PRODUCT_FXML, SceneName.PRODUCT, stage));/*
-
-        stage.setScene(scenes.get(SceneName.MAIN).getScene());
-        /**
-         * the comments above are real code
-         * the below one is for finding the true address
-
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/PurchasingMenu.fxml").toURI().toURL());
-        Parent mainCallWindowFXML = loader.load();
-        stage.setScene(new Scene(mainCallWindowFXML,600,600));
-        /**
-         * to here
-         */
         MainMenu mainMenu = new MainMenu(null);
         stage.setTitle("TEAM-18");
         mainMenu.run();
         stage.show();
     }
 
-    public static Map<SceneName, FxmlInfo> getScenes() {
-        return scenes;
-    }
-
-    public static void updateScenes(SceneName name, FxmlInfo info) {
-        scenes.put(name, info);
-    }
 
 }
