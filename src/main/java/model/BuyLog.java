@@ -13,7 +13,6 @@ public class BuyLog extends Log {
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
     private static ArrayList<Log>allBuyLogs = new ArrayList<>();
-
     public static ArrayList<Log> getAllBuyLogs() {
         return allBuyLogs;
     }

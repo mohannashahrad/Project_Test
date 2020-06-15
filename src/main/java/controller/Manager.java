@@ -153,7 +153,7 @@ public class Manager {
             return false;
         else return true;
     }
-    protected void setPerson(Person person1){
+    public void setPerson(Person person1){
         person = person1;
     }
 

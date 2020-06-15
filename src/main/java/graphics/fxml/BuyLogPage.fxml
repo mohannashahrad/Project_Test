@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PerBuyLog">
+   <children>
+      <TableView layoutX="68.0" layoutY="63.0" prefHeight="308.0" prefWidth="464.0">
+        <columns>
+          <TableColumn prefWidth="126.19994354248047" text="Products" />
+            <TableColumn prefWidth="62.60003662109375" text="Price" />
+            <TableColumn prefWidth="102.79998779296875" text="Amount of Off" />
+            <TableColumn prefWidth="107.39996337890625" text="Price with Off" />
+          <TableColumn prefWidth="65.60006713867188" text="Quatity" />
+        </columns>
+      </TableView>
+      <Button layoutX="206.0" layoutY="371.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="187.0" text="go to your main account page" />
+      <Label alignment="CENTER" layoutX="149.0" layoutY="6.0" prefHeight="28.0" prefWidth="287.0" text="THANKS FOR BUYING FROM US:)" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="34.0" prefHeight="28.0" prefWidth="98.0" text="Here's your log:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
