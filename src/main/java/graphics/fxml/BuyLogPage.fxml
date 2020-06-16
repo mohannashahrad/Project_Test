@@ -4,28 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PerBuyLog">
-   <children>
-      <TableView layoutX="68.0" layoutY="63.0" prefHeight="308.0" prefWidth="464.0">
-        <columns>
-          <TableColumn prefWidth="126.19994354248047" text="Products" />
-            <TableColumn prefWidth="62.60003662109375" text="Price" />
-            <TableColumn prefWidth="102.79998779296875" text="Amount of Off" />
-            <TableColumn prefWidth="107.39996337890625" text="Price with Off" />
-          <TableColumn prefWidth="65.60006713867188" text="Quatity" />
-        </columns>
-      </TableView>
-      <Button layoutX="206.0" layoutY="371.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="187.0" text="go to your main account page" />
-      <Label alignment="CENTER" layoutX="149.0" layoutY="6.0" prefHeight="28.0" prefWidth="287.0" text="THANKS FOR BUYING FROM US:)" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="68.0" layoutY="34.0" prefHeight="28.0" prefWidth="98.0" text="Here's your log:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.thisPersonBuyLogs">
+    <bottom>
+        <Button mnemonicParsing="false" onAction="#back" prefHeight="6.0" prefWidth="42.0" text="Back" BorderPane.alignment="CENTER" />
+    </bottom>
+   <center>
+      <SplitPane dividerPositions="0.7686932215234102" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="81.0" layoutY="72.0" prefHeight="352.0" prefWidth="448.0">
+                    <columns>
+                      <TableColumn fx:id="buyLogCode" prefWidth="86.80001831054688" text="Code" />
+                      <TableColumn fx:id="dateColumn" prefWidth="116.20002746582031" text="Date" />
+                        <TableColumn fx:id="totalPriceColumn" prefWidth="119.0" text="Total Price" />
+                        <TableColumn prefWidth="124.0" text="Amount of Discount" />
+                    </columns>
+                  </TableView>
+                  <Label alignment="CENTER" layoutX="218.0" layoutY="23.0" prefHeight="40.0" prefWidth="144.0" text="All Buy Logs">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="138.0" prefWidth="598.0">
+               <children>
+                  <TextField layoutX="247.0" layoutY="45.0" prefHeight="38.0" prefWidth="104.0" />
+                  <Label alignment="CENTER" layoutX="144.0" layoutY="14.0" text="Enter buy log code to show you the complete log!" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="265.0" layoutY="90.0" mnemonicParsing="false" text="Show Log" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

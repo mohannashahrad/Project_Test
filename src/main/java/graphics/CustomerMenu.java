@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -149,6 +148,10 @@ public class CustomerMenu extends Menu implements Initializable {
 
     public void goToCartMenu() throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CartMenu.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));
+    }
+    public void goToMainMenu() throws IOException {
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));
     }
 }
