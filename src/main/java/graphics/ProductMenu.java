@@ -30,16 +30,15 @@ public class ProductMenu extends Menu implements Initializable {
     @FXML
     public ListView listView;
 
-    public ProductMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public ProductMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/ProductMenu.fxml");
     }
-
 
     public void button(){
         try {
             customerManager.increaseProduct(Integer.toString(this.productId));
         } catch (Exception e){
-            showNotification(Alert.AlertType.ERROR, stage.getScene().getWindow(), "Error!", e.getMessage());
+            showError(e.getMessage());
         }
     }
 
@@ -59,23 +58,13 @@ public class ProductMenu extends Menu implements Initializable {
                 return;
             case "More Options":
                 //Here is a problem with stage which gives runtime Error
-                showNotification(Alert.AlertType.ERROR, stage.getScene().getWindow(), "Error!",
-                        "No Action Selected");
+                showError("No Action Selected");
         }
     }
 
-    private void showNotification(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
-
     private void compareAction() throws Exception {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CompareMenu.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(),600,600));
+        CompareMenu compareMenu = new CompareMenu(this);
+        compareMenu.run();
     }
 
     private void listViewContents() throws Exception{

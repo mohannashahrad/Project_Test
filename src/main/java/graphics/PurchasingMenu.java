@@ -25,8 +25,8 @@ public class PurchasingMenu extends Menu {
     @FXML
     private TextField discountCodeField;
 
-    public PurchasingMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public PurchasingMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/PurchasingMenu.fxml");
     }
 
     private boolean checkName() {

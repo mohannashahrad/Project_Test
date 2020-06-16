@@ -27,8 +27,8 @@ public class CompareMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, String> brandColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> supplyColumn = new TableColumn<>();
 
-    public CompareMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public CompareMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/CompareMenu.fxml");
     }
 
     @Override
