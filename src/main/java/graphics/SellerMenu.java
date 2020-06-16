@@ -2,11 +2,16 @@ package graphics;
 
 import controller.SellerManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,8 +34,8 @@ public class SellerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
-    public SellerMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public SellerMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
     }
 
     @Override

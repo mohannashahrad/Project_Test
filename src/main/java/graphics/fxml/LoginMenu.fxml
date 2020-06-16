@@ -52,6 +52,6 @@
          </font>
       </Label>
       <Hyperlink layoutX="340.0" layoutY="321.0" onAction="#goToRegisterMenu" text="SIGN UP" />
-      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" text="back" />
+      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" text="back" />
    </children>
 </AnchorPane>

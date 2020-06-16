@@ -12,17 +12,25 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
-public class Menu {
+public abstract class Menu {
     protected static Stage stage = View.getStage();
     protected static Person person;
     protected static Manager manager = new Manager();
-    private Parent root;
+    protected Parent root;
     private Menu previousMenu;
-    private String fxmlPath;
+    protected String fxmlPath;
 
     public Menu(Menu previousMenu,String fxmlPath) {
         this.previousMenu = previousMenu;
         this.fxmlPath = fxmlPath;
+    }
+
+    public Menu getPreviousMenu() {
+        return previousMenu;
+    }
+
+    public void setPreviousMenu(Menu previousMenu) {
+        this.previousMenu = previousMenu;
     }
 
     public static Person getPerson() {
@@ -39,6 +47,9 @@ public class Menu {
         alert.setContentText(message);
         alert.setHeaderText(null);
         alert.show();
+    }
+    public void back(){
+        this.getPreviousMenu().run();
     }
     public void run(){
         FXMLLoader loader = null;

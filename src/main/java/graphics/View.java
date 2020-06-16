@@ -28,7 +28,7 @@ public class View extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         mainStage = stage;
         MainMenu mainMenu = new MainMenu(null);
         stage.setTitle("TEAM-18");

@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,8 +34,8 @@ public class CustomerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
-    public CustomerMenu(Menu previousMenu, String fxmlPath) {
-        super(previousMenu, fxmlPath);
+    public CustomerMenu(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/CustomerMenu.fxml");
     }
 
     @Override
