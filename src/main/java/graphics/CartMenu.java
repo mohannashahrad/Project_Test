@@ -96,11 +96,10 @@ public class CartMenu extends Menu implements Initializable {
                 showError("Your cart is empty. Nothing to purchase!");
                 return;
             }
-            System.out.println("Proceed to purchase ");
             PurchasingMenu purchasingMenu = new PurchasingMenu(this);
             purchasingMenu.run();
         } else{
-            System.out.println("First login as customer then purchase.");
+            showError("First login as customer then purchase.");
             LoginMenu loginMenu = new LoginMenu(this);
             loginMenu.run();
         }
