@@ -30,7 +30,7 @@ public class View extends Application {
     @Override
     public void start(Stage stage) {
         mainStage = stage;
-        AllProductsMenu mainMenu = new AllProductsMenu(null);
+        MainMenu mainMenu = new MainMenu(null);
         stage.setTitle("TEAM-18");
         mainMenu.run();
         stage.show();
