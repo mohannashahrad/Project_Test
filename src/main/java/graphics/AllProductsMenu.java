@@ -3,12 +3,9 @@ package graphics;
 import controller.SearchingManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import model.Category;
 import model.Product;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -33,6 +30,11 @@ public class AllProductsMenu extends Menu implements Initializable {
 
     @FXML
     private void populatingChoiceBoxes(){
+        for (Category category : searchingManager.viewAllCategories()) {
+            categoryChoiceBox.getItems().add(category.getCategoryName());
+        }
+        categoryChoiceBox.getItems().add("Choose Category");
+        categoryChoiceBox.setValue("Choose Category");
     }
 
     @FXML
@@ -82,10 +84,11 @@ public class AllProductsMenu extends Menu implements Initializable {
     }
 
     private void updateShownProducts(ArrayList<Product> shownProducts){
-
+        System.out.println(searchingManager.viewAllProducts().toString());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        populatingChoiceBoxes();
     }
 }
