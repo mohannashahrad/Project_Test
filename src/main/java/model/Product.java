@@ -3,15 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import controller.Storage;
-import javafx.beans.Observable;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 
 public class Product implements Comparable<Product> {
     private Storage storage = new Storage();
-    private ImageView imageView;
+    private ReadOnlyObjectWrapper<Image> image;
     private int productId;
     private String name;
     private String brand;
@@ -34,7 +33,7 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
-        imageView = new ImageView(new Image("images/book.png"));
+        this.image = new ReadOnlyObjectWrapper<>(new Image ("images/book.png"));
         this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
@@ -53,8 +52,12 @@ public class Product implements Comparable<Product> {
             this.category.addProductToCategory(this);
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public Image getImage() {
+        return image.get();
+    }
+
+    public ReadOnlyObjectProperty<Image> imageProperty() {
+        return image.getReadOnlyProperty();
     }
 
     private int idSetter() {
