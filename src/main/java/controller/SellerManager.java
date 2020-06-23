@@ -170,4 +170,12 @@ public class SellerManager extends Manager {
     public void addBalance(double amount) {
         person.setBalance(person.getBalance() + amount);
     }
+
+    public boolean doesSellerHasThisSellLog(int sellLogCode){
+        for (SellLog sellLog : ((Seller) person).getSellHistory()) {
+            if(sellLogCode == sellLog.getSellCode())
+                return true;
+        }
+        return false;
+    }
 }

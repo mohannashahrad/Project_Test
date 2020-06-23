@@ -8,7 +8,7 @@
     <children>
         <VBox layoutX="20.0" layoutY="109.0">
             <children>
-                <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="Edit Personal Info">
+                <MenuButton mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="Edit Personal Info">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
                         <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />
@@ -22,7 +22,7 @@
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Products" />
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Offs" />
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="All Category" />
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="Go To Main Menu" />
+            <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="146.0" text="Go To Main Menu" />
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="logout" />
             </children>
         </VBox>

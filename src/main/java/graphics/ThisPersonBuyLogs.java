@@ -16,6 +16,7 @@ import model.BuyLog;
 import model.Customer;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static graphics.Menu.person;
 
-public class thisPersonBuyLogs implements Initializable {
+public class ThisPersonBuyLogs extends Menu implements Initializable {
     CustomerManager customerManager = new CustomerManager();
     Storage storage = new Storage();
     @FXML
@@ -38,6 +39,11 @@ public class thisPersonBuyLogs implements Initializable {
     TableColumn<BuyLog, LocalDateTime> dateColumn = new TableColumn<>();
     @FXML
     TextField logCode;
+
+    public ThisPersonBuyLogs(Menu previousMenu) {
+        super(previousMenu, "src/main/java/graphics/fxml/ThisPersonBuyLog.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTable(tableView);
@@ -57,7 +63,7 @@ public class thisPersonBuyLogs implements Initializable {
 
     public void back(ActionEvent actionEvent) {
     }
-    public void showBuyLog() {
+    public void showBuyLog() throws IOException {
         if (!logCode.getText().equals("")) {
             showError("Please Enter a code!");
         } else if(!logCode.getText().matches("\\d+")){
@@ -71,11 +77,12 @@ public class thisPersonBuyLogs implements Initializable {
         }
     }
 
-    private void showWantedBuyLog(String code) {
+    private void showWantedBuyLog(String code) throws IOException {
         BuyLog thisBuyLog = storage.getBuyLogByCode(code);
-        perBuyLog buyLog =new perBuyLog(thisBuyLog);
-        //FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/CartMenu.fxml").toURI().toURL());
-        //stage.setScene(new Scene(loader.load(), 600, 600));
+        PerBuyLog buyLog =new PerBuyLog(thisBuyLog, this);
+        buyLog.run();
+        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/PerBuyLog.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
     public void showError(String message){

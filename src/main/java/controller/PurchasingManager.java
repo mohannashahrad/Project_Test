@@ -15,7 +15,7 @@ public class PurchasingManager extends Manager {
     public PurchasingManager() {
     }
 
-    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage)
+    public void performPayment(HashMap<String, String> receiverInformation, double totalPrice, double discountPercentage, String discountUsed)
             throws Exception {
         double moneyToTransfer = totalPrice - totalPrice * (1.0 * discountPercentage / 100);
         person.setBalance(person.getBalance() - moneyToTransfer);
@@ -25,7 +25,7 @@ public class PurchasingManager extends Manager {
             ((Customer)person).setAmountOfAllPurchasing(0);
         }
         adminManager.createRandomDiscounts();
-        createBuyLog(receiverInformation, totalPrice, discountPercentage);
+        createBuyLog(receiverInformation, totalPrice, discountPercentage, discountUsed);
         addCustomerToProductsBuyers();
         for (Seller seller : findDistinctSellers(super.cart)) {
             double totalPricePerSeller = calculateEachSellerMoneyTransfer(sellerProductsInCart(super.cart, seller));
@@ -52,9 +52,9 @@ public class PurchasingManager extends Manager {
         return allSellers;
     }
 
-    public void createBuyLog(HashMap<String, String> receiverInformation, double totalPrice, double saleAmount) {
+    public void createBuyLog(HashMap<String, String> receiverInformation, double totalPrice, double saleAmount, String discountUsed) {
         BuyLog buyLog = new BuyLog(LocalDateTime.now(), totalPrice, saleAmount, findDistinctSellers(super.cart),
-                receiverInformation, cart.getProductsInCart());
+                receiverInformation, cart.getProductsInCart(), discountUsed);
         storage.addBuyLog(buyLog);
         ((Customer) person).addToBuyLogs(buyLog);
         this.buyLogCode = buyLog.getBuyCode();

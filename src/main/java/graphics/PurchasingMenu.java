@@ -100,7 +100,7 @@ public class PurchasingMenu extends Menu {
                 receivedInfo.put("receiverName", name.getText());
                 receivedInfo.put("address", address.getText());
                 receivedInfo.put("phoneNumber", name.getText());
-                purchasingManager.performPayment(receivedInfo, finalPrice, purchasingManager.getDiscountPercentage(discountCodeField.getText()));
+                purchasingManager.performPayment(receivedInfo, finalPrice, purchasingManager.getDiscountPercentage(discountCodeField.getText()), discountCodeField.getText());
                 if (!discountCodeField.getText().equals("")) {
                     purchasingManager.updateDiscountUsagePerPerson(discountCodeField.getText());
                 }
@@ -115,7 +115,7 @@ public class PurchasingMenu extends Menu {
     }
 
     public void showBuyLogPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/BuyLogPage.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));
 //        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //        alert.setTitle("Buying Message");

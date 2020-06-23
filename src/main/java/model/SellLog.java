@@ -38,11 +38,21 @@ public class SellLog extends Log {
     public Customer getCustomer() {
         return customer;
     }
+    public int getSellCode(){
+        return this.sellCode;
+    }
 
     public static ArrayList<Integer> getAllSellCodes() {
         return allSellCodes;
     }
 
+    public double getReceivedMoney(){
+        return this.receivedMoney;
+    }
+
+    public double getSaleAmount(){
+        return this.saleAmount;
+    }
     @Override
     public String toString() {
         return "SellLog{" +

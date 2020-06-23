@@ -144,6 +144,15 @@ public class Storage {
         return null;
     }
 
+    public SellLog getSellLogByCode(String code){
+        for (Log sellLog : allSellLogs) {
+            if (((SellLog) sellLog).getSellCode() == Integer.parseInt(code)){
+                return (SellLog) sellLog;
+            }
+        }
+        return null;
+    }
+
     public Request getRequestById(int requestId) {
         for (Request request : allRequests) {
             if (request.getRequestId() == requestId) {

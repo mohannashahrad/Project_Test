@@ -154,4 +154,9 @@ public class CustomerMenu extends Menu implements Initializable {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));
     }
+
+    public void goToBuyLogPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));
+    }
 }

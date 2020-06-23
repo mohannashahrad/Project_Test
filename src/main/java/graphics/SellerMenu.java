@@ -146,6 +146,7 @@ public class SellerMenu extends Menu implements Initializable {
         }
         return updatedVersion;
     }
+
     public void goToMainMenu() throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));

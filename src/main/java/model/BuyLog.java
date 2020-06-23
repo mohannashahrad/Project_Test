@@ -13,6 +13,7 @@ public class BuyLog extends Log {
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
     private static ArrayList<Log>allBuyLogs = new ArrayList<>();
+    private String discountUsed;
     public static ArrayList<Log> getAllBuyLogs() {
         return allBuyLogs;
     }
@@ -29,7 +30,7 @@ public class BuyLog extends Log {
     }
 
     public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers,
-                  HashMap<String, String> customerInfo , HashMap<Product, Integer> productsInThisBuyLog) {
+                  HashMap<String, String> customerInfo , HashMap<Product, Integer> productsInThisBuyLog,String discountUsed) {
         super(date);
         this.paidMoney = paidMoney;
         this.discountAmount = discountAmount;
@@ -37,6 +38,7 @@ public class BuyLog extends Log {
         this.customerInfo = customerInfo;
         this.buyCode = idSetter();
         this.products = productsInThisBuyLog;
+        this.discountUsed = discountUsed;
         allBuyCodes.add(buyCode);
     }
 
@@ -50,6 +52,10 @@ public class BuyLog extends Log {
 
     public double getDiscountAmount() {
         return discountAmount;
+    }
+
+    public String getDiscountUsed(){
+        return discountUsed;
     }
 
     public ArrayList<Seller> getSeller() {
