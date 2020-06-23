@@ -44,7 +44,7 @@
                             </columns>
                         </TableView>
                         <Label layoutX="128.0" layoutY="14.0" prefHeight="28.0" prefWidth="159.0" text="Cart Summary" />
-                        <Label layoutY="502.0" prefHeight="71.0" prefWidth="415.0" text="  Total Price With Discount : ">
+                        <Label fx:id="totalPriceLabel" layoutY="502.0" prefHeight="71.0" prefWidth="415.0" text="  Total Price Of Cart : ">
                             <font>
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
