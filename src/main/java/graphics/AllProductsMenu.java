@@ -85,10 +85,17 @@ public class AllProductsMenu extends Menu implements Initializable {
 
     private void updateShownProducts(ArrayList<Product> shownProducts){
         System.out.println(searchingManager.viewAllProducts().toString());
+        int x = 10 ;
+        int y = 10 ;
+        for (Product product : searchingManager.viewAllProducts()) {
+            new ProductCell(x++,y++,3,3 , "file:src/main/java/graphics/leaf.jpg");
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         populatingChoiceBoxes();
+        updateShownProducts(searchingManager.viewAllProducts());
     }
 }
