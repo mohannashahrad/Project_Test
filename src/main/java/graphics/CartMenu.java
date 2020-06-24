@@ -12,16 +12,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Customer;
 import model.Product;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CartMenu extends Menu implements Initializable {
     private CustomerManager customerManager = new CustomerManager();
     @FXML
     TextField productTextField;
-    @FXML TableView<Product> tableView = new TableView<>();
+    @FXML TableView<Product> tableView = new TableView<>(FXCollections.observableList(FXCollections.observableArrayList(
+            customerManager.getProductsInCart().keySet()
+    )));
     @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Number> totalPriceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> idColumn = new TableColumn<>();
@@ -66,8 +71,26 @@ public class CartMenu extends Menu implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
+        imageColumn.setCellFactory(param -> {
+            //Set up the ImageView
+            final ImageView imageview = new ImageView();
+            imageview.setFitHeight(50);
+            imageview.setFitWidth(50);
+
+            //Set up the Table
+            TableCell<Product, Image> cell = new TableCell<Product, Image>() {
+                public void updateItem(Image item, boolean empty) {
+                    if (item != null) {
+                        System.out.println("yes");
+                        imageview.setImage(item);
+                    }
+                }
+            };
+            // Attach the imageView to the cell
+            cell.setGraphic(imageview);
+            return cell;
+        });
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
-        imageColumn.setCellFactory(param -> new ImageTableCell<>());
         totalPriceColumn.setCellValueFactory(cellData -> {
             Product product = cellData.getValue();
             return Bindings.createDoubleBinding(
@@ -101,29 +124,6 @@ public class CartMenu extends Menu implements Initializable {
             showError("First login as customer then purchase.");
             LoginMenu loginMenu = new LoginMenu(this);
             loginMenu.run();
-        }
-    }
-
-
-    private class ImageTableCell<S> extends TableCell<S, Image> {
-        final ImageView imageView = new ImageView();
-
-        ImageTableCell() {
-            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        }
-
-        @Override
-        protected void updateItem(Image item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty || item == null) {
-                imageView.setImage(null);
-                setText(null);
-                setGraphic(null);
-            }
-
-            imageView.setImage(item);
-            setGraphic(imageView);
         }
     }
 }
