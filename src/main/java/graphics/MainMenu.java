@@ -11,8 +11,8 @@ public class MainMenu extends Menu {
     }
 
     public void goToSalesMenu(ActionEvent actionEvent) {
-        //SalesMenu salesMenu = new SalesMenu(this);
-        //salesMenu.run();
+        AllOffsMenu salesMenu = new AllOffsMenu(this);
+        salesMenu.run();
     }
 
     public void goToProductsMenu(ActionEvent actionEvent) {
