@@ -14,7 +14,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Comment;
 import model.Product;
-import org.controlsfx.control.Rating;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,8 +25,7 @@ public class ProductMenu extends Menu implements Initializable {
     private Product product;
     private CustomerManager customerManager = new CustomerManager();
     private ProductManager productManager = new ProductManager();
-    @FXML
-    public Rating rating;
+
     @FXML
     public ImageView statusImageView;
     @FXML
