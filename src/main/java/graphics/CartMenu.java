@@ -76,12 +76,13 @@ public class CartMenu extends Menu implements Initializable {
             final ImageView imageview = new ImageView();
             imageview.setFitHeight(50);
             imageview.setFitWidth(50);
+            imageview.setImage(new Image ("file:src/main/java/model/images/book.png"));
+
 
             //Set up the Table
             TableCell<Product, Image> cell = new TableCell<Product, Image>() {
                 public void updateItem(Image item, boolean empty) {
                     if (item != null) {
-                        System.out.println("yes");
                         imageview.setImage(item);
                     }
                 }
@@ -90,7 +91,7 @@ public class CartMenu extends Menu implements Initializable {
             cell.setGraphic(imageview);
             return cell;
         });
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("Image"));
         totalPriceColumn.setCellValueFactory(cellData -> {
             Product product = cellData.getValue();
             return Bindings.createDoubleBinding(

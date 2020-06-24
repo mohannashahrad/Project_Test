@@ -78,6 +78,11 @@ public class Product implements Comparable<Product> {
         return observableNum;
     }
 
+    public ObservableValue imageProperty() {
+        ObservableValue<Image> observableImg = new ReadOnlyObjectWrapper<Image>(image);
+        return observableImg;
+    }
+
     public int getProductId() {
         return productId;
     }
