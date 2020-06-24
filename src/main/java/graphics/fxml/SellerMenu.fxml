@@ -20,16 +20,17 @@
                     </items>
                 </MenuButton>
                 <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="145.0" text="My Sell History" />
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Products" />
+            <Button mnemonicParsing="false" onAction="#viewProducts" prefHeight="36.0" prefWidth="145.0" text="My Products" />
             <MenuButton mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Offs">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#viewOffs" text="View My Offs" />
                 <MenuItem mnemonicParsing="false" onAction="#checkValidityOfOffId" text="Edit Off" />
+                  <MenuItem mnemonicParsing="false" onAction="#addOff" text="Add Off" />
               </items>
             </MenuButton>
                 <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="146.0" text="All Category" />
             <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="146.0" text="Go To Main Menu" />
-                <Button mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="146.0" text="logout" />
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="146.0" text="logout" />
             </children>
         </VBox>
         <Label alignment="CENTER" layoutX="19.0" layoutY="76.0" prefHeight="42.0" prefWidth="146.0" text="Account Access">

@@ -164,6 +164,11 @@ public class SellerMenu extends Menu implements Initializable {
         return updatedVersion;
     }
 
+    public void viewProducts() {
+        SellerProductMenu sellerProductMenu = new SellerProductMenu(this, this.sellerManager);
+        sellerProductMenu.run();
+    }
+
     public void viewOffs() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Your Offs");
@@ -268,20 +273,20 @@ public class SellerMenu extends Menu implements Initializable {
         productDialog.setHeaderText(null);
         productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         HBox content = new HBox();
-        content.getChildren().addAll(new Label("Enter your new Begin Date :(in format yyyy-MM-dd HH:mm)")
+        content.getChildren().addAll(new Label("Enter your new Begin Date :(in format yyyy,MM,dd,HH,mm)")
                 , textField);
         productDialog.getDialogPane().setContent(content);
         productDialog.showAndWait();
         updatedVersion = textField.getText();
-        if (!updatedVersion.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d\\s\\d\\d:\\d\\d")) {
+        if (!updatedVersion.matches("\\d\\d\\d\\d,\\d\\d,\\d\\d,\\d\\d,\\d\\d")) {
             showError("Invalid Format of date!", 100);
         } else {
             try {
                 sellerManager.editOff(offId, "beginDate", updatedVersion);
+                showMessage();
             } catch (Exception ex) {
                 showError("Oops!Something went wrong!", 100);
             }
-            showMessage();
         }
     }
 
@@ -293,20 +298,20 @@ public class SellerMenu extends Menu implements Initializable {
         productDialog.setHeaderText(null);
         productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         HBox content = new HBox();
-        content.getChildren().addAll(new Label("Enter your new End Date :(in format yyyy-MM-dd HH:mm)")
+        content.getChildren().addAll(new Label("Enter your new End Date :(in format yyyy,MM,dd,HH,mm)")
                 , textField);
         productDialog.getDialogPane().setContent(content);
         productDialog.showAndWait();
         updatedVersion = textField.getText();
-        if (!updatedVersion.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d\\s\\d\\d:\\d\\d")) {
+        if (!updatedVersion.matches("\\d\\d\\d\\d,\\d\\d,\\d\\d,\\d\\d,\\d\\d")) {
             showError("Invalid Format of date!", 100);
         } else {
             try {
                 sellerManager.editOff(offId, "endDate", updatedVersion);
+                showMessage();
             } catch (Exception ex) {
                 showError("Oops!Something went wrong!", 100);
             }
-            showMessage();
         }
     }
 
@@ -328,10 +333,10 @@ public class SellerMenu extends Menu implements Initializable {
         } else {
             try {
                 sellerManager.editOff(offId, "amountOfSale", updatedVersion);
+                showMessage();
             } catch (Exception ex) {
                 showError("Oops!Something went wrong!", 100);
             }
-            showMessage();
         }
     }
 
@@ -377,6 +382,11 @@ public class SellerMenu extends Menu implements Initializable {
             showError("Oops!Something went wrong!One of the following errors has happened :\n -There is no product with this Id!\n" +
                     " -This product is not belonged to you!\n -This product is not assigned to this sale!", 300);
         }
+    }
+
+    public void addOff(){
+        AddOffPage addOffPage = new AddOffPage(this, this.sellerManager);
+        addOffPage.run();
     }
 
     public void viewCategories() {

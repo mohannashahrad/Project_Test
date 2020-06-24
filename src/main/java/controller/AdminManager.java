@@ -99,7 +99,7 @@ public class AdminManager extends Manager {
     }
 
     public void editDiscountField ( Discount discount,String field , String updatedVersion ){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy,MM,dd,HH,mm");
         switch (field){
             case "percentage" :
                 discount.setPercentage(Integer.parseInt(updatedVersion));

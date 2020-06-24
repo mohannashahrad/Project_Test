@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.SellerProductMenu">
+   <children>
+      <TableView fx:id="productTable" layoutY="41.0" prefHeight="302.0" prefWidth="599.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="35.20001220703125" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="78.79998779296875" text="Name" />
+            <TableColumn fx:id="imageColumn" prefWidth="78.4000244140625" text="Image" />
+            <TableColumn fx:id="priceColumn" prefWidth="63.79998779296875" text="Price" />
+            <TableColumn fx:id="categoryColumn" prefWidth="77.0" text="Category" />
+            <TableColumn fx:id="brandColumn" prefWidth="71.4000244140625" text="Brand" />
+            <TableColumn fx:id="averageRateColumn" prefWidth="85.39996337890625" text="Average Rate" />
+            <TableColumn fx:id="supplyColumn" prefWidth="57.0" text="Supply" />
+            <TableColumn fx:id="buttonColumn" prefWidth="47.200000000000045" text="Edit" />
+        </columns>
+      </TableView>
+      <Button layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#back" text="back" />
+      <Label alignment="CENTER" layoutX="208.0" layoutY="5.0" prefHeight="32.0" prefWidth="132.0" text="My Products">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="140.0" layoutY="359.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="106.0" text="Add Product" />
+      <Button layoutX="352.0" layoutY="359.0" mnemonicParsing="false" onAction="#removeProduct" prefHeight="26.0" prefWidth="106.0" text="Remove Product" />
+   </children>
+</AnchorPane>
