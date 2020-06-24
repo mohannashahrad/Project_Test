@@ -61,7 +61,11 @@ public abstract class Menu {
         try {
             loader.setControllerFactory(c -> this);
             root = loader.load();
-            stage.setScene(new Scene(root,600,600));
+            if(fxmlPath.equals("src/main/java/graphics/fxml/AllProductsMenu.fxml")){
+                stage.setScene(new Scene(root, 800, 600));
+            }else {
+                stage.setScene(new Scene(root, 600, 600));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

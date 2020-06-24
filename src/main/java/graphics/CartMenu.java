@@ -14,11 +14,7 @@ import model.Customer;
 import model.Product;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class CartMenu extends Menu implements Initializable {
     private CustomerManager customerManager = new CustomerManager();

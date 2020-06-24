@@ -19,6 +19,8 @@ public class Product implements Comparable<Product> {
     private transient Seller seller;
     private int supply;
     private transient Category category;
+    private String categoryName;
+    private String sellerName;
     private String explanation;
     private double averageRate;
     private transient ArrayList<Comment> comments;
@@ -39,6 +41,8 @@ public class Product implements Comparable<Product> {
         this.brand = information.get("brand");
         this.price = Double.parseDouble(information.get("price"));
         this.seller = seller;
+        this.sellerName = seller.getName();
+        this.categoryName = information.get("categoryName");
         this.supply = Integer.parseInt(information.get("supply"));
         this.category = storage.getCategoryByName(information.get("categoryName"));
         this.explanation = information.get("explanation");
@@ -54,6 +58,14 @@ public class Product implements Comparable<Product> {
 
     public Image getImage() {
         return image;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public String getSellerName() {
+        return sellerName;
     }
 
     private int idSetter() {
