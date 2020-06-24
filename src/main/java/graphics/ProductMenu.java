@@ -1,26 +1,19 @@
 package graphics;
 
 import controller.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Window;
 import model.Product;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProductMenu extends Menu implements Initializable {
 
+    private Product product;
     private CustomerManager customerManager = new CustomerManager();
     private ProductManager productManager = new ProductManager();
-    private int productId = 2;
     @FXML
     public Label productNameLabel;
     @FXML
@@ -30,13 +23,15 @@ public class ProductMenu extends Menu implements Initializable {
     @FXML
     public ListView listView;
 
-    public ProductMenu(Menu previousMenu) {
+    public ProductMenu(Menu previousMenu , Product product) {
         super(previousMenu, "src/main/java/graphics/fxml/ProductMenu.fxml");
+        this.product = product;
+        System.out.println(product.getName());
     }
 
     public void button(){
         try {
-            customerManager.increaseProduct(Integer.toString(this.productId));
+            customerManager.increaseProduct(Integer.toString(this.product.getProductId()));
         } catch (Exception e){
             showError(e.getMessage());
         }
@@ -57,7 +52,6 @@ public class ProductMenu extends Menu implements Initializable {
                 System.out.println("Rate");
                 return;
             case "More Options":
-                //Here is a problem with stage which gives runtime Error
                 showError("No Action Selected");
         }
     }
@@ -68,7 +62,6 @@ public class ProductMenu extends Menu implements Initializable {
     }
 
     private void listViewContents() throws Exception{
-        Product product = productManager.getProductById(productId);
         String id = Integer.toString(product.getProductId());
         String name = product.getName();
         String brand = product.getBrand();
@@ -83,7 +76,7 @@ public class ProductMenu extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        productNameLabel.setText("p1");
+        productNameLabel.setText(product.getName());
         choiceBox.getItems().addAll("Compare", "Attributes" , "Comments" , "Rate" , "More Options");
         choiceBox.setValue("More Options");
         try {

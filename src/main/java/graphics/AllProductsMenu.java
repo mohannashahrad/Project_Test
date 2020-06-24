@@ -3,12 +3,14 @@ package graphics;
 import controller.SearchingManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 import model.Category;
 import model.Product;
 import java.net.URL;
@@ -36,7 +38,7 @@ public class AllProductsMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, Image> imageColumn = new TableColumn<>();
     @FXML TableColumn<Product, Double> averageRateColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> sellerColumn = new TableColumn<>();
-    @FXML TableColumn<Product, Button> buttonColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Void> buttonColumn = new TableColumn<>();
 
     public AllProductsMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/AllProductsMenu.fxml");
@@ -127,7 +129,43 @@ public class AllProductsMenu extends Menu implements Initializable {
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("Image"));
         averageRateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
         sellerColumn.setCellValueFactory(new PropertyValueFactory<>("SellerName"));
+        addButtonToTable(this);
         productTable.setItems(data);
+    }
+
+    private void addButtonToTable(AllProductsMenu menu) {
+        Callback<TableColumn<Product, Void>, TableCell<Product, Void>> cellFactory =
+                new Callback<TableColumn<Product, Void>, TableCell<Product, Void>>() {
+            @Override
+            public TableCell<Product, Void> call(final TableColumn<Product, Void> param) {
+                final TableCell<Product, Void> cell = new TableCell<Product, Void>() {
+
+                    private final Button btn = new Button("Click");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            Product product = getTableView().getItems().get(getIndex());
+                            ProductMenu productMenu = new ProductMenu(menu,product);
+                            productMenu.run();
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        buttonColumn.setCellFactory(cellFactory);
+
     }
 
     @Override
