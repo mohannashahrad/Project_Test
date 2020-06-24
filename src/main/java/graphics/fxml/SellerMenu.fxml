@@ -20,7 +20,15 @@
                 </MenuButton>
                 <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="145.0" text="My Sell History" />
                 <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Products" />
-                <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Offs" />
+            <MenuButton mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Offs">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#viewOffs" text="View My Offs" />
+                <MenuItem mnemonicParsing="false" text="Edit Off">
+                     <graphic>
+                        <TextField />
+                     </graphic></MenuItem>
+              </items>
+            </MenuButton>
                 <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="146.0" text="All Category" />
             <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="146.0" text="Go To Main Menu" />
                 <Button mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="146.0" text="logout" />

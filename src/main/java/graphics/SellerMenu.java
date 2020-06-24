@@ -11,9 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Category;
-import model.Person;
-import model.Seller;
+import model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +41,25 @@ public class SellerMenu extends Menu implements Initializable {
     @FXML
     private Label balanceLabel;
 
+    private HashMap<String, String> info = new HashMap<>();
     public SellerMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        info.put("username", "b12");
+        info.put("password", "123");
+        info.put("name", "bah");
+        info.put("familyName", "asadi");
+        info.put("email", "bah@gmail.com");
+        info.put("number", "12345");
+        info.put("role", "customer");
+        person = new Seller(info);
+        sellerManager.setPerson(person);
+        Category category = new Category("clothing");
+        category.addNewProperty("add", "hi");
+        storage.addCategory(category);
         viewPersonalInfo();
     }
 
@@ -154,6 +165,92 @@ public class SellerMenu extends Menu implements Initializable {
             updatedVersion = textField.getText();
         }
         return updatedVersion;
+    }
+
+    public void viewOffs(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Your Offs");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setMinSize(300, 300);
+        ArrayList<Sale> mySales;
+        mySales = ((Seller) person).getSaleList();
+        if (mySales.isEmpty()) {
+            content.getChildren().addAll(new Label("You don't have any offs yet!"));
+        } else {
+            for (int i = 0; i < mySales.size(); i++) {
+                content.getChildren().addAll(new Label("OFF NUMBER " + (i + 1)));
+                content.getChildren().addAll(new Label("Off Id : " + mySales.get(i).getSaleId()));
+                content.getChildren().addAll(new Label("Percentage : " + mySales.get(i).getAmountOfSale()));
+                content.getChildren().addAll(new Label("Begin Date : " + mySales.get(i).getBeginDate().getYear()
+                        + "-" + mySales.get(i).getBeginDate().getMonth() + "-" +
+                        mySales.get(i).getBeginDate().getDayOfMonth() + ", Time : "
+                        + mySales.get(i).getBeginDate().getHour() + ":" + mySales.get(i).getBeginDate().getMinute()
+                        + ":" + + mySales.get(i).getBeginDate().getSecond()));
+                content.getChildren().addAll(new Label("End Date : "+ mySales.get(i).getEndDate().getYear()
+                        + "-" + mySales.get(i).getEndDate().getMonth() + "-" +
+                        mySales.get(i).getEndDate().getDayOfMonth() + ", Time : "
+                        + mySales.get(i).getEndDate().getHour() + ":" + mySales.get(i).getEndDate().getMinute()
+                        + ":" + + mySales.get(i).getEndDate().getSecond()));
+                content.getChildren().addAll(new Label("This off products are as followed :"));
+                for (Product product : mySales.get(i).getProductsWithThisSale()) {
+                    content.getChildren().add(new Label("Product Id : " + product.getProductId() + " Product Name : "
+                    + product.getName() + " Product Brand : " + product.getBrand()));
+                }
+            }
+        }
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+    }
+
+    public void checkValidityOfOffId(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Off");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField offId = new TextField();
+        HBox content = new HBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        content.getChildren().addAll(new Label("Enter the id of the off you want to edit :"), offId);
+        if (!offId.getText().matches("\\d+")){
+            showError("Off Id is an integer!");
+        } else {
+            if (sellerManager.doesSellerHaveThisOff(Integer.parseInt(offId.getText()))) {
+                editOff();
+            } else {
+                showError("Oops!You don't have off with this Id!");
+            }
+        }
+    }
+    public void editOff(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Off");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+
+    }
+    public void editBeginDateOfOff(){
+
+    }
+
+    public void editEndDateOfOff(){
+
+    }
+
+    public void editAmountOfOff(){
+
+    }
+
+    public void addProductToOff(){
+
+    }
+
+    public void removeProductFromOff(){
+
     }
 
     public void viewCategories() {
