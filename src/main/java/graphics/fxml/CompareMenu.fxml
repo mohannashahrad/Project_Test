@@ -9,7 +9,7 @@
             <columns>
                 <TableColumn id="nameColumn" fx:id="nameColumn" prefWidth="75.0" text="Name" />
                 <TableColumn id="priceColumn" fx:id="priceColumn" prefWidth="75.0" text="Price" />
-                <TableColumn id="sellerColumn" prefWidth="75.0" text="Seller" />
+                <TableColumn id="sellerColumn" fx:id="sellerColumn" prefWidth="75.0" text="Seller" />
                 <TableColumn id="rateColumn" fx:id="rateColumn" prefWidth="104.0" text="Average Rate" />
                 <TableColumn id="brandColumn" fx:id="brandColumn" prefWidth="64.0" text="Brand" />
                 <TableColumn id="explanationColumn" fx:id="explanationColumn" prefWidth="112.0" text="Explanation" />

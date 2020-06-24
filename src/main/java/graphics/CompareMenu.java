@@ -18,6 +18,7 @@ public class CompareMenu extends Menu implements Initializable {
     private int secondProductId;
     @FXML
     TableView<Product> tableView = new TableView<>();
+    @FXML TableColumn<Product, String> sellerColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> nameColumn = new TableColumn<>();
     @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> explanationColumn = new TableColumn<>();
@@ -44,11 +45,12 @@ public class CompareMenu extends Menu implements Initializable {
     public void setTable(TableView<Product> tableView) throws Exception {
         ProductManager productManager1 = new ProductManager();
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        sellerColumn.setCellValueFactory(new PropertyValueFactory<>("sellerName"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
         rateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
+        supplyColumn.setCellValueFactory(new PropertyValueFactory<>("Supply"));
         final ObservableList<Product> data = FXCollections.observableArrayList(
                 productManager1.getProductById(firstProductId),
                 productManager1.getProductById(secondProductId)
