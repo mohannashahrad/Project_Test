@@ -35,9 +35,6 @@
             </font>
         </Label>
         <ImageView fx:id="imageview" fitHeight="144.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-            <image>
-                <Image url="@images/product.jpg" />
-            </image>
         </ImageView>
         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button alignment="CENTER" mnemonicParsing="false" onAction="#button" prefHeight="61.0" prefWidth="186.0" text="Add to Cart" GridPane.rowIndex="4" />

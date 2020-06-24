@@ -4,6 +4,7 @@ import controller.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Product;
 import java.net.URL;
@@ -77,6 +78,7 @@ public class ProductMenu extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productNameLabel.setText(product.getName());
+        imageview.setImage(new Image(product.getImagePath()));
         choiceBox.getItems().addAll("Compare", "Attributes" , "Comments" , "Rate" , "More Options");
         choiceBox.setValue("More Options");
         try {
