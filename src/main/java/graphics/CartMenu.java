@@ -71,8 +71,6 @@ public class CartMenu extends Menu implements Initializable {
             final ImageView imageview = new ImageView();
             imageview.setFitHeight(50);
             imageview.setFitWidth(50);
-            imageview.setImage(new Image ("file:src/main/java/model/images/book.png"));
-
 
             //Set up the Table
             TableCell<Product, Image> cell = new TableCell<Product, Image>() {

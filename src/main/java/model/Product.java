@@ -11,6 +11,7 @@ import javafx.scene.image.*;
 public class Product implements Comparable<Product> {
     private Storage storage = new Storage();
     private Image image;
+    private String imagePath;
     private int productId;
     private String name;
     private String brand;
@@ -36,6 +37,7 @@ public class Product implements Comparable<Product> {
 
     public Product(HashMap<String, String> information, Seller seller) {
         this.image = new Image ("file:src/main/java/model/images/book.png");
+        this.imagePath = "file:src/main/java/model/images/book.png";
         this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
@@ -57,7 +59,7 @@ public class Product implements Comparable<Product> {
     }
 
     public Image getImage() {
-        return image;
+        return new Image(this.imagePath);
     }
 
     public String getCategoryName() {
@@ -93,6 +95,10 @@ public class Product implements Comparable<Product> {
     public ObservableValue imageProperty() {
         ObservableValue<Image> observableImg = new ReadOnlyObjectWrapper<Image>(image);
         return observableImg;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     public int getProductId() {
