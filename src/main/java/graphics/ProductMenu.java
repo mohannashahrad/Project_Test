@@ -74,7 +74,7 @@ public class ProductMenu extends Menu implements Initializable {
         try {
             customerManager.rateProduct(product.getProductId(),Double.parseDouble(rateField.getText()));
         } catch (Exception e) {
-            showError(e.getMessage());
+            showError(e.getMessage(), 200);
         }
     }
 

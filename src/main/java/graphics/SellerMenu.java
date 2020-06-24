@@ -39,7 +39,6 @@ public class SellerMenu extends Menu implements Initializable {
     private Label balanceLabel;
     @FXML
     private Label brandLabel;
-    private HashMap<String, String> info = new HashMap<>();
 
     public SellerMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
@@ -47,23 +46,6 @@ public class SellerMenu extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        info.put("username", "b12");
-        info.put("password", "123");
-        info.put("name", "bah");
-        info.put("familyName", "asadi");
-        info.put("email", "bah@gmail.com");
-        info.put("number", "12345");
-        info.put("role", "customer");
-        info.put("company", "Nike");
-        person = new Seller(info);
-        sellerManager.setPerson(person);
-        Category category = new Category("clothing");
-        category.addNewProperty("add", "hi");
-        storage.addCategory(category);
-        ArrayList<Product> products = new ArrayList<>();
-        Sale sale = new Sale(LocalDateTime.now(), LocalDateTime.now(), 30, products);
-        ((Seller) person).addSale(sale);
-        storage.addSale(sale);
         viewPersonalInfo();
     }
 
