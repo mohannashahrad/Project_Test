@@ -130,7 +130,9 @@ public class ProductMenu extends Menu implements Initializable {
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
         try {
-            productManager.addComment(product.getProductId(),titleField.getText(),commentField.getText());
+            String title = titleField.getText().substring(titleField.getText().indexOf(":")+1);
+            String body = commentField.getText().substring(titleField.getText().indexOf(":")+1);
+            productManager.addComment(product.getProductId(),title,body);
         } catch (Exception e) {
             showError(e.getMessage(), 200);
         }
