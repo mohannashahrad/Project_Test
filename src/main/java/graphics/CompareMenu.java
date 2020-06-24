@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CompareMenu extends Menu implements Initializable {
+
+    private int firstProductId;
+    private int secondProductId;
     @FXML
     TableView<Product> tableView = new TableView<>();
     @FXML TableColumn<Product, String> nameColumn = new TableColumn<>();
@@ -22,8 +25,10 @@ public class CompareMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, String> brandColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> supplyColumn = new TableColumn<>();
 
-    public CompareMenu(Menu previousMenu) {
+    public CompareMenu(Menu previousMenu , int first , int second) {
         super(previousMenu, "src/main/java/graphics/fxml/CompareMenu.fxml");
+        this.firstProductId = first;
+        this.secondProductId = second;
     }
 
     @Override
@@ -45,8 +50,8 @@ public class CompareMenu extends Menu implements Initializable {
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
         final ObservableList<Product> data = FXCollections.observableArrayList(
-                productManager1.getProductById(1),
-                productManager1.getProductById(3)
+                productManager1.getProductById(firstProductId),
+                productManager1.getProductById(secondProductId)
         );
         tableView.setItems(data);
     }
