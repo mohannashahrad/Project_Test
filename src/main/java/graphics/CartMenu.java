@@ -45,7 +45,7 @@ public class CartMenu extends Menu implements Initializable {
             customerManager.decreaseProduct(id);
             updateTable();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            showError(e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class CartMenu extends Menu implements Initializable {
             customerManager.increaseProduct(id);
             updateTable();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            showError(e.getMessage());
         }
     }
 
