@@ -2,27 +2,21 @@ package graphics;
 
 import controller.CustomerManager;
 import controller.Storage;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BuyLog;
 import model.Customer;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static graphics.Menu.person;
 
 public class ThisPersonBuyLogs extends Menu implements Initializable {
     CustomerManager customerManager = new CustomerManager();
@@ -30,7 +24,7 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
     @FXML
     TableView<BuyLog> tableView = new TableView<>();
     @FXML
-    TableColumn<BuyLog, String> buyLogCode= new TableColumn<>();
+    TableColumn<BuyLog, String> buyLogCode = new TableColumn<>();
     @FXML
     TableColumn<BuyLog, Double> totalPriceColumn = new TableColumn<>();
     @FXML
@@ -41,7 +35,7 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
     TextField logCode;
 
     public ThisPersonBuyLogs(Menu previousMenu) {
-        super(previousMenu, "src/main/java/graphics/fxml/ThisPersonBuyLog.fxml");
+        super(previousMenu, "src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml");
     }
 
     @Override
@@ -57,16 +51,18 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
         ObservableList<BuyLog> thisPersonBuyLogs = FXCollections.observableArrayList(returnThisPersonBuyLogs());
         tableView.setItems(thisPersonBuyLogs);
     }
-    public ArrayList<BuyLog> returnThisPersonBuyLogs(){
+
+    public ArrayList<BuyLog> returnThisPersonBuyLogs() {
         return ((Customer) person).getBuyHistory();
     }
 
     public void back(ActionEvent actionEvent) {
     }
+
     public void showBuyLog() throws IOException {
         if (!logCode.getText().equals("")) {
             showError("Please Enter a code!");
-        } else if(!logCode.getText().matches("\\d+")){
+        } else if (!logCode.getText().matches("\\d+")) {
             showError("Buy log code is an integer!");
         } else if (customerManager.getCustomerBuyLogs().isEmpty()) {
             showError("You have not purchase anything!");
@@ -79,13 +75,13 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
 
     private void showWantedBuyLog(String code) throws IOException {
         BuyLog thisBuyLog = storage.getBuyLogByCode(code);
-        PerBuyLog buyLog =new PerBuyLog(thisBuyLog, this);
+        PerBuyLog buyLog = new PerBuyLog(thisBuyLog, this);
         buyLog.run();
         /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/PerBuyLog.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
-    public void showError(String message){
+    public void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(null);
         alert.setContentText(message);

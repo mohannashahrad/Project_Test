@@ -5,6 +5,7 @@ import controller.PurchasingManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -115,13 +116,13 @@ public class PurchasingMenu extends Menu {
     }
 
     public void showBuyLogPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Buying Message");
-//        alert.setContentText("Thanks for buying from us:)");
-//        alert.setHeaderText(null);
-//        alert.show();
+        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));*/
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Buying Message");
+        alert.setContentText("Thanks for buying from us:)");
+        alert.setHeaderText(null);
+        alert.show();
     }
 
 }

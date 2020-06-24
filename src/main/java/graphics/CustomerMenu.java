@@ -1,6 +1,7 @@
 package graphics;
 
 import controller.CustomerManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,10 +9,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import model.Category;
+import model.Customer;
+import model.Discount;
+import model.Person;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CustomerMenu extends Menu implements Initializable {
@@ -146,17 +154,64 @@ public class CustomerMenu extends Menu implements Initializable {
         return updatedVersion;
     }
 
+    public void viewDiscounts() {
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Your Discounts");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setMinSize(300, 100);
+        ArrayList<Discount> myDiscounts;
+        myDiscounts = ((Customer) person).getAllDiscounts();
+        if (myDiscounts.isEmpty()) {
+            content.getChildren().addAll(new Label("There's not any discounts for you yet!"));
+        } else {
+            for (int i = 0; i < myDiscounts.size(); i++) {
+                content.getChildren().addAll(new Label("YOUR DISCOUNT NUMBER " + (i + 1)));
+                content.getChildren().addAll(new Label(myDiscounts.get(i).getDiscountCode()));
+                content.getChildren().addAll(new Label("This discount's features are as followed :"));
+                content.getChildren().addAll(new Label("Percentage : " + myDiscounts.get(i).getPercentage()));
+                content.getChildren().addAll(new Label("Max Amount" + myDiscounts.get(i).getMaxAmount()));
+                content.getChildren().addAll(new Label("Begin Date : " + myDiscounts.get(i).getBeginDate().getYear()
+                        + "-" + myDiscounts.get(i).getBeginDate().getMonth() + "-" +
+                        myDiscounts.get(i).getBeginDate().getDayOfMonth() + ", Time : "
+                        + myDiscounts.get(i).getBeginDate().getHour() + ":" + myDiscounts.get(i).getBeginDate().getMinute()
+                + ":" + + myDiscounts.get(i).getBeginDate().getSecond()));
+                content.getChildren().addAll(new Label("End Date : "+ myDiscounts.get(i).getEndDate().getYear()
+                        + "-" + myDiscounts.get(i).getEndDate().getMonth() + "-" +
+                        myDiscounts.get(i).getEndDate().getDayOfMonth() + ", Time : "
+                        + myDiscounts.get(i).getEndDate().getHour() + ":" + myDiscounts.get(i).getEndDate().getMinute()
+                        + ":" + + myDiscounts.get(i).getEndDate().getSecond()));
+            }
+        }
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+
+    }
+
     public void goToCartMenu() throws IOException {
         CartMenu cartMenu = new CartMenu(this);
         cartMenu.run();
     }
+
     public void goToMainMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));
+        MainMenu mainMenu = new MainMenu(this);
+        mainMenu.run();
+        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
     public void goToBuyLogPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));
+        ThisPersonBuyLogs thisPersonBuyLogs = new ThisPersonBuyLogs(this);
+        thisPersonBuyLogs.run();
+        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
+        stage.setScene(new Scene(loader.load(), 600, 600));*/
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        MainMenu mainMenu = new MainMenu(null);
+        person = null;
+        mainMenu.run();
     }
 }

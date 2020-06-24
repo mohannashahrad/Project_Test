@@ -102,7 +102,6 @@ public class Discount {
         customersWithThisDiscount.remove(specificCustomer, usage);
     }
 
-
     @Override
     public boolean equals(Object obj) {
         Discount first = (Discount) this;
