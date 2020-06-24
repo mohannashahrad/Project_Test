@@ -60,12 +60,13 @@ public class SellerProductMenu extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         final ObservableList<Product> data = FXCollections.observableArrayList(((Seller) person).getProductsToSell());
+        System.out.println(((Seller) person).getProductsToSell().toString());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("CategoryName"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         imageColumn.setCellFactory(param -> {
             //Set up the ImageView
             final ImageView imageview = new ImageView();
@@ -85,7 +86,7 @@ public class SellerProductMenu extends Menu implements Initializable {
             cell.setGraphic(imageview);
             return cell;
         });
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("Image"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
         averageRateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
         addButtonToTable();
         productTable.setItems(data);
