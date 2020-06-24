@@ -41,11 +41,12 @@ public abstract class Menu {
         Menu.person = person;
     }
 
-    public void showError(String message){
+    public void showError(String message, double height){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(null);
+        alert.setTitle("Error");
         alert.setContentText(message);
         alert.setHeaderText(null);
+        alert.setHeight(height);
         alert.show();
     }
     public void back(){

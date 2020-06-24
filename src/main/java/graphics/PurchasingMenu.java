@@ -32,7 +32,7 @@ public class PurchasingMenu extends Menu {
 
     private boolean checkName() {
         if (name.getText().matches("")) {
-            showError("All fields are essential except Discount Code!");
+            showError("All fields are essential except Discount Code!", 100);
             return false;
         }
         return true;
@@ -40,7 +40,7 @@ public class PurchasingMenu extends Menu {
 
     private boolean checkAddress() {
         if (address.getText().matches("")) {
-            showError("All fields are essential except Discount Code!");
+            showError("All fields are essential except Discount Code!", 100);
             return false;
         }
         return true;
@@ -48,10 +48,10 @@ public class PurchasingMenu extends Menu {
 
     private boolean checkNumber() {
         if (number.getText().matches("")) {
-            showError("All fields are essential except Discount Code!");
+            showError("All fields are essential except Discount Code!", 100);
             return false;
         } else if (!number.getText().matches("\\d+")) {
-            showError("Invalid phone number!");
+            showError("Invalid phone number!", 100);
             return false;
         }
         return true;
@@ -62,7 +62,7 @@ public class PurchasingMenu extends Menu {
         if (!discountCode.equals("")) {
             if (!purchasingManager.doesCustomerHaveDiscountCode(discountCode)) {
                 System.out.println(discountCode);
-                showError("Sorry!You don't have this discount!");
+                showError("Sorry!You don't have this discount!", 100);
                 return false;
             }
             try {
@@ -71,7 +71,7 @@ public class PurchasingMenu extends Menu {
                 return true;
             } catch (Exception e) {
                 showError("You can't use this discount for one of following reasons:\n -This discount is expired!\n" +
-                        " -This discount is not available yet!\n -You used this discount before and it's not available anymore!");
+                        " -This discount is not available yet!\n -You used this discount before and it's not available anymore!", 200);
                 return false;
             }
         } else {
@@ -96,7 +96,7 @@ public class PurchasingMenu extends Menu {
         boolean discountCodeValidity = checkValidityOfDiscountCode();
         if (nameValidity && addressValidity && numberValidity && discountCodeValidity) {
             if (!purchasingManager.doesCustomerHaveEnoughMoney(finalPrice)) {
-                showError("Oops!You don't have enough money in your account!");
+                showError("Oops!You don't have enough money in your account!", 100);
             } else {
                 receivedInfo.put("receiverName", name.getText());
                 receivedInfo.put("address", address.getText());
@@ -105,7 +105,8 @@ public class PurchasingMenu extends Menu {
                 if (!discountCodeField.getText().equals("")) {
                     purchasingManager.updateDiscountUsagePerPerson(discountCodeField.getText());
                 }
-                showBuyLogPage();
+                showMessage();
+                back();
             }
         }
     }
@@ -115,7 +116,7 @@ public class PurchasingMenu extends Menu {
         stage.setScene(new Scene(loader.load(), 600, 600));
     }
 
-    public void showBuyLogPage() throws IOException {
+    public void showMessage() throws IOException {
         /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
         stage.setScene(new Scene(loader.load(), 600, 600));*/
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

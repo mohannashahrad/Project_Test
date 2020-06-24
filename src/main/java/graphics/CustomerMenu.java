@@ -67,7 +67,7 @@ public class CustomerMenu extends Menu implements Initializable {
             manager.editField("password", newPassword);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid password format!(Use figures or letters)");
+            showError("Invalid password format!(Use figures or letters)", 100);
         }
     }
 
@@ -97,7 +97,7 @@ public class CustomerMenu extends Menu implements Initializable {
             customerManager.addBalance(Double.parseDouble(newBalance));
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid balance!");
+            showError("Invalid balance!", 100);
         }
     }
 
@@ -107,7 +107,7 @@ public class CustomerMenu extends Menu implements Initializable {
             manager.editField("email", newEmail);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid email address!");
+            showError("Invalid email address!", 100);
         }
     }
 
@@ -117,7 +117,7 @@ public class CustomerMenu extends Menu implements Initializable {
             manager.editField("number", newNumber);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid phone number!");
+            showError("Invalid phone number!", 100);
         }
     }
 

@@ -33,7 +33,7 @@ public class ProductMenu extends Menu implements Initializable {
         try {
             customerManager.increaseProduct(Integer.toString(this.product.getProductId()));
         } catch (Exception e){
-            showError(e.getMessage());
+            showError(e.getMessage(), 200);
         }
     }
 
@@ -52,7 +52,7 @@ public class ProductMenu extends Menu implements Initializable {
                 System.out.println("Rate");
                 return;
             case "More Options":
-                showError("No Action Selected");
+                showError("No Action Selected", 100);
         }
     }
 

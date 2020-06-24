@@ -34,7 +34,6 @@ public class CartMenu extends Menu implements Initializable {
         super(previousMenu, "src/main/java/graphics/fxml/CartMenu.fxml");
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateTable();
@@ -46,7 +45,7 @@ public class CartMenu extends Menu implements Initializable {
             customerManager.decreaseProduct(id);
             updateTable();
         }catch (Exception e){
-            showError(e.getMessage());
+            showError(e.getMessage(), 200);
         }
     }
 
@@ -56,7 +55,7 @@ public class CartMenu extends Menu implements Initializable {
             customerManager.increaseProduct(id);
             updateTable();
         }catch (Exception e){
-            showError(e.getMessage());
+            showError(e.getMessage(), 200);
         }
     }
 
@@ -112,13 +111,13 @@ public class CartMenu extends Menu implements Initializable {
     private void purchase() throws IOException {
         if (person instanceof Customer){
             if (customerManager.getProductsInCart().isEmpty()){
-                showError("Your cart is empty. Nothing to purchase!");
+                showError("Your cart is empty. Nothing to purchase!", 100);
                 return;
             }
             PurchasingMenu purchasingMenu = new PurchasingMenu(this);
             purchasingMenu.run();
         } else{
-            showError("First login as customer then purchase.");
+            showError("First login as customer then purchase.", 100);
             LoginMenu loginMenu = new LoginMenu(this);
             loginMenu.run();
         }

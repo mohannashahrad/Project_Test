@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.SellerMenu">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.SellerMenu">
     <children>
         <VBox layoutX="20.0" layoutY="109.0">
             <children>
@@ -16,6 +16,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#editBalanceField" text="Balance" />
                         <MenuItem mnemonicParsing="false" onAction="#editEmailField" text="E-mail" />
                         <MenuItem mnemonicParsing="false" onAction="#editNumberField" text="Number" />
+                  <MenuItem mnemonicParsing="false" onAction="#editCompanyField" text="Company" />
                     </items>
                 </MenuButton>
                 <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="145.0" text="My Sell History" />
@@ -23,10 +24,7 @@
             <MenuButton mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" text="My Offs">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#viewOffs" text="View My Offs" />
-                <MenuItem mnemonicParsing="false" text="Edit Off">
-                     <graphic>
-                        <TextField />
-                     </graphic></MenuItem>
+                <MenuItem mnemonicParsing="false" onAction="#checkValidityOfOffId" text="Edit Off" />
               </items>
             </MenuButton>
                 <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="146.0" text="All Category" />
@@ -60,6 +58,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label alignment="CENTER" prefHeight="27.0" prefWidth="161.0" text="Personal Information">
@@ -83,18 +82,21 @@
                 <Label fx:id="familyNameLabel" prefHeight="18.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                 <Label fx:id="emailLabel" prefHeight="18.0" prefWidth="277.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <Label fx:id="numberLabel" prefHeight="18.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="67.0" text="company" GridPane.rowIndex="9" />
+            <Label fx:id="brandLabel" prefHeight="18.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             </children>
         </GridPane>
         <Separator layoutX="165.0" layoutY="106.0" orientation="VERTICAL" prefHeight="250.0" prefWidth="30.0" />
-        <Separator layoutX="202.0" layoutY="128.0" prefHeight="24.0" prefWidth="326.0" />
-        <Separator layoutX="202.0" layoutY="164.0" prefHeight="24.0" prefWidth="326.0" />
-        <Separator layoutX="201.0" layoutY="191.0" prefHeight="27.0" prefWidth="326.0" />
-        <Separator layoutX="200.0" layoutY="227.0" prefHeight="24.0" prefWidth="326.0" />
-        <Separator layoutX="199.0" layoutY="260.0" prefHeight="18.0" prefWidth="326.0" />
-        <Separator layoutX="197.0" layoutY="290.0" prefHeight="18.0" prefWidth="326.0" />
-        <Separator layoutX="197.0" layoutY="318.0" prefHeight="18.0" prefWidth="326.0" />
-        <Separator layoutX="197.0" layoutY="357.0" prefWidth="326.0" />
-        <Separator layoutX="300.0" layoutY="116.0" orientation="VERTICAL" prefHeight="241.0" prefWidth="30.0" />
+        <Separator layoutX="202.0" layoutY="125.0" prefHeight="18.0" prefWidth="326.0" />
+        <Separator layoutX="202.0" layoutY="152.0" prefHeight="18.0" prefWidth="326.0" />
+        <Separator layoutX="201.0" layoutY="184.0" prefHeight="18.0" prefWidth="326.0" />
+        <Separator layoutX="200.0" layoutY="209.0" prefHeight="24.0" prefWidth="326.0" />
+        <Separator layoutX="199.0" layoutY="236.0" prefHeight="18.0" prefWidth="326.0" />
+        <Separator layoutX="197.0" layoutY="266.0" prefHeight="18.0" prefWidth="326.0" />
+        <Separator layoutX="197.0" layoutY="300.0" prefHeight="3.0" prefWidth="326.0" />
+        <Separator layoutX="197.0" layoutY="349.0" prefHeight="11.0" prefWidth="326.0" />
+        <Separator layoutX="300.0" layoutY="116.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="30.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="back" />
+      <Separator layoutX="197.0" layoutY="328.0" prefHeight="3.0" prefWidth="326.0" />
     </children>
 </AnchorPane>

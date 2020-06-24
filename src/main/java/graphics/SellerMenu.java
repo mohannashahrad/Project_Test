@@ -4,7 +4,6 @@ import controller.SellerManager;
 import controller.Storage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -14,6 +13,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -37,8 +37,10 @@ public class SellerMenu extends Menu implements Initializable {
     private Label roleLabel;
     @FXML
     private Label balanceLabel;
-
+    @FXML
+    private Label brandLabel;
     private HashMap<String, String> info = new HashMap<>();
+
     public SellerMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerMenu.fxml");
     }
@@ -52,11 +54,16 @@ public class SellerMenu extends Menu implements Initializable {
         info.put("email", "bah@gmail.com");
         info.put("number", "12345");
         info.put("role", "customer");
+        info.put("company", "Nike");
         person = new Seller(info);
         sellerManager.setPerson(person);
         Category category = new Category("clothing");
         category.addNewProperty("add", "hi");
         storage.addCategory(category);
+        ArrayList<Product> products = new ArrayList<>();
+        Sale sale = new Sale(LocalDateTime.now(), LocalDateTime.now(), 30, products);
+        ((Seller) person).addSale(sale);
+        storage.addSale(sale);
         viewPersonalInfo();
     }
 
@@ -68,6 +75,7 @@ public class SellerMenu extends Menu implements Initializable {
         emailLabel.setText(person.getEmail());
         numberLabel.setText(person.getNumber());
         balanceLabel.setText(Double.toString(person.getBalance()));
+        brandLabel.setText(((Seller) person).getCompany());
         roleLabel.setText("seller");
     }
 
@@ -77,7 +85,7 @@ public class SellerMenu extends Menu implements Initializable {
             manager.editField("password", newPassword);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid password format!(Use figures or letters)");
+            showError("Invalid password format!(Use figures or letters)", 100);
         }
     }
 
@@ -101,13 +109,23 @@ public class SellerMenu extends Menu implements Initializable {
         }
     }
 
+    public void editCompanyField() {
+        String newCompany = editFieldsView("company");
+        try {
+            ((Seller) person).setCompany(newCompany);
+            viewPersonalInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void editBalanceField() {
         String newBalance = editFieldsView("balance");
         try {
             sellerManager.addBalance(Double.parseDouble(newBalance));
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid balance!");
+            showError("Invalid balance!", 100);
         }
     }
 
@@ -117,7 +135,7 @@ public class SellerMenu extends Menu implements Initializable {
             manager.editField("email", newEmail);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid email address!");
+            showError("Invalid email address!", 100);
         }
     }
 
@@ -127,7 +145,7 @@ public class SellerMenu extends Menu implements Initializable {
             manager.editField("number", newNumber);
             viewPersonalInfo();
         } catch (Exception e) {
-            showError("Invalid phone number!");
+            showError("Invalid phone number!", 100);
         }
     }
 
@@ -164,7 +182,7 @@ public class SellerMenu extends Menu implements Initializable {
         return updatedVersion;
     }
 
-    public void viewOffs(){
+    public void viewOffs() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Your Offs");
         dialog.setHeaderText(null);
@@ -185,16 +203,20 @@ public class SellerMenu extends Menu implements Initializable {
                         + "-" + mySales.get(i).getBeginDate().getMonth() + "-" +
                         mySales.get(i).getBeginDate().getDayOfMonth() + ", Time : "
                         + mySales.get(i).getBeginDate().getHour() + ":" + mySales.get(i).getBeginDate().getMinute()
-                        + ":" + + mySales.get(i).getBeginDate().getSecond()));
-                content.getChildren().addAll(new Label("End Date : "+ mySales.get(i).getEndDate().getYear()
+                        + ":" + +mySales.get(i).getBeginDate().getSecond()));
+                content.getChildren().addAll(new Label("End Date : " + mySales.get(i).getEndDate().getYear()
                         + "-" + mySales.get(i).getEndDate().getMonth() + "-" +
                         mySales.get(i).getEndDate().getDayOfMonth() + ", Time : "
                         + mySales.get(i).getEndDate().getHour() + ":" + mySales.get(i).getEndDate().getMinute()
-                        + ":" + + mySales.get(i).getEndDate().getSecond()));
-                content.getChildren().addAll(new Label("This off products are as followed :"));
-                for (Product product : mySales.get(i).getProductsWithThisSale()) {
-                    content.getChildren().add(new Label("Product Id : " + product.getProductId() + " Product Name : "
-                    + product.getName() + " Product Brand : " + product.getBrand()));
+                        + ":" + +mySales.get(i).getEndDate().getSecond()));
+                if (mySales.get(i).getProductsWithThisSale().isEmpty()) {
+                    content.getChildren().addAll(new Label("No product with this off yet!"));
+                } else {
+                    content.getChildren().addAll(new Label("This off products are as followed :"));
+                    for (Product product : mySales.get(i).getProductsWithThisSale()) {
+                        content.getChildren().add(new Label("Product Id : " + product.getProductId() + " Product Name : "
+                                + product.getName() + " Product Brand : " + product.getBrand()));
+                    }
                 }
             }
         }
@@ -202,7 +224,7 @@ public class SellerMenu extends Menu implements Initializable {
         dialog.showAndWait();
     }
 
-    public void checkValidityOfOffId(){
+    public void checkValidityOfOffId() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Edit Off");
         dialog.setHeaderText(null);
@@ -212,42 +234,167 @@ public class SellerMenu extends Menu implements Initializable {
         content.setAlignment(Pos.CENTER_LEFT);
         content.setSpacing(10);
         content.getChildren().addAll(new Label("Enter the id of the off you want to edit :"), offId);
-        if (!offId.getText().matches("\\d+")){
-            showError("Off Id is an integer!");
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        if (!offId.getText().matches("\\d+")) {
+            showError("Off Id is an integer!", 100);
         } else {
             if (sellerManager.doesSellerHaveThisOff(Integer.parseInt(offId.getText()))) {
-                editOff();
+                editOff(Integer.parseInt(offId.getText()));
             } else {
-                showError("Oops!You don't have off with this Id!");
+                showError("Oops!You don't have off with this Id!", 100);
             }
         }
     }
-    public void editOff(){
+
+    public void editOff(int offId) {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Edit Off");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setMinSize(500, 300);
+        content.setAlignment(Pos.CENTER);
+        content.setSpacing(10);
+        content.getChildren().addAll(new Label("Choose the field you want to edit"));
+        MenuItem beginDate = new MenuItem("Begin Date");
+        MenuItem endDate = new MenuItem("End Date");
+        MenuItem amountOfOff = new MenuItem("Amount Of Off");
+        MenuItem addProductToOff = new MenuItem("Add Product To Off");
+        MenuItem removeProductFromOff = new MenuItem("Remove Product From Off");
+        MenuButton fields = new MenuButton("Fields", null, beginDate, endDate, amountOfOff, addProductToOff,
+                removeProductFromOff);
+        content.getChildren().add(fields);
+        dialog.getDialogPane().setContent(content);
+        dialog.show();
+        beginDate.setOnAction(e -> editBeginDate(offId));
 
+        endDate.setOnAction(e -> editEndDate(offId));
 
+        amountOfOff.setOnAction(e -> editAmountOfOff(offId));
+
+        addProductToOff.setOnAction(e -> addProductToOff(offId));
+
+        removeProductFromOff.setOnAction(e -> removeProductFromOff(offId));
     }
-    public void editBeginDateOfOff(){
 
+    private void editBeginDate(int offId) {
+        Dialog<String> productDialog = new Dialog<>();
+        String updatedVersion;
+        TextField textField = new TextField();
+        productDialog.setTitle("Edit Begin Date");
+        productDialog.setHeaderText(null);
+        productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        HBox content = new HBox();
+        content.getChildren().addAll(new Label("Enter your new Begin Date :(in format yyyy-MM-dd HH:mm)")
+                , textField);
+        productDialog.getDialogPane().setContent(content);
+        productDialog.showAndWait();
+        updatedVersion = textField.getText();
+        if (!updatedVersion.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d\\s\\d\\d:\\d\\d")) {
+            showError("Invalid Format of date!", 100);
+        } else {
+            try {
+                sellerManager.editOff(offId, "beginDate", updatedVersion);
+            } catch (Exception ex) {
+                showError("Oops!Something went wrong!", 100);
+            }
+            showMessage();
+        }
     }
 
-    public void editEndDateOfOff(){
-
+    private void editEndDate(int offId) {
+        Dialog<String> productDialog = new Dialog<>();
+        String updatedVersion;
+        TextField textField = new TextField();
+        productDialog.setTitle("Edit End Date");
+        productDialog.setHeaderText(null);
+        productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        HBox content = new HBox();
+        content.getChildren().addAll(new Label("Enter your new End Date :(in format yyyy-MM-dd HH:mm)")
+                , textField);
+        productDialog.getDialogPane().setContent(content);
+        productDialog.showAndWait();
+        updatedVersion = textField.getText();
+        if (!updatedVersion.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d\\s\\d\\d:\\d\\d")) {
+            showError("Invalid Format of date!", 100);
+        } else {
+            try {
+                sellerManager.editOff(offId, "endDate", updatedVersion);
+            } catch (Exception ex) {
+                showError("Oops!Something went wrong!", 100);
+            }
+            showMessage();
+        }
     }
 
-    public void editAmountOfOff(){
-
+    private void editAmountOfOff(int offId) {
+        Dialog<String> productDialog = new Dialog<>();
+        String updatedVersion;
+        TextField textField = new TextField();
+        productDialog.setTitle("Edit Amount Of Off");
+        productDialog.setHeaderText(null);
+        productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        HBox content = new HBox();
+        content.getChildren().addAll(new Label("Enter your new amount of off :")
+                , textField);
+        productDialog.getDialogPane().setContent(content);
+        productDialog.showAndWait();
+        updatedVersion = textField.getText();
+        if (!updatedVersion.matches("\\d+\\.?\\d+")) {
+            showError("Invalid amount!", 100);
+        } else {
+            try {
+                sellerManager.editOff(offId, "amountOfSale", updatedVersion);
+            } catch (Exception ex) {
+                showError("Oops!Something went wrong!", 100);
+            }
+            showMessage();
+        }
     }
 
-    public void addProductToOff(){
-
+    private void addProductToOff(int offId) {
+        Dialog<String> productDialog = new Dialog<>();
+        String updatedVersion;
+        TextField textField = new TextField();
+        productDialog.setTitle("Add product to off");
+        productDialog.setHeaderText(null);
+        productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        HBox content = new HBox();
+        content.getChildren().addAll(new Label("Enter productId you want to add to this off :")
+                , textField);
+        productDialog.getDialogPane().setContent(content);
+        productDialog.showAndWait();
+        updatedVersion = textField.getText();
+        try {
+            sellerManager.addProductToOff(offId, Integer.parseInt(updatedVersion));
+            showMessage();
+        } catch (Exception ex) {
+            showError("Oops!Something went wrong!One of the following errors has happened :\n -There is no product with this Id!\n" +
+                    " -This product is not belonged to you!\n -This product is already added in this sale!", 300);
+        }
     }
 
-    public void removeProductFromOff(){
-
+    private void removeProductFromOff(int offId) {
+        Dialog<String> productDialog = new Dialog<>();
+        String updatedVersion;
+        TextField textField = new TextField();
+        productDialog.setTitle("Remove product from off");
+        productDialog.setHeaderText(null);
+        productDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        HBox content = new HBox();
+        content.getChildren().addAll(new Label("Enter productId you want to remove from this off :")
+                , textField);
+        productDialog.getDialogPane().setContent(content);
+        productDialog.showAndWait();
+        updatedVersion = textField.getText();
+        try {
+            sellerManager.removeProductFromOff(offId, Integer.parseInt(updatedVersion));
+            showMessage();
+        } catch (Exception ex) {
+            showError("Oops!Something went wrong!One of the following errors has happened :\n -There is no product with this Id!\n" +
+                    " -This product is not belonged to you!\n -This product is not assigned to this sale!", 300);
+        }
     }
 
     public void viewCategories() {
@@ -294,5 +441,13 @@ public class SellerMenu extends Menu implements Initializable {
         MainMenu mainMenu = new MainMenu(null);
         person = null;
         mainMenu.run();
+    }
+
+    public void showMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Request Message");
+        alert.setContentText("Your Request has been Successfully sent to admin(s)!");
+        alert.setHeaderText(null);
+        alert.show();
     }
 }
