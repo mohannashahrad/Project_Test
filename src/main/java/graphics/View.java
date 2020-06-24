@@ -33,7 +33,7 @@ public class View extends Application {
     public void start(Stage stage) {
         mainStage = stage;
         MainMenu mainMenu = new MainMenu(null);
-        //SellerMenu mainMenu = new SellerMenu(null);
+        //CustomerMenu mainMenu = new CustomerMenu(null);
         stage.setTitle("TEAM-18");
         mainMenu.run();
         stage.show();
