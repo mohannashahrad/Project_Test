@@ -6,13 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Customer;
 import model.Product;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class CartMenu extends Menu implements Initializable {
     @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Number> totalPriceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> idColumn = new TableColumn<>();
-    @FXML TableColumn<Product, String> imageColumn = new TableColumn<>();
+    @FXML TableColumn<Product, Image> imageColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> numberColumn = new TableColumn<>();
     @FXML Label totalPriceLabel = new Label();
 
@@ -66,7 +66,8 @@ public class CartMenu extends Menu implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+        imageColumn.setCellFactory(param -> new ImageTableCell<>());
         totalPriceColumn.setCellValueFactory(cellData -> {
             Product product = cellData.getValue();
             return Bindings.createDoubleBinding(
@@ -104,4 +105,25 @@ public class CartMenu extends Menu implements Initializable {
     }
 
 
+    private class ImageTableCell<S> extends TableCell<S, Image> {
+        final ImageView imageView = new ImageView();
+
+        ImageTableCell() {
+            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        }
+
+        @Override
+        protected void updateItem(Image item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || item == null) {
+                imageView.setImage(null);
+                setText(null);
+                setGraphic(null);
+            }
+
+            imageView.setImage(item);
+            setGraphic(imageView);
+        }
+    }
 }
