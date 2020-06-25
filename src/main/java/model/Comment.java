@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Comment {
     private String user;
-    private transient Product product;
+    private Product product;
     private String commentTitle;
     private String commentBody;
     private static ArrayList<Comment>allComments = new ArrayList<>();

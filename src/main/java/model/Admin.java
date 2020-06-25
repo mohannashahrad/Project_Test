@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Admin extends Person{
-    private transient ArrayList<Request> allRequests;
+    private ArrayList<Request> allRequests;
     private static ArrayList<Person> allAdmins = new ArrayList<>();
 
     public static ArrayList<Person> getAllAdmins() {

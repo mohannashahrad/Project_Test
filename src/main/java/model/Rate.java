@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Rate {
     private String user;
-    private transient Product product;
+    private Product product;
     private double rate;
     private static ArrayList<Rate>allRates = new ArrayList<>();
 
