@@ -31,8 +31,10 @@ public class Storage {
     public static Storage getStorage() {
         if (storage == null) {
             storage = new Storage();
-            FileSaver fileSaver = new FileSaver(storage);
-            fileSaver.dataReader();
+            //FileSaver fileSaver = new FileSaver(storage);
+            //fileSaver.dataReader();
+            JacksonSaver jacksonSaver =new  JacksonSaver();
+            jacksonSaver.dataReader();
         }
         return storage;
     }

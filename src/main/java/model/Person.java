@@ -1,9 +1,15 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Person {
+    protected int id;
     private String username;
     private String password;
     private String name;
@@ -27,6 +33,18 @@ public class Person {
         this.number = information.get("number");
         this.balance = 0;
         this.role = roleFinder(information.get("role"));
+        this.id = idSetter();
+    }
+    private int idSetter() {
+        if (allPeople.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Person person : allPeople) {
+            if (person.id > max)
+                max = person.id;
+        }
+        return max + 1;
     }
 
     public void setPassword(String password) {

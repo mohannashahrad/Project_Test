@@ -8,7 +8,7 @@ public class Sale {
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
     private double amountOfSale;
-    private transient ArrayList<Product> productsWithThisSale;
+    private ArrayList<Product> productsWithThisSale;
     private static ArrayList<Sale> allSales = new ArrayList<>();
 
     private int idSetter() {

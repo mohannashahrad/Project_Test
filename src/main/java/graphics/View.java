@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.JacksonSaver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,6 @@ import model.Customer;
 import model.Seller;
 
 public class View extends Application {
-
-    private static final String MAIN_FXML = "fxml/MAinMenu.fxml";
-    private static final String LR_FXML = "fxml/LoginMenu.fxml";
-    private static final String PRODUCT_FXML = "fxml/ProductMenu.fxml";
 
     public static Stage mainStage;
 
@@ -35,6 +32,10 @@ public class View extends Application {
         MainMenu mainMenu = new MainMenu(null);
         //SellerMenu mainMenu = new SellerMenu(null);
         stage.setTitle("TEAM-18");
+        stage.setOnCloseRequest(event -> {
+            JacksonSaver jacksonSaver = new JacksonSaver();
+            jacksonSaver.dataSaver();
+        });
         mainMenu.run();
         stage.show();
     }
