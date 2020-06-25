@@ -50,7 +50,7 @@ public class CompareMenu extends Menu implements Initializable {
         explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
         rateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        supplyColumn.setCellValueFactory(new PropertyValueFactory<>("Supply"));
+        supplyColumn.setCellValueFactory(new PropertyValueFactory<>("supply"));
         final ObservableList<Product> data = FXCollections.observableArrayList(
                 productManager1.getProductById(firstProductId),
                 productManager1.getProductById(secondProductId)

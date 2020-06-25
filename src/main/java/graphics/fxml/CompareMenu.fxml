@@ -13,7 +13,7 @@
                 <TableColumn id="rateColumn" fx:id="rateColumn" prefWidth="104.0" text="Average Rate" />
                 <TableColumn id="brandColumn" fx:id="brandColumn" prefWidth="64.0" text="Brand" />
                 <TableColumn id="explanationColumn" fx:id="explanationColumn" prefWidth="112.0" text="Explanation" />
-                <TableColumn id="supplyColumn" prefWidth="94.0" text="Supply" />
+                <TableColumn id="supplyColumn" fx:id="supplyColumn" prefWidth="94.0" text="Supply" />
             </columns>
         </TableView>
     </center>
