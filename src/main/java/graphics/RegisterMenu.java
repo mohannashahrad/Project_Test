@@ -36,9 +36,11 @@ public class RegisterMenu extends Menu implements Initializable {
     public CheckBox sellerRole;
     @FXML
     public CheckBox customerRole;
+    private Menu previousMenu;
 
     public RegisterMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/RegisterMenu.fxml");
+        this.previousMenu = previousMenu;
     }
 
     @Override
@@ -59,7 +61,7 @@ public class RegisterMenu extends Menu implements Initializable {
             message.setText("please choose your role!");
             return;
         }
-        if (adminRole.isSelected() && manager.doesAnyAdminExist()) {
+        if (adminRole.isSelected() && manager.doesAnyAdminExist() && !(previousMenu instanceof AdminManageUsersMenu)) {
             message.setText("Only admins can add admins!");
             return;
         }
