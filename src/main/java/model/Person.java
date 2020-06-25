@@ -108,15 +108,15 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", familyName='" + familyName + '\'' +
-                ", email='" + email + '\'' +
-                ", number='" + number + '\'' +
-                ", balance=" + balance +
-                ", role=" + role +
+        return "Person " +
+                ", username = " + username + "\n" +
+                ", password = " + password + "\n" +
+                ", name = " + name + "\n" +
+                ", familyName = " + familyName + "\n" +
+                ", email = " + email + "\n" +
+                ", number = " + number + "\n" +
+                ", balance = " + balance +"\n" +
+                ", role = " + role +
                 '}';
     }
 }
