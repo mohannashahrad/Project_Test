@@ -167,6 +167,12 @@ public class AllProductsMenu extends Menu implements Initializable {
 
     }
 
+    @FXML
+    private void viewCart(){
+        CartMenu cartMenu = new CartMenu(this);
+        cartMenu.run();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populatingChoiceBoxes();

@@ -62,9 +62,12 @@ public abstract class Menu {
         try {
             loader.setControllerFactory(c -> this);
             root = loader.load();
-            if(fxmlPath.equals("src/main/java/graphics/fxml/AllProductsMenu.fxml") || fxmlPath.equals("src/main/java/graphics/fxml/AllOffsMenu.fxml")){
-                stage.setScene(new Scene(root, 1030, 600));
-            }else {
+            if(fxmlPath.equals("src/main/java/graphics/fxml/AllProductsMenu.fxml")){
+                stage.setScene(new Scene(root, 800, 600));
+            }else if (fxmlPath.equals("src/main/java/graphics/fxml/AllOffsMenu.fxml")){
+                stage.setScene(new Scene(root, 1035, 600));
+            }
+            else {
                 stage.setScene(new Scene(root, 600, 600));
             }
         } catch (IOException e) {
