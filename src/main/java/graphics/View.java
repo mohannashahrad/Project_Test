@@ -38,6 +38,4 @@ public class View extends Application {
         mainMenu.run();
         stage.show();
     }
-
-
 }
