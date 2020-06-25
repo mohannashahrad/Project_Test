@@ -150,6 +150,8 @@ public class AdminMenu extends Menu implements Initializable {
     }
 
     public void goToManageCategoryMenu(ActionEvent actionEvent) {
+        AdminManageCategoriesMenu adminManageCategoriesMenu = new AdminManageCategoriesMenu(this);
+        adminManageCategoriesMenu.run();
     }
 
     public void logout(ActionEvent actionEvent) {
