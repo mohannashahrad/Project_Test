@@ -5,7 +5,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.MainMenu">
+   <stylesheets>
+      <URL value="@cssSheets/MainMenu.css" />
+   </stylesheets>
    <children>
       <Label layoutX="160.0" layoutY="79.0" text="WELCOME TO MAIN MENU !">
          <font>

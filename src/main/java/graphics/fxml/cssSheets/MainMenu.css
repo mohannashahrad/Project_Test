@@ -1,0 +1,18 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-image: url("mainbg.jpg");
+    -fx-background-size: 600 600;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FFFAF0;
+    -fx-font-family: sans-serif;
+    -fx-background-color: #696969;
+}
+
+.label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFF0F5;
+}
