@@ -109,7 +109,6 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
