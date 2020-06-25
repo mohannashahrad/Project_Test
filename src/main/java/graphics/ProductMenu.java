@@ -57,7 +57,7 @@ public class ProductMenu extends Menu implements Initializable {
                 comment();
                 return;
             case "Attributes":
-                System.out.println("Attributes");
+                attributes();
                 return;
             case "Compare":
                 compareAction();
@@ -91,7 +91,7 @@ public class ProductMenu extends Menu implements Initializable {
 
     private void comment(){
         Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Rate Product");
+        dialog.setTitle("Comments");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TableView tableView = new TableView();
@@ -114,9 +114,22 @@ public class ProductMenu extends Menu implements Initializable {
         dialog.showAndWait();
     }
 
+    private void attributes(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH);
+        Label label = new Label(product.getCategory().getProperties().toString());
+        HBox content = new HBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        content.getChildren().addAll(label);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+    }
+
     private void addComment(){
         Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Rate Product");
+        dialog.setTitle("Comment Product");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TextField titleField = new TextField("Title : ");
