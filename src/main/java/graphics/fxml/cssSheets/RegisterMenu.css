@@ -1,0 +1,40 @@
+.root {
+    -fx-font-size: 14px;
+
+    -fx-font-family: sans-serif;
+    -fx-background-image: url("purple.png");
+    -fx-background-size: 600 600;
+}
+.label{
+    -fx-text-fill : #FFDEAD;
+    -fx-font-weight: bold;
+}
+.button{
+    -fx-background-color: #FFDEAD;
+        -fx-text-fill: #778899;
+}
+
+.check-box {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill : #FFDEAD
+}
+
+.check-box .box {
+
+-fx-background-color: white;
+-fx-border-color:grey;
+-fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+-fx-background-color: #28a3f4;
+}
