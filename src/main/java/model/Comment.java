@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 
 public class Comment {
@@ -13,7 +15,7 @@ public class Comment {
     public static ArrayList<Comment> getAllComments() {
         return allComments;
     }
-
+    @JsonCreator
     public Comment(String user, Product product, String commentTitle, String commentBody) {
         this.user = user;
         this.product = product;

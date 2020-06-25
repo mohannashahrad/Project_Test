@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,7 +11,7 @@ public class Category {
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
-
+    @JsonCreator
     public Category(String categoryName) {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();

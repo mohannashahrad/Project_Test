@@ -1,10 +1,8 @@
 package controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import model.*;
 
 import java.io.File;
@@ -20,7 +18,7 @@ public class JacksonSaver {
         objectMapper.enableDefaultTyping();
         try {
 
-            writer.writeValue(new File("./dataBase/allUsers.json"),storage.getAllUsers());
+            //writer.writeValue(new File("./dataBase/allUsers.json"),storage.getAllUsers());
             writer.writeValue(new File("./dataBase/allSellers.json"),storage.getAllSellers());
             writer.writeValue(new File("./dataBase/allCustomers.json"),storage.getAllCustomers());
             writer.writeValue(new File("./dataBase/allAdmins.json"),storage.getAllAdmins());
@@ -41,10 +39,12 @@ public class JacksonSaver {
 
     }
     public void dataReader(){
-        reader(storage.getAllUsers(),"allUsers",Person[].class);
+        //reader(storage.getAllUsers(),"allUsers",Person[].class);
+        //disguiseUser();
         reader(storage.getAllSellers(),"allSellers", Person[].class);
         reader(storage.getAllCustomers(),"allCustomers",Person[].class);
         reader(storage.getAllAdmins(),"allAdmins",Person[].class);
+        addAllPeople();
         reader(storage.getAllLogs(),"allLogs", Log[].class);
         reader(storage.getAllSellLogs(),"allSellLogs",Log[].class);
         reader(storage.getAllBuyLogs(),"allBuyLogs",Log[].class);
@@ -58,6 +58,26 @@ public class JacksonSaver {
 
 
     }
+
+    private void addAllPeople() {
+        for (Person person : storage.getAllAdmins())
+            storage.getAllUsers().add(person);
+        for (Person person : storage.getAllCustomers())
+            storage.getAllUsers().add(person);
+        for (Person person : storage.getAllSellers())
+            storage.getAllUsers().add(person);
+    }
+
+    private void disguiseUser() {
+        for (Person person : storage.getAllUsers()){
+            if (person instanceof Admin)
+                storage.getAllAdmins().add(person);
+            else if (person instanceof Seller)
+                storage.getAllSellers().add(person);
+            else storage.getAllCustomers().add(person);
+        }
+    }
+
     private <T> void reader(ArrayList<T> main,String path,Class<T[]> tClass){
         try {
 
