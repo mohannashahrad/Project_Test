@@ -72,7 +72,7 @@ public class SearchingManager extends Manager {
     public ArrayList<Product> performFilter(String filterTag, String info) throws Exception {
         for (Filter filter : currentFilters) {
             if (filter.getFilterName().equals(filterTag) && filter.getFilterInfo().equals(info))
-                throw new Exception("This filter is already selected!");
+                throw new Exception("The " + filterTag +" filter is already selected!");
         }
             Filter filter = new Filter(filterTag,info);
             storage.addFilter(filter);

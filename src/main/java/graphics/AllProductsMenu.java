@@ -54,16 +54,34 @@ public class AllProductsMenu extends Menu implements Initializable {
     }
 
     @FXML
-    private void performFilter() throws Exception{
+    private void performFilter(){
         ArrayList<Product> updatedProducts = new ArrayList<>();
         if(!priceTextField.getText().equals("")) {
-            updatedProducts.addAll(searchingManager.performFilter("price" , priceTextField.getText()));
+            try {
+                updatedProducts.addAll(searchingManager.performFilter("price" , priceTextField.getText()));
+            } catch (Exception e) {
+                showError(e.getMessage() , 20);
+            }
         }
         if(!nameTextField.getText().equals("")){
-            updatedProducts.addAll(searchingManager.performFilter("name" , nameTextField.getText()));
+            try {
+                for (Product product : searchingManager.performFilter("name", nameTextField.getText())) {
+                    if(!updatedProducts.contains(product))
+                        updatedProducts.add(product);
+                }
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
         }
         if(!categoryChoiceBox.getValue().equals("Choose Category")){
-            updatedProducts.addAll(searchingManager.performFilter("category" , categoryChoiceBox.getValue().toString()));
+            try {
+                for (Product product : searchingManager.performFilter("name", nameTextField.getText())) {
+                    if(!updatedProducts.contains(product))
+                        updatedProducts.add(product);
+                }
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
         }
         updateShownProducts(updatedProducts);
     }
@@ -99,26 +117,40 @@ public class AllProductsMenu extends Menu implements Initializable {
     }
 
     @FXML
-    private void performSort() throws Exception{
+    private void performSort() {
         ArrayList<Product> updatedProducts = new ArrayList<>();
-        if(priceCheckBox.isSelected())
-            updatedProducts.addAll(searchingManager.performSort("price"));
-        if(averageRateCheckBox.isSelected())
-            updatedProducts.addAll(searchingManager.performSort("average rate"));
+        if(priceCheckBox.isSelected()) {
+            try {
+                updatedProducts.addAll(searchingManager.performSort("price"));
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
+        }
+        if(averageRateCheckBox.isSelected()) {
+            try {
+                for (Product product : searchingManager.performSort("average rate")) {
+                    if(!updatedProducts.contains(product))
+                        updatedProducts.add(product);
+                }
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
+        }
         updateShownProducts(updatedProducts);
     }
 
     @FXML
     private void disableSort() throws Exception{
+        ArrayList<Product> updatedProducts = new ArrayList<>();
         if(priceCheckBox.isSelected()){
             priceCheckBox.setSelected(false);
-            searchingManager.disableSort("price");
+            updatedProducts.addAll(searchingManager.disableSort("price"));
         }
         if(averageRateCheckBox.isSelected()){
             priceCheckBox.setSelected(false);
-            searchingManager.disableSort("average rate");
+           updatedProducts.addAll(searchingManager.disableSort("average rate"));
         }
-        updateShownProducts(searchingManager.viewAllProducts());
+        updateShownProducts(updatedProducts);
     }
 
     private void updateShownProducts(ArrayList<Product> shownProducts){
