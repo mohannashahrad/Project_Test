@@ -173,10 +173,32 @@ public class AllOffsMenu extends Menu implements Initializable {
 
     @FXML
     private void disableFilter(){
+        ArrayList<Product> updatedProducts = new ArrayList<>();
+        if(!priceTextField.getText().equals("")){
+            try {
+                updatedProducts.addAll(searchingManager.disableFilter("price",priceTextField.getText()));
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
+        }
+        if(!nameTextField.getText().equals("")){
+            try {
+                updatedProducts.addAll(searchingManager.disableFilter("name",nameTextField.getText()));
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
+        }
+        if(!categoryChoiceBox.getValue().equals("Choose Category")){
+            try {
+                updatedProducts.addAll(searchingManager.disableFilter("category",categoryChoiceBox.getValue().toString()));
+            } catch (Exception e) {
+                showError(e.getMessage(),20);
+            }
+        }
         categoryChoiceBox.setValue("Choose Category");
         priceTextField.clear();
         nameTextField.clear();
-        updateShownProducts(searchingManager.viewAllProducts());
+        updateShownProducts(updatedProducts);
     }
 
     @FXML
