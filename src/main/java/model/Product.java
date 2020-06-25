@@ -28,6 +28,10 @@ public class Product implements Comparable<Product> {
     private transient ArrayList<Rate> rates;
     private transient ArrayList<Customer> thisProductsBuyers;
     private transient Sale sale;
+    private String saleBeginDate;
+    private String saleEndDAte;
+    private double salePercent;
+    private String saleTimeLeft;
     private int numberOfSeen;
     private static ArrayList<Product> allProducts = new ArrayList<>();
 
@@ -60,6 +64,22 @@ public class Product implements Comparable<Product> {
 
     public Image getImage() {
         return new Image(this.imagePath);
+    }
+
+    public void setSaleBeginDate(String saleBeginDate) {
+        this.saleBeginDate = saleBeginDate;
+    }
+
+    public void setSaleEndDAte(String saleEndDAte) {
+        this.saleEndDAte = saleEndDAte;
+    }
+
+    public void setSalePercent(double salePercent) {
+        this.salePercent = salePercent;
+    }
+
+    public void setSaleTimeLeft(String saleTimeLeft) {
+        this.saleTimeLeft = saleTimeLeft;
     }
 
     public String getCategoryName() {

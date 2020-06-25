@@ -13,7 +13,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.AllOffsMenu">
     <children>
         <Button layoutX="24.0" layoutY="28.0" mnemonicParsing="false" onAction="#back" text="back" />
-        <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Filter" />
+        <Button onAction="#performFilter" layoutX="14.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Filter" />
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="79.0" prefHeight="22.0" prefWidth="89.0" text="Max Price">
             <font>
                 <Font name="System Bold" size="13.0" />
@@ -25,20 +25,20 @@
         <Label alignment="CENTER" layoutX="13.0" layoutY="168.0" prefHeight="32.0" prefWidth="76.0" text="Category" />
         <ChoiceBox fx:id="categoryChoiceBox" layoutX="99.0" layoutY="168.0" prefHeight="32.0" prefWidth="135.0" />
         <CheckBox fx:id="priceCheckBox" layoutX="15.0" layoutY="279.0" mnemonicParsing="false" text="Sort By Price" />
-        <Button layoutX="138.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Disable Filter" />
+        <Button onAction="#disableFilter" layoutX="138.0" layoutY="214.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Disable Filter" />
         <CheckBox fx:id="averageRateCheckBox" layoutX="146.0" layoutY="279.0" mnemonicParsing="false" text="Sort By Average Rate" />
-        <Button layoutX="14.0" layoutY="321.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Sort" />
-        <Button layoutX="138.0" layoutY="321.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Disable Sort" />
+        <Button onAction="#performSort" layoutX="14.0" layoutY="321.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Sort" />
+        <Button onAction="#disableSort" layoutX="138.0" layoutY="321.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" text="Disable Sort" />
         <TableView fx:id="productTable" layoutX="304.0" prefHeight="600.0" prefWidth="724.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="ProductId" />
                 <TableColumn fx:id="imageColumn" prefWidth="76.0" text="Image" />
-                <TableColumn fx:id="categoryColumn" prefWidth="79.0" text="Initial Price" />
-                <TableColumn fx:id="priceColumn" prefWidth="91.0" text="Average Rate" />
-                <TableColumn fx:id="averageRateColumn" text="Off Percent" />
-                <TableColumn fx:id="priceColumn1" prefWidth="89.0" text="Begin Date" />
-                <TableColumn fx:id="sellerColumn1" prefWidth="88.0" text="End Date" />
-                <TableColumn fx:id="averageRateColumn1" prefWidth="68.0" text="Time Left" />
+                <TableColumn fx:id="priceColumn" prefWidth="79.0" text="Initial Price" />
+                <TableColumn fx:id="averageRateColumn" prefWidth="91.0" text="Average Rate" />
+                <TableColumn fx:id="salePercentColumn" text="Off Percent" />
+                <TableColumn fx:id="beginDateColumn" prefWidth="89.0" text="Begin Date" />
+                <TableColumn fx:id="endDateColumn" prefWidth="88.0" text="End Date" />
+                <TableColumn fx:id="timeLeftColumn" prefWidth="68.0" text="Time Left" />
                 <TableColumn fx:id="buttonColumn" prefWidth="77.0" text="View More" />
             </columns>
         </TableView>
