@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.JacksonSaver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,6 +36,10 @@ public class View extends Application {
         MainMenu mainMenu = new MainMenu(null);
         //SellerMenu mainMenu = new SellerMenu(null);
         stage.setTitle("TEAM-18");
+        stage.setOnCloseRequest(event -> {
+            JacksonSaver jacksonSaver = new JacksonSaver();
+            jacksonSaver.dataSaver();
+        });
         mainMenu.run();
         stage.show();
     }
