@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Comment {
+    private int id;
     private String user;
     private Product product;
     private String commentTitle;
@@ -18,6 +19,18 @@ public class Comment {
         this.product = product;
         this.commentTitle = commentTitle;
         this.commentBody = commentBody;
+        this.id = idSetter();
+    }
+    private int idSetter() {
+        if (allComments.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Comment comment : allComments) {
+            if (comment.id > max)
+                max = comment.id;
+        }
+        return max + 1;
     }
 
     public Product getProduct() {

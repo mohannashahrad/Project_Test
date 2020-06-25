@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Category {
+    private int id;
     private String categoryName;
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
@@ -13,6 +14,18 @@ public class Category {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();
         this.properties = new HashMap<>();
+        this.id = idSetter();
+    }
+    private int idSetter() {
+        if (allCategories.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Category category : allCategories) {
+            if (category.id > max)
+                max = category.id;
+        }
+        return max + 1;
     }
 
     public static ArrayList<Category> getAllCategories() {
