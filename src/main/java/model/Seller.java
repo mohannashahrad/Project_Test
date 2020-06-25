@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -19,7 +20,7 @@ public class Seller extends Person {
     public static ArrayList<Person> getAllSellers() {
         return allSellers;
     }
-
+    @JsonCreator
     public Seller(HashMap<String, String> information) {
         super(information);
         this.company = information.get("company");

@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -18,7 +19,7 @@ public class Customer extends Person {
     public static ArrayList<Person> getAllCustomers() {
         return allCustomers;
     }
-
+    @JsonCreator
     public Customer(HashMap<String, String> information) {
         super(information);
         this.buyHistory = new ArrayList<>();

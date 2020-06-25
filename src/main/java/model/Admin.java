@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.google.gson.*;
@@ -11,14 +12,14 @@ import java.util.HashMap;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 public class Admin extends Person{
-    private int id;
+    public int id;
     private ArrayList<Request> allRequests;
     private static ArrayList<Person> allAdmins = new ArrayList<>();
 
     public static ArrayList<Person> getAllAdmins() {
         return allAdmins;
     }
-
+    @JsonCreator
     public Admin(HashMap<String, String> information) {
         super(information);
         this.allRequests = new ArrayList<>();

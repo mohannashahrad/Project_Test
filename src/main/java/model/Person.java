@@ -1,7 +1,6 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ public class Person {
     public static ArrayList<Person> getAllPeople() {
         return allPeople;
     }
-
+    @JsonCreator
     public Person(HashMap<String, String> information) {
         this.username = information.get("username");
         this.password = information.get("password");
