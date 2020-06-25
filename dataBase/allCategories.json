@@ -1,1 +1,11 @@
-[ ]
+[ {
+  "categoryName" : "momo",
+  "thisCategoryProducts" : [ ],
+  "properties" : {
+    "price" : "cheap"
+  }
+}, {
+  "categoryName" : "book",
+  "thisCategoryProducts" : [ ],
+  "properties" : { }
+} ]

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -187,12 +188,61 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
 
     @FXML
     private void addCategory(){
-
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Add Category");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField categoryNameField = new TextField();
+        HBox content = new HBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        content.getChildren().addAll(new Label("Enter new category's name :"), categoryNameField);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        try {
+            adminManager.addCategory(categoryNameField.getText());
+            updateShownCategories(adminManager.viewAllCategories());
+        } catch (Exception e) {
+            showError(e.getMessage(),20);
+        }
     }
 
     @FXML
     private void editCategory(){
-        
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Category");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        GridPane content = new GridPane();
+        ChoiceBox choiceBox = new ChoiceBox();
+        choiceBox.getItems().addAll("Edit Name" , "Edit Properties");
+        content.add(choiceBox,0,0);
+        Label label1 = new Label("Enter Category's name");
+        content.add(label1,0,1);
+        TextField categoryNameField = new TextField();
+        content.add(categoryNameField,1,1);
+        Label label2 = new Label("If you are not editing category's name, enter the property that you want to add or edit");
+        content.add(label2,0,2);
+        TextField categoryPropertyField = new TextField();
+        content.add(categoryPropertyField,1,2);
+        Label label3 = new Label("Now enter the updated value of the edited field");
+        content.add(label3,0,3);
+        TextField categoryNewField = new TextField();
+        content.add(categoryNewField,1,3);
+        content.setAlignment(Pos.CENTER_LEFT);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+            if(choiceBox.getValue().equals("Edit Name")){
+                adminManager.editCategoryByName(categoryNameField.getText() , categoryNewField.getText());
+                updateShownCategories(adminManager.viewAllCategories());
+            } else if(choiceBox.getValue().equals("Edit Properties")){
+                try {
+                    adminManager.editCategoryByProperties(adminManager.viewCategory(categoryNameField.getText()),categoryPropertyField.getText(),categoryNewField.getText());
+                    updateShownCategories(adminManager.viewAllCategories());
+                } catch (Exception ex) {
+                    showError(ex.getMessage(),20);
+                }
+            }
     }
 
     @Override
