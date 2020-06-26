@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SellLog extends Log {
     private int sellCode;
@@ -10,6 +11,7 @@ public class SellLog extends Log {
     private Customer customer;
     private static ArrayList<Integer> allSellCodes = new ArrayList<>();
     private static ArrayList<Log>allSellLogs = new ArrayList<>();
+    private HashMap<Product,Integer> sellerProductsInCart = new HashMap<>();
 
     public static ArrayList<Log> getAllSellLogs() {
         return allSellLogs;
@@ -26,12 +28,15 @@ public class SellLog extends Log {
         return max + 1;
     }
 
-    public SellLog(LocalDateTime date, double receivedMoney, double saleAmount, Customer customer) {
+    public SellLog(LocalDateTime date, double receivedMoney, double saleAmount, Customer customer,HashMap<Product,Integer>products) {
         super(date);
         this.sellCode = idSetter();
         this.receivedMoney = receivedMoney;
         this.saleAmount = saleAmount;
         this.customer = customer;
+        for (Product product : products.keySet()) {
+            this.sellerProductsInCart.put(product,products.get(product));
+        }
         allSellCodes.add(sellCode);
     }
 
@@ -52,6 +57,10 @@ public class SellLog extends Log {
 
     public double getSaleAmount(){
         return this.saleAmount;
+    }
+
+    public HashMap<Product, Integer> getSellerProductsInCart(){
+        return sellerProductsInCart;
     }
     @Override
     public String toString() {

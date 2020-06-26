@@ -18,8 +18,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="242.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="55.0" prefWidth="115.0" text="ACCOUNT" />
-      <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#goToProductsMenu" prefHeight="55.0" prefWidth="115.0" text="PRODUCTS" />
-      <Button layoutX="242.0" layoutY="386.0" mnemonicParsing="false" onAction="#goToSalesMenu" prefHeight="55.0" prefWidth="115.0" text="SALES" />
+      <Button layoutX="242.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAccount" onMousePressed="#buttonSound" prefHeight="55.0" prefWidth="115.0" text="ACCOUNT" />
+      <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#goToProductsMenu" onMousePressed="#buttonSound" prefHeight="55.0" prefWidth="115.0" text="PRODUCTS" />
+      <Button layoutX="242.0" layoutY="386.0" mnemonicParsing="false" onAction="#goToSalesMenu" onMousePressed="#buttonSound" prefHeight="55.0" prefWidth="115.0" text="SALES" />
    </children>
 </AnchorPane>

@@ -222,7 +222,7 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         GridPane content = new GridPane();
-        ChoiceBox choiceBox = new ChoiceBox();
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
         choiceBox.getItems().addAll("Edit Name" , "Edit Properties");
         content.add(choiceBox,0,0);
         Label label1 = new Label("Enter Category's name");

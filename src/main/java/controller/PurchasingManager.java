@@ -65,7 +65,7 @@ public class PurchasingManager extends Manager {
     }
 
     public void createSellLog(Seller seller, double totalPrice, double saleAmount) {
-        SellLog sellLog = new SellLog(LocalDateTime.now(), totalPrice, saleAmount, (Customer) person);
+        SellLog sellLog = new SellLog(LocalDateTime.now(), totalPrice, saleAmount, (Customer) person , sellerProductsInCart(super.cart,seller));
         storage.addSellLog(sellLog);
         seller.addToSellLogs(sellLog);
     }
@@ -92,7 +92,7 @@ public class PurchasingManager extends Manager {
             throw new Exception("This discount is expired!");
         else if (storage.getDiscountByCode(discountCode).getBeginDate().isAfter(LocalDateTime.now()))
             throw new Exception("You can't use a discount which is not available yet!");
-        else if(storage.getDiscountByCode(discountCode).getUsageCount() == 0)
+        else if(storage.getDiscountByCode(discountCode).getUsagePerCustomer() == 0)
             throw new Exception("You used this discount before and it's not available anymore!");
     }
 
@@ -134,7 +134,10 @@ public class PurchasingManager extends Manager {
     }
 
     public void updateDiscountUsagePerPerson(String discountCode) {
-        storage.getDiscountByCode(discountCode).setUsageCount(storage.getDiscountByCode(discountCode).getUsageCount() - 1);
+        storage.getDiscountByCode(discountCode).setUsageCount(storage.getDiscountByCode(discountCode).getUsagePerCustomer() - 1);
+        if (storage.getDiscountByCode(discountCode).getUsagePerCustomer() == 0){
+            ((Customer) person).getAllDiscounts().remove(storage.getDiscountByCode(discountCode));
+        }
     }
 
     public boolean doesCustomerHaveDiscountCode(String discountCode) {

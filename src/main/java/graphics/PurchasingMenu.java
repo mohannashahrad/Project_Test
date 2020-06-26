@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import model.Admin;
+import model.Customer;
+import model.Seller;
 
 import java.io.File;
 import java.io.IOException;
@@ -126,4 +129,19 @@ public class PurchasingMenu extends Menu {
         alert.show();
     }
 
+    public void goToMyAccount(){
+        if (person == null){
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
+        } else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this);
+            adminMenu.run();
+        } else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this);
+            sellerMenu.run();
+        } else if (person instanceof Customer){
+            CustomerMenu customerMenu = new CustomerMenu(this);
+            customerMenu.run();
+        }
+    }
 }

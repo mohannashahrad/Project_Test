@@ -95,7 +95,7 @@ public class AdminManager extends Manager {
         else if (!discount.getCustomersWithThisDiscount().containsKey(storage.getUserByUsername(username)))
             throw new Exception("This customer does not have this discount!!");
         else
-            discount.removeCustomer((Customer) storage.getUserByUsername(username),discount.getUsageCount());
+            discount.removeCustomer((Customer) storage.getUserByUsername(username),discount.getUsagePerCustomer());
     }
 
     public void editDiscountField ( Discount discount,String field , String updatedVersion ){

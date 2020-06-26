@@ -1,9 +1,7 @@
 package graphics;
 
-import controller.CustomerManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -27,9 +25,9 @@ public class PerSellLog extends Menu implements Initializable {
     @FXML
     TableColumn<Product, Integer> idColumn = new TableColumn<>();
     @FXML
-    TableColumn<Product, Integer> numberColumn = new TableColumn<>();
+    TableColumn<Product, String> numberColumn = new TableColumn<>();
     @FXML
-    TableColumn<Product, Integer> brandName = new TableColumn<>();
+    TableColumn<Product, String> brandName = new TableColumn<>();
     @FXML
     Label receivedMoney;
     @FXML
@@ -46,20 +44,18 @@ public class PerSellLog extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        final ObservableList<Product> productsInBuyLog = FXCollections.observableArrayList(
-               sellLog.getProducts().keySet()
+        final ObservableList<Product> productsInSellLog = FXCollections.observableArrayList(
+               sellLog.getSellerProductsInCart().keySet()
         );
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandName.setCellValueFactory(new PropertyValueFactory<>("brand"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>(sellLog.getProducts().values().toString()));
-        tableView.setItems(productsInBuyLog);
+        tableView.setItems(productsInSellLog);
         receivedMoney.setText(Double.toString(sellLog.getReceivedMoney()));
         amountOfSale.setText(Double.toString(sellLog.getSaleAmount()));
         date.setText(sellLog.getDate().toString());
         logCode.setText(Integer.toString(sellLog.getSellCode()));
-    }
-    public void back(ActionEvent actionEvent) {
     }
 }

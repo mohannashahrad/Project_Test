@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.AdminManageCategoriesMenu">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AdminManageCategoriesMenu">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -17,17 +15,16 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <TableView fx:id="categoriesTable" layoutX="89.0" prefHeight="536.0" prefWidth="511.0">
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="61.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="131.0" text="Category Name" />
-                <TableColumn fx:id="productsColumn" prefWidth="150.0" text="Products In Category" />
-                <TableColumn fx:id="propertiesColumn" prefWidth="168.0" text="Category's Properties" />
+                <TableColumn fx:id="productsColumn" prefWidth="184.40003967285156" text="Products In Category" />
+                <TableColumn fx:id="propertiesColumn" prefWidth="194.79998779296875" text="Category's Properties" />
             </columns>
         </TableView>
-        <Button onAction="#addCategory" layoutX="31.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="116.0" text="Add Category" />
-        <Button onAction="#editCategory" layoutX="455.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="109.0" text="Edit Category" />
-        <Button onAction="#removeCategory" layoutX="230.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" text="Remove Category" />
+        <Button layoutX="31.0" layoutY="546.0" mnemonicParsing="false" onAction="#addCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="116.0" text="Add Category" />
+        <Button layoutX="455.0" layoutY="546.0" mnemonicParsing="false" onAction="#editCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="109.0" text="Edit Category" />
+        <Button layoutX="230.0" layoutY="546.0" mnemonicParsing="false" onAction="#removeCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="140.0" text="Remove Category" />
     </children>
 </AnchorPane>

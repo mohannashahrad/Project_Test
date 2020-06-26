@@ -15,21 +15,20 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
-        <TableView fx:id="discountTable" layoutX="89.0" prefHeight="536.0" prefWidth="633.0">
+        <Button layoutY="21.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
+        <TableView fx:id="discountTable" layoutX="51.0" prefHeight="536.0" prefWidth="673.0">
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" />
                 <TableColumn fx:id="codeColumn" prefWidth="93.0" text="Discount Code" />
-                <TableColumn fx:id="beginDateColumn" text="Begin Date" />
-                <TableColumn fx:id="endDateColumn" prefWidth="62.0" text="EndDate" />
-                <TableColumn fx:id="percentageColumn" text="Percentage" />
+                <TableColumn fx:id="beginDateColumn" prefWidth="135.00003051757812" text="Begin Date" />
+                <TableColumn fx:id="endDateColumn" prefWidth="126.5999755859375" text="EndDate" />
+                <TableColumn fx:id="percentageColumn" prefWidth="73.5999755859375" text="Percentage" />
                 <TableColumn fx:id="maxAmountColumn" prefWidth="83.0" text="Max Amount" />
-                <TableColumn fx:id="maxUsageColumn" prefWidth="83.0" text="Max usage" />
-                <TableColumn fx:id="viewMoreColumn" prefWidth="83.0" text="View more" />
+                <TableColumn fx:id="maxUsageColumn" prefWidth="78.0" text="Max Usage" />
+                <TableColumn fx:id="viewMoreColumn" prefWidth="86.4000244140625" text="View more" />
             </columns>
         </TableView>
-        <Button layoutX="41.0" layoutY="546.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="46.0" prefWidth="184.0" text="Add Discount Code" />
-        <Button layoutX="476.0" layoutY="546.0" mnemonicParsing="false" onAction="#editDiscount" prefHeight="46.0" prefWidth="184.0" text="Edit Discount Code" />
-        <Button layoutX="253.0" layoutY="546.0" mnemonicParsing="false" onAction="#removeDiscount" prefHeight="46.0" prefWidth="184.0" text="Remove Discount Code" />
+        <Button layoutX="41.0" layoutY="546.0" mnemonicParsing="false" onAction="#addDiscount" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="184.0" text="Add Discount Code" />
+        <Button layoutX="476.0" layoutY="546.0" mnemonicParsing="false" onAction="#editDiscount" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="184.0" text="Edit Discount Code" />
+        <Button layoutX="253.0" layoutY="546.0" mnemonicParsing="false" onAction="#removeDiscount" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="184.0" text="Remove Discount Code" />
     </children>
 </AnchorPane>

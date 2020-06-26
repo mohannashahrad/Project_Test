@@ -31,7 +31,7 @@ public class Product implements Comparable<Product> {
     private ArrayList<Customer> thisProductsBuyers;
     private Sale sale;
     private String saleBeginDate;
-    private String saleEndDAte;
+    private String saleEndDate;
     private double salePercent;
     private String saleTimeLeft;
     private int numberOfSeen;
@@ -75,7 +75,7 @@ public class Product implements Comparable<Product> {
     }
 
     public void setSaleEndDAte(String saleEndDAte) {
-        this.saleEndDAte = saleEndDAte;
+        this.saleEndDate = saleEndDAte;
     }
 
     public void setSalePercent(double salePercent) {
@@ -179,6 +179,23 @@ public class Product implements Comparable<Product> {
 
     public ArrayList<Customer> getThisProductsBuyers() {
         return thisProductsBuyers;
+    }
+
+
+    public String getSaleBeginDate() {
+        return saleBeginDate;
+    }
+
+    public String getSaleEndDate() {
+        return saleEndDate;
+    }
+
+    public double getSalePercent() {
+        return salePercent;
+    }
+
+    public String getSaleTimeLeft() {
+        return saleTimeLeft;
     }
 
     public void setName(String name) {

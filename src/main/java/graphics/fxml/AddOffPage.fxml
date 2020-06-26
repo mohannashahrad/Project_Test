@@ -44,9 +44,9 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addOff" prefHeight="26.0" prefWidth="109.0" text="Send Request" />
-        <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
-        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
-      <Button alignment="CENTER" layoutX="303.0" layoutY="293.0" mnemonicParsing="false" onAction="#addProductToSale" prefHeight="38.0" prefWidth="175.0" text="Add Product To Off" />
+        <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addOff" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="109.0" text="Send Request" />
+        <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
+        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
+      <Button alignment="CENTER" layoutX="303.0" layoutY="293.0" mnemonicParsing="false" onAction="#addProductToSale" onMousePressed="#buttonSound" prefHeight="38.0" prefWidth="175.0" text="Add Product To Off" />
     </children>
 </AnchorPane>

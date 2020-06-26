@@ -4,12 +4,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Person;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Paths;
 
 
 public abstract class Menu {
@@ -52,6 +56,15 @@ public abstract class Menu {
     public void back(){
         this.getPreviousMenu().run();
     }
+
+    public void buttonSound() {
+
+        MediaPlayer mediaPlayer;
+        String path = "src/main/java/graphics/fxml/images/buttonClicked.mp3";
+        Media media = new Media(Paths.get(path).toUri().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
     public void run(){
         FXMLLoader loader = null;
         try {
@@ -68,6 +81,8 @@ public abstract class Menu {
                 stage.setScene(new Scene(root, 1035, 600));
             }else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageCodesMenu.fxml")){
                 stage.setScene(new Scene(root, 700, 600));
+            } else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageUsersMenu.fxml")){
+                stage.setScene(new Scene(root, 910, 600));
             }
             else {
                 stage.setScene(new Scene(root, 600, 600));

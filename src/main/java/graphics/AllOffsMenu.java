@@ -24,7 +24,7 @@ public class AllOffsMenu extends Menu implements Initializable {
     private ProductManager productManager = new ProductManager();
     private SearchingManager searchingManager = new SearchingManager();
 
-    @FXML TableView productTable = new TableView();
+    @FXML TableView<Product> productTable = new TableView<>();
     @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
     @FXML TableColumn<Product, Integer> salePercentColumn = new TableColumn<>();
     @FXML TableColumn<Product, String> nameColumn = new TableColumn<>();

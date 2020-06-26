@@ -26,13 +26,13 @@
                         <MenuItem mnemonicParsing="false" onAction="#editCompanyField" text="Company" />
                     </items>
                 </MenuButton>
-                <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="162.0" text="My Sell History" />
-                <Button mnemonicParsing="false" onAction="#viewProducts" prefHeight="36.0" prefWidth="160.0" text="My Products" />
-            <Button mnemonicParsing="false" onAction="#viewOffs" prefHeight="36.0" prefWidth="164.0" text="View My Offs" />
-                <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="166.0" text="All Category" />
-                <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="164.0" text="Go To Main Menu" />
-                <Button mnemonicParsing="false" onAction="#goToRequestsMenu" prefHeight="35.0" prefWidth="157.0" text="Go to Requests Menu" />
-                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="167.0" text="logout" />
+                <Button mnemonicParsing="false" onAction="#goToSellLogPage" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="162.0" text="My Sell History" />
+                <Button mnemonicParsing="false" onAction="#viewProducts" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="160.0" text="My Products" />
+            <Button mnemonicParsing="false" onAction="#viewOffs" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="164.0" text="View My Offs" />
+                <Button mnemonicParsing="false" onAction="#viewCategories" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="166.0" text="All Category" />
+                <Button mnemonicParsing="false" onAction="#goToMainMenu" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="164.0" text="Go To Main Menu" />
+                <Button mnemonicParsing="false" onAction="#goToRequestsMenu" onMousePressed="#buttonSound" prefHeight="35.0" prefWidth="157.0" text="Go to Requests Menu" />
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#logout" onMousePressed="#buttonSound" prefHeight="36.0" prefWidth="167.0" text="logout" />
             </children>
         </VBox>
         <Label alignment="CENTER" layoutX="19.0" layoutY="76.0" prefHeight="42.0" prefWidth="146.0" text="Account Access">
@@ -99,7 +99,7 @@
         <Separator layoutX="197.0" layoutY="300.0" prefHeight="3.0" prefWidth="326.0" />
         <Separator layoutX="197.0" layoutY="349.0" prefHeight="11.0" prefWidth="326.0" />
         <Separator layoutX="300.0" layoutY="116.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="30.0" />
-        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="back" />
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <Separator layoutX="197.0" layoutY="328.0" prefHeight="3.0" prefWidth="326.0" />
     </children>
 </AnchorPane>

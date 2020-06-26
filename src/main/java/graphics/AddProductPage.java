@@ -45,6 +45,7 @@ public class AddProductPage extends Menu implements Initializable {
         } else {
             categoryField.getItems().add("No categories yet!");
         }
+        categoryField.setValue("No categories yet!");
     }
 
     public void addProduct() {
@@ -55,7 +56,7 @@ public class AddProductPage extends Menu implements Initializable {
         String category = categoryField.getValue();
         String productExplanation = explanation.getText();
         String productCategory;
-        if (category.equals("No categories yet!")) {
+        if (category.equals("") || category.equals("No categories yet!")) {
             productCategory = "";
         } else {
             productCategory = category;

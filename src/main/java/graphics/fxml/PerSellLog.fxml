@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PerSellLog">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PerSellLog">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -13,7 +13,7 @@
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
     <children>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="48.0" prefHeight="304.0" prefWidth="479.0">
+        <TableView fx:id="tableView" layoutX="61.0" layoutY="69.0" prefHeight="325.0" prefWidth="479.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="68.20001524686813" text="productId" />
                 <TableColumn fx:id="productNameColumn" prefWidth="111.79998779296875" text="Product Name" />
@@ -22,20 +22,20 @@
                 <TableColumn fx:id="numberColumn" prefWidth="74.79998779296875" text="Quantity" />
             </columns>
         </TableView>
-        <Label layoutX="21.0" layoutY="21.0" prefHeight="20.0" prefWidth="139.0" text="Here's Your Log :">
+        <Label layoutX="21.0" layoutY="21.0" prefHeight="23.0" prefWidth="237.0" text="Here's Your Log :">
             <font>
                 <Font name="Bookshelf Symbol 7" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="514.0" layoutY="107.0" text="Total Price" />
-        <Label fx:id="receivedMoney" alignment="CENTER" layoutX="510.0" layoutY="132.0" prefHeight="35.0" prefWidth="76.0" />
-        <Label layoutX="501.0" layoutY="217.0" text="Amount of Sale" />
-        <Label fx:id="amountOfSale" alignment="CENTER" layoutX="494.0" layoutY="238.0" prefHeight="35.0" prefWidth="106.0" />
-        <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" text="Back" />
-        <Label layoutX="442.0" layoutY="12.0" text="Date :" />
-        <Label fx:id="date" alignment="CENTER" layoutX="493.0" layoutY="7.0" prefHeight="26.0" prefWidth="87.0" />
-        <Label layoutX="177.0" layoutY="22.0" prefHeight="26.0" prefWidth="87.0" text="( Log Code :" />
-        <Label fx:id="logCode" alignment="CENTER" layoutX="254.0" layoutY="23.0" prefHeight="26.0" prefWidth="51.0" />
-        <Label layoutX="305.0" layoutY="22.0" prefHeight="26.0" prefWidth="28.0" text=")" />
+        <Label layoutX="14.0" layoutY="426.0" prefHeight="35.0" prefWidth="154.0" text="Total Reiceved Money :" />
+        <Label fx:id="receivedMoney" alignment="CENTER" layoutX="169.0" layoutY="426.0" prefHeight="43.0" prefWidth="100.0" />
+        <Label layoutX="7.0" layoutY="476.0" prefHeight="51.0" prefWidth="162.0" text="Amount Of Sale :" />
+        <Label fx:id="amountOfSale" alignment="CENTER" layoutX="169.0" layoutY="480.0" prefHeight="43.0" prefWidth="100.0" />
+        <Button layoutX="506.0" layoutY="556.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="35.0" prefWidth="80.0" text="Back" />
+        <Label layoutX="329.0" layoutY="440.0" prefHeight="35.0" prefWidth="60.0" text="Date :" />
+        <Label fx:id="date" alignment="CENTER" layoutX="394.0" layoutY="432.0" prefHeight="51.0" prefWidth="201.0" />
+        <Label alignment="CENTER_RIGHT" layoutX="282.0" layoutY="22.0" prefHeight="26.0" prefWidth="80.0" text="( Log Code :" />
+        <Label fx:id="logCode" alignment="CENTER" layoutX="364.0" layoutY="22.0" prefHeight="26.0" prefWidth="42.0" />
+        <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="22.0" prefHeight="26.0" prefWidth="114.0" text=")" />
     </children>
 </AnchorPane>

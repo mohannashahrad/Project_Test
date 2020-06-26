@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: @cssSheets/purchase.jpg" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PurchasingMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PurchasingMenu">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -61,9 +61,10 @@
                 <Font name="Bookshelf Symbol 7" size="18.0" />
             </font>
         </Label>
-        <Button layoutX="172.0" layoutY="336.0" mnemonicParsing="false" onAction="#checkInputsValidity" prefHeight="50.0" prefWidth="100.0" text="Purchase" />
-        <Button layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="100.0" text="Cancel" />
-        <Button layoutY="-3.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="90.0" text="Back" />
+        <Button layoutX="172.0" layoutY="336.0" mnemonicParsing="false" onAction="#checkInputsValidity" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="Purchase" />
+        <Button layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="Cancel" />
+        <Button layoutY="-3.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="90.0" text="Back" />
+      <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#goToMyAccount" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="My Account" />
     </children>
 
 </AnchorPane>

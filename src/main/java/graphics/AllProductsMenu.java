@@ -32,20 +32,27 @@ public class AllProductsMenu extends Menu implements Initializable {
     CheckBox priceCheckBox = new CheckBox();
     @FXML
     TableView productTable = new TableView();
-    @FXML TableColumn<Product, Double> priceColumn = new TableColumn<>();
-    @FXML TableColumn<Product, String> categoryColumn = new TableColumn<>();
-    @FXML TableColumn<Product, String> nameColumn = new TableColumn<>();
-    @FXML TableColumn<Product, Image> imageColumn = new TableColumn<>();
-    @FXML TableColumn<Product, Double> averageRateColumn = new TableColumn<>();
-    @FXML TableColumn<Product, String> sellerColumn = new TableColumn<>();
-    @FXML TableColumn<Product, Void> buttonColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, Double> priceColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, String> categoryColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, String> nameColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, Image> imageColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, Double> averageRateColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, String> sellerColumn = new TableColumn<>();
+    @FXML
+    TableColumn<Product, Void> buttonColumn = new TableColumn<>();
 
     public AllProductsMenu(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/AllProductsMenu.fxml");
     }
 
     @FXML
-    private void populatingChoiceBoxes(){
+    private void populatingChoiceBoxes() {
         for (Category category : searchingManager.viewAllCategories()) {
             categoryChoiceBox.getItems().add(category.getCategoryName());
         }
@@ -54,38 +61,79 @@ public class AllProductsMenu extends Menu implements Initializable {
     }
 
     @FXML
-    private void performFilter(){
+    private void performFilter() {
         ArrayList<Product> updatedProducts = new ArrayList<>();
-        if(!priceTextField.getText().equals("")) {
+        if (!priceTextField.getText().equals("")) {
             try {
-                updatedProducts.addAll(searchingManager.performFilter("price" , priceTextField.getText()));
+                updatedProducts.addAll(searchingManager.performFilter("price", priceTextField.getText()));
+                updateShownProducts(updatedProducts);
             } catch (Exception e) {
-                showError(e.getMessage() , 20);
+                showError(e.getMessage(), 20);
             }
         }
-        if(!nameTextField.getText().equals("")){
+        if (!nameTextField.getText().equals("")) {
+            try {
+                if (!priceTextField.getText().equals("")) {
+                    for (Product product : updatedProducts) {
+                        if (!searchingManager.performFilter("name", nameTextField.getText()).contains(product))
+                            updatedProducts.remove(product);
+                    }
+                    updateShownProducts(updatedProducts);
+                }
+            } catch (Exception e) {
+                showError(e.getMessage(), 20);
+            } if (priceTextField.getText().equals("")) {
             try {
                 for (Product product : searchingManager.performFilter("name", nameTextField.getText())) {
-                    if(!updatedProducts.contains(product))
+                    if (!updatedProducts.contains(product))
                         updatedProducts.add(product);
+                    updateShownProducts(updatedProducts);
                 }
             } catch (Exception e) {
-                showError(e.getMessage(),20);
+                showError(e.getMessage(), 20);
             }
         }
+    }
         if(!categoryChoiceBox.getValue().equals("Choose Category")){
-            try {
-                for (Product product : searchingManager.performFilter("category", categoryChoiceBox.getValue().toString())) {
-                    if(!updatedProducts.contains(product))
-                        updatedProducts.add(product);
-                }
-            } catch (Exception e) {
-                showError(e.getMessage(),20);
+            int status = recognizeTwoFieldStatus();
+            switch (status){
+                case 0 :
+                    try {
+                        for (Product product : searchingManager.performFilter("category", categoryChoiceBox.getValue().toString())) {
+                            if(!updatedProducts.contains(product))
+                                updatedProducts.add(product);
+                        }
+                        updateShownProducts(updatedProducts);
+                    } catch (Exception e) {
+                        showError(e.getMessage(),20);
+                    }
+                    return;
+                default :
+                    try {
+                        for (Product product : updatedProducts) {
+                                if (!searchingManager.performFilter("category",categoryChoiceBox.getValue().toString()).contains(product))
+                                    updatedProducts.remove(product);
+                            }
+                        updateShownProducts(updatedProducts);
+                        } catch (Exception e) {
+                        showError(e.getMessage(), 20);
+                    }
+
             }
         }
-        updateShownProducts(updatedProducts);
+
     }
 
+    private int  recognizeTwoFieldStatus(){
+        if(priceTextField.getText().equals("") && nameTextField.getText().equals(""))
+            return 0;
+        else if (!(priceTextField.getText().equals("")) && nameTextField.getText().equals(""))
+            return 2;
+        else if (priceTextField.getText().equals("") && !(nameTextField.getText().equals("")))
+            return 1;
+        else
+            return 3;
+    }
     @FXML
     private void disableFilter(){
         ArrayList<Product> updatedProducts = new ArrayList<>();
@@ -159,7 +207,7 @@ public class AllProductsMenu extends Menu implements Initializable {
                     updatedProducts.add(product);
             }
         }
-        updateShownProducts(updatedProducts);
+        updateShownProducts(searchingManager.performDefaultSort(searchingManager.viewAllProducts()));
     }
 
     private void updateShownProducts(ArrayList<Product> shownProducts){
@@ -235,7 +283,6 @@ public class AllProductsMenu extends Menu implements Initializable {
         CartMenu cartMenu = new CartMenu(this);
         cartMenu.run();
     }
-
 
     public void goToMyAccount(){
         if (person == null){

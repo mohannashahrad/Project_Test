@@ -63,7 +63,7 @@ public class Discount {
         return percentage;
     }
 
-    public int getUsageCount() {
+    public int getUsagePerCustomer() {
         return usagePerCustomer;
     }
 

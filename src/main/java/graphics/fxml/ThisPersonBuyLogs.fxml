@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.ThisPersonBuyLogs">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
@@ -13,7 +13,7 @@
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
     <bottom>
-        <Button mnemonicParsing="false" onAction="#back" prefHeight="6.0" prefWidth="42.0" text="Back" BorderPane.alignment="CENTER" />
+        <Button mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="56.0" text="Back" BorderPane.alignment="CENTER" />
     </bottom>
    <center>
       <SplitPane dividerPositions="0.7686932215234102" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
@@ -22,8 +22,8 @@
                <children>
                   <TableView fx:id="tableView" layoutX="81.0" layoutY="72.0" prefHeight="352.0" prefWidth="448.0">
                     <columns>
-                      <TableColumn fx:id="buyLogCode" prefWidth="86.80001831054688" text="Code" />
-                      <TableColumn fx:id="dateColumn" prefWidth="116.20002746582031" text="Date" />
+                      <TableColumn fx:id="buyLogCode" prefWidth="58.20001220703125" text="Code" />
+                      <TableColumn fx:id="dateColumn" prefWidth="145.800048828125" text="Date" />
                         <TableColumn fx:id="totalPriceColumn" prefWidth="119.0" text="Total Price" />
                         <TableColumn fx:id="amountOfDiscountColumn" prefWidth="124.0" text="Amount of Discount" />
                     </columns>
@@ -42,7 +42,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="265.0" layoutY="90.0" mnemonicParsing="false" onAction="#showBuyLog" text="Show Log" />
+                  <Button layoutX="257.0" layoutY="88.0" mnemonicParsing="false" onAction="#showBuyLog" onMousePressed="#buttonSound" text="Show Log" />
                </children></AnchorPane>
         </items>
       </SplitPane>
