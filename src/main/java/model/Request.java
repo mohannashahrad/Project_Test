@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "requestId")
+
 public class Request {
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "requestId")
     private int requestId;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;

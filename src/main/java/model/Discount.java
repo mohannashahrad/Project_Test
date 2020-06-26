@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +21,7 @@ public class Discount {
     public static ArrayList<Discount> getAllDiscounts() {
         return allDiscounts;
     }
-
+    @JsonCreator
     public Discount(String discountCode, LocalDateTime beginDate, LocalDateTime endDate, double percentage,
                     int usagePerCustomer, double maxAmount) {
         this.discountId = idSetter();

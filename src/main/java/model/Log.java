@@ -1,6 +1,8 @@
 package model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +16,7 @@ public class Log {
     public static ArrayList<Log> getAllLogs() {
         return allLogs;
     }
-
+    @JsonCreator
     public Log(LocalDateTime date) {
         this.date = date;
         this.products = new HashMap<>();

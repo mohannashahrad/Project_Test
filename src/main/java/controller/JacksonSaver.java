@@ -1,8 +1,11 @@
 package controller;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import model.*;
 
 import java.io.File;
@@ -13,11 +16,12 @@ import java.util.Collections;
 public class JacksonSaver {
     ObjectMapper objectMapper = new ObjectMapper();
     ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+
     private Storage storage = Storage.getStorage();
     public void dataSaver(){
         objectMapper.enableDefaultTyping();
         try {
-
+            //writer.writeValue(System.out,storage.getAllAdmins().get(0));
             //writer.writeValue(new File("./dataBase/allUsers.json"),storage.getAllUsers());
             writer.writeValue(new File("./dataBase/allSellers.json"),storage.getAllSellers());
             writer.writeValue(new File("./dataBase/allCustomers.json"),storage.getAllCustomers());
@@ -39,22 +43,24 @@ public class JacksonSaver {
 
     }
     public void dataReader(){
+        objectMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
+
         //reader(storage.getAllUsers(),"allUsers",Person[].class);
         //disguiseUser();
-        reader(storage.getAllSellers(),"allSellers", Person[].class);
-        reader(storage.getAllCustomers(),"allCustomers",Person[].class);
-        reader(storage.getAllAdmins(),"allAdmins",Person[].class);
+        reader(storage.getAllSellers(),"allSellers", Person.class);
+        reader(storage.getAllCustomers(),"allCustomers",Person.class);
+        reader(storage.getAllAdmins(),"allAdmins",Person.class);
         addAllPeople();
-        reader(storage.getAllLogs(),"allLogs", Log[].class);
-        reader(storage.getAllSellLogs(),"allSellLogs",Log[].class);
-        reader(storage.getAllBuyLogs(),"allBuyLogs",Log[].class);
-        reader(storage.getAllProducts(),"allProducts", Product[].class);
-        reader(storage.getAllCategories(),"allCategories", Category[].class);
-        reader(storage.getAllDiscounts(),"allDiscounts",Discount[].class);
-        reader(storage.getAllRates(),"allRates",Rate[].class);
-        reader(storage.getAllComments(),"allComments",Comment[].class);
-        reader(storage.getAllSales(),"allSales",Sale[].class);
-        reader(storage.getAllRequests(),"allRequests",Request[].class);
+        reader(storage.getAllLogs(),"allLogs", Log.class);
+        reader(storage.getAllSellLogs(),"allSellLogs",Log.class);
+        reader(storage.getAllBuyLogs(),"allBuyLogs",Log.class);
+        reader(storage.getAllProducts(),"allProducts", Product.class);
+        reader(storage.getAllCategories(),"allCategories", Category.class);
+        reader(storage.getAllDiscounts(),"allDiscounts",Discount.class);
+        reader(storage.getAllRates(),"allRates",Rate.class);
+        reader(storage.getAllComments(),"allComments",Comment.class);
+        reader(storage.getAllSales(),"allSales",Sale.class);
+        reader(storage.getAllRequests(),"allRequests",Request.class);
 
 
     }
@@ -78,7 +84,7 @@ public class JacksonSaver {
         }
     }
 
-    private <T> void reader(ArrayList<T> main,String path,Class<T[]> tClass){
+    private <T> void reader(ArrayList<T> main,String path,Class<T> tClass){
         try {
 
             File file = new File("./dataBase/"+path+".json");
@@ -87,7 +93,7 @@ public class JacksonSaver {
                 file.createNewFile();
                 return;
             }
-            T[] temp = objectMapper.readValue(file, tClass);
+            T[] temp = objectMapper.readValue(file, TypeFactory.defaultInstance().constructArrayType(tClass));
             Collections.addAll(main,temp);
         } catch (IOException e) {
             e.printStackTrace();

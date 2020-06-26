@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class Sale {
     public static ArrayList<Sale> getAllSales() {
         return allSales;
     }
-
+    @JsonCreator
     public Sale(LocalDateTime beginDate, LocalDateTime endDate, double amountOfSale, ArrayList<Product> productsWithThisSale) {
         this.saleId = idSetter();
         this.beginDate = beginDate;

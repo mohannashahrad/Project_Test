@@ -1,15 +1,1 @@
-[ {
-  "requestId" : 1,
-  "typeOfRequest" : "REGISTER_SELLER",
-  "stateOfRequest" : "PROCESSING",
-  "information" : {
-    "number" : "1",
-    "password" : "a",
-    "role" : "seller",
-    "familyName" : "a",
-    "name" : "a",
-    "company" : "a",
-    "email" : "a@a",
-    "username" : "aa"
-  }
-} ]
+[ ]
