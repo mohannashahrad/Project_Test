@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Discount implements Idable {
+public class Discount implements Idable<Discount> {
 
     private int discountId;
     private String discountCode;
@@ -121,5 +121,14 @@ public class Discount implements Idable {
     @Override
     public int getId() {
         return this.discountId;
+    }
+
+    @Override
+    public Discount getById(int id) {
+        for (Discount discount : allDiscounts){
+            if (discount.getDiscountId() == id)
+                return discount;
+        }
+        return null;
     }
 }

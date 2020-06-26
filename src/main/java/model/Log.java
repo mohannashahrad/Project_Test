@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Log implements Idable {
+public class Log implements Idable<Log> {
     protected LocalDateTime date;
     protected HashMap<Product, Integer> products;
     private static ArrayList<Log>allLogs = new ArrayList<>();
@@ -55,5 +55,14 @@ public class Log implements Idable {
     @Override
     public int getId() {
         return this.id;
+    }
+
+    @Override
+    public Log getById(int id) {
+        for (Log log : allLogs){
+            if (log.id == id)
+                return log;
+        }
+        return null;
     }
 }

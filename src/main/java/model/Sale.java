@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Sale implements Idable {
+public class Sale implements Idable<Sale> {
     private int saleId;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
@@ -96,5 +96,13 @@ public class Sale implements Idable {
     @Override
     public int getId() {
         return this.saleId;
+    }
+
+    @Override
+    public Sale getById(int id) {
+        for (Sale sale : allSales)
+            if (sale.saleId == id)
+                return sale;
+        return null;
     }
 }

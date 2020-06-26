@@ -136,17 +136,16 @@ public class FileSaver {
     private void modifySeller() {
        for (Person temp : storage.getAllSellers()){
            Seller seller = (Seller)temp;
-
-
+           replace(seller.getProductsToSell(),seller);
        }
     }
-    private <T> void replace(ArrayList<T> dest){
+    private <T extends Idable,K extends Idable> void replace(ArrayList<T> dest,K instance){
         ArrayList<Integer> id = new ArrayList<>();
         for (T t : dest)
-            id.add();
-        seller.getProductsToSell().clear();
+            id.add(t.getId());
+        dest.clear();
         for (Integer x : id){
-            seller.getProductsToSell().add(Product.getProductById(x.intValue()));
+            dest.add((T) instance.getById(x.intValue()));
         }
     }
 
