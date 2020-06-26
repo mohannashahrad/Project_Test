@@ -4,6 +4,7 @@ import controller.AdminManager;
 import controller.SellerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -32,6 +33,16 @@ public class AddDiscountPage extends Menu implements Initializable {
         LocalDateTime end = endDate.getValue().atStartOfDay();
         adminManager.createDiscountCode(code.getText(),begin,end,Integer.parseInt(percentage.getText()),
                 Integer.parseInt(maxUsage.getText()),Double.parseDouble(maxAmount.getText()));
+        showMessage();
+        back();
+    }
+
+    public void showMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Discount Creation");
+        alert.setContentText("Discount has been Successfully created!");
+        alert.setHeaderText(null);
+        alert.show();
     }
 
     @Override

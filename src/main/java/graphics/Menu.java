@@ -68,6 +68,8 @@ public abstract class Menu {
                 stage.setScene(new Scene(root, 1035, 600));
             }else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageCodesMenu.fxml")){
                 stage.setScene(new Scene(root, 700, 600));
+            } else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageUsersMenu.fxml")){
+                stage.setScene(new Scene(root, 910, 600));
             }
             else {
                 stage.setScene(new Scene(root, 600, 600));

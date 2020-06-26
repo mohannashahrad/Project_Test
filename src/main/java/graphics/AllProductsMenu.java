@@ -227,7 +227,6 @@ public class AllProductsMenu extends Menu implements Initializable {
         cartMenu.run();
     }
 
-
     public void goToMyAccount(){
         if (person == null){
             LoginMenu loginMenu = new LoginMenu(this);

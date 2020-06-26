@@ -25,7 +25,7 @@ public class AdminManageCodesMenu extends Menu implements Initializable {
     AdminManager adminManager = new AdminManager();
 
     @FXML
-    TableView discountTable = new TableView();
+    TableView<Discount> discountTable = new TableView<>();
     @FXML TableColumn<Discount, Integer> idColumn = new TableColumn<>();
     @FXML TableColumn<Discount, String> codeColumn = new TableColumn<>();
     @FXML TableColumn<Discount, String> beginDateColumn = new TableColumn<>();

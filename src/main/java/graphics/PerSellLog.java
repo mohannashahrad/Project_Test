@@ -46,7 +46,7 @@ public class PerSellLog extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        final ObservableList<Product> productsInBuyLog = FXCollections.observableArrayList(
+        final ObservableList<Product> productsInSellLog = FXCollections.observableArrayList(
                sellLog.getProducts().keySet()
         );
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
@@ -54,12 +54,10 @@ public class PerSellLog extends Menu implements Initializable {
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandName.setCellValueFactory(new PropertyValueFactory<>("brand"));
         numberColumn.setCellValueFactory(new PropertyValueFactory<>(sellLog.getProducts().values().toString()));
-        tableView.setItems(productsInBuyLog);
+        tableView.setItems(productsInSellLog);
         receivedMoney.setText(Double.toString(sellLog.getReceivedMoney()));
         amountOfSale.setText(Double.toString(sellLog.getSaleAmount()));
         date.setText(sellLog.getDate().toString());
         logCode.setText(Integer.toString(sellLog.getSellCode()));
-    }
-    public void back(ActionEvent actionEvent) {
     }
 }
