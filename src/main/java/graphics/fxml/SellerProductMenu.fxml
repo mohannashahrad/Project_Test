@@ -4,8 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.SellerProductMenu">
-   <children>
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/BackGround.css" />
+    </stylesheets>
+    <children>
       <TableView fx:id="productTable" layoutY="41.0" prefHeight="302.0" prefWidth="599.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="35.20001220703125" text="ID" />

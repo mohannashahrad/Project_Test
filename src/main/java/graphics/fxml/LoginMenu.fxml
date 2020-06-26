@@ -13,10 +13,10 @@
 <?import java.net.URL?>
 <AnchorPane fx:id="back" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.LoginMenu">
     <stylesheets>
-        <URL value="@cssSheets/basicStyle.css" />
+        <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
     <stylesheets>
-        <URL value="@cssSheets/loginRegisterMenu.css" />
+        <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
     <children>
       <GridPane alignment="BOTTOM_RIGHT" layoutX="205.0" layoutY="159.0" prefHeight="131.0" prefWidth="339.0">

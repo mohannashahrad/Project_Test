@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddOffPage">
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/AddOff.css" />
+    </stylesheets>
     <children>
         <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="38.0" prefWidth="224.0" text="Add Off Page">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <GridPane layoutX="119.0" layoutY="98.0" prefHeight="245.0" prefWidth="362.0">
+        <GridPane layoutX="80.0" layoutY="98.0" prefHeight="245.0" prefWidth="440.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,8 +30,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="179.0" text="Begin Date(yyyy,MM,dd,HH,mm)" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="173.0" text="End Date(yyyy,MM,dd,HH,mm)" GridPane.rowIndex="1" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="207.0" text="Begin Date(yyyy,MM,dd,HH,mm)" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="210.0" text="End Date(yyyy,MM,dd,HH,mm)" GridPane.rowIndex="1" />
                 <Label alignment="CENTER" prefHeight="18.0" prefWidth="95.0" text="Amount Of Off" GridPane.rowIndex="2" />
                 <Label alignment="CENTER" prefHeight="18.0" prefWidth="121.0" text="Add Product To Off" GridPane.rowIndex="3" />
                 <TextField fx:id="beginDateField" prefHeight="43.0" prefWidth="182.0" promptText="yyyy,MM,dd,HH,mm" GridPane.columnIndex="1" />
@@ -37,8 +44,8 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addOff" prefHeight="26.0" prefWidth="92.0" text="Send Request" />
-        <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="92.0" text="Cancel" />
+        <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addOff" prefHeight="26.0" prefWidth="109.0" text="Send Request" />
+        <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
         <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
       <Button alignment="CENTER" layoutX="303.0" layoutY="293.0" mnemonicParsing="false" onAction="#addProductToSale" prefHeight="38.0" prefWidth="175.0" text="Add Product To Off" />
     </children>
