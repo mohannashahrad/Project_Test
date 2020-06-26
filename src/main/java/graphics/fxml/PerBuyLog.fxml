@@ -25,20 +25,35 @@
         </TableView>
         <Label layoutX="21.0" layoutY="21.0" prefHeight="23.0" prefWidth="237.0" text="Here's Your Log :">
             <font>
-                <Font name="Bookshelf Symbol 7" size="18.0" />
+                <Font name="Book Antiqua" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="14.0" layoutY="426.0" prefHeight="35.0" prefWidth="100.0" text="Total Price :" />
-        <Label fx:id="paidMoney" alignment="CENTER" layoutX="152.0" layoutY="418.0" prefHeight="43.0" prefWidth="100.0" />
-        <Label layoutX="7.0" layoutY="476.0" prefHeight="51.0" prefWidth="162.0" text="Discount Amount" />
+        <Label layoutX="14.0" layoutY="426.0" prefHeight="35.0" prefWidth="100.0" text="Total Price :">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font></Label>
+        <Label fx:id="paidMoney" alignment="CENTER" layoutX="140.0" layoutY="422.0" prefHeight="43.0" prefWidth="100.0" />
+        <Label layoutX="7.0" layoutY="476.0" prefHeight="51.0" prefWidth="162.0" text="Discount Amount">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font></Label>
         <Label fx:id="amountOfDiscount" alignment="CENTER" layoutX="152.0" layoutY="480.0" prefHeight="43.0" prefWidth="100.0" />
-        <Label layoutX="8.0" layoutY="542.0" prefHeight="35.0" prefWidth="80.0" text="Discount :" />
+        <Label layoutX="8.0" layoutY="542.0" prefHeight="35.0" prefWidth="80.0" text="Discount :">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font></Label>
         <Label fx:id="discountUsed" alignment="CENTER" layoutX="142.0" layoutY="520.0" prefHeight="43.0" prefWidth="127.0" />
         <Button layoutX="506.0" layoutY="556.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="35.0" prefWidth="80.0" text="Back" />
-        <Label layoutX="329.0" layoutY="440.0" prefHeight="35.0" prefWidth="60.0" text="Date :" />
+        <Label layoutX="329.0" layoutY="440.0" prefHeight="35.0" prefWidth="60.0" text="Date :">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font></Label>
         <Label fx:id="date" alignment="CENTER" layoutX="394.0" layoutY="432.0" prefHeight="51.0" prefWidth="205.0" />
         <Label alignment="CENTER_RIGHT" layoutX="282.0" layoutY="22.0" prefHeight="26.0" prefWidth="80.0" text="( Log Code :" />
         <Label fx:id="logCode" alignment="CENTER_RIGHT" layoutX="370.0" layoutY="22.0" prefHeight="26.0" prefWidth="47.0" />
-        <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="22.0" prefHeight="26.0" prefWidth="133.0" text=")" />
+        <Label alignment="CENTER_RIGHT" layoutX="300.0" layoutY="22.0" prefHeight="26.0" prefWidth="133.0" text=")">
+         <font>
+            <Font name="Book Antiqua" size="12.0" />
+         </font></Label>
     </children>
 </AnchorPane>
