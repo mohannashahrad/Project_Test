@@ -99,12 +99,12 @@ public class FileSaver {
 
     private void modifySale() {
         for (Sale sale : storage.getAllSales()){
-            replace(sale.getProductsWithThisSale(),new Product(null,null));
+            replace(sale.getProductsWithThisSale(),new Product());
         }
     }
 
     private void modifyComment() {
-        Product instance = new Product(null,null);
+        Product instance = new Product();
         for (Comment comment : storage.getAllComments()){
             Product product = instance.getById(comment.getProduct().getProductId());
             comment.setProduct(product);
@@ -112,7 +112,7 @@ public class FileSaver {
     }
 
     private void modifyRate() {
-        Product instance = new Product(null,null);
+        Product instance = new Product();
         for (Rate rate : storage.getAllRates()){
             Product product = instance.getById(rate.getProduct().getProductId());
             rate.setProduct(product);
@@ -125,13 +125,13 @@ public class FileSaver {
 
     private void modifyCategory() {
         for (Category category : storage.getAllCategories()){
-            replace(category.getThisCategoryProducts(),new Product(null,null));
+            replace(category.getThisCategoryProducts(),new Product());
         }
     }
 
     private void modifyProduct() {
-        Person instance = new Person(null);
-        Category cat = new Category(null,null);
+        Person instance = new Person();
+        Category cat = new Category();
         for (Product product : storage.getAllProducts()){
             Person seller = instance.getById(product.getSeller().getId());
             product.setSeller((Seller)seller);
@@ -139,7 +139,7 @@ public class FileSaver {
             product.setCategory(category);
             replace(product.getComments(),new Comment());
             replace(product.getRates(),new Rate());
-            replace(product.getThisProductsBuyers(),new Customer(null));
+            replace(product.getThisProductsBuyers(),new Customer());
         }
     }
 
@@ -164,16 +164,16 @@ public class FileSaver {
     private void modifyCustomer() {
         for (Person temp : storage.getAllCustomers()){
             Customer customer = (Customer)temp;
-            replace(customer.getAllDiscounts(),new Discount(null,null,null,0,0,0));
-            replace(customer.getBuyHistory(),new BuyLog(null));
+            replace(customer.getAllDiscounts(),new Discount());
+            replace(customer.getBuyHistory(),new BuyLog());
         }
     }
 
     private void modifySeller() {
        for (Person temp : storage.getAllSellers()){
            Seller seller = (Seller)temp;
-           replace(seller.getProductsToSell(),new Product(null,null));
-           replace(seller.getSaleList(),new Sale(null,null,0,null));
+           replace(seller.getProductsToSell(),new Product());
+           replace(seller.getSaleList(),new Sale());
        }
     }
     private <T extends Idable,K extends Idable> void replace(ArrayList<T> dest,T instance){

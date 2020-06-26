@@ -18,6 +18,9 @@ public class Discount implements Idable<Discount> {
     private HashMap<Customer, Integer> customersWithThisDiscount;
     private static ArrayList<Discount> allDiscounts = new ArrayList<>();
 
+    public Discount() {
+    }
+
     public static ArrayList<Discount> getAllDiscounts() {
         return allDiscounts;
     }

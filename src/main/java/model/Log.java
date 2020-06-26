@@ -14,6 +14,9 @@ public class Log implements Idable<Log> {
     private static ArrayList<Log>allLogs = new ArrayList<>();
     protected int id;
 
+    public Log() {
+    }
+
     public static ArrayList<Log> getAllLogs() {
         return allLogs;
     }

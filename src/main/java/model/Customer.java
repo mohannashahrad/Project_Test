@@ -16,6 +16,9 @@ public class Customer extends Person {
         return allCustomers;
     }
 
+    public Customer() {
+    }
+
     public Customer(HashMap<String, String> information) {
         super(information);
         this.buyHistory = new ArrayList<>();

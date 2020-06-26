@@ -50,6 +50,9 @@ public class Product implements Comparable<Product>,Idable<Product> {
         return null;
     }
 
+    public Product() {
+    }
+
     public Product(HashMap<String, String> information, Seller seller) {
         //this.image = new Image ("file:src/main/java/model/images/book.png");
         //this.imagePath = "file:src/main/java/model/images/book.png";

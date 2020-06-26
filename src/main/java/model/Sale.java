@@ -14,6 +14,9 @@ public class Sale implements Idable<Sale> {
     private ArrayList<Product> productsWithThisSale;
     private static ArrayList<Sale> allSales = new ArrayList<>();
 
+    public Sale() {
+    }
+
     private int idSetter() {
         if (allSales.size() == 0) {
             return 1;

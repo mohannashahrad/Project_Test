@@ -13,6 +13,10 @@ public class Category implements Idable<Category> {
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
+
+    public Category() {
+    }
+
     public Category(String categoryName, String imageOption) {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();

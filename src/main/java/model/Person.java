@@ -21,6 +21,9 @@ public class Person implements Idable<Person> {
         return allPeople;
     }
 
+    public Person() {
+    }
+
     public Person(HashMap<String, String> information) {
         this.username = information.get("username");
         this.password = information.get("password");

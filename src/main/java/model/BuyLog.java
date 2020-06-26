@@ -22,6 +22,9 @@ public class BuyLog extends Log {
         return allBuyLogs;
     }
 
+    public BuyLog() {
+    }
+
     public BuyLog(LocalDateTime date) {
         super(date);
     }
