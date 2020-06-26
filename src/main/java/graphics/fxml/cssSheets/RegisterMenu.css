@@ -2,16 +2,8 @@
     -fx-font-size: 14px;
 
     -fx-font-family: sans-serif;
-    -fx-background-image: url("purple.png");
+    -fx-background-image: url("login3.jpg");
     -fx-background-size: 600 600;
-}
-.label{
-    -fx-text-fill : #FFDEAD;
-    -fx-font-weight: bold;
-}
-.button{
-    -fx-background-color: #FFDEAD;
-        -fx-text-fill: #778899;
 }
 
 .check-box {

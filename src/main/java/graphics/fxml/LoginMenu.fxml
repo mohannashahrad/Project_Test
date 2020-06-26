@@ -10,8 +10,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane fx:id="back" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.LoginMenu">
-   <children>
+    <stylesheets>
+        <URL value="@cssSheets/basicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/loginRegisterMenu.css" />
+    </stylesheets>
+    <children>
       <GridPane alignment="BOTTOM_RIGHT" layoutX="205.0" layoutY="159.0" prefHeight="131.0" prefWidth="339.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

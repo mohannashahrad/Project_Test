@@ -1,0 +1,44 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-image: url("c.jpg");
+    -fx-background-size: 600 600;
+}
+
+.menu-button{
+          -fx-background-color:
+             #c3c4c4,
+            linear-gradient(#d6d6d6 50%, white 100%),
+            radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+            -fx-background-radius: 30;
+            -fx-background-insets: 0,1,1;
+            -fx-text-fill: #212121;
+            -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+
+}
+
+.menu-button .label{
+    -fx-font-size : 12px;
+    -fx-text-fill : #212121;
+}
+
+.menu-item {
+      -fx-background-color:
+         #c3c4c4,
+        linear-gradient(#d6d6d6 50%, white 100%),
+        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+        -fx-background-radius: 30;
+        -fx-background-insets: 0,1,1;
+        -fx-text-fill: #212121;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+
+.menu-item .label{
+ -fx-text-fill : #212121;
+}
+
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FAFAFA;
+}
