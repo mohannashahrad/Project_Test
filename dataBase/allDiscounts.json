@@ -1,1 +1,79 @@
-[ ]
+[ {
+  "discountId" : 1,
+  "discountCode" : "hanna",
+  "beginDate" : {
+    "month" : "JUNE",
+    "dayOfWeek" : "SATURDAY",
+    "dayOfYear" : 179,
+    "nano" : 0,
+    "year" : 2020,
+    "monthValue" : 6,
+    "dayOfMonth" : 27,
+    "hour" : 0,
+    "minute" : 0,
+    "second" : 0,
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    }
+  },
+  "endDate" : {
+    "month" : "AUGUST",
+    "dayOfWeek" : "WEDNESDAY",
+    "dayOfYear" : 225,
+    "nano" : 0,
+    "year" : 2020,
+    "monthValue" : 8,
+    "dayOfMonth" : 12,
+    "hour" : 0,
+    "minute" : 0,
+    "second" : 0,
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    }
+  },
+  "percentage" : 10.0,
+  "maxAmount" : 100.0,
+  "customersWithThisDiscount" : { },
+  "usageCount" : 2
+}, {
+  "discountId" : 2,
+  "discountCode" : "hanna",
+  "beginDate" : {
+    "month" : "JUNE",
+    "dayOfWeek" : "SATURDAY",
+    "dayOfYear" : 179,
+    "nano" : 0,
+    "year" : 2020,
+    "monthValue" : 6,
+    "dayOfMonth" : 27,
+    "hour" : 0,
+    "minute" : 0,
+    "second" : 0,
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    }
+  },
+  "endDate" : {
+    "month" : "AUGUST",
+    "dayOfWeek" : "WEDNESDAY",
+    "dayOfYear" : 225,
+    "nano" : 0,
+    "year" : 2020,
+    "monthValue" : 8,
+    "dayOfMonth" : 12,
+    "hour" : 0,
+    "minute" : 0,
+    "second" : 0,
+    "chronology" : {
+      "id" : "ISO",
+      "calendarType" : "iso8601"
+    }
+  },
+  "percentage" : 10.0,
+  "maxAmount" : 100.0,
+  "customersWithThisDiscount" : { },
+  "usageCount" : 2
+} ]

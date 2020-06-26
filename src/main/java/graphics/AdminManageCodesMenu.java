@@ -109,7 +109,8 @@ public class AdminManageCodesMenu extends Menu implements Initializable {
 
     @FXML
     private void addDiscount(){
-
+        AddDiscountPage addDiscountPage = new AddDiscountPage(this);
+        addDiscountPage.run();
     }
 
     @FXML
