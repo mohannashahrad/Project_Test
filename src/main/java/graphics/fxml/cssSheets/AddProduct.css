@@ -1,10 +1,6 @@
 .root {
     -fx-font-size: 14px;
     -fx-font-family: sans-serif;
-    -fx-background-image: url("main.jpg");
+    -fx-background-image: url("AddProduct.jpg");
     -fx-background-size: 600 600;
-}
-
-.label {
-    -fx-font-size: 24px;
 }

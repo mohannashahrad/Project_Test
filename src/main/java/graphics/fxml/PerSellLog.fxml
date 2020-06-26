@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.PerSellLog">
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/BackGround.css" />
+    </stylesheets>
     <children>
         <TableView fx:id="tableView" layoutX="14.0" layoutY="48.0" prefHeight="304.0" prefWidth="479.0">
             <columns>
@@ -21,14 +28,14 @@
             </font>
         </Label>
         <Label layoutX="514.0" layoutY="107.0" text="Total Price" />
-        <Label fx:id="receivedMoney" layoutX="514.0" layoutY="149.0" prefHeight="18.0" prefWidth="56.0" />
+        <Label fx:id="receivedMoney" alignment="CENTER" layoutX="510.0" layoutY="132.0" prefHeight="35.0" prefWidth="76.0" />
         <Label layoutX="501.0" layoutY="217.0" text="Amount of Sale" />
-        <Label fx:id="amountOfSale" layoutX="514.0" layoutY="255.0" prefHeight="18.0" prefWidth="56.0" />
+        <Label fx:id="amountOfSale" alignment="CENTER" layoutX="494.0" layoutY="238.0" prefHeight="35.0" prefWidth="106.0" />
         <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" text="Back" />
         <Label layoutX="442.0" layoutY="12.0" text="Date :" />
-        <Label fx:id="date" layoutX="493.0" layoutY="12.0" prefHeight="18.0" prefWidth="72.0" />
-        <Label layoutX="177.0" layoutY="22.0" prefHeight="26.0" prefWidth="72.0" text="( Log Code :" />
-        <Label fx:id="logCode" layoutX="254.0" layoutY="23.0" prefHeight="26.0" prefWidth="28.0" />
-        <Label layoutX="286.0" layoutY="20.0" prefHeight="26.0" prefWidth="28.0" text=")" />
+        <Label fx:id="date" alignment="CENTER" layoutX="493.0" layoutY="7.0" prefHeight="26.0" prefWidth="87.0" />
+        <Label layoutX="177.0" layoutY="22.0" prefHeight="26.0" prefWidth="87.0" text="( Log Code :" />
+        <Label fx:id="logCode" alignment="CENTER" layoutX="254.0" layoutY="23.0" prefHeight="26.0" prefWidth="51.0" />
+        <Label layoutX="305.0" layoutY="22.0" prefHeight="26.0" prefWidth="28.0" text=")" />
     </children>
 </AnchorPane>

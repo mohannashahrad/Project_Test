@@ -13,10 +13,10 @@
 <?import java.net.URL?>
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.AllOffsMenu">
     <stylesheets>
-        <URL value="@cssSheets/basicStyle.css" />
+        <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
     <stylesheets>
-        <URL value="@cssSheets/offMenu.css" />
+        <URL value="@cssSheets/AllOffsMenu.css" />
     </stylesheets>
     <children>
         <Button layoutX="24.0" layoutY="28.0" mnemonicParsing="false" onAction="#back" text="back" />

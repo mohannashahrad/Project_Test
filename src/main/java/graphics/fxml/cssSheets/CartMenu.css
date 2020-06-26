@@ -1,0 +1,5 @@
+.anchor-pane{
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-image: url("backGround.jpg");
+}

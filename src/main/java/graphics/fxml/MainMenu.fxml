@@ -7,19 +7,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.MainMenu">
    <stylesheets>
-      <URL value="@cssSheets/basicStyle.css" />
+      <URL value="@cssSheets/BasicStyle.css" />
    </stylesheets>
    <stylesheets>
       <URL value="@cssSheets/MainMenu.css" />
    </stylesheets>
    <children>
-      <Label layoutX="130.0" layoutY="37.0" text="WELCOME TO MAIN MENU !">
+      <Label alignment="CENTER" layoutX="105.0" layoutY="52.0" prefHeight="100.0" prefWidth="371.0" text="WELCOME TO MAIN MENU !">
          <font>
-            <Font size="22.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="40.0" layoutY="267.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="55.0" prefWidth="115.0" text="ACCOUNT" />
-      <Button layoutX="40.0" layoutY="340.0" mnemonicParsing="false" onAction="#goToProductsMenu" prefHeight="55.0" prefWidth="115.0" text="PRODUCTS" />
-      <Button layoutX="40.0" layoutY="416.0" mnemonicParsing="false" onAction="#goToSalesMenu" prefHeight="55.0" prefWidth="115.0" text="SALES" />
+      <Button layoutX="242.0" layoutY="152.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="55.0" prefWidth="115.0" text="ACCOUNT" />
+      <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#goToProductsMenu" prefHeight="55.0" prefWidth="115.0" text="PRODUCTS" />
+      <Button layoutX="242.0" layoutY="386.0" mnemonicParsing="false" onAction="#goToSalesMenu" prefHeight="55.0" prefWidth="115.0" text="SALES" />
    </children>
 </AnchorPane>

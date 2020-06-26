@@ -1,7 +1,7 @@
 .root {
     -fx-font-size: 14px;
     -fx-font-family: sans-serif;
-    -fx-background-image: url("c.jpg");
+    -fx-background-image: url("account.jpg");
     -fx-background-size: 600 600;
 }
 
@@ -35,10 +35,4 @@
 
 .menu-item .label{
  -fx-text-fill : #212121;
-}
-
-
-.label {
-    -fx-font-size: 14px;
-    -fx-text-fill: #FAFAFA;
 }

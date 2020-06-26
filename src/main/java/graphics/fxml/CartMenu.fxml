@@ -11,8 +11,18 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import java.net.URL?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.CartMenu">
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/BackGround.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/CartMenu.css" />
+    </stylesheets>
     <bottom>
         <Button mnemonicParsing="false" onAction="#back" text="Back" BorderPane.alignment="CENTER" />
     </bottom>

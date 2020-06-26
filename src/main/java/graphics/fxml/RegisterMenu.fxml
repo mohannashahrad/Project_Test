@@ -13,10 +13,10 @@
 <?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.RegisterMenu">
     <stylesheets>
-        <URL value="@cssSheets/basicStyle.css" />
+        <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
     <stylesheets>
-        <URL value="@cssSheets/RegisterMenu.css" />
+        <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
    <children>
       <Label layoutX="252.0" layoutY="49.0" text="REGISTER">

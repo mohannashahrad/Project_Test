@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddProductPage">
-   <children>
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/AddProduct.css" />
+    </stylesheets>
+    <children>
       <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="38.0" prefWidth="224.0" text="Add Product Page">
          <font>
             <Font size="24.0" />
@@ -41,8 +48,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="92.0" text="Send Request" />
-      <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="92.0" text="Cancel" />
+      <Button fx:id="addProduct" layoutX="160.0" layoutY="361.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="110.0" text="Send Request" />
+      <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
       <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
    </children>
 </AnchorPane>
