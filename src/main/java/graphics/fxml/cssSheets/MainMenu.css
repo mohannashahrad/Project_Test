@@ -1,0 +1,12 @@
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: sans-serif;
+    -fx-background-image: url("mainbg.jpg");
+    -fx-background-size: 600 600;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FAFAFA;
+}
