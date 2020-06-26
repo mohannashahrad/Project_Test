@@ -14,7 +14,6 @@ public class Rate {
     public static ArrayList<Rate> getAllRates() {
         return allRates;
     }
-    @JsonCreator
     public Rate(String user, Product product, double rate) {
         this.user = user;
         this.product = product;

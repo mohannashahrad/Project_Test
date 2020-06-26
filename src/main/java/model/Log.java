@@ -16,7 +16,6 @@ public class Log {
     public static ArrayList<Log> getAllLogs() {
         return allLogs;
     }
-    @JsonCreator
     public Log(LocalDateTime date) {
         this.date = date;
         this.products = new HashMap<>();

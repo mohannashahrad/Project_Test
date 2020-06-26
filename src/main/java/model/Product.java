@@ -40,7 +40,7 @@ public class Product implements Comparable<Product> {
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
     }
-    @JsonCreator
+
     public Product(HashMap<String, String> information, Seller seller) {
         //this.image = new Image ("file:src/main/java/model/images/book.png");
         //this.imagePath = "file:src/main/java/model/images/book.png";

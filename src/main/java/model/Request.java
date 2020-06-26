@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Request {
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "requestId")
     private int requestId;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
@@ -20,7 +17,6 @@ public class Request {
     public static ArrayList<Request> getAllRequests() {
         return allRequests;
     }
-    @JsonCreator
     public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = idSetter();
         this.typeOfRequest = requestTypeFinder(typeOfRequest);

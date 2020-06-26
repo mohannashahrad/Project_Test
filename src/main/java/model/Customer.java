@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Customer extends Person {
     private int id;
     private ArrayList<BuyLog> buyHistory;

@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Category {
     private int id;
     private String categoryName;
@@ -16,7 +13,6 @@ public class Category {
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
-    @JsonCreator
     public Category(String categoryName, String imageOption) {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();

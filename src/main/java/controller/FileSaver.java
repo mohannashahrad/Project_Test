@@ -1,16 +1,20 @@
 package controller;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 import model.*;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 public class FileSaver {
-    private YaGson gson = new YaGson();
+    private YaGson gson = new YaGsonBuilder().setPrettyPrinting().create();
     private Storage storage;
 
     public FileSaver(Storage storage) {
@@ -36,7 +40,23 @@ public class FileSaver {
 
     }
     public void dataReader(){
-        readUser();
+
+
+        reader(storage.getAllUsers(),"allUsers",Person[].class);
+        reader(storage.getAllSellers(),"allSellers", Person[].class);
+        reader(storage.getAllCustomers(),"allCustomers",Person[].class);
+        reader(storage.getAllAdmins(),"allAdmins",Person[].class);
+        reader(storage.getAllLogs(),"allLogs", Log[].class);
+        reader(storage.getAllSellLogs(),"allSellLogs",Log[].class);
+        reader(storage.getAllBuyLogs(),"allBuyLogs",Log[].class);
+        reader(storage.getAllProducts(),"allProducts", Product[].class);
+        reader(storage.getAllCategories(),"allCategories", Category[].class);
+        reader(storage.getAllDiscounts(),"allDiscounts",Discount[].class);
+        reader(storage.getAllRates(),"allRates",Rate[].class);
+        reader(storage.getAllComments(),"allComments",Comment[].class);
+        reader(storage.getAllSales(),"allSales",Sale[].class);
+        reader(storage.getAllRequests(),"allRequests",Request[].class);
+       /* readUser();
         readCustomer();
         readAdmin();
         readSeller();
@@ -49,7 +69,25 @@ public class FileSaver {
         readRate();
         readComment();
         readSale();
-        readRequest();
+        readRequest();*/
+    }
+    private <T> void reader(ArrayList<T> main, String path, Class<T[]> tClass){
+        File file = new File("./dataBase/"+path+".json");
+        if (!file.exists()) {
+            file.getParentFile().mkdir();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        try(FileReader fileReader = new FileReader(file)) {
+            T [] fromFile = gson.fromJson(fileReader,tClass);
+            Collections.addAll(main,fromFile);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void writeArrayToFile(ArrayList arrayList,String filePath){
@@ -61,6 +99,7 @@ public class FileSaver {
         }
 
     }
+
     private void readUser (){
         try(FileReader fileReader = new FileReader("./dataBase/allUsers.json")) {
             Person [] fromFile = gson.fromJson(fileReader,Person[].class);

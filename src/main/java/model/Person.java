@@ -19,7 +19,7 @@ public class Person {
     public static ArrayList<Person> getAllPeople() {
         return allPeople;
     }
-    @JsonCreator
+
     public Person(HashMap<String, String> information) {
         this.username = information.get("username");
         this.password = information.get("password");

@@ -8,9 +8,6 @@ import com.google.gson.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class Admin extends Person{
     public int id;
     private ArrayList<Request> allRequests;
@@ -19,7 +16,6 @@ public class Admin extends Person{
     public static ArrayList<Person> getAllAdmins() {
         return allAdmins;
     }
-    @JsonCreator
     public Admin(HashMap<String, String> information) {
         super(information);
         this.allRequests = new ArrayList<>();
