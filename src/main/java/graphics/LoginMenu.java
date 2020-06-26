@@ -3,6 +3,7 @@ package graphics;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.Admin;
 import model.Person;
@@ -14,7 +15,7 @@ public class LoginMenu extends Menu {
     }
     @FXML public TextField username;
     @FXML public Label message;
-    @FXML public TextField password;
+    @FXML public PasswordField password;
     public void goToRegisterMenu(ActionEvent actionEvent) {
         RegisterMenu registerMenu = new RegisterMenu(this);
         registerMenu.run();

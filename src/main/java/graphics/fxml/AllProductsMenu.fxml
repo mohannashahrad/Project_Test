@@ -42,5 +42,6 @@
          </columns>
       </TableView>
       <Button layoutX="138.0" layoutY="25.0" mnemonicParsing="false" onAction="#viewCart" prefHeight="38.0" prefWidth="83.0" text="View Cart" />
+      <Button layoutX="14.0" layoutY="547.0" mnemonicParsing="false" onAction="#goToMyAccount" prefHeight="38.0" prefWidth="106.0" text="My Account" />
    </children>
 </AnchorPane>
