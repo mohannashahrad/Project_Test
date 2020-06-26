@@ -51,6 +51,7 @@
             </children>
         </VBox>
         <ListView fx:id="listView" prefHeight="238.0" prefWidth="215.0" GridPane.rowIndex="3" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToMyAccount" prefHeight="44.0" prefWidth="116.0" text="My Account" GridPane.columnIndex="2" GridPane.rowIndex="4" />
         <Button alignment="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="116.0" text="Back" GridPane.rowIndex="1" />
         <ImageView fx:id="statusImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>

@@ -11,8 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import model.Category;
-import model.Product;
+import model.*;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -225,6 +225,23 @@ public class AllProductsMenu extends Menu implements Initializable {
     private void viewCart(){
         CartMenu cartMenu = new CartMenu(this);
         cartMenu.run();
+    }
+
+
+    public void goToMyAccount(){
+        if (person == null){
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
+        } else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this);
+            adminMenu.run();
+        } else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this);
+            sellerMenu.run();
+        } else if (person instanceof Customer){
+            CustomerMenu customerMenu = new CustomerMenu(this);
+            customerMenu.run();
+        }
     }
 
     @Override

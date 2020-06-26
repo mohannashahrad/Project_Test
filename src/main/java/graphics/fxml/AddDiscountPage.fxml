@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddDiscountPage">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddDiscountPage">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -52,12 +46,12 @@
                 <TextField fx:id="percentage" prefHeight="39.0" prefWidth="181.0" promptText="Percentage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-        <Label alignment="CENTER" layoutX="-5.0" layoutY="59.0" prefHeight="18.0" prefWidth="600.0" text="PLEASE ENTER NEW Discount'S INFORMATION BELOW">
+        <Label alignment="CENTER" layoutX="-5.0" layoutY="59.0" prefHeight="18.0" prefWidth="600.0" text="PLEASE ENTER NEW DISCOUNT'S INFORMATION BELOW">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button  layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="110.0" text="Confirm" />
+        <Button layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="110.0" text="Confirm" />
         <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
         <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
     </children>

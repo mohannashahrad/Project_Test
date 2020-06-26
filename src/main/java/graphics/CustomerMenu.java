@@ -3,23 +3,17 @@ package graphics;
 import controller.CustomerManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Category;
 import model.Customer;
 import model.Discount;
-import model.Person;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class CustomerMenu extends Menu implements Initializable {
@@ -123,11 +117,10 @@ public class CustomerMenu extends Menu implements Initializable {
 
     public String editFieldsView(String field) {
         Dialog<String> dialog = new Dialog<>();
-        String updatedVersion;
+        String updatedVersion ;
         dialog.setTitle("Change Personal Information");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
         if (field.equals("password")) {
             PasswordField passwordField = new PasswordField();
             HBox content = new HBox();
@@ -137,7 +130,8 @@ public class CustomerMenu extends Menu implements Initializable {
             dialog.getDialogPane().setContent(content);
             dialog.showAndWait();
             updatedVersion = passwordField.getText();
-        } else {
+
+        }else {
             TextField textField = new TextField();
             HBox content = new HBox();
             content.setAlignment(Pos.CENTER_LEFT);
