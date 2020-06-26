@@ -142,6 +142,8 @@ public class AdminMenu extends Menu implements Initializable {
     }
 
     public void goToManageCodesMenu(ActionEvent actionEvent) {
+        AdminManageCodesMenu adminManageCodesMenu = new AdminManageCodesMenu(this);
+        adminManageCodesMenu.run();
     }
 
     public void goToManageRequestsMenu(ActionEvent actionEvent) {

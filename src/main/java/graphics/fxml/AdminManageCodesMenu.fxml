@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="635.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.AdminManageCodesMenu">
+    <children>
+        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <TableView fx:id="discountTable" layoutX="89.0" prefHeight="536.0" prefWidth="633.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" />
+                <TableColumn fx:id="codeColumn" prefWidth="93.0" text="Discount Code" />
+                <TableColumn fx:id="beginDateColumn" text="Begin Date" />
+                <TableColumn fx:id="endDateColumn" prefWidth="62.0" text="EndDate" />
+                <TableColumn fx:id="percentageColumn" text="Percentage" />
+                <TableColumn fx:id="maxAmountColumn" prefWidth="83.0" text="Max Amount" />
+                <TableColumn fx:id="maxUsageColumn" prefWidth="83.0" text="Max usage" />
+                <TableColumn fx:id="viewMoreColumn" prefWidth="83.0" text="View more" />
+            </columns>
+        </TableView>
+        <Button onAction="#addDiscount" layoutX="41.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="147.0" text="Add Discount Code" />
+        <Button onAction="#editDiscount" layoutX="498.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="161.0" text="Edit Discount Code" />
+        <Button onAction="#removeDiscount" layoutX="253.0" layoutY="546.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="161.0" text="Remove Discount Code" />
+    </children>
+</AnchorPane>
