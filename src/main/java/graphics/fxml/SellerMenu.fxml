@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="398.0" prefWidth="528.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.SellerMenu">
+<AnchorPane prefHeight="398.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.SellerMenu">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -21,9 +13,9 @@
         <URL value="@cssSheets/CustomerSellerAdminMenu.css" />
     </stylesheets>
     <children>
-        <VBox layoutX="20.0" layoutY="109.0">
+        <VBox layoutX="18.0" layoutY="109.0" prefHeight="287.0" prefWidth="158.0">
             <children>
-                <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="154.0" text="Edit Personal Info">
+                <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="162.0" text="Edit Personal Info">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
                         <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />
@@ -34,19 +26,13 @@
                         <MenuItem mnemonicParsing="false" onAction="#editCompanyField" text="Company" />
                     </items>
                 </MenuButton>
-                <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="154.0" text="My Sell History" />
-                <Button mnemonicParsing="false" onAction="#viewProducts" prefHeight="36.0" prefWidth="154.0" text="My Products" />
-                <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="154.0" text="My Offs">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#viewOffs" text="View My Offs" />
-                        <MenuItem mnemonicParsing="false" onAction="#checkValidityOfOffId" text="Edit Off" />
-                        <MenuItem mnemonicParsing="false" onAction="#addOff" text="Add Off" />
-                    </items>
-                </MenuButton>
-                <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="154.0" text="All Category" />
-                <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="154.0" text="Go To Main Menu" />
-                <Button mnemonicParsing="false" onAction="#goToRequestsMenu" prefHeight="35.0" prefWidth="154.0" text="Go to Requests Menu" />
-                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="154.0" text="logout" />
+                <Button mnemonicParsing="false" onAction="#goToSellLogPage" prefHeight="36.0" prefWidth="162.0" text="My Sell History" />
+                <Button mnemonicParsing="false" onAction="#viewProducts" prefHeight="36.0" prefWidth="160.0" text="My Products" />
+            <Button mnemonicParsing="false" onAction="#viewOffs" prefHeight="36.0" prefWidth="164.0" text="View My Offs" />
+                <Button mnemonicParsing="false" onAction="#viewCategories" prefHeight="36.0" prefWidth="166.0" text="All Category" />
+                <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="36.0" prefWidth="164.0" text="Go To Main Menu" />
+                <Button mnemonicParsing="false" onAction="#goToRequestsMenu" prefHeight="35.0" prefWidth="157.0" text="Go to Requests Menu" />
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="167.0" text="logout" />
             </children>
         </VBox>
         <Label alignment="CENTER" layoutX="19.0" layoutY="76.0" prefHeight="42.0" prefWidth="146.0" text="Account Access">
