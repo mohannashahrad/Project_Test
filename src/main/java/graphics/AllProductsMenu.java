@@ -75,7 +75,7 @@ public class AllProductsMenu extends Menu implements Initializable {
         }
         if(!categoryChoiceBox.getValue().equals("Choose Category")){
             try {
-                for (Product product : searchingManager.performFilter("name", nameTextField.getText())) {
+                for (Product product : searchingManager.performFilter("category", categoryChoiceBox.getValue().toString())) {
                     if(!updatedProducts.contains(product))
                         updatedProducts.add(product);
                 }
@@ -97,18 +97,24 @@ public class AllProductsMenu extends Menu implements Initializable {
             }
         }
          if(!nameTextField.getText().equals("")){
-            try {
-                updatedProducts.addAll(searchingManager.disableFilter("name",nameTextField.getText()));
-            } catch (Exception e) {
-                showError(e.getMessage(),20);
-            }
+             try {
+                 for (Product product : searchingManager.disableFilter("name", nameTextField.getText())) {
+                     if(!updatedProducts.contains(product))
+                         updatedProducts.add(product);
+                 }
+             } catch (Exception e) {
+                 showError(e.getMessage(),20);
+             }
         }
          if(!categoryChoiceBox.getValue().equals("Choose Category")){
-            try {
-                updatedProducts.addAll(searchingManager.disableFilter("category",categoryChoiceBox.getValue().toString()));
-            } catch (Exception e) {
-                showError(e.getMessage(),20);
-            }
+             try {
+                 for (Product product : searchingManager.disableFilter("category", categoryChoiceBox.getValue().toString())) {
+                     if(!updatedProducts.contains(product))
+                         updatedProducts.add(product);
+                 }
+             } catch (Exception e) {
+                 showError(e.getMessage(),20);
+             }
         }
         categoryChoiceBox.setValue("Choose Category");
         priceTextField.clear();
@@ -148,7 +154,10 @@ public class AllProductsMenu extends Menu implements Initializable {
         }
         if(averageRateCheckBox.isSelected()){
             priceCheckBox.setSelected(false);
-           updatedProducts.addAll(searchingManager.disableSort("average rate"));
+            for (Product product : searchingManager.disableSort("average rate")) {
+                if(!updatedProducts.contains(product))
+                    updatedProducts.add(product);
+            }
         }
         updateShownProducts(updatedProducts);
     }
