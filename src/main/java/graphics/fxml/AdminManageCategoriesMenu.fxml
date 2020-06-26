@@ -5,7 +5,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="graphics.AdminManageCategoriesMenu">
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/BackGround.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/AddProduct.css" />
+    </stylesheets>
     <children>
         <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
         <TableView fx:id="categoriesTable" layoutX="89.0" prefHeight="536.0" prefWidth="511.0">

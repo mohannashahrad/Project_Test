@@ -13,6 +13,9 @@
     <stylesheets>
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/AddProduct.css" />
+    </stylesheets>
     <children>
         <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
         <TableView fx:id="productTable" layoutX="86.0" prefHeight="524.0" prefWidth="514.0">

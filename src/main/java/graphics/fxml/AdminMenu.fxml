@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AdminMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AdminMenu">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -22,9 +14,9 @@
         <URL value="@cssSheets/CustomerSellerAdminMenu.css" />
     </stylesheets>
     <children>
-        <VBox layoutX="24.0" layoutY="113.0" prefHeight="246.0" prefWidth="145.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+        <VBox layoutX="10.0" layoutY="113.0" prefHeight="246.0" prefWidth="171.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
             <children>
-                <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="145.0" text="Edit Personal Info">
+                <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="173.0" text="Edit Personal Info">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
                         <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />
@@ -33,15 +25,15 @@
                         <MenuItem mnemonicParsing="false" onAction="#editNumberField" text="Number" />
                     </items>
                 </MenuButton>
-                <Button mnemonicParsing="false" onAction="#goToManageUsersMenu" prefHeight="36.0" prefWidth="145.0" text="Manage Users" />
-                <Button mnemonicParsing="false" onAction="#goToManageProductsMenu" prefHeight="37.0" prefWidth="145.0" text="Manage All Products" />
-                <Button mnemonicParsing="false" onAction="#goToManageCodesMenu" prefHeight="38.0" prefWidth="145.0" text="Manage Discount Codes">
+                <Button mnemonicParsing="false" onAction="#goToManageUsersMenu" prefHeight="35.0" prefWidth="179.0" text="Manage Users" />
+                <Button mnemonicParsing="false" onAction="#goToManageProductsMenu" prefHeight="38.0" prefWidth="174.0" text="Manage All Products" />
+                <Button mnemonicParsing="false" onAction="#goToManageCodesMenu" prefHeight="38.0" prefWidth="171.0" text="Manage Discount Codes">
                <font>
                   <Font size="11.0" />
                </font></Button>
-                <Button mnemonicParsing="false" onAction="#goToManageRequestsMenu" prefHeight="37.0" prefWidth="145.0" text="Manage Requests" />
-            <Button layoutX="10.0" layoutY="143.0" mnemonicParsing="false" onAction="#goToManageCategoryMenu" prefHeight="36.0" prefWidth="145.0" text="Manage Categories" />
-            <Button layoutX="10.0" layoutY="174.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="145.0" text="logout" />
+                <Button mnemonicParsing="false" onAction="#goToManageRequestsMenu" prefHeight="38.0" prefWidth="171.0" text="Manage Requests" />
+            <Button layoutX="10.0" layoutY="143.0" mnemonicParsing="false" onAction="#goToManageCategoryMenu" prefHeight="35.0" prefWidth="173.0" text="Manage Categories" />
+            <Button layoutX="10.0" layoutY="174.0" mnemonicParsing="false" onAction="#logout" prefHeight="35.0" prefWidth="171.0" text="logout" />
             </children>
         </VBox>
         <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="161.0" layoutY="29.0" prefHeight="48.0" prefWidth="278.0" text="WELCOME  ADMIN!" textAlignment="CENTER">
