@@ -15,7 +15,7 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <TableView fx:id="categoriesTable" layoutX="89.0" prefHeight="536.0" prefWidth="511.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="131.0" text="Category Name" />
@@ -23,8 +23,8 @@
                 <TableColumn fx:id="propertiesColumn" prefWidth="194.79998779296875" text="Category's Properties" />
             </columns>
         </TableView>
-        <Button layoutX="31.0" layoutY="546.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="46.0" prefWidth="116.0" text="Add Category" />
-        <Button layoutX="455.0" layoutY="546.0" mnemonicParsing="false" onAction="#editCategory" prefHeight="46.0" prefWidth="109.0" text="Edit Category" />
-        <Button layoutX="230.0" layoutY="546.0" mnemonicParsing="false" onAction="#removeCategory" prefHeight="46.0" prefWidth="140.0" text="Remove Category" />
+        <Button layoutX="31.0" layoutY="546.0" mnemonicParsing="false" onAction="#addCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="116.0" text="Add Category" />
+        <Button layoutX="455.0" layoutY="546.0" mnemonicParsing="false" onAction="#editCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="109.0" text="Edit Category" />
+        <Button layoutX="230.0" layoutY="546.0" mnemonicParsing="false" onAction="#removeCategory" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="140.0" text="Remove Category" />
     </children>
 </AnchorPane>

@@ -15,7 +15,7 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <TableView fx:id="productTable" layoutX="64.0" prefHeight="524.0" prefWidth="536.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="ProductId" />
@@ -27,6 +27,6 @@
                 <TableColumn fx:id="buttonColumn" prefWidth="98.5999755859375" text="View More" />
             </columns>
         </TableView>
-        <Button layoutX="227.0" layoutY="518.0" mnemonicParsing="false" onAction="#removeProduct" prefHeight="60.0" prefWidth="168.0" text="Remove Product" />
+        <Button layoutX="227.0" layoutY="518.0" mnemonicParsing="false" onAction="#removeProduct" onMousePressed="#buttonSound" prefHeight="60.0" prefWidth="168.0" text="Remove Product" />
     </children>
 </AnchorPane>

@@ -15,7 +15,7 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="6.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <TableView fx:id="userTable" layoutX="66.0" prefHeight="524.0" prefWidth="829.0">
             <columns>
                 <TableColumn fx:id="userNameColumn" prefWidth="97.00001525878906" text="UserName" />
@@ -28,7 +28,7 @@
                 <TableColumn fx:id="buttonColumn" prefWidth="98.39996337890625" text="View more" />
             </columns>
         </TableView>
-        <Button layoutX="205.0" layoutY="524.0" mnemonicParsing="false" onAction="#removeUser" prefHeight="46.0" prefWidth="174.0" text="Remove User" />
-        <Button layoutX="635.0" layoutY="524.0" mnemonicParsing="false" onAction="#createManagerAccount" prefHeight="45.0" prefWidth="195.0" text="Create Manager Profile" />
+        <Button layoutX="205.0" layoutY="524.0" mnemonicParsing="false" onAction="#removeUser" onMousePressed="#buttonSound" prefHeight="46.0" prefWidth="174.0" text="Remove User" />
+        <Button layoutX="635.0" layoutY="524.0" mnemonicParsing="false" onAction="#createManagerAccount" onMousePressed="#buttonSound" prefHeight="45.0" prefWidth="195.0" text="Create Manager Profile" />
     </children>
 </AnchorPane>

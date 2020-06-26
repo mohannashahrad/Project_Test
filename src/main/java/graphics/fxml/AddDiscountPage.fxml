@@ -51,8 +51,8 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addDiscount" prefHeight="26.0" prefWidth="110.0" text="Confirm" />
-        <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
-        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addDiscount" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Confirm" />
+        <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
+        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
     </children>
 </AnchorPane>
