@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "requestId")
+
 public class Request {
     private int requestId;
     private RequestType typeOfRequest;
@@ -19,7 +17,6 @@ public class Request {
     public static ArrayList<Request> getAllRequests() {
         return allRequests;
     }
-    @JsonCreator
     public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = idSetter();
         this.typeOfRequest = requestTypeFinder(typeOfRequest);
