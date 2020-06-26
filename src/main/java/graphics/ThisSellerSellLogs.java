@@ -54,9 +54,7 @@ public class ThisSellerSellLogs extends Menu implements Initializable {
     public ArrayList<SellLog> returnThisSellerSellLogs(){
         return ((Seller) person).getSellHistory();
     }
-
-    public void back(ActionEvent actionEvent) {
-    }
+    
     public void showBuyLog() throws IOException {
         if (!logCode.getText().equals("")) {
             showError("Please Enter a code!");

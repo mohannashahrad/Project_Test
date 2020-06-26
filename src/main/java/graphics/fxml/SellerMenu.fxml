@@ -99,7 +99,7 @@
         <Separator layoutX="197.0" layoutY="300.0" prefHeight="3.0" prefWidth="326.0" />
         <Separator layoutX="197.0" layoutY="349.0" prefHeight="11.0" prefWidth="326.0" />
         <Separator layoutX="300.0" layoutY="116.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="30.0" />
-        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="back" />
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="back" />
         <Separator layoutX="197.0" layoutY="328.0" prefHeight="3.0" prefWidth="326.0" />
     </children>
 </AnchorPane>

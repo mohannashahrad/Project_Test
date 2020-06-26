@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.ThisSellerSellLogs">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
@@ -13,7 +13,7 @@
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
     <bottom>
-        <Button mnemonicParsing="false" onAction="#back" prefHeight="6.0" prefWidth="42.0" text="Back" BorderPane.alignment="CENTER" />
+        <Button mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="56.0" text="Back" BorderPane.alignment="CENTER" />
     </bottom>
     <center>
         <SplitPane dividerPositions="0.7686932215234102" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
