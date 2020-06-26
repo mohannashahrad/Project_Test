@@ -13,9 +13,9 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import model.Customer;
 import model.Discount;
-import model.Request;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -136,7 +136,182 @@ public class AdminManageCodesMenu extends Menu implements Initializable {
 
     @FXML
     private void editDiscount(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Discount Code");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        CheckBox startDate = new CheckBox("Start Date");
+        CheckBox endDate = new CheckBox("End Date");
+        CheckBox percentage = new CheckBox("Percentage");
+        CheckBox maxAmount = new CheckBox("Max Amount");
+        CheckBox maxUsage = new CheckBox("Max Usage");
+        CheckBox addCustomer = new CheckBox("Add customer to discount");
+        CheckBox removeCustomer = new CheckBox("Remove customer from discount");
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        content.getChildren().addAll(new Label("Choose one of these fields to edit :"),startDate,endDate,
+                percentage,maxAmount,maxUsage,addCustomer,removeCustomer);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        if(startDate.isSelected())
+            editStartDate();
+        else if(endDate.isSelected())
+            editEndDate();
+        else if (percentage.isSelected())
+            editPercentage();
+        else if (maxAmount.isSelected())
+            editMaxAMount();
+        else if(maxUsage.isSelected())
+            editMaxUsage();
+        else if (addCustomer.isSelected())
+            addCustomerToDiscount();
+        else if (removeCustomer.isSelected())
+            removeCustomerFromDiscount();
+    }
 
+    private void editStartDate(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Start Date");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        DatePicker datePicker = new DatePicker();
+        content.getChildren().addAll(new Label("Enter updated start date:"),datePicker);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        LocalDateTime date = datePicker.getValue().atStartOfDay();
+        int day = date.getDayOfMonth();
+        int year = date.getYear();
+        int month = date.getMonthValue();
+        String updatedDate = year +"," + month +","+ day + ",00,00";
+        adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"beginDate",updatedDate);
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void editEndDate(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit End Date");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        DatePicker datePicker = new DatePicker();
+        content.getChildren().addAll(new Label("Enter updated end date:"),datePicker);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        LocalDateTime date = datePicker.getValue().atStartOfDay();
+        int day = date.getDayOfMonth();
+        int year = date.getYear();
+        int month = date.getMonthValue();
+        String updatedDate = year +"," + month +","+ day + ",00,00";
+        adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"endDate",updatedDate);
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void editPercentage(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Percentage");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        TextField percentage = new TextField();
+        content.getChildren().addAll(new Label("Enter updated percentage:"),percentage);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"percentage",percentage.getText());
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void editMaxAMount(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Max Amount");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        TextField maxAmount = new TextField();
+        content.getChildren().addAll(new Label("Enter updated max amount:"),maxAmount);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"maxAmount",maxAmount.getText());
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void editMaxUsage(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Edit Max Usage");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        TextField maxUsage = new TextField();
+        content.getChildren().addAll(new Label("Enter updated max usage:"),maxUsage);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"usagePerCustomer",maxUsage.getText());
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void addCustomerToDiscount(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Add Customer To Discount");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        TextField username = new TextField();
+        content.getChildren().addAll(new Label("Enter customer's username:"),username);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        try {
+            adminManager.addCustomerToDiscount(username.getText(),adminManager.viewDiscountCode(discountCode.getText()));
+        } catch (Exception e) {
+            showError(e.getMessage(),20);
+        }
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
+    }
+
+    private void removeCustomerFromDiscount(){
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Remove Customer From Discount");
+        dialog.setHeaderText(null);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        VBox content = new VBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        TextField discountCode = new TextField();
+        content.getChildren().addAll(new Label("Enter discount code:"),discountCode);
+        TextField username = new TextField();
+        content.getChildren().addAll(new Label("Enter customer's username:"),username);
+        dialog.getDialogPane().setContent(content);
+        dialog.showAndWait();
+        try {
+            adminManager.removeCustomerFromDiscount(adminManager.viewDiscountCode(discountCode.getText()),username.getText());
+        } catch (Exception e) {
+            showError(e.getMessage(),20);
+        }
+        updateShownDiscounts(adminManager.viewAllDiscountCodes());
     }
 
     @Override
