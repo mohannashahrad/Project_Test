@@ -1,7 +1,7 @@
 [ {
-  "id" : 0,
-  "categoryName" : "food",
-  "imagePath" : "file:src/main/java/graphics/fxml/images/food.jpg",
+  "id" : 1,
+  "categoryName" : "",
+  "imagePath" : null,
   "thisCategoryProducts" : [ ],
   "properties" : { }
 } ]
