@@ -15,6 +15,7 @@ import model.Customer;
 import model.Discount;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -184,10 +185,9 @@ public class AdminManageCodesMenu extends Menu implements Initializable {
         content.getChildren().addAll(new Label("Enter updated start date:"),datePicker);
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
-        LocalDateTime date = datePicker.getValue().atStartOfDay();
-        int day = date.getDayOfMonth();
-        int year = date.getYear();
-        int month = date.getMonthValue();
+        String month = String.format("%02d",datePicker.getValue().getMonthValue());
+        String day = String.format("%02d",datePicker.getValue().getDayOfMonth());
+        String year = Integer.toString(datePicker.getValue().getYear());
         String updatedDate = year +"," + month +","+ day + ",00,00";
         adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"beginDate",updatedDate);
         updateShownDiscounts(adminManager.viewAllDiscountCodes());
@@ -207,10 +207,9 @@ public class AdminManageCodesMenu extends Menu implements Initializable {
         content.getChildren().addAll(new Label("Enter updated end date:"),datePicker);
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
-        LocalDateTime date = datePicker.getValue().atStartOfDay();
-        int day = date.getDayOfMonth();
-        int year = date.getYear();
-        int month = date.getMonthValue();
+        String month = String.format("%02d",datePicker.getValue().getMonthValue());
+        String day = String.format("%02d",datePicker.getValue().getDayOfMonth());
+        String year = Integer.toString(datePicker.getValue().getYear());
         String updatedDate = year +"," + month +","+ day + ",00,00";
         adminManager.editDiscountField(adminManager.viewDiscountCode(discountCode.getText()),"endDate",updatedDate);
         updateShownDiscounts(adminManager.viewAllDiscountCodes());
