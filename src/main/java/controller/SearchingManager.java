@@ -30,26 +30,24 @@ public class SearchingManager extends Manager {
         return sortProducts(filterProducts(selectedProducts));
     }
 
-    private ArrayList<Product> filterProducts(ArrayList<Product> products){
-        if (currentFilters.isEmpty()){
+    private ArrayList<Product> filterProducts(ArrayList<Product> products) {
+        if (currentFilters.isEmpty()) {
             return products;
         }
-        else {
             ArrayList<Product> temp = new ArrayList<>();
             for (Filter filter : currentFilters) {
                 if (filter.getFilterName().equals("category")) {
-                    if (storage.getCategoryByName(filter.getFilterInfo()) == null){
+                    if (storage.getCategoryByName(filter.getFilterInfo()) == null) {
                         continue;
                     }
                     temp.addAll(filter.filterByCategory(storage.getCategoryByName(filter.getFilterInfo()), products));
                 }
                 if (filter.getFilterName().equals("name"))
-                    temp.addAll(filter.filterByName(filter.getFilterInfo(),products));
+                    temp.addAll(filter.filterByName(filter.getFilterInfo(), products));
                 if (filter.getFilterName().equals("price"))
-                    temp.addAll(filter.filterByPrice(Double.parseDouble(filter.getFilterInfo()),products));
+                    temp.addAll(filter.filterByPrice(Double.parseDouble(filter.getFilterInfo()), products));
             }
             return temp;
-        }
     }
 
     private ArrayList<Product> sortProducts (ArrayList<Product> products){
@@ -113,6 +111,7 @@ public class SearchingManager extends Manager {
         }
     }
 
+
     public ArrayList<Product> disableSort(String sortTag) throws Exception {
         Sort removedSort = null;
         for (Sort sort : currentSorts) {
@@ -124,6 +123,7 @@ public class SearchingManager extends Manager {
         }
         else {
             currentSorts.remove(removedSort);
+            System.out.println(currentSorts);
             return this.viewAllProducts();
         }
     }
