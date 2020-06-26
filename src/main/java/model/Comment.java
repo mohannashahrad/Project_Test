@@ -16,7 +16,10 @@ public class Comment implements Idable<Comment> {
     public static ArrayList<Comment> getAllComments() {
         return allComments;
     }
-    @JsonCreator
+
+    public Comment() {
+    }
+
     public Comment(String user, Product product, String commentTitle, String commentBody) {
         this.user = user;
         this.product = product;
@@ -46,6 +49,10 @@ public class Comment implements Idable<Comment> {
 
     public String getCommentBody() {
         return commentBody;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override

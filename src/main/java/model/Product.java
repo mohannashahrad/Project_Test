@@ -12,7 +12,7 @@ import javafx.scene.image.*;
 
 public class Product implements Comparable<Product>,Idable<Product> {
     private Storage storage = new Storage();
-    private Image image;
+    private transient Image image;
     private String imagePath;
     private String statusImagePath;
     private int productId;
@@ -20,7 +20,7 @@ public class Product implements Comparable<Product>,Idable<Product> {
     private String brand;
     private double price;
     private int numberInCart;
-    private transient Seller seller;
+    private Seller seller;
     private int supply;
     private Category category;
     private String categoryName;
@@ -74,6 +74,7 @@ public class Product implements Comparable<Product>,Idable<Product> {
         if (this.category != null)
             this.category.addProductToCategory(this);
     }
+
 
     public Image getImage() {
         return new Image(this.imagePath);

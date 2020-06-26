@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class FileSaver {
     private YaGson gson = new YaGsonBuilder().setPrettyPrinting().create();
@@ -93,24 +94,53 @@ public class FileSaver {
     }
 
     private void modifyRequest() {
+        //nothing
     }
 
     private void modifySale() {
+        for (Sale sale : storage.getAllSales()){
+            replace(sale.getProductsWithThisSale(),new Product(null,null));
+        }
     }
 
     private void modifyComment() {
+        Product instance = new Product(null,null);
+        for (Comment comment : storage.getAllComments()){
+            Product product = instance.getById(comment.getProduct().getProductId());
+            comment.setProduct(product);
+        }
     }
 
     private void modifyRate() {
+        Product instance = new Product(null,null);
+        for (Rate rate : storage.getAllRates()){
+            Product product = instance.getById(rate.getProduct().getProductId());
+            rate.setProduct(product);
+        }
     }
 
     private void modifyDiscount() {
+        //private HashMap<Customer, Integer> customersWithThisDiscount;
     }
 
     private void modifyCategory() {
+        for (Category category : storage.getAllCategories()){
+            replace(category.getThisCategoryProducts(),new Product(null,null));
+        }
     }
 
     private void modifyProduct() {
+        Person instance = new Person(null);
+        Category cat = new Category(null,null);
+        for (Product product : storage.getAllProducts()){
+            Person seller = instance.getById(product.getSeller().getId());
+            product.setSeller((Seller)seller);
+            Category category = cat.getById(product.getCategory().getId());
+            product.setCategory(category);
+            replace(product.getComments(),new Comment());
+            replace(product.getRates(),new Rate());
+            replace(product.getThisProductsBuyers(),new Customer(null));
+        }
     }
 
     private void modifySellLog() {
@@ -128,18 +158,25 @@ public class FileSaver {
     }
 
     private void modifyAdmin() {
+        //nothing except request(not used)
     }
 
     private void modifyCustomer() {
+        for (Person temp : storage.getAllCustomers()){
+            Customer customer = (Customer)temp;
+            replace(customer.getAllDiscounts(),new Discount(null,null,null,0,0,0));
+            replace(customer.getBuyHistory(),new BuyLog(null));
+        }
     }
 
     private void modifySeller() {
        for (Person temp : storage.getAllSellers()){
            Seller seller = (Seller)temp;
-           replace(seller.getProductsToSell(),seller);
+           replace(seller.getProductsToSell(),new Product(null,null));
+           replace(seller.getSaleList(),new Sale(null,null,0,null));
        }
     }
-    private <T extends Idable,K extends Idable> void replace(ArrayList<T> dest,K instance){
+    private <T extends Idable,K extends Idable> void replace(ArrayList<T> dest,T instance){
         ArrayList<Integer> id = new ArrayList<>();
         for (T t : dest)
             id.add(t.getId());

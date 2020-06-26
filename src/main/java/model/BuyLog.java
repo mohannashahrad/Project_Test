@@ -21,6 +21,11 @@ public class BuyLog extends Log {
     public static ArrayList<Log> getAllBuyLogs() {
         return allBuyLogs;
     }
+
+    public BuyLog(LocalDateTime date) {
+        super(date);
+    }
+
     private int idSetter() {
         if (allBuyLogs.size() == 0) {
             return 1;

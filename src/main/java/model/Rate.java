@@ -11,6 +11,9 @@ public class Rate implements Idable<Rate> {
     private double rate;
     private static ArrayList<Rate>allRates = new ArrayList<>();
 
+    public Rate() {
+    }
+
     public static ArrayList<Rate> getAllRates() {
         return allRates;
     }
@@ -38,6 +41,10 @@ public class Rate implements Idable<Rate> {
 
     public Product getProduct() {
         return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public double getRate() {
