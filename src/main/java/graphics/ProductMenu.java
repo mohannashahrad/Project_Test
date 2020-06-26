@@ -56,7 +56,6 @@ public class ProductMenu extends Menu implements Initializable {
     public ProductMenu(Menu previousMenu , Product product) {
         super(previousMenu, "src/main/java/graphics/fxml/ProductMenu.fxml");
         this.product = product;
-        System.out.println(product.getName());
     }
 
     public void button(){
