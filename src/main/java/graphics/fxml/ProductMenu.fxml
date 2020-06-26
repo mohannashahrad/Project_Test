@@ -6,9 +6,11 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -43,8 +45,6 @@
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <ImageView fx:id="imageview" fitHeight="146.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-        </ImageView>
         <Button alignment="CENTER" mnemonicParsing="false" onAction="#button" onMousePressed="#buttonSound" prefHeight="61.0" prefWidth="186.0" text="Add to Cart" GridPane.rowIndex="4" />
         <VBox prefHeight="169.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <children>
@@ -71,6 +71,15 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </TilePane>
+        <ScrollPane fx:id="scrollpane" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fx:id="imageview" fitHeight="131.0" fitWidth="186.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

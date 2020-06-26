@@ -1,10 +1,15 @@
 package graphics;
 
 import controller.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -12,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -27,6 +33,7 @@ public class ProductMenu extends Menu implements Initializable {
     private Product product;
     private CustomerManager customerManager = new CustomerManager();
     private ProductManager productManager = new ProductManager();
+    final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
 
     @FXML
     public ImageView statusImageView;
@@ -38,6 +45,8 @@ public class ProductMenu extends Menu implements Initializable {
     public ImageView imageview;
     @FXML
     public ListView listView;
+    @FXML
+    private ScrollPane scrollpane = new ScrollPane();
     @FXML
     private TableView<Product> similarProducts = new TableView<>();
     @FXML private TableColumn<Product,Integer> idColumn = new TableColumn<>();
@@ -266,6 +275,25 @@ public class ProductMenu extends Menu implements Initializable {
         ArrayList<Product> temp = product.getCategory().getThisCategoryProducts();
         temp.remove(product);
         updateShownProducts(temp);
+        zoomProperty.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable arg0) {
+                imageview.setFitWidth(zoomProperty.get() * 4);
+                imageview.setFitHeight(zoomProperty.get() * 3);
+            }
+        });
+
+        scrollpane.addEventFilter(ScrollEvent.ANY, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0) {
+                    zoomProperty.set(zoomProperty.get() * 1.1);
+                } else if (event.getDeltaY() < 0) {
+                    zoomProperty.set(zoomProperty.get() / 1.1);
+                }
+            }
+        });
+        imageview.preserveRatioProperty().set(true);
         try {
             listViewContents();
         } catch (Exception e) {
