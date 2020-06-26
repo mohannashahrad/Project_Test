@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Discount {
+public class Discount implements Idable {
 
     private int discountId;
     private String discountCode;
@@ -116,5 +116,10 @@ public class Discount {
         if (percentage && usagePerCustomer && maxAmount && beginDate && endDate && discountCode)
             return true;
         else return false;
+    }
+
+    @Override
+    public int getId() {
+        return this.discountId;
     }
 }

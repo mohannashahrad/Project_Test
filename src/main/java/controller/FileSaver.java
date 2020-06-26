@@ -23,13 +23,13 @@ public class FileSaver {
 
     public void dataSaver(){
         writeArrayToFile(storage.getAllUsers(),"./dataBase/allUsers.json");
-        writeArrayToFile(storage.getAllCustomers(),"./dataBase/allCustomers.json");
-        writeArrayToFile(storage.getAllAdmins(),"./dataBase/allAdmins.json");
-        writeArrayToFile(storage.getAllSellers(),"./dataBase/allSellers.json");
+      //  writeArrayToFile(storage.getAllCustomers(),"./dataBase/allCustomers.json");
+      //  writeArrayToFile(storage.getAllAdmins(),"./dataBase/allAdmins.json");
+      //  writeArrayToFile(storage.getAllSellers(),"./dataBase/allSellers.json");
         writeArrayToFile(storage.getAllProducts(),"./dataBase/allProducts.json");
         writeArrayToFile(storage.getAllLogs(),"./dataBase/allLogs.json");
-        writeArrayToFile(storage.getAllSellLogs(),"./dataBase/allSellLogs.json");
-        writeArrayToFile(storage.getAllBuyLogs(),"./dataBase/allBuyLogs.json");
+      //  writeArrayToFile(storage.getAllSellLogs(),"./dataBase/allSellLogs.json");
+      //  writeArrayToFile(storage.getAllBuyLogs(),"./dataBase/allBuyLogs.json");
         writeArrayToFile(storage.getAllCategories(),"./dataBase/allCategories.json");
         writeArrayToFile(storage.getAllDiscounts(),"./dataBase/allDiscounts.json");
         writeArrayToFile(storage.getAllRates(),"./dataBase/allRates.json");
@@ -43,12 +43,12 @@ public class FileSaver {
 
 
         reader(storage.getAllUsers(),"allUsers",Person[].class);
-        reader(storage.getAllSellers(),"allSellers", Person[].class);
-        reader(storage.getAllCustomers(),"allCustomers",Person[].class);
-        reader(storage.getAllAdmins(),"allAdmins",Person[].class);
+       // reader(storage.getAllSellers(),"allSellers", Person[].class);
+       // reader(storage.getAllCustomers(),"allCustomers",Person[].class);
+       // reader(storage.getAllAdmins(),"allAdmins",Person[].class);
         reader(storage.getAllLogs(),"allLogs", Log[].class);
-        reader(storage.getAllSellLogs(),"allSellLogs",Log[].class);
-        reader(storage.getAllBuyLogs(),"allBuyLogs",Log[].class);
+      //  reader(storage.getAllSellLogs(),"allSellLogs",Log[].class);
+      //  reader(storage.getAllBuyLogs(),"allBuyLogs",Log[].class);
         reader(storage.getAllProducts(),"allProducts", Product[].class);
         reader(storage.getAllCategories(),"allCategories", Category[].class);
         reader(storage.getAllDiscounts(),"allDiscounts",Discount[].class);
@@ -75,10 +75,12 @@ public class FileSaver {
 
     private void modifyReferences() {
         modifyPerson();
+        modifyLog();
+
         modifySeller();
         modifyCustomer();
         modifyAdmin();
-        modifyLog();
+
         modifyBuyLog();
         modifySellLog();
         modifyProduct();
@@ -118,6 +120,11 @@ public class FileSaver {
     }
 
     private void modifyLog() {
+        for (Log log : storage.getAllLogs()){
+            if (log instanceof BuyLog)
+                storage.getAllBuyLogs().add(log);
+            else storage.getAllSellLogs().add(log);
+        }
     }
 
     private void modifyAdmin() {
@@ -127,9 +134,30 @@ public class FileSaver {
     }
 
     private void modifySeller() {
+       for (Person temp : storage.getAllSellers()){
+           Seller seller = (Seller)temp;
+
+
+       }
+    }
+    private <T> void replace(ArrayList<T> dest){
+        ArrayList<Integer> id = new ArrayList<>();
+        for (T t : dest)
+            id.add();
+        seller.getProductsToSell().clear();
+        for (Integer x : id){
+            seller.getProductsToSell().add(Product.getProductById(x.intValue()));
+        }
     }
 
     private void modifyPerson() {
+        for (Person person : storage.getAllUsers()){
+            if (person instanceof Admin)
+                storage.getAllAdmins().add(person);
+            else if (person instanceof Seller)
+                storage.getAllSellers().add(person);
+            else storage.getAllCustomers().add(person);
+        }
     }
 
     private <T> void reader(ArrayList<T> main, String path, Class<T[]> tClass){

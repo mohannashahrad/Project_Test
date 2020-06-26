@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Person {
+public class Person implements Idable {
     protected int id;
     private String username;
     private String password;
@@ -131,5 +131,11 @@ public class Person {
                 ", balance = " + balance +"\n" +
                 ", role = " + role +
                 '}';
+    }
+
+
+    @Override
+    public int getId() {
+        return this.id;
     }
 }

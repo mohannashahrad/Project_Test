@@ -1,11 +1,12 @@
 package model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Sale {
+public class Sale implements Idable {
     private int saleId;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;
@@ -90,5 +91,10 @@ public class Sale {
                 sale.removeProductFromThisSale(specificProduct);
             }
         }
+    }
+
+    @Override
+    public int getId() {
+        return this.saleId;
     }
 }

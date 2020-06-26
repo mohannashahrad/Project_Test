@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-public class Category {
+public class Category implements Idable {
     private int id;
     private String categoryName;
     private String imagePath;

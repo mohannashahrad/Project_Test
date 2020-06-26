@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.ArrayList;
 
-public class Rate {
+public class Rate implements Idable {
     private int id;
     private String user;
     private Product product;
@@ -42,5 +42,10 @@ public class Rate {
 
     public double getRate() {
         return rate;
+    }
+
+    @Override
+    public int getId() {
+        return this.id;
     }
 }
