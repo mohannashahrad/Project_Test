@@ -40,8 +40,8 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
-        this.image = new Image ("file:src/main/java/model/images/book.png");
-        this.imagePath = "file:src/main/java/model/images/book.png";
+        //this.image = new Image ("file:src/main/java/model/images/book.png");
+        //this.imagePath = "file:src/main/java/model/images/book.png";
         this.productId = idSetter();
         this.name = information.get("name");
         this.brand = information.get("brand");
@@ -51,6 +51,8 @@ public class Product implements Comparable<Product> {
         this.categoryName = information.get("categoryName");
         this.supply = Integer.parseInt(information.get("supply"));
         this.category = storage.getCategoryByName(information.get("categoryName"));
+        this.imagePath = this.category.getImagePath();
+        this.image = new Image(imagePath);
         this.explanation = information.get("explanation");
         this.averageRate = 0;
         this.comments = new ArrayList<>();

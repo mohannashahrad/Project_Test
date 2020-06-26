@@ -203,7 +203,7 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
         try {
-            adminManager.addCategory(categoryNameField.getText());
+            adminManager.addCategory(categoryNameField.getText(),imageField.getText());
             updateShownCategories(adminManager.viewAllCategories());
         } catch (Exception e) {
             showError(e.getMessage(),20);
