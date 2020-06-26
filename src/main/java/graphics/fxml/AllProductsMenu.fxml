@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AllProductsMenu">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AllProductsMenu">
    <stylesheets>
       <URL value="@cssSheets/BasicStyle.css" />
    </stylesheets>
@@ -17,28 +17,41 @@
       <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#performFilter" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="106.0" text="Filter" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="79.0" prefHeight="22.0" prefWidth="89.0" text="Max Price">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Andalus" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="priceTextField" layoutX="109.0" layoutY="71.0" prefHeight="38.0" prefWidth="106.0" />
-      <Label alignment="CENTER" layoutX="13.0" layoutY="127.0" prefHeight="32.0" prefWidth="89.0" text="Product Name" />
+      <Label alignment="CENTER" layoutX="13.0" layoutY="127.0" prefHeight="32.0" prefWidth="89.0" text="Product Name">
+         <font>
+            <Font name="Andalus" size="15.0" />
+         </font></Label>
       <TextField fx:id="nameTextField" layoutX="109.0" layoutY="124.0" prefHeight="38.0" prefWidth="106.0" />
-      <Label alignment="CENTER" layoutX="13.0" layoutY="168.0" prefHeight="32.0" prefWidth="76.0" text="Category" />
+      <Label alignment="CENTER" layoutX="13.0" layoutY="168.0" prefHeight="32.0" prefWidth="76.0" text="Category">
+         <font>
+            <Font name="Andalus" size="18.0" />
+         </font></Label>
       <ChoiceBox fx:id="categoryChoiceBox" layoutX="99.0" layoutY="168.0" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="135.0" />
-      <CheckBox fx:id="priceCheckBox" layoutX="4.0" layoutY="279.0" mnemonicParsing="false" onMousePressed="#buttonSound" text="Sort By Price" />
+      <CheckBox fx:id="priceCheckBox" layoutX="4.0" layoutY="279.0" mnemonicParsing="false" onMousePressed="#buttonSound" text="Sort By Price">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font></CheckBox>
       <Button layoutX="138.0" layoutY="214.0" mnemonicParsing="false" onAction="#disableFilter" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="106.0" text="Disable Filter" />
-      <CheckBox fx:id="averageRateCheckBox" layoutX="127.0" layoutY="279.0" mnemonicParsing="false" onMousePressed="#buttonSound" text="Sort By Average Rate" />
+      <CheckBox fx:id="averageRateCheckBox" layoutX="127.0" layoutY="279.0" mnemonicParsing="false" onMousePressed="#buttonSound" text="Sort By Average Rate">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font></CheckBox>
       <Button layoutX="14.0" layoutY="321.0" mnemonicParsing="false" onAction="#performSort" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="106.0" text="Sort" />
       <Button layoutX="138.0" layoutY="321.0" mnemonicParsing="false" onAction="#disableSort" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="106.0" text="Disable Sort" />
-      <TableView fx:id="productTable" layoutX="304.0" prefHeight="600.0" prefWidth="494.0">
+      <TableView fx:id="productTable" layoutX="304.0" prefHeight="600.0" prefWidth="598.0">
          <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="75.0" text="ProductId" />
-            <TableColumn fx:id="imageColumn" prefWidth="76.0" text="Image" />
-            <TableColumn fx:id="categoryColumn" prefWidth="70.0" text="Category" />
+            <TableColumn fx:id="nameColumn" prefWidth="73.0" text="ProductId" />
+            <TableColumn fx:id="imageColumn" prefWidth="84.0" text="Image" />
+            <TableColumn fx:id="statusColumn" prefWidth="78.0" text="Status" />
+            <TableColumn fx:id="categoryColumn" prefWidth="76.0" text="Category" />
             <TableColumn fx:id="priceColumn" prefWidth="56.0" text="Price" />
-            <TableColumn fx:id="averageRateColumn" prefWidth="88.0" text="Average rate" />
-            <TableColumn fx:id="sellerColumn" prefWidth="56.0" text="Seller" />
-            <TableColumn fx:id="buttonColumn" prefWidth="72.0" text="View More" />
+            <TableColumn fx:id="averageRateColumn" prefWidth="96.0" text="Average rate" />
+            <TableColumn fx:id="sellerColumn" prefWidth="59.0" text="Seller" />
+            <TableColumn fx:id="buttonColumn" prefWidth="75.0" text="View More" />
          </columns>
       </TableView>
       <Button layoutX="138.0" layoutY="25.0" mnemonicParsing="false" onAction="#viewCart" onMousePressed="#buttonSound" prefHeight="38.0" prefWidth="83.0" text="View Cart" />

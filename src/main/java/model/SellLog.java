@@ -22,8 +22,8 @@ public class SellLog extends Log {
         }
         int max = 0;
         for (Log sellLog : allSellLogs) {
-            if (((BuyLog)sellLog).getBuyCode() > max)
-                max = ((BuyLog)sellLog).getBuyCode();
+            if (((SellLog)sellLog).getSellCode() > max)
+                max = ((SellLog)sellLog).getSellCode();
         }
         return max + 1;
     }

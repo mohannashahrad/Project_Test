@@ -13,9 +13,9 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="38.0" prefWidth="224.0" text="Add Product Page">
+        <Label alignment="CENTER" layoutX="181.0" layoutY="12.0" prefHeight="42.0" prefWidth="238.0" text="Add Product Page">
             <font>
-                <Font size="24.0" />
+                <Font name="Andalus" size="28.0" />
             </font>
         </Label>
         <GridPane layoutX="119.0" layoutY="98.0" prefHeight="245.0" prefWidth="362.0">
@@ -32,13 +32,31 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="54.0" text="Name" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="53.0" text="Brand" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="49.0" text="Price" GridPane.rowIndex="2" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="67.0" text="Category" GridPane.rowIndex="3" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="77.0" text="Explanation" GridPane.rowIndex="5" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="54.0" text="Name">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="53.0" text="Brand" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="49.0" text="Price" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="67.0" text="Category" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="27.0" prefWidth="99.0" text="Explanation" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
                 <TextField fx:id="name" prefHeight="43.0" prefWidth="182.0" promptText="Name" GridPane.columnIndex="1" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Supply" GridPane.rowIndex="4" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="57.0" text="Supply" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Andalus" size="17.0" />
+               </font></Label>
                 <TextField fx:id="brand" prefHeight="43.0" prefWidth="182.0" promptText="Brand" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="price" prefHeight="43.0" prefWidth="182.0" promptText="Price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="explanation" prefHeight="49.0" prefWidth="182.0" promptText="Explanation" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -46,13 +64,12 @@
                 <TextField fx:id="supply" prefHeight="44.0" prefWidth="181.0" promptText="Supply" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
-        <Label alignment="CENTER" layoutX="126.0" layoutY="59.0" text="PLEASE ENTER NEW PRODUCT'S INFORMATION BELOW">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
         <Button fx:id="addProduct" layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addProduct" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Send Request" />
         <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
         <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
+      <Label layoutX="105.0" layoutY="56.0" text="PLEASE ENTER NEW PRODUCT'S INFORMATION BELOW">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font></Label>
     </children>
 </AnchorPane>

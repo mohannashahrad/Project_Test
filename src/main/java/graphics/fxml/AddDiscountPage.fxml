@@ -15,7 +15,7 @@
     <children>
         <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="38.0" prefWidth="224.0" text="Add Discount Page">
             <font>
-                <Font size="24.0" />
+                <Font name="Andalus" size="24.0" />
             </font>
         </Label>
         <GridPane layoutX="119.0" layoutY="98.0" prefHeight="245.0" prefWidth="362.0">
@@ -46,9 +46,9 @@
                 <TextField fx:id="percentage" prefHeight="39.0" prefWidth="181.0" promptText="Percentage" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-        <Label alignment="CENTER" layoutX="-5.0" layoutY="59.0" prefHeight="18.0" prefWidth="600.0" text="PLEASE ENTER NEW DISCOUNT'S INFORMATION BELOW">
+        <Label alignment="CENTER" layoutX="-5.0" layoutY="51.0" prefHeight="26.0" prefWidth="600.0" text="PLEASE ENTER NEW DISCOUNT'S INFORMATION BELOW">
             <font>
-                <Font size="14.0" />
+                <Font name="Book Antiqua" size="14.0" />
             </font>
         </Label>
         <Button layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addDiscount" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Confirm" />

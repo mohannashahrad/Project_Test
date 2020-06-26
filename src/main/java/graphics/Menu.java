@@ -76,7 +76,7 @@ public abstract class Menu {
             loader.setControllerFactory(c -> this);
             root = loader.load();
             if(fxmlPath.equals("src/main/java/graphics/fxml/AllProductsMenu.fxml")){
-                stage.setScene(new Scene(root, 800, 600));
+                stage.setScene(new Scene(root, 900, 600));
             }else if (fxmlPath.equals("src/main/java/graphics/fxml/AllOffsMenu.fxml")){
                 stage.setScene(new Scene(root, 1035, 600));
             }else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageCodesMenu.fxml")){

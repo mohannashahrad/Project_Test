@@ -29,6 +29,8 @@ public class PerBuyLog extends Menu implements Initializable {
     @FXML
     TableColumn<Product, String> brandName = new TableColumn<>();
     @FXML
+    TableColumn<Product, String> sellerName = new TableColumn<>();
+    @FXML
     Label paidMoney;
     @FXML
     Label amountOfDiscount;
@@ -53,7 +55,8 @@ public class PerBuyLog extends Menu implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandName.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<>(buyLog.getProducts().entrySet().toString()));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
+        sellerName.setCellValueFactory(new PropertyValueFactory<>("sellerName"));
         tableView.setItems(productsInBuyLog);
         paidMoney.setText(Double.toString(buyLog.getPaidMoney()));
         amountOfDiscount.setText(Double.toString(buyLog.getDiscountAmount()));

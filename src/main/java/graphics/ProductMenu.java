@@ -1,17 +1,26 @@
 package graphics;
 
 import controller.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import model.*;
 
 import java.net.URL;
@@ -24,6 +33,7 @@ public class ProductMenu extends Menu implements Initializable {
     private Product product;
     private CustomerManager customerManager = new CustomerManager();
     private ProductManager productManager = new ProductManager();
+    final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
 
     @FXML
     public ImageView statusImageView;
@@ -35,11 +45,17 @@ public class ProductMenu extends Menu implements Initializable {
     public ImageView imageview;
     @FXML
     public ListView listView;
+    @FXML
+    private ScrollPane scrollpane = new ScrollPane();
+    @FXML
+    private TableView<Product> similarProducts = new TableView<>();
+    @FXML private TableColumn<Product,Integer> idColumn = new TableColumn<>();
+    @FXML private TableColumn<Product,String> nameColumn = new TableColumn<>();
+    @FXML private TableColumn<Product,Void> viewMoreColumn = new TableColumn<>();
 
     public ProductMenu(Menu previousMenu , Product product) {
         super(previousMenu, "src/main/java/graphics/fxml/ProductMenu.fxml");
         this.product = product;
-        System.out.println(product.getName());
     }
 
     public void button(){
@@ -203,6 +219,51 @@ public class ProductMenu extends Menu implements Initializable {
         }
     }
 
+    private void updateShownProducts(ArrayList<Product> shownProducts){
+        final ObservableList<Product> data = FXCollections.observableArrayList(
+                shownProducts
+        );
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        addButtonToTable(this);
+        similarProducts.setItems(data);
+    }
+
+    private void addButtonToTable(ProductMenu menu) {
+        Callback<TableColumn<Product, Void>, TableCell<Product, Void>> cellFactory =
+                new Callback<TableColumn<Product, Void>, TableCell<Product, Void>>() {
+                    @Override
+                    public TableCell<Product, Void> call(final TableColumn<Product, Void> param) {
+                        final TableCell<Product, Void> cell = new TableCell<Product, Void>() {
+
+                            private final Button btn = new Button("Click");
+
+                            {
+                                btn.setOnAction((ActionEvent event) -> {
+                                    Product product = getTableView().getItems().get(getIndex());
+                                    ProductMenu productMenu = new ProductMenu(menu,product);
+                                    productMenu.run();
+                                });
+                            }
+
+                            @Override
+                            public void updateItem(Void item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                } else {
+                                    setGraphic(btn);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        viewMoreColumn.setCellFactory(cellFactory);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productNameLabel.setText(product.getName());
@@ -210,6 +271,29 @@ public class ProductMenu extends Menu implements Initializable {
         setStatusImageView();
         choiceBox.getItems().addAll("Compare", "Attributes" , "Comments" , "Rate" , "More Options");
         choiceBox.setValue("More Options");
+        ArrayList<Product> temp = product.getCategory().getThisCategoryProducts();
+        temp.remove(product);
+        updateShownProducts(temp);
+        zoomProperty.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable arg0) {
+                imageview.setFitWidth(zoomProperty.get() * 4);
+                imageview.setFitHeight(zoomProperty.get() * 3);
+            }
+        });
+
+        scrollpane.addEventFilter(ScrollEvent.ANY, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0) {
+                    zoomProperty.set(zoomProperty.get() * 1.1);
+                } else if (event.getDeltaY() < 0) {
+                    zoomProperty.set(zoomProperty.get() / 1.1);
+                }
+            }
+        });
+        imageview.preserveRatioProperty().set(true);
+        scrollpane.setContent(imageview);
         try {
             listViewContents();
         } catch (Exception e) {

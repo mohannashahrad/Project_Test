@@ -4,7 +4,3 @@
     -fx-background-image: url("main.jpg");
     -fx-background-size: 600 600;
 }
-
-.label {
-    -fx-font-size: 24px;
-}
