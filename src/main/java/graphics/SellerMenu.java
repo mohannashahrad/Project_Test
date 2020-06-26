@@ -435,6 +435,12 @@ public class SellerMenu extends Menu implements Initializable {
         mainMenu.run();
     }
 
+    @FXML
+    private void goToRequestsMenu(){
+        SellerRequestMenu sellerRequestMenu = new SellerRequestMenu(this);
+        sellerRequestMenu.run();
+    }
+
     public void showMessage() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Request Message");
