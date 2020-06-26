@@ -39,7 +39,9 @@ public class BuyLog extends Log {
         this.seller = sellers;
         this.customerInfo = customerInfo;
         this.buyCode = idSetter();
-        this.products = productsInThisBuyLog;
+        for (Product product : productsInThisBuyLog.keySet()) {
+            this.products.put(product,productsInThisBuyLog.get(product));
+        }
         this.discountUsed = discountUsed;
         allBuyCodes.add(buyCode);
     }

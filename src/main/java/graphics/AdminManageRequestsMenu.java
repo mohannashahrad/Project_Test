@@ -12,7 +12,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import model.Request;
+import model.StateType;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,7 +93,12 @@ public class AdminManageRequestsMenu extends Menu implements Initializable {
         accept.setOnAction(e -> {
             try {
                 adminManager.acceptRequest(Integer.toString(request.getRequestId()));
-                updateShownRequests(adminManager.viewAllRequests());
+                ArrayList<Request> newRequests = new ArrayList<>();
+                for (Request request1 : adminManager.viewAllRequests()) {
+                    if(request1.getStateOfRequest() == StateType.PROCESSING)
+                        newRequests.add(request1);
+                }
+                updateShownRequests(newRequests);
             } catch (Exception ex) {
                 showError(ex.getMessage(),20);
             }
@@ -100,7 +107,12 @@ public class AdminManageRequestsMenu extends Menu implements Initializable {
         decline.setOnAction(e -> {
             try {
                 adminManager.declineRequest(Integer.toString(request.getRequestId()));
-                updateShownRequests(adminManager.viewAllRequests());
+                ArrayList<Request> newRequests = new ArrayList<>();
+                for (Request request2 : adminManager.viewAllRequests()) {
+                    if(request2.getStateOfRequest() == StateType.PROCESSING)
+                        newRequests.add(request2);
+                }
+                updateShownRequests(newRequests);
             } catch (Exception ex) {
                 showError(ex.getMessage(),20);
             }
@@ -166,6 +178,11 @@ public class AdminManageRequestsMenu extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        updateShownRequests(adminManager.viewAllRequests());
+        ArrayList<Request> newRequests = new ArrayList<>();
+        for (Request request : adminManager.viewAllRequests()) {
+            if(request.getStateOfRequest() == StateType.PROCESSING)
+                newRequests.add(request);
+        }
+        updateShownRequests(newRequests);
     }
 }

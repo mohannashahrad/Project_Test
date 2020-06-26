@@ -32,7 +32,7 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
     @FXML
     TableColumn<BuyLog, LocalDateTime> dateColumn = new TableColumn<>();
     @FXML
-    TextField logCode;
+    TextField logCode = new TextField();
 
     public ThisPersonBuyLogs(Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml");
@@ -56,8 +56,9 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
         return ((Customer) person).getBuyHistory();
     }
 
+
     public void showBuyLog() throws IOException {
-        if (!logCode.getText().equals("")) {
+        if (logCode.getText().equals("")) {
             showError("Please Enter a code!");
         } else if (!logCode.getText().matches("\\d+")) {
             showError("Buy log code is an integer!");
