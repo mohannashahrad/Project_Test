@@ -11,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import model.Category;
@@ -172,7 +171,7 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TextField categoryNameField = new TextField();
-        HBox content = new HBox();
+        VBox content = new VBox();
         content.setAlignment(Pos.CENTER_LEFT);
         content.setSpacing(10);
         content.getChildren().addAll(new Label("Enter category's name :"), categoryNameField);
@@ -193,10 +192,14 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         TextField categoryNameField = new TextField();
-        HBox content = new HBox();
+        VBox content = new VBox();
         content.setAlignment(Pos.CENTER_LEFT);
         content.setSpacing(10);
+        Button button = new Button("Category's Image");
+        button.setOnAction(e -> showCategoryImages());
         content.getChildren().addAll(new Label("Enter new category's name :"), categoryNameField);
+        TextField imageField = new TextField();
+        content.getChildren().addAll(new Label("Enter category's image code : ") , imageField,button);
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
         try {
@@ -205,6 +208,11 @@ public class AdminManageCategoriesMenu extends Menu implements Initializable {
         } catch (Exception e) {
             showError(e.getMessage(),20);
         }
+    }
+
+    private void showCategoryImages(){
+        ShowImages showImages = new ShowImages(this);
+        showImages.run();
     }
 
     @FXML
