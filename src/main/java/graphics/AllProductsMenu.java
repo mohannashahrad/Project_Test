@@ -11,8 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import model.Category;
-import model.Product;
+import model.*;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -75,7 +75,7 @@ public class AllProductsMenu extends Menu implements Initializable {
         }
         if(!categoryChoiceBox.getValue().equals("Choose Category")){
             try {
-                for (Product product : searchingManager.performFilter("name", nameTextField.getText())) {
+                for (Product product : searchingManager.performFilter("category", categoryChoiceBox.getValue().toString())) {
                     if(!updatedProducts.contains(product))
                         updatedProducts.add(product);
                 }
@@ -97,18 +97,24 @@ public class AllProductsMenu extends Menu implements Initializable {
             }
         }
          if(!nameTextField.getText().equals("")){
-            try {
-                updatedProducts.addAll(searchingManager.disableFilter("name",nameTextField.getText()));
-            } catch (Exception e) {
-                showError(e.getMessage(),20);
-            }
+             try {
+                 for (Product product : searchingManager.disableFilter("name", nameTextField.getText())) {
+                     if(!updatedProducts.contains(product))
+                         updatedProducts.add(product);
+                 }
+             } catch (Exception e) {
+                 showError(e.getMessage(),20);
+             }
         }
          if(!categoryChoiceBox.getValue().equals("Choose Category")){
-            try {
-                updatedProducts.addAll(searchingManager.disableFilter("category",categoryChoiceBox.getValue().toString()));
-            } catch (Exception e) {
-                showError(e.getMessage(),20);
-            }
+             try {
+                 for (Product product : searchingManager.disableFilter("category", categoryChoiceBox.getValue().toString())) {
+                     if(!updatedProducts.contains(product))
+                         updatedProducts.add(product);
+                 }
+             } catch (Exception e) {
+                 showError(e.getMessage(),20);
+             }
         }
         categoryChoiceBox.setValue("Choose Category");
         priceTextField.clear();
@@ -148,7 +154,10 @@ public class AllProductsMenu extends Menu implements Initializable {
         }
         if(averageRateCheckBox.isSelected()){
             priceCheckBox.setSelected(false);
-           updatedProducts.addAll(searchingManager.disableSort("average rate"));
+            for (Product product : searchingManager.disableSort("average rate")) {
+                if(!updatedProducts.contains(product))
+                    updatedProducts.add(product);
+            }
         }
         updateShownProducts(updatedProducts);
     }
@@ -225,6 +234,23 @@ public class AllProductsMenu extends Menu implements Initializable {
     private void viewCart(){
         CartMenu cartMenu = new CartMenu(this);
         cartMenu.run();
+    }
+
+
+    public void goToMyAccount(){
+        if (person == null){
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
+        } else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this);
+            adminMenu.run();
+        } else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this);
+            sellerMenu.run();
+        } else if (person instanceof Customer){
+            CustomerMenu customerMenu = new CustomerMenu(this);
+            customerMenu.run();
+        }
     }
 
     @Override

@@ -12,8 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Comment;
-import model.Product;
+import model.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -185,6 +184,22 @@ public class ProductMenu extends Menu implements Initializable {
             statusImageView.setImage(new Image("file:src/main/java/graphics/fxml/images/available.png"));
         } else{
             statusImageView.setImage(new Image("file:src/main/java/graphics/fxml/images/sale.jpg"));
+        }
+    }
+
+    public void goToMyAccount(){
+        if (person == null){
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
+        } else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this);
+            adminMenu.run();
+        } else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this);
+            sellerMenu.run();
+        } else if (person instanceof Customer){
+            CustomerMenu customerMenu = new CustomerMenu(this);
+            customerMenu.run();
         }
     }
 

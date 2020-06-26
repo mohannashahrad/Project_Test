@@ -27,7 +27,7 @@ public class PerBuyLog extends Menu implements Initializable {
     @FXML
     TableColumn<Product, Integer> numberColumn = new TableColumn<>();
     @FXML
-    TableColumn<Product, Integer> brandName = new TableColumn<>();
+    TableColumn<Product, String> brandName = new TableColumn<>();
     @FXML
     Label paidMoney;
     @FXML

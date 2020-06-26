@@ -11,9 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-import model.Category;
-import model.Product;
-import model.Sale;
+import model.*;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -254,6 +252,23 @@ public class AllOffsMenu extends Menu implements Initializable {
             updatedProducts.addAll(searchingManager.disableSort("average rate"));
         }
         updateShownProducts(updatedProducts);
+    }
+
+
+    public void goToMyAccount(){
+        if (person == null){
+            LoginMenu loginMenu = new LoginMenu(this);
+            loginMenu.run();
+        } else if (person instanceof Admin){
+            AdminMenu adminMenu = new AdminMenu(this);
+            adminMenu.run();
+        } else if (person instanceof Seller){
+            SellerMenu sellerMenu = new SellerMenu(this);
+            sellerMenu.run();
+        } else if (person instanceof Customer){
+            CustomerMenu customerMenu = new CustomerMenu(this);
+            customerMenu.run();
+        }
     }
 
     @Override

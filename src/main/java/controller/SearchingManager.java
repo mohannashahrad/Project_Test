@@ -77,7 +77,7 @@ public class SearchingManager extends Manager {
             Filter filter = new Filter(filterTag,info);
             storage.addFilter(filter);
             currentFilters.add(filter);
-            return viewAllProducts();
+            return this.viewAllProducts();
     }
 
     public ArrayList<Product> performSort(String sortTag) throws Exception {
@@ -88,7 +88,7 @@ public class SearchingManager extends Manager {
         Sort sort = new Sort(sortTag);
         storage.addSort(sort);
         currentSorts.add(sort);
-        return viewAllProducts();
+        return this.viewAllProducts();
     }
 
     public ArrayList<Product> disableFilter(String filterTag, String info) throws Exception {
@@ -109,7 +109,7 @@ public class SearchingManager extends Manager {
         }
         else {
             currentFilters.remove(removedFilter);
-            return viewAllProducts();
+            return this.viewAllProducts();
         }
     }
 
@@ -124,7 +124,7 @@ public class SearchingManager extends Manager {
         }
         else {
             currentSorts.remove(removedSort);
-            return viewAllProducts();
+            return this.viewAllProducts();
         }
     }
 }

@@ -13,9 +13,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SellerMenu extends Menu implements Initializable {
@@ -137,7 +135,6 @@ public class SellerMenu extends Menu implements Initializable {
         dialog.setTitle("Change Personal Information");
         dialog.setHeaderText(null);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
         if (field.equals("password")) {
             PasswordField passwordField = new PasswordField();
             HBox content = new HBox();
@@ -433,6 +430,12 @@ public class SellerMenu extends Menu implements Initializable {
         MainMenu mainMenu = new MainMenu(null);
         person = null;
         mainMenu.run();
+    }
+
+    @FXML
+    private void goToRequestsMenu(){
+        SellerRequestMenu sellerRequestMenu = new SellerRequestMenu(this);
+        sellerRequestMenu.run();
     }
 
     public void showMessage() {

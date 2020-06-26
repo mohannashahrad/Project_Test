@@ -74,6 +74,10 @@ public class Category {
         return imagePath;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public static boolean doesCategoryExist(String name) {
         for (Category category : allCategories) {
             if (category.categoryName.equals(name))
