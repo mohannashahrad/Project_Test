@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.CustomerMenu">
+    <stylesheets>
+        <URL value="@cssSheets/BasicStyle.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@cssSheets/CustomerSellerAdminMenu.css" />
+    </stylesheets>
     <children>
-        <VBox layoutX="24.0" layoutY="113.0" prefHeight="246.0" prefWidth="145.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+        <VBox layoutX="16.0" layoutY="101.0" prefHeight="280.0" prefWidth="154.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
             <children>
-                <MenuButton mnemonicParsing="false" prefHeight="41.0" prefWidth="149.0" text="Edit Personal Info">
+                <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="54.0" prefWidth="160.0" text="Edit Personal Info" textAlignment="CENTER">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
                         <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />
@@ -19,11 +26,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#editNumberField" text="Number" />
                     </items>
                 </MenuButton>
-                <Button mnemonicParsing="false" onAction="#goToCartMenu" prefHeight="41.0" prefWidth="146.0" text="View Cart" />
-                <Button fx:id="goToBuyLogPage" mnemonicParsing="false" onAction="#goToBuyLogPage" prefHeight="41.0" prefWidth="146.0" text="My Buy History" />
-                <Button mnemonicParsing="false" onAction="#viewDiscounts" prefHeight="41.0" prefWidth="146.0" text="My Discount Codes" />
-            <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="41.0" prefWidth="156.0" text="Go To Main Menu" />
-                <Button mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="146.0" text="logout" />
+                <Button mnemonicParsing="false" onAction="#goToCartMenu" prefHeight="53.0" prefWidth="154.0" text="View Cart" />
+                <Button fx:id="goToBuyLogPage" mnemonicParsing="false" onAction="#goToBuyLogPage" prefHeight="54.0" prefWidth="154.0" text="My Buy History" />
+                <Button mnemonicParsing="false" onAction="#viewDiscounts" prefHeight="53.0" prefWidth="154.0" text="My Discount Codes" />
+                <Button mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="54.0" prefWidth="154.0" text="Go To Main Menu" />
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="154.0" text="logout" />
             </children>
         </VBox>
         <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="161.0" layoutY="29.0" prefHeight="48.0" prefWidth="278.0" text="WELCOME CUSTOMER!" textAlignment="CENTER">
@@ -85,13 +92,13 @@
         <Separator layoutX="202.0" layoutY="326.0" prefHeight="11.0" prefWidth="350.0" />
         <Separator layoutX="203.0" layoutY="350.0" prefHeight="18.0" prefWidth="350.0" />
         <Separator layoutX="300.0" layoutY="121.0" orientation="VERTICAL" prefHeight="237.0" prefWidth="18.0" />
-        <Label alignment="CENTER" layoutX="27.0" layoutY="86.0" prefHeight="27.0" prefWidth="139.0" text="Account Access" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="27.0" layoutY="77.0" prefHeight="27.0" prefWidth="139.0" text="Account Access" textAlignment="CENTER">
             <font>
                 <Font name="Bookshelf Symbol 7" size="18.0" />
             </font>
         </Label>
-        <Separator layoutX="23.0" layoutY="104.0" prefHeight="18.0" prefWidth="146.0" />
-      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="back" />
+        <Separator layoutX="23.0" layoutY="91.0" prefHeight="18.0" prefWidth="146.0" />
+        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="66.0" text="back" />
     </children>
 
 </AnchorPane>

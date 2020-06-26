@@ -29,6 +29,8 @@ public class AddProductPage extends Menu implements Initializable {
     @FXML
     private TextField price;
     @FXML
+    private TextField supply;
+    @FXML
     private TextField explanation;
     @FXML
     private ChoiceBox<String> categoryField;
@@ -62,6 +64,7 @@ public class AddProductPage extends Menu implements Initializable {
             productInformation.put("name", productName);
             productInformation.put("brand", productBrand);
             productInformation.put("price", productPrice);
+            productInformation.put("supply",supply.getText());
             productInformation.put("explanation", productExplanation);
             productInformation.put("categoryName", productCategory);
             sellerManager.addProduct(productInformation);

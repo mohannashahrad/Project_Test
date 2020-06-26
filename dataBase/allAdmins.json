@@ -1,1 +1,12 @@
-[ ]
+[ {
+  "id" : 1,
+  "username" : "a1",
+  "password" : "a1",
+  "name" : "a1",
+  "familyName" : "a1",
+  "email" : "a1@a1",
+  "number" : "2",
+  "balance" : 0.0,
+  "role" : "ADMIN",
+  "allRequests" : [ ]
+} ]

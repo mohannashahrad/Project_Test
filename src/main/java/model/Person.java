@@ -105,4 +105,18 @@ public class Person {
         Person second = (Person) obj;
         return first.getUsername().equals(second.getUsername());
     }
+
+    @Override
+    public String toString() {
+        return "Person " +
+                ", username = " + username + "\n" +
+                ", password = " + password + "\n" +
+                ", name = " + name + "\n" +
+                ", familyName = " + familyName + "\n" +
+                ", email = " + email + "\n" +
+                ", number = " + number + "\n" +
+                ", balance = " + balance +"\n" +
+                ", role = " + role +
+                '}';
+    }
 }

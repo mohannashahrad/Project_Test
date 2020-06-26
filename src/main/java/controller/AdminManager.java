@@ -59,11 +59,11 @@ public class AdminManager extends Manager {
         }
     }
 
-    public void addCategory (String name) throws Exception {
+    public void addCategory (String name,String imageOption) throws Exception {
         if (storage.getCategoryByName(name) != null)
             throw new Exception("Category with this name already exists!!");
         else
-            storage.addCategory(new Category(name));
+            storage.addCategory(new Category(name,imageOption));
     }
 
     public ArrayList<Discount> viewAllDiscountCodes (){

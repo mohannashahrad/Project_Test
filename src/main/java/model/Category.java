@@ -12,14 +12,46 @@ import java.util.HashMap;
 public class Category {
     private int id;
     private String categoryName;
+    private String imagePath;
     private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
     @JsonCreator
-    public Category(String categoryName) {
+    public Category(String categoryName, String imageOption) {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();
         this.properties = new HashMap<>();
+        switch (imageOption){
+            case "1":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/clothing.jpg";
+                return;
+            case "2":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/electronics.jpg";
+                return;
+            case "3":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/food.jpg";
+                return;
+            case "4":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/gardening.jpg";
+                return;
+            case "5":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/health.jpg";
+                return;
+            case "6":
+                this.imagePath = "file:src/main/java/graphics/fxml/images/homeProducts.jpg";
+                return;
+            case "7" :
+                this.imagePath = "file:src/main/java/graphics/fxml/images/sports.jpg";
+                return;
+            case "8" :
+                this.imagePath = "file:src/main/java/graphics/fxml/images/toys.jpg";
+                return;
+            case "9" :
+                this.imagePath = "file:src/main/java/graphics/fxml/images/books.jpg";
+                return;
+            case "10" :
+                this.imagePath = "file:src/main/java/graphics/fxml/images/shoes.jpg";
+        }
         this.id = idSetter();
     }
     private int idSetter() {
@@ -36,6 +68,10 @@ public class Category {
 
     public static ArrayList<Category> getAllCategories() {
         return allCategories;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     public static boolean doesCategoryExist(String name) {

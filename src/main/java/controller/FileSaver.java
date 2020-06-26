@@ -119,7 +119,7 @@ public class FileSaver {
                     uncatExist = true;
             }
             if (!uncatExist) {
-                storage.getAllCategories().add(new Category("uncategorized"));
+                storage.getAllCategories().add(new Category("uncategorized","file:src/main/java/graphics/fxml/images/shoes.jpg"));
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
