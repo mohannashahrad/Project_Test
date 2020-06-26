@@ -66,6 +66,8 @@ public abstract class Menu {
                 stage.setScene(new Scene(root, 800, 600));
             }else if (fxmlPath.equals("src/main/java/graphics/fxml/AllOffsMenu.fxml")){
                 stage.setScene(new Scene(root, 1035, 600));
+            }else if (fxmlPath.equals("src/main/java/graphics/fxml/AdminManageCodesMenu.fxml")){
+                stage.setScene(new Scene(root, 635, 600));
             }
             else {
                 stage.setScene(new Scene(root, 600, 600));
