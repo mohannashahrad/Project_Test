@@ -207,7 +207,7 @@ public class AllProductsMenu extends Menu implements Initializable {
                     updatedProducts.add(product);
             }
         }
-        updateShownProducts(searchingManager.viewAllProducts());
+        updateShownProducts(searchingManager.performDefaultSort(searchingManager.viewAllProducts()));
     }
 
     private void updateShownProducts(ArrayList<Product> shownProducts){

@@ -4,6 +4,7 @@ import model.Filter;
 import model.Product;
 import model.Sort;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchingManager extends Manager {
@@ -23,7 +24,10 @@ public class SearchingManager extends Manager {
     }
 
     public ArrayList<Product> viewAllProducts(){
-        return processOfViewProduct(storage.getAllProducts());
+        ArrayList<Product> temp = new ArrayList<>();
+        temp.addAll(storage.getAllProducts());
+        System.out.println(storage.getAllProducts().toString());
+        return processOfViewProduct(temp);
     }
 
     private ArrayList<Product> processOfViewProduct (ArrayList <Product> selectedProducts){
@@ -126,5 +130,10 @@ public class SearchingManager extends Manager {
             System.out.println(currentSorts);
             return this.viewAllProducts();
         }
+    }
+
+    public ArrayList<Product> performDefaultSort(ArrayList<Product> products){
+        Sort sort = new Sort("name");
+        return sort.defaultSort(products);
     }
 }
