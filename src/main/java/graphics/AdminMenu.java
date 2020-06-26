@@ -1,6 +1,5 @@
 package graphics;
 
-import controller.AdminManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminMenu extends Menu implements Initializable {
-    private AdminManager adminManager = new AdminManager();
     @FXML
     public Label usernameLabel;
     @FXML

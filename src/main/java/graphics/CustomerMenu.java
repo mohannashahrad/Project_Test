@@ -184,23 +184,19 @@ public class CustomerMenu extends Menu implements Initializable {
 
     }
 
-    public void goToCartMenu() throws IOException {
+    public void goToCartMenu() {
         CartMenu cartMenu = new CartMenu(this);
         cartMenu.run();
     }
 
-    public void goToMainMenu() throws IOException {
+    public void goToMainMenu() {
         MainMenu mainMenu = new MainMenu(this);
         mainMenu.run();
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
-    public void goToBuyLogPage() throws IOException {
+    public void goToBuyLogPage() {
         ThisPersonBuyLogs thisPersonBuyLogs = new ThisPersonBuyLogs(this);
         thisPersonBuyLogs.run();
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
     @FXML

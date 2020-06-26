@@ -13,7 +13,7 @@
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
    <children>
-      <Label alignment="CENTER" layoutX="235.0" layoutY="40.0" prefHeight="44.0" prefWidth="129.0" text="REGISTER">
+      <Label alignment="CENTER" layoutX="235.0" layoutY="40.0" prefHeight="44.0" prefWidth="117.0" text="REGISTER">
          <font>
             <Font name="Andalus" size="28.0" />
          </font>

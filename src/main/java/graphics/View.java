@@ -6,15 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.FileSaver;
-import controller.JacksonSaver;
 import controller.Storage;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Customer;
-import model.Seller;
+
 
 public class View extends Application {
 

@@ -14,7 +14,6 @@ import javafx.util.Callback;
 import model.Request;
 import model.StateType;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
