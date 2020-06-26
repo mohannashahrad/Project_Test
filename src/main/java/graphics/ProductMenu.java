@@ -294,6 +294,7 @@ public class ProductMenu extends Menu implements Initializable {
             }
         });
         imageview.preserveRatioProperty().set(true);
+        scrollpane.setContent(imageview);
         try {
             listViewContents();
         } catch (Exception e) {
