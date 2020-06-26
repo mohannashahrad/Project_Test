@@ -1,1 +1,7 @@
-[ ]
+[ {
+  "id" : 0,
+  "categoryName" : "food",
+  "imagePath" : "file:src/main/java/graphics/fxml/images/food.jpg",
+  "thisCategoryProducts" : [ ],
+  "properties" : { }
+} ]
