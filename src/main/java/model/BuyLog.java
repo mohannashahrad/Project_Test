@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +11,7 @@ public class BuyLog extends Log {
     private int buyCode;
     private double paidMoney;
     private double discountAmount;
-    private transient ArrayList<Seller> seller;
+    private ArrayList<Seller> seller;
     private HashMap<String, String> customerInfo;
     private static ArrayList<Integer> allBuyCodes = new ArrayList<>();
     private static ArrayList<Log>allBuyLogs = new ArrayList<>();
@@ -28,7 +30,7 @@ public class BuyLog extends Log {
         }
         return max + 1;
     }
-
+    @JsonCreator
     public BuyLog(LocalDateTime date, double paidMoney, double discountAmount, ArrayList<Seller> sellers,
                   HashMap<String, String> customerInfo , HashMap<Product, Integer> productsInThisBuyLog,String discountUsed) {
         super(date);

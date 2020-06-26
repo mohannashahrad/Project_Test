@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +19,7 @@ public class Person {
     public static ArrayList<Person> getAllPeople() {
         return allPeople;
     }
-
+    @JsonCreator
     public Person(HashMap<String, String> information) {
         this.username = information.get("username");
         this.password = information.get("password");
@@ -28,6 +30,7 @@ public class Person {
         this.balance = 0;
         this.role = roleFinder(information.get("role"));
     }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -101,5 +104,19 @@ public class Person {
         Person first = (Person) this;
         Person second = (Person) obj;
         return first.getUsername().equals(second.getUsername());
+    }
+
+    @Override
+    public String toString() {
+        return "Person " +
+                ", username = " + username + "\n" +
+                ", password = " + password + "\n" +
+                ", name = " + name + "\n" +
+                ", familyName = " + familyName + "\n" +
+                ", email = " + email + "\n" +
+                ", number = " + number + "\n" +
+                ", balance = " + balance +"\n" +
+                ", role = " + role +
+                '}';
     }
 }

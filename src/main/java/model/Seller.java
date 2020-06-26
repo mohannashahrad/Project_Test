@@ -1,24 +1,43 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Seller extends Person {
+    private int id;
     private String company;
     private static ArrayList<SellLog> sellHistory = new ArrayList<>();
-    private transient ArrayList<Product> productsToSell;
-    private transient ArrayList<Sale> saleList;
+    private ArrayList<Product> productsToSell;
+    private ArrayList<Sale> saleList;
     private static ArrayList<Person> allSellers = new ArrayList<>();
 
     public static ArrayList<Person> getAllSellers() {
         return allSellers;
     }
-
+    @JsonCreator
     public Seller(HashMap<String, String> information) {
         super(information);
         this.company = information.get("company");
         this.productsToSell = new ArrayList<>();
         this.saleList = new ArrayList<>();
+        this.id = idSetter();
+    }
+    private int idSetter() {
+        if (allSellers.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Person person : allSellers) {
+            if (((Seller)person).id > max)
+                max = ((Seller)person).id;
+        }
+        return max + 1;
     }
 
     public String getCompany() {

@@ -132,9 +132,13 @@ public class AdminMenu extends Menu implements Initializable {
 
 
     public void goToManageProductsMenu(ActionEvent actionEvent) {
+        AdminMangeProducts adminMangeProducts = new AdminMangeProducts(this);
+        adminMangeProducts.run();
     }
 
     public void goToManageUsersMenu(ActionEvent actionEvent) {
+        AdminManageUsersMenu adminManageUsersMenu = new AdminManageUsersMenu(this);
+        adminManageUsersMenu.run();
     }
 
     public void goToManageCodesMenu(ActionEvent actionEvent) {
@@ -143,7 +147,7 @@ public class AdminMenu extends Menu implements Initializable {
     public void goToManageRequestsMenu(ActionEvent actionEvent) {
     }
 
-    public void goToManageCategoyMenu(ActionEvent actionEvent) {
+    public void goToManageCategoryMenu(ActionEvent actionEvent) {
     }
 
     public void logout(ActionEvent actionEvent) {

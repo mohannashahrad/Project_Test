@@ -1,18 +1,33 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Category {
+    private int id;
     private String categoryName;
-    private transient ArrayList<Product> thisCategoryProducts;
+    private ArrayList<Product> thisCategoryProducts;
     private HashMap<String, String> properties;
     private static ArrayList<Category> allCategories = new ArrayList<>();
-
+    @JsonCreator
     public Category(String categoryName) {
         this.categoryName = categoryName;
         this.thisCategoryProducts = new ArrayList<>();
         this.properties = new HashMap<>();
+        this.id = idSetter();
+    }
+    private int idSetter() {
+        if (allCategories.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Category category : allCategories) {
+            if (category.id > max)
+                max = category.id;
+        }
+        return max + 1;
     }
 
     public static ArrayList<Category> getAllCategories() {
