@@ -26,7 +26,6 @@ public class SearchingManager extends Manager {
     public ArrayList<Product> viewAllProducts(){
         ArrayList<Product> temp = new ArrayList<>();
         temp.addAll(storage.getAllProducts());
-        System.out.println(storage.getAllProducts().toString());
         return processOfViewProduct(temp);
     }
 
