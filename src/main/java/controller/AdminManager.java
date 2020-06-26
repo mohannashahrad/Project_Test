@@ -203,7 +203,7 @@ public class AdminManager extends Manager {
             case REMOVE_PRODUCT:
                 Product removedProduct = storage.getProductById(Integer.parseInt(request.getInformation().get("productId")));
                 storage.deleteProduct(removedProduct);
-                ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).removeProduct(removedProduct);
+                ((Seller)storage.getUserByUsername(request.getInformation().get("seller"))).removeProduct(removedProduct);
                 Sale.removeProductFromItSale(storage.getAllSales(),removedProduct);
                 return;
             case ADD_COMMENT:
@@ -251,7 +251,7 @@ public class AdminManager extends Manager {
         int offId = Integer.parseInt(request.getInformation().get("offId"));
         Sale sale = new Sale(beginDate,endDate,amountOfOff,tempSellerManager.getSavedProductsInSale().get(offId));
         storage.addSale(sale);
-        ((Seller)storage.getUserByUsername(request.getInformation().get("username"))).addSale(sale);
+        ((Seller)storage.getUserByUsername(request.getInformation().get("seller"))).addSale(sale);
         for (Product product : tempSellerManager.getSavedProductsInSale().get(offId)) {
             product.setSale(sale);
         }

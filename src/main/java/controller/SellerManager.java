@@ -38,7 +38,7 @@ public class SellerManager extends Manager {
         else {
             HashMap<String, String> information = new HashMap<>();
             information.put("productId", Integer.toString(productId));
-            information.put("username",person.getUsername());
+            information.put("seller",person.getUsername());
             storage.addRequest(new Request("remove product", information));
         }
     }
@@ -62,6 +62,7 @@ public class SellerManager extends Manager {
             information.put("field", field);
             information.put("updatedVersion",updatedVersion);
             information.put("productId", Integer.toString(productId));
+            information.put("seller",person.getUsername());
             storage.addRequest(new Request("edit product", information));
         }
     }
@@ -78,7 +79,7 @@ public class SellerManager extends Manager {
         Sale sale = new Sale(null,null,0,null);
         int offId = sale.getLastSaleId();
         savedProductsInSale.put(offId,productsInOff);
-        information.put("username", person.getUsername());
+        information.put("seller", person.getUsername());
         information.put("offId", Integer.toString(offId));
         storage.addRequest(new Request("add sale", information));
     }
@@ -93,6 +94,7 @@ public class SellerManager extends Manager {
             information.put("field", field);
             information.put("updatedVersion",updatedVersion);
             information.put("offId", Integer.toString(offId));
+            information.put("seller",person.getUsername());
             storage.addRequest(new Request("edit sale", information));
         }
     }

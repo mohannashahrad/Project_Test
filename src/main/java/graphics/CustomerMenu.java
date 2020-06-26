@@ -203,6 +203,12 @@ public class CustomerMenu extends Menu implements Initializable {
         stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
+    @FXML
+    private void customerRequestMenu(){
+        CustomerRequestsMenu customerRequestsMenu = new CustomerRequestsMenu(this);
+        customerRequestsMenu.run();
+    }
+
     public void logout(ActionEvent actionEvent) {
         MainMenu mainMenu = new MainMenu(null);
         person = null;
