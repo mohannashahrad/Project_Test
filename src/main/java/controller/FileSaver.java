@@ -36,7 +36,7 @@ public class FileSaver {
         writeArrayToFile(storage.getAllComments(),"./dataBase/allComments.json");
         writeArrayToFile(storage.getAllSales(),"./dataBase/allSales.json");
         writeArrayToFile(storage.getAllRequests(),"./dataBase/allRequests.json");
-        writeArrayToFile(storage.getAllCarts(),"./dataBase/allCarts.json");
+
 
     }
     public void dataReader(){
@@ -56,6 +56,7 @@ public class FileSaver {
         reader(storage.getAllComments(),"allComments",Comment[].class);
         reader(storage.getAllSales(),"allSales",Sale[].class);
         reader(storage.getAllRequests(),"allRequests",Request[].class);
+        modifyReferences();
        /* readUser();
         readCustomer();
         readAdmin();
@@ -71,6 +72,66 @@ public class FileSaver {
         readSale();
         readRequest();*/
     }
+
+    private void modifyReferences() {
+        modifyPerson();
+        modifySeller();
+        modifyCustomer();
+        modifyAdmin();
+        modifyLog();
+        modifyBuyLog();
+        modifySellLog();
+        modifyProduct();
+        modifyCategory();
+        modifyDiscount();
+        modifyRate();
+        modifyComment();
+        modifySale();
+        modifyRequest();
+    }
+
+    private void modifyRequest() {
+    }
+
+    private void modifySale() {
+    }
+
+    private void modifyComment() {
+    }
+
+    private void modifyRate() {
+    }
+
+    private void modifyDiscount() {
+    }
+
+    private void modifyCategory() {
+    }
+
+    private void modifyProduct() {
+    }
+
+    private void modifySellLog() {
+    }
+
+    private void modifyBuyLog() {
+    }
+
+    private void modifyLog() {
+    }
+
+    private void modifyAdmin() {
+    }
+
+    private void modifyCustomer() {
+    }
+
+    private void modifySeller() {
+    }
+
+    private void modifyPerson() {
+    }
+
     private <T> void reader(ArrayList<T> main, String path, Class<T[]> tClass){
         File file = new File("./dataBase/"+path+".json");
         if (!file.exists()) {
@@ -100,7 +161,7 @@ public class FileSaver {
 
     }
 
-    private void readUser (){
+   /* private void readUser (){
         try(FileReader fileReader = new FileReader("./dataBase/allUsers.json")) {
             Person [] fromFile = gson.fromJson(fileReader,Person[].class);
             Collections.addAll(storage.getAllUsers(),fromFile);
@@ -219,5 +280,5 @@ public class FileSaver {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 }

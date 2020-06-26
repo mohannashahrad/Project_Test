@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Person {
+    protected int id;
     private String username;
     private String password;
     private String name;
@@ -29,8 +30,20 @@ public class Person {
         this.number = information.get("number");
         this.balance = 0;
         this.role = roleFinder(information.get("role"));
+        this.id = idSetter();
+        allPeople.add(this);
     }
-
+    private int idSetter() {
+        if (allPeople.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Person person : allPeople) {
+            if (person.id > max)
+                max = person.id;
+        }
+        return max + 1;
+    }
 
     public void setPassword(String password) {
         this.password = password;
