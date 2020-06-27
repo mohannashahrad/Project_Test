@@ -10,7 +10,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.*;
 
-public class Product implements Comparable<Product> {
+public class Product implements Comparable<Product>,Idable<Product> {
     private Storage storage = new Storage();
     private Image image;
     private String imagePath;
@@ -40,6 +40,14 @@ public class Product implements Comparable<Product> {
 
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
+    }
+    public static Product getProductById(int id){
+        for (Product product : allProducts){
+            if (product.productId == id){
+                return product;
+            }
+        }
+        return null;
     }
 
     public Product(HashMap<String, String> information, Seller seller) {
@@ -305,5 +313,19 @@ public class Product implements Comparable<Product> {
         Product first = (Product) this;
         Product second = (Product) obj;
         return first.getProductId() == second.getProductId();
+    }
+
+    @Override
+    public int getId() {
+        return this.productId;
+    }
+
+    @Override
+    public Product getById(int id) {
+        for (Product product : allProducts){
+            if (product.productId == id)
+                return product;
+        }
+        return null;
     }
 }

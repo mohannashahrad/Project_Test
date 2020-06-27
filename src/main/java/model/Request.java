@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Request {
+public class Request implements Idable<Request> {
     private int requestId;
     private RequestType typeOfRequest;
     private StateType stateOfRequest;
@@ -82,5 +82,18 @@ public class Request {
 
     public void declineRequest() {
         this.stateOfRequest = StateType.DECLINED;
+    }
+
+    @Override
+    public int getId() {
+        return this.requestId;
+    }
+
+    @Override
+    public Request getById(int id) {
+        for (Request request : allRequests)
+            if (request.requestId == id)
+                return request;
+        return null;
     }
 }

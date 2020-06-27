@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
-public class Comment {
+public class Comment implements Idable<Comment> {
     private int id;
     private String user;
     private Product product;
@@ -59,5 +59,18 @@ public class Comment {
         if (user && title && content && product)
             return true;
         else return false;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+    @Override
+    public  Comment getById(int id) {
+        for (Comment comment : allComments){
+            if (comment.getId()==id)
+                return comment;
+        }
+        return null;
     }
 }

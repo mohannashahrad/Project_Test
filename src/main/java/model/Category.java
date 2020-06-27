@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-public class Category {
+public class Category implements Idable<Category> {
     private int id;
     private String categoryName;
     private String imagePath;
@@ -73,6 +73,16 @@ public class Category {
     public int getId() {
         return id;
     }
+
+    @Override
+    public Category getById(int id) {
+        for (Category category : allCategories){
+            if (category.id == id)
+                return category;
+        }
+        return null;
+    }
+
 
     public static boolean doesCategoryExist(String name) {
         for (Category category : allCategories) {
