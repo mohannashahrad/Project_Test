@@ -41,6 +41,8 @@ public class AllProductsMenu extends Menu implements Initializable {
     @FXML
     TableColumn<Product, Image> imageColumn = new TableColumn<>();
     @FXML
+    TableColumn<Product, Image> statusColumn = new TableColumn<>();
+    @FXML
     TableColumn<Product, Double> averageRateColumn = new TableColumn<>();
     @FXML
     TableColumn<Product, String> sellerColumn = new TableColumn<>();
@@ -214,6 +216,14 @@ public class AllProductsMenu extends Menu implements Initializable {
          final ObservableList<Product> data = FXCollections.observableArrayList(
                 shownProducts
         );
+        for (Product product : shownProducts) {
+            if (product.getSupply() == 0)
+                product.setStatusImagePath("file:src/main/java/graphics/fxml/images/finished.jpg");
+            else if (product.getSale() == null)
+                product.setStatusImagePath("file:src/main/java/graphics/fxml/images/available.png");
+            else
+                product.setStatusImagePath("file:src/main/java/graphics/fxml/images/sale.jpg");
+        }
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("CategoryName"));
@@ -236,6 +246,26 @@ public class AllProductsMenu extends Menu implements Initializable {
             cell.setGraphic(imageview);
             return cell;
         });
+        statusColumn.setCellFactory(param -> {
+            //Set up the ImageView
+            final ImageView imageview = new ImageView();
+            imageview.setFitHeight(50);
+            imageview.setFitWidth(50);
+
+
+            //Set up the Table
+            TableCell<Product, Image> cell = new TableCell<Product, Image>() {
+                public void updateItem(Image item, boolean empty) {
+                    if (item != null) {
+                        imageview.setImage(item);
+                    }
+                }
+            };
+            // Attach the imageView to the cell
+            cell.setGraphic(imageview);
+            return cell;
+        });
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("statusImage"));
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("Image"));
         averageRateColumn.setCellValueFactory(new PropertyValueFactory<>("averageRate"));
         sellerColumn.setCellValueFactory(new PropertyValueFactory<>("SellerName"));

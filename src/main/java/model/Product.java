@@ -14,6 +14,7 @@ public class Product implements Comparable<Product> {
     private Storage storage = new Storage();
     private Image image;
     private String imagePath;
+    private String statusImagePath;
     private int productId;
     private String name;
     private String brand;
@@ -68,6 +69,14 @@ public class Product implements Comparable<Product> {
 
     public Image getImage() {
         return new Image(this.imagePath);
+    }
+
+    public Image getStatusImage(){
+        return new Image(this.statusImagePath);
+    }
+
+    public void setStatusImagePath(String statusImagePath) {
+        this.statusImagePath = statusImagePath;
     }
 
     public void setSaleBeginDate(String saleBeginDate) {
