@@ -27,7 +27,7 @@ public class PerSellLog extends Menu implements Initializable {
     @FXML
     TableColumn<Product, Integer> idColumn = new TableColumn<>();
     @FXML
-    TableColumn<Product, Integer> numberColumn = new TableColumn<>();
+    TableColumn<Product, String> numberColumn = new TableColumn<>();
     @FXML
     TableColumn<Product, Integer> brandName = new TableColumn<>();
     @FXML

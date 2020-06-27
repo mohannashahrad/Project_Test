@@ -9,19 +9,20 @@ public class SellLog extends Log {
     private double saleAmount;
     private Customer customer;
     private static ArrayList<Integer> allSellCodes = new ArrayList<>();
-    private static ArrayList<Log>allSellLogs = new ArrayList<>();
+    private static ArrayList<Log> allSellLogs = new ArrayList<>();
 
     public static ArrayList<Log> getAllSellLogs() {
         return allSellLogs;
     }
+
     private int idSetter() {
         if (allSellLogs.size() == 0) {
             return 1;
         }
         int max = 0;
         for (Log sellLog : allSellLogs) {
-            if (((BuyLog)sellLog).getBuyCode() > max)
-                max = ((BuyLog)sellLog).getBuyCode();
+            if (((BuyLog) sellLog).getBuyCode() > max)
+                max = ((BuyLog) sellLog).getBuyCode();
         }
         return max + 1;
     }
@@ -38,7 +39,8 @@ public class SellLog extends Log {
     public Customer getCustomer() {
         return customer;
     }
-    public int getSellCode(){
+
+    public int getSellCode() {
         return this.sellCode;
     }
 
@@ -46,13 +48,14 @@ public class SellLog extends Log {
         return allSellCodes;
     }
 
-    public double getReceivedMoney(){
+    public double getReceivedMoney() {
         return this.receivedMoney;
     }
 
-    public double getSaleAmount(){
+    public double getSaleAmount() {
         return this.saleAmount;
     }
+
     @Override
     public String toString() {
         return "SellLog{" +
