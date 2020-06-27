@@ -16,7 +16,7 @@
     <children>
         <VBox layoutX="16.0" layoutY="101.0" prefHeight="280.0" prefWidth="154.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
             <children>
-                <MenuButton alignment="CENTER" mnemonicParsing="false" onMousePressed="#buttonSound" prefHeight="54.0" prefWidth="160.0" text="Edit Personal Info" textAlignment="CENTER">
+                <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="54.0" prefWidth="160.0" text="Edit Personal Info" textAlignment="CENTER">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#editPasswordField" text="Password" />
                         <MenuItem mnemonicParsing="false" onAction="#editNameField" text="Name" />

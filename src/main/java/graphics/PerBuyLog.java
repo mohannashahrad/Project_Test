@@ -53,7 +53,7 @@ public class PerBuyLog extends Menu implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandName.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<>(buyLog.getProducts().values().toString()));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>(buyLog.getProducts().entrySet().toString()));
         tableView.setItems(productsInBuyLog);
         paidMoney.setText(Double.toString(buyLog.getPaidMoney()));
         amountOfDiscount.setText(Double.toString(buyLog.getDiscountAmount()));
