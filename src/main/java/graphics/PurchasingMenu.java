@@ -119,9 +119,7 @@ public class PurchasingMenu extends Menu {
         stage.setScene(new Scene(loader.load(), 600, 600));
     }
 
-    public void showMessage() throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
+    public void showMessage() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Buying Message");
         alert.setContentText("Thanks for buying from us:)");

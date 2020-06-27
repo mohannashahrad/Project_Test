@@ -6,15 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -22,7 +19,6 @@ import model.Category;
 import model.Product;
 import model.Seller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +27,7 @@ import java.util.ResourceBundle;
 public class SellerProductMenu extends Menu implements Initializable {
     private SellerManager sellerManager;
     private Storage storage = new Storage();
+
     public SellerProductMenu(Menu previousMenu, SellerManager sellerManager) {
         super(previousMenu, "src/main/java/graphics/fxml/SellerProductMenu.fxml");
         this.sellerManager = sellerManager;
@@ -126,7 +123,7 @@ public class SellerProductMenu extends Menu implements Initializable {
 
     }
 
-    public void addProduct() throws IOException {
+    public void addProduct() {
         AddProductPage addProductPage = new AddProductPage(this, this.sellerManager);
         addProductPage.run();
     }
@@ -222,19 +219,19 @@ public class SellerProductMenu extends Menu implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         ChoiceBox<String> content = new ChoiceBox<>();
         ArrayList<String> categoryNames = getCategoryNames();
-        if (categoryNames.isEmpty()){
+        if (categoryNames.isEmpty()) {
             content.getItems().add("No Categories yet!");
-        }else {
+        } else {
             content.getItems().addAll(categoryNames);
         }
         dialog.getDialogPane().setContent(content);
         dialog.showAndWait();
         String selectedCategory = content.getValue();
-        if (!categoryNames.isEmpty()){
+        if (!categoryNames.isEmpty()) {
             try {
                 sellerManager.editProduct(productId, "category", selectedCategory);
                 showMessage();
-            }  catch (Exception e) {
+            } catch (Exception e) {
                 showError("Oops!Something went wrong!", 100);
             }
         } else {
@@ -283,7 +280,7 @@ public class SellerProductMenu extends Menu implements Initializable {
         alert.show();
     }
 
-    private ArrayList<String> getCategoryNames(){
+    private ArrayList<String> getCategoryNames() {
         ArrayList<String> categoryName = new ArrayList<>();
         if (!storage.getAllCategories().isEmpty()) {
             for (Category category : storage.getAllCategories()) {

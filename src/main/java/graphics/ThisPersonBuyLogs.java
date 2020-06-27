@@ -4,7 +4,6 @@ import controller.CustomerManager;
 import controller.Storage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -75,8 +74,6 @@ public class ThisPersonBuyLogs extends Menu implements Initializable {
         BuyLog thisBuyLog = storage.getBuyLogByCode(code);
         PerBuyLog buyLog = new PerBuyLog(thisBuyLog, this);
         buyLog.run();
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/PerBuyLog.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
     public void showError(String message) {

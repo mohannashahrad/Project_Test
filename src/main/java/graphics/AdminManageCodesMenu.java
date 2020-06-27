@@ -15,8 +15,6 @@ import model.Customer;
 import model.Discount;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;

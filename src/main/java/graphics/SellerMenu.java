@@ -381,7 +381,7 @@ public class SellerMenu extends Menu implements Initializable {
         }
     }
 
-    public void addOff(){
+    public void addOff() {
         AddOffPage addOffPage = new AddOffPage(this, this.sellerManager);
         addOffPage.run();
     }
@@ -412,18 +412,15 @@ public class SellerMenu extends Menu implements Initializable {
         dialog.showAndWait();
     }
 
-    public void goToSellLogPage() throws IOException {
+    public void goToSellLogPage() {
         ThisSellerSellLogs thisSellerSellLogs = new ThisSellerSellLogs(this);
         thisSellerSellLogs.run();
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/ThisPersonBuyLogs.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
     }
 
-    public void goToMainMenu() throws IOException {
+    public void goToMainMenu() {
         MainMenu mainMenu = new MainMenu(this);
         mainMenu.run();
-        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/graphics/fxml/MainMenu.fxml").toURI().toURL());
-        stage.setScene(new Scene(loader.load(), 600, 600));*/
+
     }
 
     public void logout(ActionEvent actionEvent) {
@@ -433,7 +430,7 @@ public class SellerMenu extends Menu implements Initializable {
     }
 
     @FXML
-    private void goToRequestsMenu(){
+    private void goToRequestsMenu() {
         SellerRequestMenu sellerRequestMenu = new SellerRequestMenu(this);
         sellerRequestMenu.run();
     }
