@@ -51,7 +51,7 @@ public class PerSellLog extends Menu implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         brandName.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<>(sellLog.getProducts().values().toString()));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberInCart"));
         tableView.setItems(productsInSellLog);
         receivedMoney.setText(Double.toString(sellLog.getReceivedMoney()));
         amountOfSale.setText(Double.toString(sellLog.getSaleAmount()));
