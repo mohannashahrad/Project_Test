@@ -61,10 +61,10 @@
                 <Font name="Bookshelf Symbol 7" size="18.0" />
             </font>
         </Label>
-        <Button layoutX="172.0" layoutY="336.0" mnemonicParsing="false" onAction="#checkInputsValidity" prefHeight="50.0" prefWidth="100.0" text="Purchase" />
-        <Button layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="100.0" text="Cancel" />
-        <Button layoutY="-3.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="90.0" text="Back" />
-      <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#goToMyAccount" prefHeight="50.0" prefWidth="100.0" text="My Account" />
+        <Button layoutX="172.0" layoutY="336.0" mnemonicParsing="false" onAction="#checkInputsValidity" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="Purchase" />
+        <Button layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="Cancel" />
+        <Button layoutY="-3.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="90.0" text="Back" />
+      <Button layoutX="1.0" layoutY="338.0" mnemonicParsing="false" onAction="#goToMyAccount" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="My Account" />
     </children>
 
 </AnchorPane>

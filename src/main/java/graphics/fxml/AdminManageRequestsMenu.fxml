@@ -15,7 +15,7 @@
         <URL value="@cssSheets/AddProduct.css" />
     </stylesheets>
     <children>
-        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
         <TableView fx:id="requestsTable" layoutX="83.0" prefHeight="600.0" prefWidth="517.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="56.59998321533203" text="ID" />

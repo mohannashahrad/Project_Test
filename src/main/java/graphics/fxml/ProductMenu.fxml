@@ -36,13 +36,13 @@
         <ImageView fx:id="imageview" fitHeight="146.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
         </ImageView>
         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button alignment="CENTER" mnemonicParsing="false" onAction="#button" prefHeight="61.0" prefWidth="186.0" text="Add to Cart" GridPane.rowIndex="4" />
+        <Button alignment="CENTER" mnemonicParsing="false" onAction="#button" onMousePressed="#buttonSound" prefHeight="61.0" prefWidth="186.0" text="Add to Cart" GridPane.rowIndex="4" />
         <VBox prefHeight="169.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <children>
                 <TilePane hgap="30.0" prefHeight="94.0" prefWidth="249.0" vgap="30.0">
                     <children>
-                        <ChoiceBox fx:id="choiceBox" prefHeight="27.0" prefWidth="264.0" />
-                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choiceBoxAction" prefHeight="32.0" prefWidth="137.0" text="Apply Action" />
+                        <ChoiceBox fx:id="choiceBox" onMousePressed="#buttonSound" prefHeight="27.0" prefWidth="264.0" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choiceBoxAction" onMousePressed="#buttonSound" prefHeight="32.0" prefWidth="137.0" text="Apply Action" />
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -51,8 +51,8 @@
             </children>
         </VBox>
         <ListView fx:id="listView" prefHeight="238.0" prefWidth="215.0" GridPane.rowIndex="3" />
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToMyAccount" prefHeight="44.0" prefWidth="116.0" text="My Account" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Button alignment="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="44.0" prefWidth="116.0" text="Back" GridPane.rowIndex="1" />
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToMyAccount" onMousePressed="#buttonSound" prefHeight="44.0" prefWidth="116.0" text="My Account" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Button alignment="CENTER" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="44.0" prefWidth="116.0" text="Back" GridPane.rowIndex="1" />
         <ImageView fx:id="statusImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
     <padding>

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddProductPage">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphics.AddProductPage">
     <stylesheets>
         <URL value="@cssSheets/BasicStyle.css" />
     </stylesheets>
@@ -49,7 +42,7 @@
                 <TextField fx:id="brand" prefHeight="43.0" prefWidth="182.0" promptText="Brand" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="price" prefHeight="43.0" prefWidth="182.0" promptText="Price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="explanation" prefHeight="49.0" prefWidth="182.0" promptText="Explanation" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <ChoiceBox fx:id="categoryField" prefHeight="31.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <ChoiceBox fx:id="categoryField" onMousePressed="#buttonSound" prefHeight="31.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="supply" prefHeight="44.0" prefWidth="181.0" promptText="Supply" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
@@ -58,8 +51,8 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Button fx:id="addProduct" layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="110.0" text="Send Request" />
-        <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
-        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" text="back" />
+        <Button fx:id="addProduct" layoutX="159.0" layoutY="422.0" mnemonicParsing="false" onAction="#addProduct" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Send Request" />
+        <Button layoutX="315.0" layoutY="422.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
+        <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
     </children>
 </AnchorPane>

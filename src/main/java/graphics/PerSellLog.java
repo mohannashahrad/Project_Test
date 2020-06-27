@@ -1,9 +1,7 @@
 package graphics;
 
-import controller.CustomerManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -29,7 +27,7 @@ public class PerSellLog extends Menu implements Initializable {
     @FXML
     TableColumn<Product, String> numberColumn = new TableColumn<>();
     @FXML
-    TableColumn<Product, Integer> brandName = new TableColumn<>();
+    TableColumn<Product, String> brandName = new TableColumn<>();
     @FXML
     Label receivedMoney;
     @FXML
@@ -47,7 +45,7 @@ public class PerSellLog extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         final ObservableList<Product> productsInSellLog = FXCollections.observableArrayList(
-               sellLog.getProducts().keySet()
+               sellLog.getSellerProductsInCart().keySet()
         );
         idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

@@ -58,6 +58,10 @@ public class SellLog extends Log {
     public double getSaleAmount(){
         return this.saleAmount;
     }
+
+    public HashMap<Product, Integer> getSellerProductsInCart(){
+        return sellerProductsInCart;
+    }
     @Override
     public String toString() {
         return "SellLog{" +
