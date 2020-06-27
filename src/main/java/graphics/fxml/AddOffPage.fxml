@@ -15,7 +15,7 @@
     <children>
         <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="38.0" prefWidth="224.0" text="Add Off Page">
             <font>
-                <Font size="24.0" />
+                <Font name="Andalus" size="24.0" />
             </font>
         </Label>
         <GridPane layoutX="80.0" layoutY="98.0" prefHeight="245.0" prefWidth="440.0">
@@ -30,23 +30,34 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="207.0" text="Begin Date(yyyy,MM,dd,HH,mm)" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="210.0" text="End Date(yyyy,MM,dd,HH,mm)" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="95.0" text="Amount Of Off" GridPane.rowIndex="2" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="121.0" text="Add Product To Off" GridPane.rowIndex="3" />
+                <Label alignment="CENTER" prefHeight="26.0" prefWidth="219.0" text="Begin Date(yyyy,MM,dd,HH,mm)">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="210.0" text="End Date(yyyy,MM,dd,HH,mm)" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="26.0" prefWidth="126.0" text="Amount Of Off" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="26.0" prefWidth="146.0" text="Add Product To Off" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font></Label>
                 <TextField fx:id="beginDateField" prefHeight="43.0" prefWidth="182.0" promptText="yyyy,MM,dd,HH,mm" GridPane.columnIndex="1" />
                 <TextField fx:id="endDateField" prefHeight="43.0" prefWidth="182.0" promptText="yyyy,MM,dd,HH,mm" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="amountOfOffField" prefHeight="43.0" prefWidth="182.0" promptText="Amount Of Off" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
-        <Label alignment="CENTER" layoutX="126.0" layoutY="59.0" text="PLEASE ENTER NEW OFF'S INFORMATION BELOW">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
         <Button fx:id="addProduct" layoutX="176.0" layoutY="361.0" mnemonicParsing="false" onAction="#addOff" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="109.0" text="Send Request" />
         <Button layoutX="316.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
         <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#back" onMousePressed="#buttonSound" text="back" />
       <Button alignment="CENTER" layoutX="303.0" layoutY="293.0" mnemonicParsing="false" onAction="#addProductToSale" onMousePressed="#buttonSound" prefHeight="38.0" prefWidth="175.0" text="Add Product To Off" />
+      <Label layoutX="137.0" layoutY="53.0" text="PLEASE ENTER NEW OFF'S INFORMATION BELOW">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font></Label>
     </children>
 </AnchorPane>

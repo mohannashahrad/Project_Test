@@ -27,13 +27,13 @@
          <children>
             <Label text="USERNAME ">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Andalus" size="17.0" />
                </font>
             </Label>
             <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="PASSWORD" GridPane.rowIndex="1">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Andalus" size="17.0" />
                </font>
             </Label>
             <TextField fx:id="username" layoutX="172.0" layoutY="74.0" GridPane.columnIndex="1" />
@@ -42,7 +42,7 @@
       </GridPane>
       <Label layoutX="261.0" layoutY="77.0" text="LOGIN">
          <font>
-            <Font size="27.0" />
+            <Font name="Andalus" size="28.0" />
          </font>
       </Label>
       <Label layoutX="175.0" layoutY="323.0" text="Dont have account yet?">

@@ -13,9 +13,9 @@
         <URL value="@cssSheets/PurchasingMenu.css" />
     </stylesheets>
     <children>
-        <Label alignment="CENTER" layoutX="204.0" layoutY="24.0" prefHeight="59.0" prefWidth="191.0" text="PURCHASE PAGE">
+        <Label alignment="CENTER" layoutX="188.0" layoutY="22.0" prefHeight="59.0" prefWidth="229.0" text="PURCHASE PAGE">
             <font>
-                <Font name="Bookshelf Symbol 7" size="24.0" />
+                <Font name="Andalus" size="28.0" />
             </font>
         </Label>
         <GridPane layoutX="72.0" layoutY="93.0" prefHeight="243.0" prefWidth="461.0">
@@ -32,24 +32,24 @@
             <children>
                 <Label text="Address" GridPane.rowIndex="1">
                     <font>
-                        <Font name="Bookshelf Symbol 7" size="14.0" />
+                        <Font name="Andalus" size="18.0" />
                     </font>
                 </Label>
                 <Label text="Name">
                     <font>
-                        <Font name="Bookshelf Symbol 7" size="14.0" />
+                        <Font name="Andalus" size="18.0" />
                     </font>
                 </Label>
                 <Label text="Phone Number" GridPane.rowIndex="2">
                     <font>
-                        <Font name="Bookshelf Symbol 7" size="14.0" />
+                        <Font name="Andalus" size="18.0" />
                     </font>
                 </Label>
                 <TextField fx:id="name" prefHeight="41.0" prefWidth="191.0" promptText="Name" GridPane.columnIndex="1" />
                 <TextField fx:id="address" prefHeight="40.0" prefWidth="191.0" promptText="Address" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label text="Discount Code" GridPane.rowIndex="3">
                     <font>
-                        <Font name="Bookshelf Symbol 7" size="14.0" />
+                        <Font name="Andalus" size="18.0" />
                     </font>
                 </Label>
                 <TextField fx:id="discountCodeField" prefHeight="45.0" prefWidth="302.0" promptText="Discount Code" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -58,7 +58,7 @@
         </GridPane>
         <Label layoutX="153.0" layoutY="73.0" text="Please enter your information below!">
             <font>
-                <Font name="Bookshelf Symbol 7" size="18.0" />
+                <Font name="Andalus" size="20.0" />
             </font>
         </Label>
         <Button layoutX="172.0" layoutY="336.0" mnemonicParsing="false" onAction="#checkInputsValidity" onMousePressed="#buttonSound" prefHeight="50.0" prefWidth="100.0" text="Purchase" />

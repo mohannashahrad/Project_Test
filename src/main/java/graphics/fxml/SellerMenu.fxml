@@ -37,13 +37,13 @@
         </VBox>
         <Label alignment="CENTER" layoutX="19.0" layoutY="76.0" prefHeight="42.0" prefWidth="146.0" text="Account Access">
             <font>
-                <Font name="Bookshelf Symbol 7" size="18.0" />
+                <Font name="Andalus" size="20.0" />
             </font>
         </Label>
         <Separator layoutX="20.0" layoutY="97.0" prefHeight="24.0" prefWidth="146.0" />
-        <Label alignment="CENTER" layoutX="188.0" layoutY="33.0" text="WELCOME SELLER!" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="151.0" layoutY="27.0" text="WELCOME SELLER!" textAlignment="CENTER">
             <font>
-                <Font name="Bookshelf Symbol 7" size="24.0" />
+                <Font name="Andalus" size="28.0" />
             </font>
         </Label>
         <GridPane alignment="CENTER_LEFT" layoutX="194.0" layoutY="78.0" prefHeight="280.0" prefWidth="304.0">
@@ -66,17 +66,41 @@
             <children>
                 <Label alignment="CENTER" prefHeight="27.0" prefWidth="161.0" text="Personal Information">
                     <font>
-                        <Font name="Bookshelf Symbol 7" size="14.0" />
+                        <Font name="Andalus" size="15.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="76.0" text="username" textAlignment="CENTER" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="76.0" text="password" textAlignment="CENTER" GridPane.rowIndex="2" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="49.0" text="role" GridPane.rowIndex="3" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="60.0" text="name" GridPane.rowIndex="5" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="83.0" text="family name" GridPane.rowIndex="6" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="53.0" text="e-mail" GridPane.rowIndex="7" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="61.0" text="number" GridPane.rowIndex="8" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="64.0" text="balance" GridPane.rowIndex="4" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="76.0" text="username" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="76.0" text="password" textAlignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="49.0" text="role" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="60.0" text="name" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="83.0" text="family name" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="53.0" text="e-mail" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="61.0" text="number" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="64.0" text="balance" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
                 <Label fx:id="usernameLabel" prefHeight="18.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label fx:id="passwordLabel" prefHeight="18.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label fx:id="roleLabel" prefHeight="18.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -85,7 +109,10 @@
                 <Label fx:id="familyNameLabel" prefHeight="18.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                 <Label fx:id="emailLabel" prefHeight="18.0" prefWidth="277.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <Label fx:id="numberLabel" prefHeight="18.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                <Label alignment="CENTER" prefHeight="18.0" prefWidth="67.0" text="company" GridPane.rowIndex="9" />
+                <Label alignment="CENTER" prefHeight="18.0" prefWidth="67.0" text="company" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Andalus" size="14.0" />
+               </font></Label>
                 <Label fx:id="brandLabel" prefHeight="18.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             </children>
         </GridPane>
