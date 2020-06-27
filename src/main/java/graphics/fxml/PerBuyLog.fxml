@@ -13,13 +13,14 @@
         <URL value="@cssSheets/BackGround.css" />
     </stylesheets>
     <children>
-        <TableView fx:id="tableView" layoutX="61.0" layoutY="69.0" prefHeight="325.0" prefWidth="479.0">
+        <TableView fx:id="tableView" layoutX="39.0" layoutY="69.0" prefHeight="326.0" prefWidth="542.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="68.20001524686813" text="productId" />
                 <TableColumn fx:id="productNameColumn" prefWidth="111.79998779296875" text="Product Name" />
                 <TableColumn fx:id="brandName" prefWidth="81.99998474121094" text="Brand" />
                 <TableColumn fx:id="priceColumn" prefWidth="140.4000244140625" text="Price Per Product" />
-                <TableColumn fx:id="numberColumn" prefWidth="74.79998779296875" text="Quantity" />
+                <TableColumn fx:id="numberColumn" prefWidth="61.20001220703125" text="Quantity" />
+            <TableColumn fx:id="sellerName" prefWidth="75.0" text="Seller" />
             </columns>
         </TableView>
         <Label layoutX="21.0" layoutY="21.0" prefHeight="23.0" prefWidth="237.0" text="Here's Your Log :">

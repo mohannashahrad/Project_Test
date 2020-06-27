@@ -36,8 +36,6 @@ public class PerSellLog extends Menu implements Initializable {
     Label date;
     @FXML
     Label logCode;
-    @FXML
-    Label buyerName;
 
     public PerSellLog(SellLog sellLog, Menu previousMenu) {
         super(previousMenu, "src/main/java/graphics/fxml/PerSellLog.fxml");
@@ -59,6 +57,5 @@ public class PerSellLog extends Menu implements Initializable {
         amountOfSale.setText(Double.toString(sellLog.getSaleAmount()));
         date.setText(sellLog.getDate().toString());
         logCode.setText(Integer.toString(sellLog.getSellCode()));
-        buyerName.setText(sellLog.getCustomer().getName());
     }
 }
