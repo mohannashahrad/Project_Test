@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 
 public class Rate {
@@ -12,7 +14,6 @@ public class Rate {
     public static ArrayList<Rate> getAllRates() {
         return allRates;
     }
-
     public Rate(String user, Product product, double rate) {
         this.user = user;
         this.product = product;

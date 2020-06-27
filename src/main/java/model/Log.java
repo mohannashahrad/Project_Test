@@ -1,6 +1,8 @@
 package model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,14 +12,27 @@ public class Log {
     protected LocalDateTime date;
     protected HashMap<Product, Integer> products;
     private static ArrayList<Log>allLogs = new ArrayList<>();
+    protected int id;
 
     public static ArrayList<Log> getAllLogs() {
         return allLogs;
     }
-
     public Log(LocalDateTime date) {
         this.date = date;
         this.products = new HashMap<>();
+        this.id = idSetter();
+        allLogs.add(this);
+    }
+    private int idSetter() {
+        if (allLogs.size() == 0) {
+            return 1;
+        }
+        int max = 0;
+        for (Log sellLog : allLogs) {
+            if (((BuyLog)sellLog).getBuyCode() > max)
+                max = ((BuyLog)sellLog).getBuyCode();
+        }
+        return max + 1;
     }
 
     public LocalDateTime getDate() {

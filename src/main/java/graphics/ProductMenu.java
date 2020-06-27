@@ -4,14 +4,17 @@ import controller.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import model.*;
 
 import java.net.URL;
@@ -35,6 +38,11 @@ public class ProductMenu extends Menu implements Initializable {
     public ImageView imageview;
     @FXML
     public ListView listView;
+    @FXML
+    private TableView<Product> similarProducts = new TableView<>();
+    @FXML private TableColumn<Product,Integer> idColumn = new TableColumn<>();
+    @FXML private TableColumn<Product,String> nameColumn = new TableColumn<>();
+    @FXML private TableColumn<Product,Void> viewMoreColumn = new TableColumn<>();
 
     public ProductMenu(Menu previousMenu , Product product) {
         super(previousMenu, "src/main/java/graphics/fxml/ProductMenu.fxml");
@@ -203,6 +211,51 @@ public class ProductMenu extends Menu implements Initializable {
         }
     }
 
+    private void updateShownProducts(ArrayList<Product> shownProducts){
+        final ObservableList<Product> data = FXCollections.observableArrayList(
+                shownProducts
+        );
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        addButtonToTable(this);
+        similarProducts.setItems(data);
+    }
+
+    private void addButtonToTable(ProductMenu menu) {
+        Callback<TableColumn<Product, Void>, TableCell<Product, Void>> cellFactory =
+                new Callback<TableColumn<Product, Void>, TableCell<Product, Void>>() {
+                    @Override
+                    public TableCell<Product, Void> call(final TableColumn<Product, Void> param) {
+                        final TableCell<Product, Void> cell = new TableCell<Product, Void>() {
+
+                            private final Button btn = new Button("Click");
+
+                            {
+                                btn.setOnAction((ActionEvent event) -> {
+                                    Product product = getTableView().getItems().get(getIndex());
+                                    ProductMenu productMenu = new ProductMenu(menu,product);
+                                    productMenu.run();
+                                });
+                            }
+
+                            @Override
+                            public void updateItem(Void item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                } else {
+                                    setGraphic(btn);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        viewMoreColumn.setCellFactory(cellFactory);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productNameLabel.setText(product.getName());
@@ -210,6 +263,9 @@ public class ProductMenu extends Menu implements Initializable {
         setStatusImageView();
         choiceBox.getItems().addAll("Compare", "Attributes" , "Comments" , "Rate" , "More Options");
         choiceBox.setValue("More Options");
+        ArrayList<Product> temp = product.getCategory().getThisCategoryProducts();
+        temp.remove(product);
+        updateShownProducts(temp);
         try {
             listViewContents();
         } catch (Exception e) {
