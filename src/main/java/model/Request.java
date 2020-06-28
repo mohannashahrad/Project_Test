@@ -17,6 +17,10 @@ public class Request implements Idable<Request> {
     public static ArrayList<Request> getAllRequests() {
         return allRequests;
     }
+
+    public Request() {
+    }
+
     public Request(String typeOfRequest, HashMap<String, String> information) {
         this.requestId = idSetter();
         this.typeOfRequest = requestTypeFinder(typeOfRequest);

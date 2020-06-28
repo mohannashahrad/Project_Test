@@ -5,14 +5,12 @@ import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 import model.*;
 
+import javax.security.auth.login.AccountExpiredException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class FileSaver {
     private YaGson gson = new YaGsonBuilder().setPrettyPrinting().create();
@@ -120,7 +118,9 @@ public class FileSaver {
     }
 
     private void modifyDiscount() {
-        //private HashMap<Customer, Integer> customersWithThisDiscount;
+        for (Discount discount : storage.getAllDiscounts()){
+            hashmapReplace(discount.getCustomersWithThisDiscount(),new Customer());
+        }
     }
 
     private void modifyCategory() {
@@ -144,9 +144,20 @@ public class FileSaver {
     }
 
     private void modifySellLog() {
+        Person instance = new Person();
+        for (Log temp : storage.getAllSellLogs()){
+            SellLog sellLog = (SellLog)temp;
+            Person customer = instance.getById(sellLog.getCustomer().getId());
+            sellLog.setCustomer((Customer)customer);
+            hashmapReplace(sellLog.getSellerProductsInCart(),new Product());
+        }
     }
 
     private void modifyBuyLog() {
+        for (Log temp : storage.getAllBuyLogs()){
+            BuyLog buyLog = (BuyLog)temp;
+            replace(buyLog.getSeller(),new Seller(null));
+        }
     }
 
     private void modifyLog() {
@@ -158,7 +169,10 @@ public class FileSaver {
     }
 
     private void modifyAdmin() {
-        //nothing except request(not used)
+        for(Person temp : storage.getAllAdmins()){
+            Admin admin = (Admin)temp;
+            replace(admin.getAllRequests(),new Request());
+        }
     }
 
     private void modifyCustomer() {
@@ -176,15 +190,6 @@ public class FileSaver {
            replace(seller.getSaleList(),new Sale());
        }
     }
-    private <T extends Idable,K extends Idable> void replace(ArrayList<T> dest,T instance){
-        ArrayList<Integer> id = new ArrayList<>();
-        for (T t : dest)
-            id.add(t.getId());
-        dest.clear();
-        for (Integer x : id){
-            dest.add((T) instance.getById(x.intValue()));
-        }
-    }
 
     private void modifyPerson() {
         for (Person person : storage.getAllUsers()){
@@ -194,6 +199,26 @@ public class FileSaver {
                 storage.getAllSellers().add(person);
             else storage.getAllCustomers().add(person);
         }
+    }
+
+    private <T extends Idable> void replace(ArrayList<T> dest,T instance){
+        ArrayList<Integer> id = new ArrayList<>();
+        for (T t : dest)
+            id.add(t.getId());
+        dest.clear();
+        for (Integer x : id){
+            dest.add((T) instance.getById(x.intValue()));
+        }
+    }
+    private <K extends Idable> void hashmapReplace(HashMap<K,Integer> hashMap,K instance){
+        HashMap<K,Integer> temp = new HashMap<>();
+        for (Map.Entry<K,Integer> entry : hashMap.entrySet()){
+            K k = (K) instance.getById(entry.getKey().getId());
+            temp.put(k,entry.getValue());
+        }
+        hashMap.clear();
+        hashMap.putAll(temp);
+
     }
 
     private <T> void reader(ArrayList<T> main, String path, Class<T[]> tClass){

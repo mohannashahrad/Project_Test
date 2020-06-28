@@ -59,6 +59,10 @@ public class SellLog extends Log {
         return this.saleAmount;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public HashMap<Product, Integer> getSellerProductsInCart(){
         return sellerProductsInCart;
     }
